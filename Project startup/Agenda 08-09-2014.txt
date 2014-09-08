@@ -1,0 +1,25 @@
+1. Equipment
+We choose to simulate the equipment the real system would have to use.
+
+2. Architecture
+OK look at pictures.
+
+3. Language
+PHP for website, different languages for simulating equipment(C# or Java or SOAP).
+
+4. Scrum?
+Unified Process:
+    - Planning Poker
+    - Start with Pair Programming
+    - Report is on a situational basis with regards to pair programming.
+    - Physical issue tracker
+    - Others?
+    
+5. How do we work?
+
+6. Distribution of programming and report
+    - 2 weeks before turn-in date programming should be done.
+    - Analysis is important early, talk to other group on the same topic and talk to county.
+
+General:
+Contact county and talk to them about the system currently in use and what specific problems there are, and what kind of information they already have available.
