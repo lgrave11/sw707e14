@@ -1,7 +1,7 @@
-1. Se antal af cykler ved hver station
+ï»¿1. Se antal af cykler ved hver station
 2. Statistik(data warehouse)
-3. Simpel booking(Cykel låst! Et døgn før)
-3.1 Semi simpel booking(Estimering uden tracking vha. folk siger hvor de skal hen f.eks, og gæt hvor lang tid det vil tage).
+3. Simpel booking(Cykel lÃ¥st! Et dÃ¸gn fÃ¸r)
+3.1 Semi simpel booking(Estimering uden tracking vha. folk siger hvor de skal hen f.eks, og gÃ¦t hvor lang tid det vil tage).
 4. Tracking vha. GPS
-5. Forudse tilgængelighed af cykler(Ankommer til destination, afhænger af tracking dog ikke nødvendigvis GPS da hvis brugeren siger hvor han skal hen kan man sige hvor lang tid det vil tage før cyklen er der)
-6. Avanceret booking(Tage højde for placering), (Tillad ubooket brug af cykler hvis cykler kommer tilbage hjem)
+5. Forudse tilgÃ¦ngelighed af cykler(Ankommer til destination, afhÃ¦nger af tracking dog ikke nÃ¸dvendigvis GPS da hvis brugeren siger hvor han skal hen kan man sige hvor lang tid det vil tage fÃ¸r cyklen er der)
+6. Avanceret booking(Tage hÃ¸jde for placering), (Tillad ubooket brug af cykler hvis cykler kommer tilbage hjem)
