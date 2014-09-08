@@ -34,3 +34,26 @@
 
 Analysis of usage patterns:
     Datawarehouse
+    
+Hardware vs software:
+    Lasse:
+    Hardware: Locking tracker(For example you unlock the lock and the system no longer counts the bike as being there)
+    Software: Webpage.
+    
+    Dennis:
+    Hardware to determine location, software to show location
+    
+    Erik:
+    Hardware: Tracking device on bike(Hidden, no need for user to interact with it). Display at station. Software: QR code, some kind of interface for display. Admin interface that shows hotspots, to help figure out how to distribute the bikes.
+    
+    Mathias:
+    Hardware: GPS/WiFi on bikes for tracking. Some kind of HW to check if bikes are at the station. Software: Check where bikes are currently in the city. Software to book. Software to check status of stations, bikes.
+    
+    Søren:
+    Hardware: GPS too expensive, RFID chip to check if bikes are in station(Lock is a good idea too). Software: Primarily used for analysis, status of stations/bikes and to be used for booking - Webpage, not necessarily a webpage for county.
+    
+    Lars:
+    Hardware: Sensor to check at the stations. Display at the station to show when the next bike will be available, for booking. Software: Booking, checking, statistics and analysis.
+    
+    Booking is necessary for unlocking bikes, QR code used to show up.
+    Deposit, fine.
