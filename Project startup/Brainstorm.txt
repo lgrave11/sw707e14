@@ -1,0 +1,36 @@
+﻿Check bike availability(blue)
+
+    Mathias:
+    GPS on bikes
+    Tracker at the station
+    #These could be used on a website
+    Booking system where you give information about where you start and where you end, making it possible to guess where bikes are.
+    Deadreckoning
+    Deposit
+
+    Søren:
+    App/Homepage for checking it.
+    Registration at the station
+    Use chip on the bike used to register it.
+    Plan for registration.
+
+    Lars:
+    Sensor at station to determine how many bikes are there
+
+    Lasse:
+    Camera to check visually
+    Booking system
+    GPS on bikes
+    Tracker at station
+
+    Dennis:
+    Check-in/Check-out
+    See bikes within x meters of station
+
+    Erik:
+    Central system, using GPS to track.
+    People who use it report on their own(Good guy citizen). Report missing bikes.
+    WiFi poles, track when the bikes come across these.
+
+Analysis of usage patterns:
+    Datawarehouse
