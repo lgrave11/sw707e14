@@ -1,0 +1,79 @@
+% Titelbladseksempel til brug på Første studieår.
+% Hans Hüttel - hans@cs.aau.dk
+% 16. december 2011
+
+% Her begynder selve titelbladet
+
+\thispagestyle{empty}
+\begin{titlingpage}
+ \begin{nopagebreak}
+ {\samepage 
+ \begin{tabular}{r}
+\parbox{\textwidth}{  \raisebox{-7mm}{\includegraphics[height=4cm]{aau-logo-vector}}
+ \hfill \parbox{4.9cm}{\begin{tabular}{l}
+{\small Fourth study year} \\
+{\small Software} \\
+{\small Selma Lagerlöfsvej 300} \\
+ \end{tabular}}
+}
+% \\
+\end{tabular}
+
+ \begin{tabular}{cc}
+\parbox{7cm}{
+\begin{description}
+
+\item[Title:] 
+
+Software 7 - Internet of Things, Bikes
+  
+\item[Theme:]
+
+Internet of Things
+
+
+ \end{description}
+
+\parbox{8cm}{
+
+\begin{description}
+\item[Project period:]
+    P6, spring semester 2014 \\
+  \hspace{4cm}
+\item[Project group:]
+	sw707e14 \\
+\hspace{4cm}
+\item[Participants:] \mbox{} \\[3mm]
+Dennis Jakobsen\\ Erik Sidelmann Jensen\\ Lasse Vang Gravesen\\ Lars Andersen\\ Mathias Winde Pedersen\\ Søren Skibsted Als
+   \hspace{2cm}
+\item[Supervisor:] \mbox{} \\[3mm]
+ Hua Lu \\
+\end{description}
+}
+\begin{description}
+ \item[Copies:] 8
+ \item[Content Pages:] \pagedifference{startoftoc}{lastpagewithoutappendix}
+ \item[Appendix:]  \pagedifference{lastpagewithoutappendix}{LastPage}
+ \item[Total Pages:] \pageref{LastPage}
+ \item[Completed:] 28-5-2014
+\end{description}
+ \vfill } &
+\parbox{7cm}{
+  \vspace{.15cm}
+  \begin{tabular}{l}
+  \textbf{Abstract:}\bigskip \\
+  \fbox{
+  	\begin{minipage}{6.5cm}
+  	\bigskip
+  	{\vfill{\small \input{Synopsis}
+  	\bigskip}}
+  	
+  	\end{minipage}
+	}
+   \end{tabular}}
+ \end{tabular}
+}
+\end{nopagebreak}
+\end{titlingpage}
+
+% Her slutter selve titelbladet

@@ -1,0 +1,212 @@
+\documentclass[a4paper, twoside]{memoir}% Document class
+\usepackage[a4paper]{geometry}			% Margins
+\usepackage{textcomp}					% Additional text symbols
+\usepackage{sidecap}					% Sidecaptions
+\usepackage{listings}					% Code in text.
+%\usepackage{courier}					% Code font.
+\usepackage{lmodern}
+\usepackage{float}						% Absolute positioning
+\usepackage{rotating}					% Rotate tables.
+\usepackage[utf8x]{inputenc}			% Character encoding
+\usepackage{ucs}						% Extended character encoding
+\usepackage{t1enc}						% More character encoding	
+\usepackage[english]{babel}				% Language 
+\usepackage[numbers,sort&compress]{natbib}			% Citation
+\usepackage{color}						% Colors.
+\usepackage{lastpage}					% Get last page
+\usepackage[small,compact]{titlesec}	% No 'chapter' in chapter headings.
+\usepackage{graphicx}					% Graphics					
+\usepackage{caption}					% Provide captionof
+\usepackage{multirow}					% Multiple rows and columns in tables.
+\usepackage{pdfpages} 					% Include PDF page.
+\usepackage{wrapfig}					% Placement of images in the document.
+\usepackage{amsmath}	
+\usepackage{amsthm, amssymb, amsfonts} % Math stuff and font shit
+\usepackage{palatino}
+\usepackage{mathtools}
+\usepackage{ulem}						% Cross characters out.
+\usepackage{enumitem}					% Customizable itemize, enumerates
+\usepackage{datatool}
+\usepackage{dataplot}
+\graphicspath{{Media/}}					% Directory that holds images.
+\usepackage[hyphens]{url}				% Url formatting
+\usepackage{pbox}						% Table cell box
+\usepackage{refcount}					% Extract data from references, used to determine number of pages in appendix
+\usepackage{afterpage}					% Apply command to next page.
+\usepackage{syntax}
+\usepackage{epic}
+\usepackage{dirtree}
+\usepackage{array}
+\usepackage{epstopdf}
+\setlength{\marginparwidth}{3.5cm}		% Margin for notes
+\usepackage{etoolbox}
+
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{1em}
+  \setlength{\belowdisplayskip}{1em}
+  \setlength{\abovedisplayshortskip}{1em}
+  \setlength{\belowdisplayshortskip}{1em}}
+\appto{\normalsize}{\zerodisplayskips}
+\appto{\small}{\zerodisplayskips}
+\appto{\footnotesize}{\zerodisplayskips}
+
+\usepackage[bookmarks=true,		
+			bookmarksopen=true,
+			bookmarksnumbered=true,
+			colorlinks=true,
+			breaklinks=true,
+			linkcolor=black,
+			citecolor=black,
+			urlcolor=black]{hyperref}	% Cross reference, clickable links and refs.
+
+%\def\UrlBreaks{-}
+
+\lstset{
+         basicstyle=\footnotesize\ttfamily, % Code text options
+         numberstyle=\tiny,          		% Code text size.
+         numbersep=5pt,             		% Distance from numbering to text.
+         tabsize=2,                 		% Size of tabs
+         extendedchars=true,         		% Extended ASCII
+         breaklines=true,            		% Break lines.
+         keywordstyle=\color{blue},			% Coloring of keywords      
+         stringstyle=\color{red}\ttfamily,  % Coloring of strings.
+         showspaces=false,           		% Visible spaces.
+         showtabs=false,             		% Visible tabs.
+         xleftmargin=0.9cm,
+         captionpos=b, 
+         numbers=left,
+         frame=single,
+         framexleftmargin=17pt,
+         framexrightmargin=5pt,
+         framexbottommargin=4pt,
+         showstringspaces=false,
+         literate={ø}{{\o}}1
+         		  {æ}{{\ae}}1
+         		  {å}{{\aa}}1
+         		  {Æ}{{\AE}}1
+				  {Å}{{\AA}}1
+				  {Ø}{{\O}}1,
+		 extendedchars=\true,
+         float = t,
+         keywordstyle=\color[rgb]{1.0,0,0},
+		 keywordstyle=[1]\color[rgb]{0,0,0.75},
+		 keywordstyle=[2]\color[rgb]{0,0.5,0.50},
+		 commentstyle=\color[rgb]{0.133,0.545,0.133},
+}
+  
+\lstdefinelanguage{Javascript}%
+{morekeywords={else,for,%
+    if,return,%
+    sizeof,switch,%
+    function, var},%
+ sensitive,%
+ morecomment=[s]{/*}{*/},%
+ morecomment=[l]//,%
+ morestring=[b]",%
+ morestring=[b]',%
+ moredelim=*[directive]\#,%
+ moredirectives={define,elif,else,endif,error,if,ifdef,ifndef,line,%
+    include,pragma,undef,warning}%
+}[keywords,comments,strings,directives]%
+  
+\titleformat{\chapter}[hang]
+{\normalfont\Large\bfseries}{\thechapter}{1em}{\Large}
+\titlespacing{\chapter}{0pt}{*0}{*1}
+
+\newcommand{\pagedifference}[2]{%
+  \number\numexpr\getpagerefnumber{#2}-\getpagerefnumber{#1}\relax}
+  
+\counterwithin*{chapter}{part}
+
+\makeevenhead{headings}{}{}{\textsc{\small \leftmark}}
+\makeoddhead{headings}{}{}{\textsc{\small \leftmark}}
+\makeevenhead{plain}{}{}{\textsc{\small \leftmark}}
+\makeoddhead{plain}{}{}{\textsc{\small \leftmark}}
+\makeevenfoot{headings}{}{\thepage}{}
+\makeoddfoot{headings}{}{\thepage}{}
+\makeheadrule{headings}{\textwidth}{0.3pt}
+\makeheadrule{plain}{\textwidth}{0.3pt}
+\makepagestyle{part}
+\makeevenfoot{part}{}{\thepage}{}
+\makeoddfoot{part}{}{\thepage}{}
+\makeevenhead{part}{\textsc{ff}}{}{}
+\makeoddhead{part}{\textsc{ff}}{}{}
+\makeheadrule{part}{\textwidth}{0.3pt}
+
+\bibliographystyle{unsrtnat}
+\newcommand{\equaref}[1]{\hyperref[#1]{Equation \ref{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure \ref{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table \ref{#1}}}
+\newcommand{\chapref}[1]{\hyperref[#1]{Chapter \ref{#1}}}
+\newcommand{\secref}[1]{\hyperref[#1]{Section \ref{#1}}}
+\newcommand{\lstref}[1]{\hyperref[#1]{List \ref{#1}}}
+\newcommand{\appref}[1]{\hyperref[#1]{Appendix \ref{#1}}}
+\newcommand{\setof}[2]{\ensuremath{\{ #1 \mid #2 \}}}
+\newcommand{\set}[1]{\ensuremath{\{ #1 \}}}
+
+\setcounter{tocdepth}{1}
+
+\titleformat{\chapter}{\Huge\bfseries}{\thechapter}{1em}{}
+\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+\renewcommand*\lstlistingname{List}
+
+\setlength{\parindent}{0pt}
+\nonzeroparskip
+
+\setcounter{secnumdepth}{2} % Numbered subsections?
+
+\let\tmp\oddsidemargin
+\let\oddsidemargin\evensidemargin
+\let\evensidemargin\tmp
+\reversemarginpar
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\definecolor{lightyellow}{RGB}{255,255,130}
+\definecolor{lightgreen}{RGB}{100,255,100}
+\definecolor{orange}{RGB}{255,127,0}
+
+\newcommand{\tododennis}[1]{
+\todo[color=lightyellow]{\textbf{Dennis:} #1} %
+}
+\newcommand{\todoerik}[1]{
+\todo[color=yellow]{\textbf{Erik:} #1} %
+}
+\newcommand{\todolasse}[1]{
+\todo[color=lightgreen]{\textbf{Lasse:} #1} %
+}
+\newcommand{\todojens}[1]{
+\todo[color=orange]{\textbf{Jens:} #1} %
+}
+
+%[BEGIN] Insert centered figure
+  % Parameters
+  % 1. Options
+  % 2. Relative path from Figures/
+  % 3. Caption text
+  % 4. Label (for referencing)
+\newcommand{\insertfigure}[4]{%
+    \begin{figure}[H] %
+        \center %
+        \includegraphics[#1]{#2} %
+        \caption{#3} %
+        \label{#4} %
+        \vspace{-5pt}
+    \end{figure} %
+}%[END]
+
+\newcommand{\insertwrapfigure}[5]{
+\begin{wrapfigure}{#1}{#2+15pt}
+    \vspace{5pt}
+    \begin{centering}
+        \includegraphics[width=#2]{#3} %
+        \caption{#4} %
+        \label{#5} %
+    \end{centering}
+    %\vspace{10pt} %
+\end{wrapfigure}
+}

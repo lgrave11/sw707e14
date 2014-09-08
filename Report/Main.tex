@@ -1,0 +1,37 @@
+\input{Preamble.tex}
+\usepackage[draft]{fixme}				% FixMe notes.
+\usepackage[disable]{todonotes}					% Todo Notes
+
+\begin{document}
+	\include{Frontpage}
+	\newpage\null\thispagestyle{empty}\newpage
+	\include{Titlesheet}
+	\addtocounter{page}{4}
+	\newpage\null\thispagestyle{empty}\newpage
+	\input{Foreword.tex}
+	\newpage\null\thispagestyle{empty}\newpage
+	
+	\label{startoftoc}
+	\begin{KeepFromToc}
+		\tableofcontents
+		\newpage\null\thispagestyle{empty}\newpage
+		\newpage\null\thispagestyle{empty}\newpage
+		\todototoc
+		\listoftodos
+	\end{KeepFromToc}
+	\label{endoftoc}
+	
+	\include{Src/Introduction}	
+	
+	\afterpage{\thispagestyle{empty}}
+
+	\bibliography{Bibliography}
+	
+	\label{lastpagewithoutappendix}
+
+	\appendix
+	%\input{Src/Appendix/File}
+	
+	\cleardoublepage
+	\phantomsection
+\end{document}
