@@ -1,0 +1,27 @@
+Agenda
+======
+Introduction:
+OK.
+
+Expectations:
+Supervisors side: Willing to meet any time, as long as he can make it. Send email 2 days in advance. If travelling, Skype meeting is possible. If you have something you want read send it 2 days in advance. We can agree on weekly meetings, but need-based meetings are probably a better idea. It's up to you when you want to meet. If supervisor has not heard from the group in a while he will contact the group. Supervisor expects that the group knows eachother and can cooperate.
+
+Groups side: We used to have meetings every second weeks, need-based meetings are probably a good idea because otherwise you end up with waste-of-time meetings where nothing is discussed.
+
+Project:
+It's about an "internet of things". It's obvious that if you look at the current service, something should be done about it. It's not expected that the system will actually be deployed easily in the real world, as it is a semester project. Focus on some aspects of the project and make sure they are mature by end of project. Other parts can be 'assumed'. Talk to the other group that is also on this project.
+
+Start by thinking about the architecture. Think about which technologies should be used(RFID, how to lock the bikes in the station). These two aspects should be pushed forward quickly as if you want equipment those aspects should be cleared.
+
+Brainstorm:
+GPS not suitable for stations - Electronic locks are a better idea. Mobile APP(API?) are popular so maybe consider that as a checkout-checkin system. Every station needs to have access to the internet. Two things are needed: Internet, electronic lock as check-in check-out.
+
+There are a lot of possibilities, it's important to prioritize the things that are most interesting.
+
+More advanced: Determine where/when will be available at stations, we can assume that the user will self-report where they need to go, and then determine from the speed of the bike when they will be there. Assume that the user goes from station A to station B, not that they go to some point where's no station and then return to the station. Show this on a map on the website, showing which bikes are actively in use and when they can be expected to be returned to a station.
+
+Determine which are basic requirements and which are advanced, and prioritize the basic ones first and then see if advanced ones can be done.
+
+Any other business:
+Figure out what hardware/devices is needed and submit something.
+Supervisor is travelling the next 2 weeks, we can hold Skype meetings and something can be sent but probably not necessary as it is still startup.
