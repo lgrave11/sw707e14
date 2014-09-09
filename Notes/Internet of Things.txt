@@ -1,0 +1,135 @@
+Kilde: http://en.wikipedia.org/wiki/Internet_of_Things
+
+The Internet of Things (IoT) refers to the interconnection of uniquely identifiable embedded computing-like devices within the existing Internet infrastructure.
+
+Current market examples include smart thermostat systems and washer/dryers that utilize wifi for remote monitoring.
+
+Due to the ubiquitous nature of connected objects in the IoT, an unprecedented number of devices are expected to be connected to the Internet.
+
+It is, as such, clear that the IoT will consist of a very large number of devices being connected to the Internet.
+
+Objects in the IoT will not only be devices with sensory capabilities, but also provide actuation capabilities (e.g., bulbs or locks controlled over the Internet).
+
+The system will likely be an example of event-driven architecture,[59] bottom-up made (based on the context of processes and operations, in real-time) and will consider any subsidiary level.
+
+Besides using RFID, the tagging of things may be achieved through such technologies as near field communication, barcodes, QR codes and digital watermarking.
+
+The IoT can assist in integration of communications, control, and information processing across various transportation systems. Application of the IoT extends to all aspects of transportation systems, i.e. the vehicle, the infrastructure, and the driver or user. Dynamic interaction between these components of a transport system enables inter and intra vehicular communication, smart traffic control, smart parking, electronic toll collection systems, logistic and fleet management, vehicle control, and safety and road assistance.
+
+Kilde: http://tools.ietf.org/html/draft-ietf-opsawg-coman-use-cases-01
+
+   In such scenarios, it is important for the NMS to be aware of the
+   restrictions imposed by these access technologies to efficiently
+   manage these constrained devices.  Specifically, such low-power low
+   data-rate access technologies typically have small frame sizes.  So
+   it would be important for the NMS and management protocol of choice
+   to craft packets in a way that avoids fragmentation and reassembly of
+   packets since this can use valuable memory on constrained devices.
+
+   Devices using such access technologies might operate via a gateway
+   that translates between these access technologies and more
+   traditional Internet protocols.  A hierarchical approach to device
+   management in such a situation might be useful, wherein the gateway
+   device is in-charge of devices connected to it, while the NMS
+   conducts management operations only to the gateway.
+   
+   
+   
+   
+   Infrastructure monitoring is concerned with the monitoring of
+   infrastructures such as bridges, railway tracks, or (offshore)
+   windmills.  The primary goal is usually to detect any events or
+   changes of the structural conditions that can impact the risk and
+   safety of the infrastructure being monitored.  Another secondary goal
+   is to schedule repair and maintenance activities in a cost effective
+   manner.
+
+   The infrastructure to monitor might be in a factory or spread over a
+   wider area but difficult to access.  As such, the network in use
+   might be based on a combination of fixed and wireless technologies,
+   which use robust networking equipment and support reliable
+   communication.  It is likely that constrained devices in such a
+   network are mainly C2 devices and have to be controlled centrally by
+   an application running on a server.  In case such a distributed
+   network is widely spread, the wireless devices might use diverse
+   long-distance wireless technologies such as WiMAX, or 3G/LTE, e.g.
+
+
+   
+   Transport Application is a generic term for the integrated
+   application of communications, control, and information processing in
+   a transportation system.  Transport telematics or vehicle telematics
+   are used as a term for the group of technologies that support
+   transportation systems.  Transport applications running on such a 
+   transportation system cover all modes of the transport and consider
+   all elements of the transportation system, i.e. the vehicle, the
+   infrastructure, and the driver or user, interacting together
+   dynamically.  The overall aim is to improve decision making, often in
+   real time, by transport network controllers and other users, thereby
+   improving the operation of the entire transport system.  As such,
+   transport applications can be seen as one of the important M2M
+   service scenarios with the involvement of manifold small devices.
+
+   The definition encompasses a broad array of techniques and approaches
+   that may be achieved through stand-alone technological applications
+   or as enhancements to other transportation communication schemes.
+   Examples for transport applications are inter and intra vehicular
+   communication, smart traffic control, smart parking, electronic toll
+   collection systems, logistic and fleet management, vehicle control,
+   and safety and road assistance.
+   
+   
+   Networks involving mobile nodes, especially transport vehicles, are
+   emerging.  Such networks are used to provide inter-vehicle
+   communication services, or even tracking of mobile assets, to develop
+   intelligent transportation systems and drivers and passengers
+   assistance services.  Constrained devices are deployed within a
+   larger single entity, the vehicle, and must be individually managed.
+
+   Vehicles can be either private, belonging to individuals or private
+   companies, or public transportation.  Scenarios consisting of
+   vehicle-to-vehicle ad-hoc networks, a wired backbone with wireless
+   last hops, and hybrid vehicle-to-road communications are expected to
+   be common.
+   
+   Besides the access control and security, depending on the type of
+   vehicle and service being provided, it would be important for a NMS
+   to be able to function with different architectures, since different
+   manufacturers might have their own proprietary systems.
+
+   Unlike some mobile networks, most vehicular networks are expected to
+   have specific patterns in the mobility of the nodes.  Such patterns
+   could possibly be exploited, managed and monitored by the NMS.
+
+   The challenges in the management of vehicles in a mobile application
+   are manifold.  Firstly, the issues caused through the device mobility
+   need to be taken into consideration.  The up-to-date position of each
+   node in the network should be reported to the corresponding
+   management entities, since the nodes could be moving within or
+   roaming between different networks.  Secondly, a variety of
+   troubleshooting information, including sensitive location
+   information, needs to be reported to the management system in order
+   to provide accurate service to the customer.
+
+   The NMS must also be able to handle partitioned networks, which would
+   arise due to the dynamic nature of traffic resulting in large inter-
+   vehicle gaps in sparsely populated scenarios.  Constant changes in
+   topology must also be contended with.
+
+   Auto-configuration of nodes in a vehicular network remains a
+   challenge since based on location, and access network, the vehicle
+   might have different configurations that must be obtained from its
+   management system.  Operating configuration updates, while in remote
+   networks also needs to be considered in the design of a network
+   management system."
+   
+   
+Kilde: http://site.ebrary.com/lib/aalborguniv/docDetail.action?docID=10784816
+
+A number of API interactions deal precisely with those features of the physical device:
+    Start a new timer
+    Change the duration of an existing timer
+    Mark a timer completed
+    Cancel a timer
+    
+Security is a really important concern so you need to beat it in mind while designing the API. But the application should also authenticate  that request. A password is good enough authentication for osmething that isn't hypersensitive
