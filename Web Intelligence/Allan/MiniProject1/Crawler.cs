@@ -94,6 +94,7 @@ namespace MiniProject1
             }
         }
 
+        // Found on http://stackoverflow.com/questions/1874632/normalizing-uri-to-make-it-work-correctly-with-makerelativeuri
         private Uri NormalizeUri(Uri url)
         {
             return new Uri(string.Format("{0}://{1}:{2}{3}{4}", url.Scheme, url.Host, url.Port, Regex.Replace(url.LocalPath, @"(?<!\:)/{2,}", "/"), url.Query));
