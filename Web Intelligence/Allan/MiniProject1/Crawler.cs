@@ -14,10 +14,12 @@ namespace MiniProject1
     {
         private string _crawlerName;
 
-        Queue<string> frontier = new Queue<string>();
-        List<string> visitedURLs = new List<string>();
-        Dictionary<string, string> texts = new Dictionary<string, string>();
-        public Crawler(List<string> seedURLs, string crawlerName)
+        Queue<Uri> frontier = new Queue<Uri>();
+        List<Uri> visitedURLs = new List<Uri>();
+        Dictionary<Uri, string> texts = new Dictionary<Uri, string>();
+        int allowedCount = 0;
+
+        public Crawler(List<Uri> seedURLs, string crawlerName)
         {
             _crawlerName = crawlerName;
             seedURLs.ForEach(x => frontier.Enqueue(x));
@@ -27,43 +29,49 @@ namespace MiniProject1
         {
             WebClient client = new WebClient();
             
-            while (frontier.Count > 0 && visitedURLs.Count < 1000)
+            while (frontier.Count > 0 && visitedURLs.Count < 1000000)
             {
-                try
-                {
-                    string currentURL = frontier.Dequeue().Normalize().ToLower();
-                    if (IsAllowed(currentURL))
-                    {
-                        string extractedText = "";
-                        try
-                        {
-                            extractedText = client.DownloadString(currentURL);
-                        }
-                        catch (WebException e)
-                        {
-                            continue;
-                        }
-                        bool seen = false;
-                        /*foreach (string visited in visitedURLs)
-                        {
-                            if ( NearDuplicatesWithSketches.NearDuplicate(extractedText, texts[visited], 8, 0.9f))
-                            {
-                                seen = true;
-                                break;
-                            }
-                        }*/
-                        if (!seen)
-                        {
-                            visitedURLs.Add(currentURL);
-                            texts.Add(currentURL, extractedText);
+                
+                Uri currentURL = frontier.Dequeue();
+                currentURL = NormalizeUri(currentURL);
 
-                            //step 4
-                            List<string> extractedURLs = Extract(extractedText, currentURL);
-                            extractedURLs.RemoveAll(x => !IsText(x));
-                            foreach (string URL in extractedURLs)
+                if (IsAllowed(currentURL))
+                {
+                    allowedCount++;
+                    string extractedText = "";
+                    try
+                    {
+                        extractedText = client.DownloadString(currentURL);
+                    }
+                    catch (WebException e)
+                    {
+                        continue;
+                    }
+                    bool seen = false;
+                    foreach (Uri visited in visitedURLs)
+                    {
+                        
+                        if ( NearDuplicatesWithSketches.NearDuplicate(extractedText, texts[visited], 8, 0.9f))
+                        {
+                            seen = true;
+                            break;
+                        }
+                    }
+                    if (!seen)
+                    {
+                        visitedURLs.Add(currentURL);
+                        texts.Add(currentURL, extractedText);
+
+                        //step 4
+                        List<Uri> extractedURLs = Extract(extractedText, currentURL);
+                        extractedURLs.RemoveAll(x => !IsText(x));
+
+                        foreach (Uri URL in extractedURLs)
+                        {
+                            try
                             {
                                 //step 4 a
-                                string normalizedURL = URL.Normalize();
+                                Uri normalizedURL = NormalizeUri(URL);
                                 //step 4 c
                                 if (!visitedURLs.Contains(normalizedURL) && !frontier.Contains(normalizedURL))
                                 {
@@ -71,29 +79,27 @@ namespace MiniProject1
                                     frontier.Enqueue(normalizedURL);
                                 }
                             }
-                            Console.WriteLine(currentURL + "\t" + visitedURLs.Count);
-                            System.Threading.Thread.Sleep(1000);
+                            catch
+                            {
+                                continue;
+                            }
                         }
+
+                        Console.WriteLine(currentURL + "\t" + visitedURLs.Count + ":" + allowedCount + "\t" + DateTime.Now.ToString("h:mm:ss tt"));
+                        System.Threading.Thread.Sleep(1000);
                     }
                 }
-                catch (Exception e)
-                {
 
-                }
                 
             }
-
-            StreamWriter sw;
-            string path = @"c:\crawler\";
-            foreach (string s in visitedURLs)
-            {
-                sw = new StreamWriter(path + s.GetHashCode()+ ".txt");
-                sw.Write(s + "\n\n" + texts[s]);
-                sw.Flush();
-            }
-            Console.WriteLine("Done writing to files");
         }
-        private bool IsText(string url)
+
+        private Uri NormalizeUri(Uri url)
+        {
+            return new Uri(string.Format("{0}://{1}:{2}{3}{4}", url.Scheme, url.Host, url.Port, Regex.Replace(url.LocalPath, @"(?<!\:)/{2,}", "/"), url.Query));
+        }
+
+        private bool IsText(Uri url)
         {
             List<string> fileTypes= new List<string>(){
                 ".jpeg",
@@ -102,7 +108,7 @@ namespace MiniProject1
             };
             foreach (string s in fileTypes)
             {
-                if (url.EndsWith(s))
+                if (url.AbsoluteUri.EndsWith(s))
                 {
                     return false;
                 }
@@ -111,9 +117,9 @@ namespace MiniProject1
         }
 
         //metode taget fra http://www.anotherchris.net/csharp/extracting-all-links-from-a-html-page/
-        public static List<string> Extract(string html, string url)
+        public static List<Uri> Extract(string html, Uri url)
         {
-            List<string> list = new List<string>();
+            List<Uri> list = new List<Uri>();
 
             Regex regex = new Regex("(?:href|src)=[\"|']?(.*?)[\"|'|>]+", RegexOptions.Singleline | RegexOptions.CultureInvariant);
             if (regex.IsMatch(html))
@@ -126,8 +132,8 @@ namespace MiniProject1
                     catch {
                         try
                         {
-                            if (!list.Contains(new Uri(new Uri(url), match.Groups[1].Value).AbsoluteUri))
-                                list.Add(new Uri(new Uri(url), match.Groups[1].Value).AbsoluteUri);
+                            if (!list.Contains(new Uri(url, match.Groups[1].Value)))
+                                list.Add(new Uri(url, match.Groups[1].Value));
                             continue;
                         }
                         catch(Exception e)
@@ -135,15 +141,15 @@ namespace MiniProject1
                             continue;
                         }
                     }
-                    if(!list.Contains(match.Groups[1].Value))
-                        list.Add(match.Groups[1].Value);
+                    if(!list.Contains(new Uri(match.Groups[1].Value)))
+                        list.Add(new Uri(match.Groups[1].Value));
                 }
             }
 
             return list;
         }
 
-        private bool IsAllowed(string URL)
+        private bool IsAllowed(Uri URL)
         {
             Restrictions restrictions = Parser.GetRestrictions(URL, _crawlerName);
             if (restrictions == null)
@@ -154,19 +160,17 @@ namespace MiniProject1
             {
                 return true;
             }
-
-            Uri uri = new Uri(URL.Normalize());
             bool allowed = true;
             foreach (string s in restrictions.DisallowList)
             {
-                if (Matches(uri.LocalPath, s))
+                if (Matches(URL.LocalPath, s))
                 {
                     allowed =  false;
                 }
             }
             if (!allowed)
             {
-                return restrictions.AllowList.Contains(CutFile(uri).LocalPath);
+                return restrictions.AllowList.Contains(CutFile(URL).LocalPath);
             }
             return true;
         }

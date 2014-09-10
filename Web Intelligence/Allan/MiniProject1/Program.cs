@@ -10,7 +10,8 @@ namespace MiniProject1
     {
         static void Main(string[] args)
         {
-            Crawler crawler = new Crawler(new List<string>() { "http://aau.dk" }, "Allan");
+            
+            Crawler crawler = new Crawler(new List<Uri>() { new Uri("http://aau.dk/") }, "Allan");
             crawler.StartCrawling();
             Console.Read();
         }

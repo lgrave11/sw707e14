@@ -10,18 +10,18 @@ namespace MiniProject1
     {
         public static bool NearDuplicate(string s1, string s2, int shingleSize, float threshold)
         {
+            string[] splittedS1 = s1.Split(' ', '\n');
+            string[] splittedS2 = s2.Split(' ', '\n');
 
-            int minShingle = Math.Min(s1.Split(' ', '\n').Count(), s2.Split(' ', '\n').Count());
-            if (minShingle < shingleSize)
-                shingleSize = minShingle;
+            if (Math.Min(splittedS1.Count(), splittedS2.Count()) < shingleSize)
+                shingleSize = Math.Min(splittedS1.Count(), splittedS2.Count());
 
-            List<Func<string, Int64>> hashFunctions = GetHashFunctions();
             int alike = 0;
             int notalike = 0;
 
-            foreach (Func<string, Int64> func in hashFunctions)
+            foreach (Func<string, Int64> func in GetHashFunctions())
             {
-                if (GetMinShingle(s1, shingleSize, func) == GetMinShingle(s2, shingleSize, func))
+                if (GetMinShingle(splittedS1, shingleSize, func) == GetMinShingle(splittedS2, shingleSize, func))
                 {
                     alike++;
                 }
@@ -53,20 +53,22 @@ namespace MiniProject1
         
 
 
-        private static Int64 GetMinShingle(string s, int shingleSize, Func<string, Int64> function)
+        private static Int64 GetMinShingle(string[] s, int shingleSize, Func<string, Int64> function)
         {
-            List<Int64> returnList = new List<Int64>();
-            
-            for (int i = 0; i <= s.Split(' ', '\n').Count() - shingleSize; i++)
+            Int64 minValue = Int64.MaxValue;
+            for (int i = 0; i <= s.Count() - shingleSize; i++)
             {
                 string concatenate = "";
+                
                 for (int j = i; j < shingleSize + i; j++)
                 {
-                    concatenate += s.Split(' ', '\n')[j];
+                    concatenate += s[j];
                 }
-                returnList.Add(function(concatenate));
+                Int64 value = function(concatenate);
+                if (value < minValue)
+                    minValue = value;
             }
-            return returnList.Min();
+            return minValue;
         }
 
     }

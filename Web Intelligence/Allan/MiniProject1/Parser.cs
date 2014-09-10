@@ -10,17 +10,20 @@ namespace MiniProject1
 {
     class Parser
     {
-        public static Restrictions GetRestrictions(string URL, string crawlerName)
+        public static Restrictions GetRestrictions(Uri URL, string crawlerName)
         {
             //Retrieve the robot text
             WebClient client = new WebClient();
-            Uri uri = new Uri(URL);
             string robotText = "";
             try
             {
-                robotText = client.DownloadString("http://" + uri.Host + "/robots.txt");
+                robotText = client.DownloadString("http://" + URL.Host + "/robots.txt");
             }
             catch (WebException e)
+            {
+                return null;
+            }
+            catch (ArgumentException e)
             {
                 return null;
             }
