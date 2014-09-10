@@ -10,3 +10,9 @@ C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Alla
 C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.csprojResolveAssemblyReference.cache
 C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.exe
 C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.pdb
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\bin\Debug\MiniProject1.exe.config
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.exe
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.pdb
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\bin\Debug\MiniProject1.exe
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\bin\Debug\MiniProject1.pdb
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.csprojResolveAssemblyReference.cache

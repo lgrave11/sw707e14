@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crawler.cs" />
+    <Compile Include="Mercator.cs" />
     <Compile Include="NearDuplicatesWithoutSketches.cs" />
     <Compile Include="NearDuplicatesWithSketches.cs" />
     <Compile Include="Parser.cs" />

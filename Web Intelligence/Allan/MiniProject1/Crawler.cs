@@ -14,39 +14,46 @@ namespace MiniProject1
     {
         private string _crawlerName;
 
-        Queue<Uri> frontier = new Queue<Uri>();
+        Queue<Uri> frontddddier = new Queue<Uri>();
         List<Uri> visitedURLs = new List<Uri>();
         Dictionary<Uri, string> texts = new Dictionary<Uri, string>();
-        int allowedCount = 0;
+        int allowedCount = 0; //this statistic can be removed
 
         public Crawler(List<Uri> seedURLs, string crawlerName)
         {
             _crawlerName = crawlerName;
-            seedURLs.ForEach(x => frontier.Enqueue(x));
+            //step 1
+            seedURLs.ForEach(x => Mercator.Instance.Enqueue(x));
         }
 
         public void StartCrawling()
         {
             WebClient client = new WebClient();
             
-            while (frontier.Count > 0 && visitedURLs.Count < 1000000)
+            while (visitedURLs.Count < 1000000)
             {
-                
-                Uri currentURL = frontier.Dequeue();
+                //step 3
+                Uri currentURL = Mercator.Instance.Dequeue();
                 currentURL = NormalizeUri(currentURL);
 
+                //ensure allowed url (robots.txt)
                 if (IsAllowed(currentURL))
                 {
+
+                    //step 3 a
                     allowedCount++;
                     string extractedText = "";
                     try
                     {
                         extractedText = client.DownloadString(currentURL);
+                        Mercator.Instance.registerVisit(currentURL);
                     }
                     catch (WebException e)
                     {
                         continue;
                     }
+
+                    //step 3 b
                     bool seen = false;
                     foreach (Uri visited in visitedURLs)
                     {
@@ -73,10 +80,10 @@ namespace MiniProject1
                                 //step 4 a
                                 Uri normalizedURL = NormalizeUri(URL);
                                 //step 4 c
-                                if (!visitedURLs.Contains(normalizedURL) && !frontier.Contains(normalizedURL))
+                                if (!visitedURLs.Contains(normalizedURL))
                                 {
                                     //step 4 d
-                                    frontier.Enqueue(normalizedURL);
+                                    Mercator.Instance.Enqueue(normalizedURL);
                                 }
                             }
                             catch
@@ -86,7 +93,7 @@ namespace MiniProject1
                         }
 
                         Console.WriteLine(currentURL + "\t" + visitedURLs.Count + ":" + allowedCount + "\t" + DateTime.Now.ToString("h:mm:ss tt"));
-                        System.Threading.Thread.Sleep(1000);
+                        //System.Threading.Thread.Sleep(1000);
                     }
                 }
 
