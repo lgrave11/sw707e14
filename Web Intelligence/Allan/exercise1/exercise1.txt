@@ -1,0 +1,24 @@
+public bool NearDuplicate(string s1, string s2)
+{
+    int shingleSize = 4;
+    
+    List<int> shingles1 = makeShingleSet(s1,shingleSize);
+    List<int> shingles2 = makeShingleSet(s2,shingleSize);
+    
+    float similarity = (shingles1.intersection(shingles2).Count) / (shingles1.union(shingles2).Count)
+    return similarity >= 0.9f;
+}
+
+private List<int> MakeShingleSet(string s, int shingleSize)
+{
+    List<int> returnList= new List<int>();
+
+    for(int i = 0; i < s.split(" ") - shingleSize; i++){
+        string concatenate = "";
+        for(int j = i; j < shingleSize + i; j++){
+            concatenate += s.Split(" ")[j];    
+        }
+        returnList.add(hashfunc(concatenate));
+    }
+    return returnList;
+}

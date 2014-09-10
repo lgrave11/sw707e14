@@ -1,0 +1,6 @@
+C:\Users\Praetorian\Desktop\web intelligence\MiniProject1\bin\Debug\MiniProject1.exe.config
+C:\Users\Praetorian\Desktop\web intelligence\MiniProject1\obj\Debug\MiniProject1.csprojResolveAssemblyReference.cache
+C:\Users\Praetorian\Desktop\web intelligence\MiniProject1\bin\Debug\MiniProject1.exe
+C:\Users\Praetorian\Desktop\web intelligence\MiniProject1\bin\Debug\MiniProject1.pdb
+C:\Users\Praetorian\Desktop\web intelligence\MiniProject1\obj\Debug\MiniProject1.exe
+C:\Users\Praetorian\Desktop\web intelligence\MiniProject1\obj\Debug\MiniProject1.pdb
