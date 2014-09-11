@@ -8,11 +8,12 @@ namespace MiniProject1
 {
     class NearDuplicatesWithSketches
     {
-        public static bool NearDuplicate(string s1, string s2, int shingleSize, float threshold)
+        static Dictionary<Uri, Dictionary<Func<string, Int64>, Int64>> cachedMinShingle = new Dictionary<Uri, Dictionary<Func<string, Int64>, Int64>>();
+        public static bool NearDuplicate(string s1, string s2, int shingleSize, float threshold, Uri uri1, Uri uri2)
         {
             string[] splittedS1 = s1.Split(' ', '\n');
             string[] splittedS2 = s2.Split(' ', '\n');
-
+            
             if (Math.Min(splittedS1.Count(), splittedS2.Count()) < shingleSize)
                 shingleSize = Math.Min(splittedS1.Count(), splittedS2.Count());
 
@@ -21,7 +22,8 @@ namespace MiniProject1
 
             foreach (Func<string, Int64> func in GetHashFunctions())
             {
-                if (GetMinShingle(splittedS1, shingleSize, func) == GetMinShingle(splittedS2, shingleSize, func))
+                
+                if (GetMinShingle(splittedS1, shingleSize, func, uri1) == GetMinShingle(splittedS2, shingleSize, func, uri2))
                 {
                     alike++;
                 }
@@ -53,8 +55,12 @@ namespace MiniProject1
         
 
 
-        private static Int64 GetMinShingle(string[] s, int shingleSize, Func<string, Int64> function)
+        private static Int64 GetMinShingle(string[] s, int shingleSize, Func<string, Int64> function, Uri uri)
         {
+            if (cachedMinShingle.ContainsKey(uri) && cachedMinShingle[uri].ContainsKey(function))
+            {
+                return cachedMinShingle[uri][function];
+            }
             Int64 minValue = Int64.MaxValue;
             for (int i = 0; i <= s.Count() - shingleSize; i++)
             {
@@ -68,6 +74,11 @@ namespace MiniProject1
                 if (value < minValue)
                     minValue = value;
             }
+            if (!cachedMinShingle.ContainsKey(uri))
+            {
+                cachedMinShingle[uri] = new Dictionary<Func<string, long>, long>();
+            }
+            cachedMinShingle[uri][function] = minValue;
             return minValue;
         }
 

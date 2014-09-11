@@ -18,12 +18,15 @@ namespace MiniProject1
         List<Uri> visitedURLs = new List<Uri>();
         Dictionary<Uri, string> texts = new Dictionary<Uri, string>();
         int allowedCount = 0; //this statistic can be removed
+        CrawlerContext1 db = new CrawlerContext1();
 
         public Crawler(List<Uri> seedURLs, string crawlerName)
         {
             _crawlerName = crawlerName;
             //step 1
             seedURLs.ForEach(x => Mercator.Instance.Enqueue(x));
+            db.Database.ExecuteSqlCommand("TRUNCATE TABLE [crawlerStorage]");
+            db.SaveChanges();
         }
 
         public void StartCrawling()
@@ -58,7 +61,7 @@ namespace MiniProject1
                     foreach (Uri visited in visitedURLs)
                     {
                         
-                        if ( NearDuplicatesWithSketches.NearDuplicate(extractedText, texts[visited], 8, 0.9f))
+                        if ( NearDuplicatesWithSketches.NearDuplicate(extractedText, texts[visited], 8, 0.9f, currentURL, visited))
                         {
                             seen = true;
                             break;
@@ -66,8 +69,14 @@ namespace MiniProject1
                     }
                     if (!seen)
                     {
-                        visitedURLs.Add(currentURL);
+                        if (texts.ContainsKey(currentURL))
+                            continue;
+
                         texts.Add(currentURL, extractedText);
+                        visitedURLs.Add(currentURL);
+
+                        db.crawlerStorage.Add(new crawlerStorage { content = extractedText, url = currentURL.AbsoluteUri });
+                        db.SaveChanges();
 
                         //step 4
                         List<Uri> extractedURLs = Extract(extractedText, currentURL);

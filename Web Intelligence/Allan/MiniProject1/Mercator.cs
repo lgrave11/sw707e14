@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace MiniProject1
 {
@@ -32,7 +33,7 @@ namespace MiniProject1
         private Queue<Uri> frontQueue = new Queue<Uri>();
         private List<Queue<Uri>> backQueues = new List<Queue<Uri>>();
         Dictionary<string, int> backQueueLookupTable = new Dictionary<string, int>();
-        Dictionary<string, DateTime> lastTimevisited= new Dictionary<string,DateTime>();
+        Dictionary<string, DateTime> lastTimeVisited= new Dictionary<string,DateTime>();
 
         public void Enqueue(Uri uri)
         {
@@ -41,7 +42,10 @@ namespace MiniProject1
 
         public void registerVisit(Uri uri)
         {
-            lastTimevisited[uri.Host] = DateTime.Now;
+            var ips = Dns.GetHostAddresses(uri.Host);
+            DateTime theTime = DateTime.Now;
+            foreach (var address in ips)
+                lastTimeVisited[address.ToString()] = theTime;
         }
 
         public Uri Dequeue()
@@ -73,20 +77,44 @@ namespace MiniProject1
 
             //get a uri from a backqueue
             int index;
-            while (true) { 
+            while (true)
+            {
                 Random r = new Random();
                 index = r.Next(0, B);
                 if (backQueues[index].Count == 0)
                 {
-                    
+                    bool allEmpty = true;
+                    backQueues.ForEach(x=> {if(x.Count > 0) {allEmpty = false;}});
+                    if (allEmpty)
+                    {
+                        Console.WriteLine("everything is found");
+                        throw new Exception("Alt er fundet");
+                    }
+                    continue;
                 }
-                else if (!lastTimevisited.ContainsKey(backQueues[index].Peek().Host))
-                    break;
-                else if ((DateTime.Now - lastTimevisited[backQueues[index].Peek().Host]).TotalSeconds >= 2)
+
+                Uri uri = backQueues[index].Peek();
+                var ipAdresses = Dns.GetHostAddresses(uri.Host);
+                bool allPassed = true;
+                foreach (var ip1 in ipAdresses)
+                {
+                    string ip = ip1.ToString();
+                    if(lastTimeVisited.ContainsKey(ip)){
+                        DateTime time = lastTimeVisited[ip];
+                        if ((DateTime.Now - time).TotalSeconds <= 2)
+                        {
+                            allPassed = false;
+                            break;
+                        }
+                    }
+                }
+                if (allPassed)
                 {
                     break;
                 }
             }
+
+
             Uri returnUri = backQueues[index].Dequeue();
 
             while (backQueues[index].Count == 0 && frontQueue.Count > 0)

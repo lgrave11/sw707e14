@@ -16,3 +16,13 @@ C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniP
 C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\bin\Debug\MiniProject1.exe
 C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\bin\Debug\MiniProject1.pdb
 C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.csprojResolveAssemblyReference.cache
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\MiniProject1.exe.config
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.exe
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.pdb
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\MiniProject1.exe
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\MiniProject1.pdb
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\obj\Debug\MiniProject1.csprojResolveAssemblyReference.cache
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.dll
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.xml
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.xml
