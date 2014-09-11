@@ -50,6 +50,15 @@ namespace MiniProject1
             returnList.Add(StringHash.JSHash);
             returnList.Add(StringHash.RSHash);
             returnList.Add(StringHash.SDBMHash);
+            returnList.Add(StringHash.AP_BKDRHash);
+            returnList.Add(StringHash.AP_BPHash);
+            returnList.Add(StringHash.AP_DEKHash);
+            returnList.Add(StringHash.AP_DJBHash);
+            returnList.Add(StringHash.AP_ELFHash);
+            returnList.Add(StringHash.AP_FNVHash);
+            returnList.Add(StringHash.AP_JSHash);
+            returnList.Add(StringHash.AP_RSHash);
+            returnList.Add(StringHash.AP_SDBMHash);
             return returnList;
         }
         

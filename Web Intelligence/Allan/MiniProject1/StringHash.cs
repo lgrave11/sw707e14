@@ -149,6 +149,56 @@ namespace MiniProject1
 
             return hash;
         }
+
+        //----------------------------Home Made----------------------------------
+        static public Int64 AP_BKDRHash(String str)
+        {
+            return StringHash.APHash(StringHash.BKDRHash(str).ToString());
+        }
+
+        static public Int64 AP_BPHash(String str)
+        {
+            return StringHash.APHash(StringHash.BPHash(str).ToString());
+        }
+
+        static public Int64 AP_DEKHash(String str)
+        {
+            return StringHash.APHash(StringHash.DEKHash(str).ToString());
+        }
+
+        static public Int64 AP_DJBHash(String str)
+        {
+            return StringHash.APHash(StringHash.DJBHash(str).ToString());
+        }
+
+        static public Int64 AP_ELFHash(String str)
+        {
+            return StringHash.APHash(StringHash.ELFHash(str).ToString());
+        }
+
+        static public Int64 AP_FNVHash(String str)
+        {
+            return StringHash.APHash(StringHash.FNVHash(str).ToString());
+        }
+
+        static public Int64 AP_JSHash(String str)
+        {
+            return StringHash.APHash(StringHash.JSHash(str).ToString());
+        }
+
+        static public Int64 AP_RSHash(String str)
+        {
+            return StringHash.APHash(StringHash.RSHash(str).ToString());
+        }
+
+        static public Int64 AP_SDBMHash(String str)
+        {
+            return StringHash.APHash(StringHash.SDBMHash(str).ToString());
+        }
+
+
+
+
     }
 
 }

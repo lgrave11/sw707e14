@@ -13,6 +13,7 @@ namespace MiniProject1
             
             Crawler crawler = new Crawler(new List<Uri>() { new Uri("http://aau.dk/"), new Uri("http://kongregate.com") }, "Allan");
             crawler.StartCrawling();
+
             Console.Read();
         }
     }

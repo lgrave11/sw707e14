@@ -26,3 +26,7 @@ C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.xml
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.dll
+C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.xml
+C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.xml
