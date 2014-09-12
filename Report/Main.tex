@@ -1,7 +1,7 @@
 \input{Preamble.tex}
 \usepackage[draft]{fixme}				% FixMe notes.
 \usepackage[disable]{todonotes}					% Todo Notes
-\newcommand{bycykel}{Aalborg Bycykel}
+\newcommand{\bycykel}{Aalborg Bycykel}
 \begin{document}
 	\include{Frontpage}
 	\newpage\null\thispagestyle{empty}\newpage
@@ -21,7 +21,14 @@
 	\end{KeepFromToc}
 	\label{endoftoc}
 	
-	\include{Src/Introduction}	
+	\include{Src/Introduction}
+	\chapter{Analysis}
+	\include{Src/Analysis/InternetOfThings}
+	\include{Src/Analysis/CurrentSystem}
+	\include{Src/Analysis/AltaBicycleShare}
+	\include{Src/Analysis/requirements}
+	
+	
 	
 	\afterpage{\thispagestyle{empty}}
 
