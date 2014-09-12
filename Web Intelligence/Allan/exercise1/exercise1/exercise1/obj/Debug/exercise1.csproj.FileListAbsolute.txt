@@ -1,0 +1,6 @@
+C:\Users\Praetorian\Desktop\web intelligence\exercise1\exercise1\exercise1\bin\Debug\exercise1.exe.config
+C:\Users\Praetorian\Desktop\web intelligence\exercise1\exercise1\exercise1\obj\Debug\exercise1.csprojResolveAssemblyReference.cache
+C:\Users\Praetorian\Desktop\web intelligence\exercise1\exercise1\exercise1\bin\Debug\exercise1.exe
+C:\Users\Praetorian\Desktop\web intelligence\exercise1\exercise1\exercise1\bin\Debug\exercise1.pdb
+C:\Users\Praetorian\Desktop\web intelligence\exercise1\exercise1\exercise1\obj\Debug\exercise1.exe
+C:\Users\Praetorian\Desktop\web intelligence\exercise1\exercise1\exercise1\obj\Debug\exercise1.pdb

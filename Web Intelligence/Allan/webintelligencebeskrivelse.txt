@@ -1,0 +1,11 @@
+Miniproject 1
+Architecture:
+Vi bruger ikke mercator, men i stedet en simpel FIFO queue. Derudover har vi tilladt os at kommentere kodestumpen der tjekker efter near duplicates ud, da metoden sænker hastigheden gevaldigt.
+Som seed har vi brugt http://aau.dk
+
+Til at tjekke om en hjemmeside er tilladt kører vi en lineær søgning igennem en liste, og dette kunne også forbedres med en træstruktur.
+M.h.t. robots.txt har vi ikke tilladt wildcards, da det ikke er en del af af den standard robots protokol, hvis vi møder et wildcard går vi ud fra at den angivne sti ikke er tilladt.
+
+Til at have delay til hosts, sådan at de ikke besøges for ofte, blev den kørende tråd sat til at sove i ét sekund. Dette er naturligvis ikke optimalt, og kunne løses v.h.a. mercator tilgangen.
+
+m.h.t. medie filer har vi valgt at ekskludere dem, da de ville kunne få programmet til at crashe. Så vi holder os til filer i ASCII eller utf8 formatering.
