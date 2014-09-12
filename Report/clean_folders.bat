@@ -19,5 +19,3 @@ del /s *.thm
 del /s *.pre
 del /s *.bak
 del /s *.tdo
-
-svn update
