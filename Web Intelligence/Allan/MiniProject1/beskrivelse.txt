@@ -1,0 +1,2 @@
+Vores arkitektur:
+I stedet for at bruge mercator har vi brugt breadth first search, implementeret med en FIFO queue.

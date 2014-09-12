@@ -18,4 +18,4 @@ rm -r *.pre;
 rm -r *.bak;
 rm -r *.auxlock;
 rm -r *.tdo;
-svn update;
+git pull;
