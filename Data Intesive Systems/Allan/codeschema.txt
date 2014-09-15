@@ -1,0 +1,56 @@
+--DROP TABLE sale;
+--DROP TABLE product;
+--DROP TABLE member;
+--DROP TABLE timeofday;
+--DROP TABLE date;
+
+CREATE TABLE "date"
+(
+id serial PRIMARY KEY,
+year int NOT NULL,
+month int NOT NULL,
+day int NOT NULL
+);
+
+CREATE TABLE timeofday
+(
+id serial PRIMARY KEY,
+hour int NOT NULL,
+minute int NOT NULL,
+second int NOT NULL
+);
+
+
+CREATE TABLE member
+(
+surrogateid serial PRIMARY KEY,
+memberid int NOT NULL,
+active int NOT NULL,
+year int NOT NULL,
+version int NOT NULL,
+changedate timestamp without time zone -- this is for future changes, 
+--fklub does not keep track of this
+);
+
+CREATE TABLE product
+(
+surrogateid serial PRIMARY KEY,
+id int NOT NULL,
+price int NOT NULL,
+active int NOT NULL,
+deactivation_date timestamp without time zone,
+version int NOT NULL
+);
+
+CREATE TABLE sale
+(
+id serial PRIMARY KEY,
+memberid int NOT NULL,
+productid int NOT NULL,
+dateid int NOT NULL,
+timeofdayid int NOT NULL,
+FOREIGN KEY(memberid) REFERENCES member(surrogateid),
+FOREIGN KEY(productid) REFERENCES product(surrogateid),
+FOREIGN KEY(dateid) REFERENCES "date"(id),
+FOREIGN KEY(timeofdayid) REFERENCES timeofday(id)
+);
