@@ -9,7 +9,10 @@ CREATE TABLE "date"
 id serial PRIMARY KEY,
 year int NOT NULL,
 month int NOT NULL,
-day int NOT NULL
+day int NOT NULL,
+weekday int,
+season int,
+public_holiday int
 );
 
 CREATE TABLE timeofday
