@@ -60,8 +60,8 @@ namespace MiniProject1
                     bool seen = false;
                     foreach (Uri visited in visitedURLs)
                     {
-                        
-                        if ( NearDuplicatesWithSketches.NearDuplicate(extractedText, texts[visited], 8, 0.9f, currentURL, visited))
+
+                        if (NearDuplicatesWithSketches.NearDuplicate(ExtractHtmlInnerText(extractedText), ExtractHtmlInnerText(texts[visited]), 8, 0.9f, currentURL, visited))
                         {
                             seen = true;
                             break;
@@ -164,6 +164,23 @@ namespace MiniProject1
             }
 
             return list;
+        }
+
+        //found on http://www.codeproject.com/Tips/477066/Extract-inner-text-from-HTML-using-Regex
+        public static string ExtractHtmlInnerText(string htmlText)
+        {
+            //Match any Html tag (opening or closing tags) 
+            // followed by any successive whitespaces
+            //consider the Html text as a single line
+
+            Regex regex = new Regex("(<.*?>\\s*)+", RegexOptions.Singleline);
+
+            // replace all html tags (and consequtive whitespaces) by spaces
+            // trim the first and last space
+
+            string resultText = regex.Replace(htmlText, " ").Trim();
+
+            return resultText;
         }
 
         private bool IsAllowed(Uri URL)

@@ -30,3 +30,7 @@ C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Alla
 C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.xml
 C:\Users\Mathias\Desktop\Google Drive\Uni Stuff\P7\Product\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.dll
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.xml
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject1\bin\Debug\EntityFramework.SqlServer.xml
