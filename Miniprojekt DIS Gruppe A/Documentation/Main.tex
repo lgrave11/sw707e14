@@ -28,7 +28,7 @@
 	\item Location
 	\end{itemize}
 	
-	We pick the 'Sales' business process, because it is the most interesting. Granularity with regards to time sales it is important to have a lot of detail, so we choose the specific date and time. ?? Is it reasonable for a paying customer???  
+	We pick the 'Sales' business process, because it is the most interesting. The granularity is down to seconds in the existing data, for time we keep up to minutes because seconds is not that important and would take up a significant amount of rows for each day. With regards to members, the granularity goes down to years and there is no more information and that is okay. The data is reasonable for paying customers and detailed enough to ask valuable questions.
 	
 	Examples of questions:
 	\begin{itemize}
@@ -43,6 +43,8 @@
 
 
 	\section{Task C}
+	Slowly changing dimensions are not that important.
+	
 	The business process proposed to be modelled in the data warehouse is the 'Sales' business process. With regards to dimensions we pick out product, time, date, and member because those are the most interesting dimensions. Our granularity with regards to time goes down to minutes across two different dimensions to reduce the amount of rows, with regard to product it only has a name attribute, with regard to member it has balance and year.
 	
 	The schema for the dimensions can be seen below. 
