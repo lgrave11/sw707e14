@@ -1,0 +1,118 @@
+CREATE TABLE date (
+    dateid integer NOT NULL,
+    year integer,
+    month integer,
+    day integer,
+    special text
+);
+
+CREATE SEQUENCE date_dateid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE date_dateid_seq OWNED BY date.dateid;
+
+CREATE TABLE member (
+    balance integer,
+    year integer,
+    memberid integer NOT NULL
+);
+
+CREATE SEQUENCE member_memberid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE member_memberid_seq OWNED BY member.memberid;
+
+CREATE TABLE product (
+    productid integer NOT NULL,
+    name text
+);
+
+CREATE SEQUENCE product_productid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE product_productid_seq OWNED BY product.productid;
+
+CREATE TABLE sales (
+    memberid integer,
+    dateid integer,
+    timeid integer,
+    productid integer,
+    sale integer,
+    saleid integer NOT NULL
+);
+
+CREATE SEQUENCE sales_saleid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE sales_saleid_seq OWNED BY sales.saleid;
+
+CREATE TABLE "time" (
+    timeid integer NOT NULL,
+    hour integer,
+    minute integer
+);
+
+CREATE SEQUENCE time_timeid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE time_timeid_seq OWNED BY "time".timeid;
+ALTER TABLE ONLY date ALTER COLUMN dateid SET DEFAULT nextval('date_dateid_seq'::regclass);
+ALTER TABLE ONLY member ALTER COLUMN memberid SET DEFAULT nextval('member_memberid_seq'::regclass);
+ALTER TABLE ONLY product ALTER COLUMN productid SET DEFAULT nextval('product_productid_seq'::regclass);
+ALTER TABLE ONLY sales ALTER COLUMN saleid SET DEFAULT nextval('sales_saleid_seq'::regclass);
+ALTER TABLE ONLY "time" ALTER COLUMN timeid SET DEFAULT nextval('time_timeid_seq'::regclass);
+
+ALTER TABLE ONLY date
+    ADD CONSTRAINT date_pkey PRIMARY KEY (dateid);
+
+ALTER TABLE ONLY member
+    ADD CONSTRAINT member_pkey PRIMARY KEY (memberid);
+
+ALTER TABLE ONLY product
+    ADD CONSTRAINT productid PRIMARY KEY (productid);
+
+ALTER TABLE ONLY sales
+    ADD CONSTRAINT sales_pkey PRIMARY KEY (saleid);
+
+ALTER TABLE ONLY "time"
+    ADD CONSTRAINT timeid PRIMARY KEY (timeid);
+
+CREATE INDEX fki_dateid ON sales USING btree (dateid);
+CREATE INDEX fki_memberid ON sales USING btree (memberid);
+CREATE INDEX fki_producid ON sales USING btree (productid);
+CREATE INDEX fki_timeid ON sales USING btree (timeid);
+
+
+ALTER TABLE ONLY sales
+    ADD CONSTRAINT dateid FOREIGN KEY (dateid) REFERENCES date(dateid);
+
+ALTER TABLE ONLY sales
+    ADD CONSTRAINT memberid FOREIGN KEY (memberid) REFERENCES member(memberid);
+
+ALTER TABLE ONLY sales
+    ADD CONSTRAINT producid FOREIGN KEY (productid) REFERENCES product(productid);
+
+ALTER TABLE ONLY sales
+    ADD CONSTRAINT timeid FOREIGN KEY (timeid) REFERENCES "time"(timeid);
+
