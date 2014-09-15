@@ -11,7 +11,7 @@
   \texttt{djakob11@student.aau.dk}  
 }
 
-\title{Data Intensive Systems - Miniproject}
+\title{Data Intensive Systems - Miniproject - Part 1}
 \date{}
 
 \begin{document}
@@ -50,7 +50,7 @@
 	\section{Task C}
 	Slowly changing dimensions are not that important.
 	
-	The business process proposed to be modelled in the data warehouse is the 'Sales' business process. With regards to dimensions we pick out product, time, date, and member because they allow for the most interesting queries. Our granularity with regards to time goes down to minutes across two different dimensions to reduce the amount of rows, with regard to product it only has a name attribute, with regard to member it has balance and year. It might be a good idea to split products into categories, but the data does that directly allow for that and it would have to be done manually based on the name. It might also be a good idea to show if its a special day, like if its a holiday or if a day falls in a vacation.
+	The business process proposed to be modelled in the data warehouse is the 'Sales' business process. With regards to dimensions we pick out product, time, date, and member because they allow for the most interesting queries. Our granularity with regards to time goes down to minutes across two different dimensions to reduce the amount of rows, with regard to product it only has a name attribute, with regard to member it has balance and year. It might be a good idea to split products into categories, but the data does not directly allow for that and it would have to be done manually based on the name. It might also be a good idea to show if its a special day, like if its a holiday or if a day falls in a vacation.
 	
 	The schema for the dimensions can be seen below. 
 	
