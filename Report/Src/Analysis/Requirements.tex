@@ -1,16 +1,22 @@
 \section{Requirements}
-A few criteria have been made, that a system for the Aalborg city bikes should be able to fulfil. In addition to this, the requirements were put into two categories, simple and advanced, and developers should prioritise simple requirements before advanced ones.
+A few criteria have been made, that a system for the \bycykel should be able to fulfil. 
+In addition to this, the requirements are listed with the highest priority first, such that the goal for the product is to fulfil the requirements in the listed order. 
+Therefore not all requirements will necessarily be fulfilled as the time line is limited.
 
-Simple:
-\begin{itemize}
-\item Be able to see how many bikes are available at a given station.
-\item Be able to generate data for statistical analysis.
-\item Give the possibility of booking a bike, so the user is certain that one is ready at the chosen station.
-\end{itemize}
-
-Advanced:
-\begin{itemize}
-\item Track bikes through fx GPS
-\item Predict availability of bikes depending on placement and other variables
-\item Use predicted availability to improve booking system.
-\end{itemize}
+The system should be able to:
+\begin{description}
+\item[See how many bikes are available at a given station] \hfill \\
+The users should be able to see how many bicycles is available at a given station.
+This could be done through a web service.
+\item[Generate data for statistical analysis] \hfill \\
+The system should be able to collect information and statistics about the usage of the system.
+Aalborg Kommune should be able to use this information to perform analysis to help reason about the redistribution and purchase of bicycles.
+\item[Give the possibility of booking a bicycle] \hfill \\
+This could be done through the same web service where the user is able to see how many bicycles is available.
+A booked bicycle should be locked and unavailable for everyone except the one who booked it.
+\item[Track bicycles through for example GPS] \hfill \\
+The data collected by the positioning system could be used to locate the bicycles if someone forgets to return it.
+\item[Predict availability of bicycles depending on placement and other variables] \hfill \\
+The position could be used for predicting the usage of the bicycles as well. 
+For example to predict when a bike is available at the station again.
+\end{description}
