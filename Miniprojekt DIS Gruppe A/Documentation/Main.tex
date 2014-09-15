@@ -43,6 +43,54 @@
 
 
 	\section{Task C}
+	The business process proposed to be modelled in the data warehouse is the 'Sales' business process. With regards to dimensions we pick out product, time, date, and member because those are the most interesting dimensions. Our granularity with regards to time goes down to minutes across two different dimensions to reduce the amount of rows, with regard to product it only has a name attribute, with regard to member it has balance and year.
+	
+	The schema for the dimensions can be seen below. 
+	
+	\begin{minipage}{0.45\textwidth}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{dimensionProduct}
+		\label{image:product}
+		\caption{The product dimension.}
+		\end{figure}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{dimensionMember}
+	\label{image:member}
+	\caption{The member dimension.}
+	\end{figure}
+	\end{minipage}
+	
+	\begin{minipage}{0.45\textwidth}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{dimensionTime}
+	\label{image:time}
+	\caption{The time dimension.}
+	\end{figure}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{dimensionDate}
+	\label{image:date}
+	\caption{The date dimension.}
+	\end{figure}
+	\end{minipage}
+	
+	The star schema for it can be seen below.  With the schema it is important to note that the dimensions have a surrogate key with a serial integer(it auto increments).
+	
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.75]{star-scheme}
+	\label{image:starschema}
+	\caption{The star schema for the data warehouse.}
+	\end{figure}
+		
 	
 
 \end{document}
