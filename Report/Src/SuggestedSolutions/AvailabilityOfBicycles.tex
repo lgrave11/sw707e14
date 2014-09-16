@@ -1,0 +1,74 @@
+\section{Availability of Bicycles}\label{sec:availability}
+One of the requirements was that the users of the system need to be able to \textit{see how many bicycles are available at a given station}.
+This section covers the suggested solutions for that requirement.
+We will look at four different availability checking solutions:
+
+\begin{itemize}
+\item Camera based
+\item Dock based
+\item Chip based
+\item WiFi based
+\end{itemize} 
+
+Finally we will choose a solution to implement.
+
+% Camera
+\subsection{Camera}
+A solution with little technological implementation required, would be to use a camera such that users of the system can visually check if any bicycles are available at a given station. 
+
+This solution is good because it is an easy way to add some kind of availability checking without investing in a larger system.
+
+Of course this solution has its downsides, because the information is not reliable in certain situations. 
+One example of a situation where a camera would be insufficient would be if it was dark at the station.
+You also have to consider that the information transmitted by the camera can be deceiving in that it could show a bicycle that does not really belong at the station and that would make the user come to the conclusion that there are bicycles at the station.
+In summary the data is just not succinct in that it does not provide a standardized way of looking up the information, but rather leaves it up to interpretation for the user.
+
+% Dock
+\subsection{Dock}
+Another solution that requires a bit more technological implementation is a Dock based implementation.
+The main idea here is that when a bicycle is delivered at a station it is placed at a dock.
+Where a given dock then with some solution that could be a scale or lock-detector, is then able to register if there is a bicycle located at it.
+Each station then contains several docks, and can read from each of them, to provide a number for how many bicycles are located at that station. 
+
+%good:
+% exact information about how many bikes are available
+This solution, unlike the camera solution, provides exact information about how many bicycles are available at a given station with little or nothing up for interpretation of the user.
+It is unknown how much this would actually cost to implement, but there would likely be several low-cost solutions to this that could be implemented.
+
+%bad:
+For this system to work the bicycles would have to be placed into the docks to provide any correct information.
+That is, not registering bicycles misplaced outside the docks.
+
+% Chip
+\subsection{Chip}
+A similar solution would be to use chips, such as RFID chips. 
+Such a solution is similar in that it provides the same information, the amount of bicycles at a given station.
+The solution differs, however, in the way this is registered.
+
+One way to do this would be to take inspiration from a car park.
+The station would have one or more entrance gateways and one or more exit gateways.
+When entering the station with a bicycle, the total amount of bicycles will then get incremented, and when leaving with a bicycle it gets decremented.
+
+Another way depending on the distance these chips could be read from, it would be possible to just deposit the bicycles at the station and the station would continually count the amount of bicycles it detects in the near-distance.
+
+% good
+These two solutions have in common that they are easy to use, as you just come and pick a bicycle and then return it when you are finished.
+% bad
+On the downside it requires modifying all the bicycles in the fleet, furthermore, the stations can end up taking more space than what is necessary.
+
+
+% WiFi
+\subsection{WiFi}
+Using WiFi to transmit from the bicycles to the station it is near is another solution that could be used.
+This solution captures the bicycles located in a perimeter around the station that are on the WiFi network.
+
+This solution provides an estimate of the amount of bicycles available at a given station.
+This solution requires very little in terms of extra infrastructure having to be built.
+
+However, the solution is not as accurate as previously mentioned ones, as bicycles that are already being used but is near the station are registered as well.
+Furthermore, it is unclear what costs would be involved with this system and how the bicycles would be powered to maintain the WiFi signal for a longer period of time. 
+Maintaining the WiFi signal for a longer period of time when not bicycling may not be necessary as you could assume that when a bicycle is not active, it stays at the same place.
+If that is the case, it could be enough to transmit your position when near a station and bicycling, thus powering the WiFi with kinetic energy.
+
+\subsection{Chosen Solution}
+
