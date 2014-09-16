@@ -1,0 +1,35 @@
+\section{Remote Lock}\label{sec:remoteLock}
+There should be a way for the user to unlock a booked bicycle when reaching the station.
+This can be solved in several ways, some of these are described hereafter.
+
+\subsection{Unlock on Time}
+This option is independent on whether or not the user is at the station at a specific time.
+When the specified time frame begins the booked bicycle unlocks and are available to everyone.
+This leads to problems in that a user arriving too early to the station will have to wait for the bicycle to unlock, and if the user arrives too late the bicycle might have been taken by another person.
+However, this solution is cheap since there is no need for hardware except the lock on the bicycle, and the communication with the global system.
+
+\subsection{SMS}
+Whenever the user is ready to get his booked bicycle he sends an SMS to the system, and the system unlocks his bicycle.
+Compared to the previous suggestion, this suggestion does not make the bicycle available to everyone, therefore if the user is too late, he can still be sure that the bicycle is available at the station.
+Furthermore, if the user comes to early to the station, he is still able to unlock the bicycle therefore he does not have to wait for the bicycle to get unlocked.
+Moreover this solution is also cheap since it only needs to have a lock and be able to communicate with the global system.
+However, this suggestion is not a free solution to the user since they have to pay for the SMS, which can become expensive if the user is not from the specific country.
+
+\subsection{Password Based}
+When the user arrives to the station he have to enter a password at the station to unlock a bicycle.
+To be able to do this will require additional hardware at the station to make it possible to input a password to the system.
+Therefore this solution will increase the price of each station, as the additional hardware have to be at every station.
+However, it solves the problem that it can become expensive for the user, as this suggestion only cost something for Aalborg Bycykel.
+
+\subsection{QR Code}
+In order to unlock a booked bicycle the user have to scan a QR code located next to one of the locked bicycles at the station.
+This suggestion compared to the previous does not require any additional hardware and can therefore become cheaper for Aalborg Bycykel.
+However, it does require that the user has a mobile device that are able to scan a QR code and send the information over the internet to the global system.
+
+\subsection{GPS}
+This suggestion uses the GPS of a device to see if the user is close to the station, if the user is close to the station the booked bicycle will get unlocked.
+To use this suggestion the user are required to have a mobile device which are able to send GPS information to the global system.
+Additionally this is very resource demanding for the users mobile device as the use of GPS prevent sleep mode of the mobile device \citep{misc:gpsbatteryusage}, which results in significantly lower battery duration.
+Moreover, if the user passes by the station before he actually wants to use the bicycle there is a risk that the station will detect this, therefore unlocking the bicycle.
+
+\subsection{Chosen Solution}
