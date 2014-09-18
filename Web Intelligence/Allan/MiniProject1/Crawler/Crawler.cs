@@ -33,7 +33,7 @@ namespace MiniProject1
         {
             WebClient client = new WebClient();
             
-            while (visitedURLs.Count < 1000000)
+            while (visitedURLs.Count < 1000)
             {
                 //step 3
                 Uri currentURL = Mercator.Instance.Dequeue();
@@ -102,7 +102,6 @@ namespace MiniProject1
                         }
 
                         Console.WriteLine(currentURL + "\t" + visitedURLs.Count + ":" + allowedCount + "\t" + DateTime.Now.ToString("h:mm:ss tt"));
-                        //System.Threading.Thread.Sleep(1000);
                     }
                 }
 
