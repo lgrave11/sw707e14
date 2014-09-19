@@ -1,4 +1,4 @@
-\section{Existing Systems}
+\section{Other Existing Systems}
 A part of analysing and designing a city bicycle system is to investigate the current solutions on the market. 
 Therefore an evaluation of existing systems is conducted.
 We found several existing systems implementing different aspects and features of a city bicycle system. 
@@ -50,5 +50,23 @@ It also allows for retrieving information about the amount of bicycles at a stat
 
 Alta on the other hand uses a card to rent bicycles and it uploads information about bicycles at stations for the users of the system to more easily get an overview of where bicycles are located.
 
-These systems give insight to what options can be used for the developed system, and is kept in mind for defining the problem definition and the specification of the requirements for the new system.
+\begin{table}[h]
+	\begin{tabular}{|p{0.13\textwidth}|p{0.18\textwidth}|p{0.18\textwidth}|p{0.18\textwidth}|p{0.18\textwidth}|}
+		\hline  & Aalborg Bycyklen & Copenhagen GoBike & Cibi & Alta Bicycle Share \\ 
+		\hline Booking & No & On a tablet & No & No \\ 
+		\hline Borrowing/ unlocking & Deposit 20DKK & Login with tablet &  SMS code deposit 300DKR & Keycard \\ 
+		\hline Tracking & No & GPS & Dock + chip at stations & No \\ 
+		\hline Penalty & You do not get the 20DKK back & Continues payment & You do not get any of the 300DKR back & Fine per half hour overtime \\ 
+		\hline Cost & Deposit, but otherwise free & Pay per minute & First hour free, then pay per minute & Depends on membership \\ 
+		\hline 
+	\end{tabular} 
+	\caption{Comparison of bicycle systems.}
+	\label{tab:bicyclecompare}
+\end{table}
 
+A comparison of the different bicycle sharing systems examined can be seen in \tabref{tab:bicyclecompare}
+As can be seen, \bycykel is lacking a lot of features compared to the other systems and signifies a room for improvement.
+The improvements to be performed is then inspired by the other examined systems.
+However, \bycykel is free to use as long as you deliver back a bicycle after use. 
+This ease of accessibility of \bycykel we find valuable, and is a value we seek to keep in the developed solution.
+This insight is kept in mind for defining the problem definition and the specification of the requirements for the new system.

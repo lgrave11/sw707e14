@@ -65,21 +65,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crawler.cs" />
-    <Compile Include="CrawlerContext1.cs" />
-    <Compile Include="crawlerStorage.cs" />
-    <Compile Include="Mercator.cs" />
-    <Compile Include="NearDuplicatesWithoutSketches.cs" />
-    <Compile Include="NearDuplicatesWithSketches.cs" />
-    <Compile Include="Parser.cs" />
+    <Compile Include="Crawler\Crawler.cs" />
+    <Compile Include="Database\CrawlerContext1.cs" />
+    <Compile Include="Database\crawlerStorage.cs" />
+    <Compile Include="Crawler\Mercator.cs" />
+    <Compile Include="Crawler\NearDuplicatesWithoutSketches.cs" />
+    <Compile Include="Crawler\NearDuplicatesWithSketches.cs" />
+    <Compile Include="Crawler\Parser.cs" />
+    <Compile Include="Indexer\Indexer.cs" />
+    <Compile Include="Indexer\IndexWrapper.cs" />
+    <Compile Include="Indexer\Postings.cs" />
+    <Compile Include="Indexer\PostingType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Restrictions.cs" />
-    <Compile Include="StringHash.cs" />
-    <Compile Include="urlcontentTable.cs" />
+    <Compile Include="Crawler\Restrictions.cs" />
+    <Compile Include="Crawler\StringHash.cs" />
+    <Compile Include="Database\urlcontentTable.cs" />
+    <Compile Include="Indexer\Stemmer.cs" />
+    <Compile Include="Indexer\TermMaker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
