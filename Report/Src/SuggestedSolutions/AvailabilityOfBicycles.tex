@@ -71,13 +71,16 @@ If that is the case, it could be enough to transmit your position when near a st
 \subsection{Chosen Solution}
 Among the above mentioned solutions to the problem of determining the availability of a bicycle, one solution have to be chosen. 
 Given the different pros and cons mentioned for each of the solutions, a decision will be made based on the criteria that the solution should have as little footprint on the current system as possible \fxwarning{Discuss this! Do we all agree on this and should we write a section about our criteria for the solution and possibly Aalborg Kommunes criteria for at solution}. 
+
 The footprint\fxwarning{correct term?} of the solutions is measured on the amount of hardware needed to be added to the current system in order to get a working solution. 
 For example common to all the solutions requires that a network connection is available at every station because a communication with a global system is necessary. 
 Furthermore each solution required different hardware and installations in order to provide the information needed. 
+
 Among the solutions with least footprint are Camera, Dock and Chip. 
 Camera because only an addition of a camera at every station is required. 
 Dock because the already installed lock would only have to be extended with some hardware to detect whether a bicycle is docked in that lock or not.
 Chip because only an addition of a non-power-consuming RFID chip would be required.
+
 The WiFi solution also only requires an addition of a WiFi chip, but this chip is power-consuming and therefore requires some kind of additional system to provide power and keeping the bicycles charged.
 Among those the Dock solution is chosen due to its simple implementation at the docking stations, which enables easy maintainability of the hardware. The Camera solution is opt out because of the possibly inconsistent interpretation by the user, possibly leading to situations where a bicycle is interpreted by the capture of the camera to be available, but in fact is not. The Chip solution is opt out, although paving the way for an exact identification of each bicycle by RFID, because of the additional installation of hardware required.
 
