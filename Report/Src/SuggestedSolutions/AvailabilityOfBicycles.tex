@@ -21,23 +21,22 @@ This solution is good because it is an easy way to add some kind of availability
 Of course this solution has its downsides, because the information is not reliable in certain situations. 
 One example of a situation where a camera would be insufficient would be if it was dark at the station.
 You also have to consider that the information transmitted by the camera can be deceiving in that it could show a bicycle that does not really belong at the station and that would make the user come to the conclusion that there are bicycles at the station.
-In summary the data is just not succinct in that it does not provide a standardized way of looking up the information, but rather leaves it up to interpretation for the user.
+In summary the data is not concise in that it does not provide a standardised way of looking up the information, but rather leaves it up to interpretation for the user.
 
 % Dock
 \subsection{Dock}
 Another solution that requires a bit more technological implementation is a Dock based implementation.
-The main idea here is that when a bicycle is delivered at a station it is placed at a dock.
-Where a given dock then with some solution that could be a scale or lock-detector, is then able to register if there is a bicycle located at it.
-Each station then contains several docks, and can read from each of them, to provide a number for how many bicycles are located at that station. 
+The main idea is that when a bicycle is delivered at a station it is placed at a dock.
+Where a given dock, with some solution that could be a scale or lock-detector, is then able to register if there is a bicycle located at it.
+Each station then contains several docks, and can read from each of them to provide a number for how many bicycles are located at that station. 
 
 %good:
 % exact information about how many bikes are available
-This solution, unlike the camera solution, provides exact information about how many bicycles are available at a given station with little or nothing up for interpretation of the user.
-It is unknown how much this would actually cost to implement, but there would likely be several low-cost solutions to this that could be implemented.
+This solution, unlike the camera solution, provides exact information about how many bicycles are available at a given station with nothing up to interpretation for the user.
 
 %bad:
-For this system to work the bicycles would have to be placed into the docks to provide any correct information.
-That is, not registering bicycles misplaced outside the docks.
+For this system to work, the bicycles would have to be placed into the docks to provide any correct information.
+That is, the system not registering bicycles misplaced outside the docks.
 
 % Chip
 \subsection{Chip}
@@ -52,18 +51,17 @@ When entering the station with a bicycle, the total amount of bicycles will then
 Another way depending on the distance these chips could be read from, it would be possible to just deposit the bicycles at the station and the station would continually count the amount of bicycles it detects in the near-distance.
 
 % good
-These two solutions have in common that they are easy to use, as you just come and pick a bicycle and then return it when you are finished.
+These two solutions have in common that they are easy to use, as you come and pick a bicycle and then return it when you are finished.
 % bad
-On the downside it requires modifying all the bicycles in the fleet, furthermore, the stations can end up taking more space than what is necessary.
-
+On the downside it requires modifying all the bicycles in the fleet, furthermore, if using the car park idea, the stations can end up taking more space than the other solutions. 
 
 % WiFi
 \subsection{WiFi}
-Using WiFi to transmit from the bicycles to the station it is near is another solution that could be used.
+Using WiFi to transmit from the bicycles to the station if it is near, is another solution that could be used.
 This solution captures the bicycles located in a perimeter around the station that are on the WiFi network.
 
 This solution provides an estimate of the amount of bicycles available at a given station.
-This solution requires very little in terms of extra infrastructure having to be built.
+It requires very little in terms of extra infrastructure having to be built.
 
 However, the solution is not as accurate as previously mentioned ones, as bicycles that are already being used but is near the station are registered as well.
 Furthermore, it is unclear what costs would be involved with this system and how the bicycles would be powered to maintain the WiFi signal for a longer period of time. 
@@ -71,4 +69,22 @@ Maintaining the WiFi signal for a longer period of time when not bicycling may n
 If that is the case, it could be enough to transmit your position when near a station and bicycling, thus powering the WiFi with kinetic energy.
 
 \subsection{Chosen Solution}
+Among the above mentioned solutions to the problem of determining the availability of a bicycle, one solution have to be chosen. 
+Given the different pros and cons mentioned for each of the solutions, a decision will be made based on the criteria that the solution should have as little footprint on the current system as possible \fxwarning{Discuss this! Do we all agree on this and should we write a section about our criteria for the solution and possibly Aalborg Kommunes criteria for at solution}. 
 
+The footprint\fxwarning{correct term?} of the solutions is measured on the amount of hardware needed to be added to the current system in order to get a working solution. 
+For example common to all the solutions requires that a network connection is available at every station because a communication with a global system is necessary. 
+Furthermore each solution required different hardware and installations in order to provide the information needed. 
+
+Among the solutions with least footprint are Camera, Dock and Chip. 
+Camera because only an addition of a camera at every station is required. 
+Dock because the already installed lock would only have to be extended with some hardware to detect whether a bicycle is docked in that lock or not.
+Chip because only an addition of a non-power-consuming RFID chip would be required.
+
+The WiFi solution also only requires an addition of a WiFi chip, but this chip is power-consuming and therefore requires some kind of additional system to provide power and keeping the bicycles charged.
+Among those the Dock solution is chosen due to its simple implementation at the docking stations, which enables easy maintainability of the hardware. 
+
+The Camera solution is opt out because of the possibly inconsistent interpretation by the user, possibly leading to situations where a bicycle is interpreted by the capture of the camera to be available, but in fact is not. 
+The Chip solution is opt out, although paving the way for an exact identification of each bicycle by RFID, because of the additional installation of hardware required.
+
+The Dock solution provides the system with a simple way of determining the number of bicycles docked at each station. What this solution does not provide is a way of knowing the total number of bicycles currently in the system. Although a summation of the number of docked bicycles at every station would seem to provide this number, there is an uncertainty that bicycles are stolen or currently in use and not docked in any station. This knowledge from the system is however not a requirement\fxwarning{or is it? Does it say something about this kind of details in the requirement section?} and therefore not prioritised.

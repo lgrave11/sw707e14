@@ -1,0 +1,41 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[danish]{babel}
+\usepackage{hyperref}
+
+\title{Webintelligence - Mini Project 1}
+\author{Lars Andersen, Mathias Winde Pedersen \& Søren Skibsted Als}
+\begin{document}
+	\maketitle
+	\section*{Crawler}
+	We decided to implement the crawler with mercator.
+	However, for the front queues we use a single queue, resulting in a uniform ranking. An example of ranking that could be used there would be to rank news sites who change regularly over more static websites.
+	Furthermore, the crawling is single threaded, as a proof of concept, but could be expanded to a multi threaded one.
+	This is also related to DNS lookup times, as it was found that some DNS lookups delayed the crawler severely.
+	
+	To check near duplicates we use shingles with sketches.
+	However, Google recommends 84 hash functions, but we only use 19 hashes.
+	Our shingle size is 8, which is recommended.
+	
+	Furthermore, tackling documents on the website which is not html or txt encoded is not handled, which gives crawled text encoded in a strange manner, e.g. pdf files.
+	Image files are excluded, as some of those formats made the crawler otherwise crash, when trying to convert it to a string.
+	A library could be used to translate such text into a readable format, to be used for the indexing, and also to make more sensible near duplicate detection.
+	
+	For the seed we used \url{http://aau.dk/} and \url{http://stackoverflow.com/}
+	\section*{Indexer}
+	For the indexer we cut corners as follows.
+	We only stem on the English language.
+	For stopwords it is used for English and Danish,
+	As we encode weird strings due to extracting pdf files without a library, we get some strange terms that fill the index unnecessarily.
+	
+	Furthermore, the postingslist are all kept in main memory. 
+	This works fine for a small size of websites crawler, however, if you were to crawl the whole web, you would have to have servers farms or write to disk(making it much slower).
+	
+	
+	
+	
+\end{document}

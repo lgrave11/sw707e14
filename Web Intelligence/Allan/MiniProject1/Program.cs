@@ -10,10 +10,16 @@ namespace MiniProject1
     {
         static void Main(string[] args)
         {
-            
-            Crawler crawler = new Crawler(new List<Uri>() { new Uri("http://aau.dk/") }, "Allan");
-            crawler.StartCrawling();
+            CrawlerContext1 db = new CrawlerContext1();
 
+            //Crawler crawler = new Crawler(new List<Uri>() { new Uri("http://aau.dk/"), new Uri("http://stackoverflow.com/") }, "Allan");
+            //crawler.StartCrawling();
+            foreach (var x in db.crawlerStorage)
+            {
+                Indexer.Instance.AddDoc(x.content);
+            }
+            Indexer.Instance.ConstructIndex();
+            
             Console.Read();
         }
     }
