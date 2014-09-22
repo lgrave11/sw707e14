@@ -47,7 +47,7 @@
     \end{center}
     \end{figure}
        
-    The ETL Flow for `sales', `date' and `time' is most interesting, so we go into more detail there. The first step we take is split the timestamp into date and time, by splitting on space. For the date dimension we extract the date from that, and create an easily determinable id such that we do not have to do any lookups. Then we sort the date result on the smart id, and make it unique and add it to the date dimension. Then for the time we also create an easily determinable id, sort it on the smart id and make it unique and put it into the time dimension.
+    The ETL Flow for `sales', `date' and `time' is most interesting, so we go into more detail there. The first step we take is split the timestamp into date and time, by splitting on space. For the `date dimension' we extract the date from that, and create an easily determinable id such that we do not have to do any lookups. Then we sort the date result on the smart id, and make it unique and add it to the `date' dimension. Then for the `time' dimension we also create an easily determinable id, sort it on the smart id and make it unique and put it into the `time' dimension.
     
     For the sales fact table we reuse the smart ids made for the `date' dimension and `time' dimension, sort on the key 'id' and multiway merge join. Then we block execution of this until the rest of the dimensions have been filled because it needs to refer to foreign keys that not necessarily have been inserted yet. Then we filter out some rows from the `sales' fact table because it has foreign keys that do not match the `member' dimension, send the bad ones to a dummy block and the good ones to the `sales' fact table.
     
