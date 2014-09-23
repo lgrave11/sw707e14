@@ -1,17 +1,23 @@
 \section{Requirements}
-A few criteria have been made, that a system for the \bycykel should be able to fulfil. 
-In addition to this, the requirements are listed with the highest priority first, such that the goal for the product is to fulfil the requirements in the listed order. 
+A few system criteria have been set up for the different software and hardware solutions to conform to. 
+In addition to this, there are software- and hardware requirements listed with the highest priority first, such that the goal for the product is to fulfil the requirements in the listed order. 
 Therefore not all requirements will necessarily be fulfilled as time is limited.
-We do not make any decisions on the hardware.
+We do not make any concrete decisions on the hardware.
 We do, however, come up with some requirements for the hardware but how exactly they are fulfilled is beyond our field of study.
-Although a set of criteria for the entire system will be discussed and set up for the different software and hardware solutions to conform to.
 
 \subsection{System Criteria}
+Below is a set of system criteria that should be considered when choosing a solutions for the system.
+These criteria should not be taken as requirements for the system, but as guidelines for the desired overall system outcome.
+For example when choosing a solution these criteria should be considered and discussed to help choose the right solution towards the desired qualities.
 \begin{itemize}
-	\item A chosen solution should not redesign the entire existing system but rather just add a light weight solution to the existing system. By a light weight solution  we mean a solution that require a minimum of additions to the existing system in terms of hardware.
-	\item A solution should be easy to use by the end user and easy to access by everyone. It should only require a few steps in the process of borrowing a bicycle.
-	\item A solution should not rely on t
+	\item A chosen solution should not redesign the entire existing system but rather just add a lightweight solution to the existing system. 
+	By a lightweight solution we mean a solution that require a minimum of additions to the existing system in terms of hardware both for the bicycles and bicycle stations.
+	\item A solution should be easy to use by the end user and easy to access by everyone. 
+	It should only require as few steps as possible in the process of borrowing a bicycle.
 \end{itemize}
+
+\subsection{Software Requirements}
+These are the requirements that should be fulfilled by the software in a prioritised order.
 
 The system should be able to:
 \begin{description}
@@ -29,4 +35,20 @@ The data collected by the positioning system will be used to locate the bicycles
 \item[Predict availability of bicycles depending on placement and other variables] \hfill \\
 The position will be used for predicting the usage of the bicycles as well. 
 For example to predict when a bicycle will be available at a given station again.
+\end{description}
+
+\subsection{Hardware Requirements}
+% interface med server (fra stationerne)
+%  - mulighed for at låse og låse op for en cykel
+%  - vi skal være i stand til at se hvor mange cyckler der er på stationen
+% interface med server (fra cyklerne)
+%  - få fat i positionen af den enkelte cykel
+In order to fulfil the requirements for the software listed above, a set of hardware requirements are necessary.
+These requirements specify a communication interface between software and hardware, and as long as the hardware implements these interfaces, the software solution should be able to perform the required tasks.
+As for the software requirements these requirements are listed in a prioritised order and depending on the extend of the fulfilled software requirements further hardware requirements are required to be fulfilled.
+\begin{description}
+	\item[Interface between station and server]\hfill \\
+	There should be a possibility to communicate the amount of bicycles docked in the station, and a possibility to lock and unlock docked bicycles.
+	\item[Interface between bicycle and server]\hfill \\
+	There should be a possibility to retrieve the position of each bicycle.
 \end{description}
