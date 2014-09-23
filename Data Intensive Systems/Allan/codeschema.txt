@@ -30,7 +30,7 @@ surrogateid serial PRIMARY KEY,
 memberid int NOT NULL,
 active int NOT NULL,
 year int NOT NULL,
-version int NOT NULL,
+version int NOT NULL DEFAULT 1,
 changedate timestamp without time zone -- this is for future changes, 
 --fklub does not keep track of this
 );
@@ -39,10 +39,11 @@ CREATE TABLE product
 (
 surrogateid serial PRIMARY KEY,
 id int NOT NULL,
+name varchar(100),
 price int NOT NULL,
 active int NOT NULL,
 deactivation_date timestamp without time zone,
-version int NOT NULL
+version int NOT NULL DEFAULT 1
 );
 
 CREATE TABLE sale
