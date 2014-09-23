@@ -68,15 +68,14 @@ Furthermore, it is unclear what costs would be involved with this system and how
 Maintaining the WiFi signal for a longer period of time when not bicycling may not be necessary as you could assume that when a bicycle is not active, it stays at the same place.
 If that is the case, it could be enough to transmit your position when near a station and bicycling, thus powering the WiFi with kinetic energy.
 
-\subsection{Chosen Solution}
-Among the above mentioned solutions to the problem of determining the availability of a bicycle, one solution have to be chosen. 
-Given the different pros and cons mentioned for each of the solutions, a decision will be made based on the criteria that the solution should have as little footprint on the current system as possible \fxwarning{Discuss this! Do we all agree on this and should we write a section about our criteria for the solution and possibly Aalborg Kommunes criteria for at solution}. 
+\subsection{Discussion of Solutions}
+Among the above mentioned solutions to the problem of determining the availability of a bicycle, a preferred solution has to be chosen. 
 
-The footprint\fxwarning{correct term?} of the solutions is measured on the amount of hardware needed to be added to the current system in order to get a working solution. 
+The impact of the solutions is measured on the amount of hardware needed to be added to the current system in order to get a working solution. 
 For example common to all the solutions requires that a network connection is available at every station because a communication with a global system is necessary. 
 Furthermore each solution required different hardware and installations in order to provide the information needed. 
 
-Among the solutions with least footprint are Camera, Dock and Chip. 
+Among the solutions with least impact are Camera, Dock and Chip. 
 Camera because only an addition of a camera at every station is required. 
 Dock because the already installed lock would only have to be extended with some hardware to detect whether a bicycle is docked in that lock or not.
 Chip because only an addition of a non-power-consuming RFID chip would be required.
@@ -88,3 +87,12 @@ The Camera solution is opt out because of the possibly inconsistent interpretati
 The Chip solution is opt out, although paving the way for an exact identification of each bicycle by RFID, because of the additional installation of hardware required.
 
 The Dock solution provides the system with a simple way of determining the number of bicycles docked at each station. What this solution does not provide is a way of knowing the total number of bicycles currently in the system. Although a summation of the number of docked bicycles at every station would seem to provide this number, there is an uncertainty that bicycles are stolen or currently in use and not docked in any station. This knowledge from the system is however not a requirement\fxwarning{or is it? Does it say something about this kind of details in the requirement section?} and therefore not prioritised.
+
+\subsection{Information Gain}
+Various solutions have been discussed, and from a software point of view, we need to know what information each solution can provide.
+The camera solution gives access to a camera feed.
+The Dock and Chip solutions gives information regarding how many bicycles are locked at each station, these solutions report this each time the amount of bicycles locked changes.
+The WiFi solution gives information about how many bicycles are near a given station, and might include bicycles already in use.
+The solution can, however, be modified to give the same information as the Dock and Chip solution, by reporting each time the amount of bikes in the area changes.
+
+\fxwarning{snak om hvilke der overholder criteria}
