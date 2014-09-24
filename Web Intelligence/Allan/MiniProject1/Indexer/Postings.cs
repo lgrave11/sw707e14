@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniProject1
 {
-    class Postings
+    public class Postings
     {
         public LinkedList<PostingType> PostingList = new LinkedList<PostingType>();
 
