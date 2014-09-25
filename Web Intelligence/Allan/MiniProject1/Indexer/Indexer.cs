@@ -9,7 +9,7 @@ namespace MiniProject1
     {
         #region singletonpart
         private static Indexer instance = new Indexer();
-        int id = 1;
+        int id = 0;
         public static Indexer Instance
         {
             get
@@ -31,12 +31,12 @@ namespace MiniProject1
             {
                 pairSequence.Add(new IndexWrapper(s, id));
             }
-            if(id % 100 == 0)
-                Console.WriteLine(id);
+            if((id +1)  % 100 == 0)
+                Console.WriteLine(id +1);
             id++;
         }
 
-        Dictionary<string, Postings> invertedIndex = new Dictionary<string, Postings>();
+        public Dictionary<string, Postings> invertedIndex = new Dictionary<string, Postings>();
         public void ConstructIndex()
         {
             pairSequence.Sort();

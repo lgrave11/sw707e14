@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 
 namespace MiniProject1
 {
-   public  class PostingType:IComparable
+    class SortType:IComparable
     {
         public int DocID { get; set; }
-        public int Frequency { get;set; }
-
-        public PostingType(int docId)
+        public float Score { get; set; }
+        public SortType(int docID, float score)
         {
-            DocID = docId;
-            Frequency = 1;
+            DocID = docID;
+            Score = score;
         }
+
+
+
 
         public int CompareTo(object obj)
         {
-            return DocID.CompareTo(((PostingType)obj).DocID);
+            return ((SortType)obj).Score.CompareTo(Score);
         }
     }
 }

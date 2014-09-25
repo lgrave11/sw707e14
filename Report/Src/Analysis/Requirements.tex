@@ -1,17 +1,17 @@
 \section{Requirements}
 A few system criteria have been set up for the different software and hardware solutions to conform to. 
-In addition to this, there are software- and hardware requirements listed with the highest priority first, such that the goal for the product is to fulfil the requirements in the listed order. 
-Therefore not all requirements will necessarily be fulfilled as time is limited.
-We do not make any concrete decisions on the hardware.
-We do, however, come up with some requirements for the hardware but how exactly they are fulfilled is beyond our field of study.
+In addition to this, there are software and hardware requirements listed with the highest priority first, such that the goal for the product is to fulfil the requirements in the listed order. 
+Not all requirements will necessarily be fulfilled as time is limited, however, due to the fact that the simpler requirements might be easy to implement having more advanced requirements could be necessary.
+We do not make any concrete decisions on the hardware, however, we determine some requirements for the hardware but how they are fulfilled is beyond the scope of this project.
 
 \subsection{System Criteria}
-Below is a set of system criteria that should be considered when choosing a solutions for the system.
-These criteria should not be taken as requirements for the system, but as guidelines for the desired overall system outcome.
-For example when choosing a solution these criteria should be considered and discussed to help choose the right solution towards the desired qualities.
+Below is a set of system criteria that should be considered when choosing a solution for the system.
+These criteria should not be taken as requirements for the system, but as guidelines for the desired outcome of the system.
+For example, when choosing a solution these criteria should be considered and discussed to help choose the solution that matches the criteria best.
+
 \begin{itemize}
-	\item A chosen solution should not redesign the entire existing system but rather just add a lightweight solution to the existing system. 
-	By a lightweight solution we mean a solution that require a minimum of additions to the existing system in terms of hardware both for the bicycles and bicycle stations.
+	\item A chosen solution should not redesign the entire existing system but rather add a lightweight extension to the existing system. 
+	By a lightweight extension we mean an extension that require a minimum of additions to the existing system in terms of hardware both for the bicycles and the bicycle stations.
 	\item A solution should be easy to use by the end user and easy to access by everyone. 
 	It should only require as few steps as possible in the process of borrowing a bicycle.
 \end{itemize}
@@ -23,15 +23,15 @@ The system should be able to:
 \begin{description}
 \item[See how many bicycles are available at a given station] \hfill \\
 The users should be able to see how many bicycles are available at a given station.
-This could be done through a web service.
+This could be done through a web service or a mobile application.
 \item[Obtain data for statistical analysis] \hfill \\
 The system should be able to collect information and statistics about the usage of the system.
-Aalborg Kommune should be able to use this information to e.g. perform analysis about where to redistribute bicycles and to determine if purchase of new bicycles is necessary.
-\item[Give the possibility of booking a bicycle] \hfill \\
-This could be done through the same web service where the user is able to see how many bicycles are available.
+Aalborg Kommune should be able to use this information to, for example perform analysis about where to redistribute bicycles and to determine if purchase of new bicycles is necessary.
+\item[Provide the option of booking a bicycle] \hfill \\
+This could be done through the same web service or mobile application where the user is able to see how many bicycles are available.
 A booked bicycle should be locked and unavailable for everyone except the one who booked it.
-\item[Track bicycles through for example GPS] \hfill \\
-The data collected by the positioning system will be used to locate the bicycles if someone forgets to return it.
+\item[Track bicycles] \hfill \\
+The data collected by the positioning system will be used to locate the bicycles if they are not returned to a station.
 \item[Predict availability of bicycles depending on placement and other variables] \hfill \\
 The position will be used for predicting the usage of the bicycles as well. 
 For example to predict when a bicycle will be available at a given station again.
@@ -39,13 +39,14 @@ For example to predict when a bicycle will be available at a given station again
 
 \subsection{Hardware Requirements}
 % interface med server (fra stationerne)
-%  - mulighed for at låse og låse op for en cykel
-%  - vi skal være i stand til at se hvor mange cyckler der er på stationen
+%  - mulighed for at lÃ¥se og lÃ¥se op for en cykel
+%  - vi skal vÃ¦re i stand til at se hvor mange cyckler der er pÃ¥ stationen
 % interface med server (fra cyklerne)
-%  - få fat i positionen af den enkelte cykel
+%  - fÃ¥ fat i positionen af den enkelte cykel
 In order to fulfil the requirements for the software listed above, a set of hardware requirements are necessary.
 These requirements specify a communication interface between software and hardware, and as long as the hardware implements these interfaces, the software solution should be able to perform the required tasks.
-As for the software requirements these requirements are listed in a prioritised order and depending on the extend of the fulfilled software requirements further hardware requirements are required to be fulfilled.
+The software requirements are listed in prioritised order, and depending on what requirements are implemented different hardware requirements need to be fulfilled. 
+For example if the \textit{Track bicycles} requirement is implemented, then the hardware on the bicycles should be able to transmit its position.
 \begin{description}
 	\item[Interface between station and server]\hfill \\
 	There should be a possibility to communicate the amount of bicycles docked in the station, and a possibility to lock and unlock docked bicycles.
