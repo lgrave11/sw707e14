@@ -1,4 +1,4 @@
-\section{The Internet of Things}
+\section{The Internet of Things}\fxnote{overvej om noget af det indledende tekst er en gentagelse af senere subsections}
 This section introduces the Internet of Things (IoT), along with examples of how it is used. The section also introduces various hardware considerations to provide the context in which real-world applications for the IoT are developed.
 
 The IoT is the concept describing the interconnection of uniquely identifiable objects in the problem domain.
@@ -22,12 +22,38 @@ For example if there is a station for bicycles in a bicycle sharing system that 
 In order to give more detail on IoT, aspecs about identification, communication, and software is given.
 
 \subsection{Identification}
+In order to uniquely identify the objects in the IoT, different approaches can be taken, we give one example here.
+
+One idea is to use the IP address of an object, which has relaton to the previously discussed IPv4 versus IPv6 issue.
+With IPv6, this approach would have enough addresses to uniquely identify a large number og objects.
+Given IPv6 has a theoretical possibility of $3.4 Ø 10^38$ unique addresses \citep{misc:ipv6}, not having enough addresses would not be a problem in the foreseeable future.
+
+When you have a unique address, you can use that to uniquely identify the given object.
+An example of use is the powergrid, where each power station can uniquely be identified with the IPv6 address, and as of such, in case of malfunction in one of the grid connections, it would be possible to know how how much power needs to be rerouted to the affected stations.
 
 \subsection{Communication}
+In order for IoT to work, it is necessary to have communication established.
+If that was not the case, the objects would not be part of the internet of things, as the central idea is that you can communication over the internet.
+
+One idea of communication for sensors is as follows.
+Each sensor has access to the internet to contact a web service of their given reading.
+However, it is unrealistic that each sensor alone is directly connected to the internet, and as of such, other alternatives can be performed.
+One such alternative is that a given object consists of a communication device connected to several sensors and the internet.
+The communication device can then read from the sensors and contact the webservice via. TCP/IP or UDP.\fxwarning{We are uncertain of this, and should be furhter examined}
+
+However, the communication does not end here.
+The idea is that the communication is not limited to machine-machine communication, but is expanded to communication over the internet, such that the objects of the internet of things can be contacted from anywhere on the internet.
+
+For the communication the other way around, communicating to an object in the internet of things can then be performed with help of the IPv6 adresses, as that can uniquely identify each given object.
 
 \subsection{Software}
+Examples of Software that utilize the IoT are given, to give a concrete idea of the power of IoT.
 
+An example of software utilizing the IoT principle is a smart power grid.
+Such a power grid uses the information it has about each section of the grid, to ensure that there is sufficient power reaching every part of the grid, even in cases where part of the grid malfunctions.
+This ability is achieved through the system being able to automatically rerouting the power flow in the grid, so power flows through functioning areas, to reach the parts that would otherwise have been affected by the malfunction.
 
-
-In summary, the IoT has many challenges but at the same time also provides opportunities and benefits for society in general.
-There are of course also criticism to it, primarily from a privacy point-of-view because it provides too much information.
+Another example is a home system.
+For such a system,the objects of the house being the lock, coffee machine, lights, washing machine etc, is then the central parts.
+If the objects of the house is connected to the IoT, it is possible to connect to those devices and control them over the internet.
+This has several advantages, which includes ensuring the door is locked, preparing coffee before you get home, and other actions you may want to do with the objects of your house, even though you are at work or on vacation.
