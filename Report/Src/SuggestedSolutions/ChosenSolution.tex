@@ -1,9 +1,16 @@
-\section{Overview}\fxnote{måske lidt kort section, ellers fint}
-This section will provide an overview of the chosen solution using rich pictures.
+\section{Chosen Solution}
+To provide the project with valuable information about how the project could work in the real world, we will also choose a solution for the hardware elements.
+This is despite the fact that only the website will actually be developed, along with the API that the hardware will use plus some simulated hardware elements.
+
+For the availability of bicycles, we choose to have docks since it also covers part of the hardware aspect of a different requirement, remote locking.  
+For remote locking we also choose to use passwords that need to be input at the station because it is something everyone can do once the booking has been done, as SMS, QR codes, and GPS require phones and might not be suitable for tourists.
+If it comes to tracking of bicycles we choose GPS because it requires much less than WiFi to make a reality.
+
+The following provides an overview of the chosen solution using rich pictures.
 
 The server-station relationship is shown in \figref{fig:ServerRichPicture}. 
 The server contains collected information from each station, such as bookings, amount of available bicycles at stations, and usage statistics.
-It provides booking and amount of available bicycles at stations through a webpage to the user. 
+It provides booking and amount of available bicycles at stations through a website to the user. 
 Usage statistics are provided to the facilitators of the system and gives them the ability to improve it. 
 
 \begin{figure}[h]
