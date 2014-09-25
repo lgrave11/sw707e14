@@ -12,7 +12,6 @@ For our purposes, however, it could be used to determine the position of a bicyc
 This position could then be used to find lost bicycles.
 GPS only works when outside, but as you are outside when you bicycle this is not a problem.
 
-The GPS satellites are already in orbit around the Earth, and as of such does not need to be invested in. % No shit we dont need to buy satellites.
 For each bicycle it is sufficient to have a GPS device used to determine the position and a power source for it.
 Then to report the position, some connection to the developed system would have to exist.
 
@@ -21,11 +20,13 @@ Tracking with WiFi is another technique that could be used.
 The idea here is to place beacons around the city.
 The beacons can then retrieve WiFi signals from a bicycle, and use this to determine the location of the bicycle.
 
-The pro of this type of tracking is that you are not dependent on some externals beacons you do not owen.
+The pro of this type of tracking is that you are not dependent on some externals beacons you do not own.
 On the contrary, you would have to place beacons all around the city of Aalborg in order to precisely locate a bicycle.
-Furthermore, you would still need a WiFi sender on each bicycle, and as of such you increase the amount of equipment needed to track the bicycles.
+Furthermore, you would still need a WiFi module on each bicycle, and as of such you increase the amount of equipment needed to track the bicycles.
 
 \subsection{Information Gain}
 Both solutions provide the same information, which is the position of a bicycle at a given time.
 As of such, from a software point of view, both solutions are sufficient.
-However, from a hardware point of view, the GPS solution is preferred, as it requires less equipment than the WiFi solution.
+However, from a hardware point of view, the GPS solution is preferred, as it requires less equipment than the WiFi solution. 
+However, the GPS solution still needs some means of connection to a server in order to send the location of the bicycle \citep{misc:gpsSystem}. 
+This connection could be established for example through 3G.
