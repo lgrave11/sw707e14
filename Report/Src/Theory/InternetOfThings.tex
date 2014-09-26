@@ -11,29 +11,29 @@ One society-wide use for it is the idea of a `Smart Grid', where the electricity
 There are already a lot of objects in the IoT, and by 2020 it is estimated that there will be upwards of around 26-30 billion things \citep{misc:IoTGrowth1,misc:IoTGrowth2}.
 This will likely require a jump to the IPv6 protocol as the amount of IP addresses are severely limited by IPv4 \citep{misc:numberOfAddresses} given that the additions to IPv4, such as multiple devices sharing a single IP address, will at some point become insufficient.
 
-One important aspect of the things connected to the IoT will be what technology they use to connect, here WiFi or mobile networking will not work well as they will likely interfere with one another.
+One important aspect of the things connected to the IoT will be what technology they use to connect, here WiFi or mobile networking are obvious choices of communication means.
 The connectivity technology has to be low-power, cheap, and non-interfering.
-One way to do that would be to directly connect objects to a server with a cable connecting to the internet, though that is not practical for objects that must be mobile.
+Other than WiFi and mobile networking a it is possible to connect objects to a server with a cable connecting to the internet, though that is not practical for objects that must be mobile.
 RFID (Radio Frequency Identification) chips can provide relevant information to an outside observer about the object itself \citep{misc:rfid} with active research in making it low-cost and low-power \citep{misc:rfid2}.
 
 The geographical location in the IoT is a good idea, especially for sensors where the location provides important context for the information of which something is accessing \citep{misc:locationMatters}.
 For example if there is a station for bicycles in a bicycle sharing system that needs to provide information regarding the amount of bicycles at the station, it is important for the usage of the information that it also provides the actual location of the station, if that is not otherwise known.
 
-In order to give more detail on IoT, aspecs about identification, communication, and software is given.
+In order to give more detail on IoT, aspects about identification, communication, and software is given.
 
 \subsection{Identification}
 In order to uniquely identify the objects in the IoT, different approaches can be taken, we give one example here.
 
-One idea is to use the IP address of an object, which has relaton to the previously discussed IPv4 versus IPv6 issue.
+One idea is to use the IP address of an object, which has relation to the previously discussed IPv4 versus IPv6 issue.
 With IPv6, this approach would have enough addresses to uniquely identify a large number og objects.
-Given IPv6 has a theoretical possibility of $3.4 Ø 10^38$ unique addresses \citep{misc:ipv6}, not having enough addresses would not be a problem in the foreseeable future.
+Given IPv6 has a theoretical possibility of $3.4 \cdot 10^{38}$ unique addresses \citep{misc:ipv6}, not having enough addresses would not be a problem in the foreseeable future.
 
 When you have a unique address, you can use that to uniquely identify the given object.
-An example of use is the powergrid, where each power station can uniquely be identified with the IPv6 address, and as of such, in case of malfunction in one of the grid connections, it would be possible to know how how much power needs to be rerouted to the affected stations.
+An example of use is the powergrid, where each power station can uniquely be identified with the IPv6 address, and as of such, in case of malfunction in one of the grid connections, it would be possible to know how much power needs to be rerouted to the affected stations.
 
 \subsection{Communication}
-In order for IoT to work, it is necessary to have communication established.
-If that was not the case, the objects would not be part of the internet of things, as the central idea is that you can communication over the internet.
+In order for IoT to work, it is necessary to have a communication established.
+If that was not the case, the objects would not be part of the IoT, as the central idea is that you can communicate over the internet.
 
 One idea of communication for sensors is as follows.
 Each sensor has access to the internet to contact a web service of their given reading.
@@ -42,14 +42,14 @@ One such alternative is that a given object consists of a communication device c
 The communication device can then read from the sensors and contact the webservice.
 
 However, the communication does not end here.
-The idea is that the communication is not limited to machine-machine communication, but is expanded to communication over the internet, such that the objects of the internet of things can be contacted from anywhere on the internet.
+The idea is that the communication is not limited to machine-machine communication, but is expanded to communication over the internet, such that the objects of the IoT can be contacted from anywhere on the internet.
 
-For the communication the other way around, communicating to an object in the internet of things can then be performed with help of the IPv6 adresses, as that can uniquely identify each given object.
+Communicating to an object in the IoT can be performed with help of the IPv6 adresses, as that can uniquely identify each given object.
 
 \subsection{Software}
 Examples of Software that utilize the IoT are given, to give a concrete idea of the power of IoT.
 
-An example of software utilizing the IoT principle is a smart power grid.
+An example of software utilizing the IoT principle is a smart power grid. \fxwarning{Dette er en gentagelse af det oven over. Måske er det i orden? Eller skal bare uddybes her?}
 Such a power grid uses the information it has about each section of the grid, to ensure that there is sufficient power reaching every part of the grid, even in cases where part of the grid malfunctions.
 This ability is achieved through the system being able to automatically rerouting the power flow in the grid, so power flows through functioning areas, to reach the parts that would otherwise have been affected by the malfunction.
 
