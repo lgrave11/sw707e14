@@ -1,16 +1,17 @@
 \section{Tracking of Bicycles}
 In order to counter the loss of bicycles, tracking of the bicycles could be used.
 With tracking, lost bicycles can be located and reused in the system.
-Furthermore, tracking can be used for analysis of the bicycling patterns, to see where most bicycles travel to, indicating new hotspots for placing of stations.
-Additionally, tracking can be used to predict when a bicycle will arrive at a given station, opening up the possibility of providing waiting bicycle users with information about when a new bicycle is ready for use.
+Furthermore, tracking can be used for analysis of the bicycling patterns, to see where most bicycles travel to, indicating new hotspots for potential placement of news stations.
+Additionally, tracking can be used to predict when a bicycle will arrive at a given station, opening up the possibility of providing waiting users with information about when a new bicycle is ready for use.
 
-Tracking systems analysed are Global Positioning System (GPS) and WiFi, and follows hereafter.
+Tracking systems analysed are GPS and WiFi.
+
 \subsection{GPS}
 GPS satellites are in orbit around the Earth.
 GPS is primarily used for navigation purposes because it provides a reasonably accurate position of objects.
 For our purposes, however, it could be used to determine the position of a bicycle, though it would require some kind of GPS device being attached to the bicycle.
-This position could then be used to find lost bicycles.
-GPS only works when outside, but as you are outside when you bicycle this is not a problem.
+This could then be used to find lost bicycles.
+GPS usually only works when outside, but as you are outside when you bicycle this is not a problem\citep{misc:howgpsworks}.
 
 For each bicycle it is sufficient to have a GPS device used to determine the position and a power source for it.
 Then to report the position, some connection to the developed system would have to exist.
@@ -18,15 +19,15 @@ Then to report the position, some connection to the developed system would have 
 \subsection{WiFi}
 Tracking with WiFi is another technique that could be used.
 The idea here is to place beacons around the city.
-The beacons can then retrieve WiFi signals from a bicycle, and use this to determine the location of the bicycle.
+The beacons can then retrieve WiFi signals from a bicycle, and use this to determine the location of the bicycle by making the beacons report when bicycles connect to then.
 
-The pro of this type of tracking is that you are not dependent on some external beacons you do not own.
-On the contrary, you would have to place beacons all around the city of Aalborg in order to precisely locate a bicycle.
-Furthermore, you would still need a WiFi module on each bicycle, and as of such you increase the amount of equipment needed to track the bicycles.
+An advantage of this type of tracking is that you are not dependent on some external beacons you do not own.
+The downside of this is that you would have to place beacons all around the city of Aalborg in order to precisely locate a bicycle.
+Furthermore, you would need a WiFi module on each bicycle, and as such you increase the amount of equipment needed to track the bicycles.
 
 \subsection{Information Gain}
 Both solutions provide the same information, which is the position of a bicycle at a given time.
 As such, from a software point of view, both solutions are sufficient.
 However, from a hardware point of view, the GPS solution is preferred, as it requires less equipment than the WiFi solution. 
 Moreover, the GPS solution still needs some means of connection to a server in order to send the location of the bicycle \citep{misc:gpsSystem}. 
-This connection could be established, for example through a cellular network.
+This connection could be established, for example through a cellular network which is inspired Alta Bicycle Share, see \subsecref{subsec:alta}.

@@ -2,22 +2,22 @@
 This section introduces the Internet of Things (IoT), along with examples of how it is used. 
 The section also introduces various hardware considerations to provide the context in which real-world applications for the IoT are developed.
 
-The IoT is the concept describing the interconnection of uniquely identifiable objects in the problem domain.
-The IoT also includes the virtual representation, the interfaces that allow for manipulation, and information retrieval regarding objects \citep{misc:InternetOfThingsDefinition, misc:InternetOfThingsDefinition2, misc:InternetOfThingsDefinition3}.
+The IoT is the concept describing the interconnection of uniquely identifiable things in the problem domain.
+The IoT also includes the virtual representation, the interfaces that allow for manipulation, and information retrieval regarding things \citep{misc:InternetOfThingsDefinition, misc:InternetOfThingsDefinition2, misc:InternetOfThingsDefinition3}.
 
-Real usage of the IoT manifests as systems to provide some service, either by informing the user regarding things or allowing an intelligent system to manage those objects.
-An example of this could be a so-called `smart home' that allows you to use a single device to manage the connected objects in your home, such as the lights or the oven in the kitchen \citep{misc:InternetOfThingsExamples}.
+Real usage of the IoT manifests as systems to provide some service, either by informing the user about things or allowing an intelligent system to manage those things.
+An example of this could be a `smart home' that allows you to use a single device to manage the connected things in your home, such as the lights or the oven in the kitchen \citep{misc:InternetOfThingsExamples}.
 One society-wide use for it is the idea of a `smart power grid', where the electricity usage is monitored and managed by an intelligent system that will e.g. redirect electricity if a cable has been cut somewhere in the system \citep{misc:smartGrid}.
 
-There are already a lot of objects in the IoT, and by 2020 it is estimated that there will be upwards of around 26-30 billion things \citep{misc:IoTGrowth1,misc:IoTGrowth2}.
-This will likely require a jump to the IPv6 protocol as the amount of IP addresses are severely limited by IPv4 \citep{misc:numberOfAddresses} given that the additions to IPv4, such as multiple devices sharing a single IP address, will at some point become insufficient.
+There are already a lot of things in the IoT, and by 2020 it is estimated that there will be upwards of around 26-30 billion things \citep{misc:IoTGrowth1,misc:IoTGrowth2}.
+This will likely require a shift to the IPv6 protocol as the amount of IP addresses are severely limited by IPv4 \citep{misc:numberOfAddresses} given that the additions to IPv4, such as multiple devices sharing a single IP address, will at some point become insufficient.
 
 One important aspect of the things connected to the IoT will be what technology they use to connect, here WiFi or mobile networking are obvious choices of communication means.
-The connectivity technology has to be low-power, cheap, and non-interfering.
+The connectivity technology has to be low-power and cheap.
 Other than WiFi and mobile networking, it is possible to connect things to a server with a cable connecting to the internet, though that is not practical for things that must be mobile.
 Radio Frequency Identification (RFID) chips can provide relevant information to an outside observer about the thing itself \citep{misc:rfid} with active research in making it low-cost and low-power \citep{misc:rfid2}.
 
-The geographical location in the IoT is a good idea, especially for sensors where the location provides important context for the information of which something is accessing \citep{misc:locationMatters}.
+The geographical location in the IoT matters, especially for sensors where the location provides important context for the accessed information \citep{misc:locationMatters}.
 For example if there is a station for bicycles in a bicycle sharing system that needs to provide information regarding the amount of bicycles at the station, it is important for the usage of the information that it also provides the actual location of the station, if that is not otherwise known.
 
 In order to give more detail on IoT, aspects about identification, communication, and software is given.
@@ -26,11 +26,11 @@ In order to give more detail on IoT, aspects about identification, communication
 In order to uniquely identify the things in the IoT, different approaches can be taken, we give an example here.
 
 One idea is to use the IP address of an object, which has relation to the previously discussed IPv4 versus IPv6 issue.
-With IPv6, this approach would have enough addresses to uniquely identify a large number og objects.
+With IPv6, this approach would have enough addresses to uniquely identify a large number of things.
 Given IPv6 has a theoretical possibility of $3.4 \cdot 10^{38}$ unique addresses \citep{misc:ipv6}, not having enough addresses would not be a problem in the foreseeable future.
 
 When you have a unique address, you can use that to uniquely identify the given thing.
-An example of use is the power grid, where each power station can uniquely be identified with the IPv6 address, and as of such, in case of malfunction in one of the grid connections, it would be possible to identify the stations lacking power.
+An example of use is the power grid, where each power station can uniquely be identified with the IPv6 address, and as such, in case of malfunction in one of the grid connections, it would be possible to identify the stations lacking power.
 
 \subsection{Communication}
 In order for IoT to work, it is necessary to have a communication established.
