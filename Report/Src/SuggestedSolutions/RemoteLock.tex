@@ -1,55 +1,66 @@
 \section{Remote Lock}\label{sec:remoteLock}
 There should be a way for the user to unlock a booked bicycle when reaching the station.
 This can be solved in several ways, some of these are described hereafter.
+We will look at the following solutions:
+
+\begin{itemize}
+	\item Unlock on Time
+	\item SMS
+	\item Password Based
+	\item QR Code
+	\item GPS
+\end{itemize}
 
 \subsection{Unlock on Time}
 This option is independent on whether or not the user is at the station at a specific time.
 When the specified time frame begins the booked bicycle unlocks and are available to everyone.
-This leads to problems in that a user arriving too early to the station will have to wait for the bicycle to unlock, and if the user arrives too late the bicycle might have been taken by another person.
-However, this solution is cheap since there is no need for hardware except the lock on the bicycle, and the communication with the global system.
+This leads to problems in that a user arriving too early at the station will have to wait for the bicycle to unlock, and if the user arrives too late the bicycle might have been taken by another person.
+However, this solution is cheap since it only needs the lock on the bicycle, and the communication with the global system, which the other suggestions need as well.
 
 \subsection{SMS}
 Whenever the user is ready to get his booked bicycle he sends an SMS to the system, and the system unlocks his bicycle.
 Compared to the previous suggestion, this suggestion does not make the bicycle available to everyone, therefore if the user is too late, he can still be sure that the bicycle is available at the station.
 Furthermore, if the user comes to early to the station, he is still able to unlock the bicycle therefore he does not have to wait for the bicycle to get unlocked.
 Moreover this solution is also cheap since it only needs to have a lock, some kind of receiver for the incomming SMS, and be able to communicate with the global system.
-However, this suggestion is not a free solution to the user since they have to pay for the SMS, which can become expensive if the user is not from the specific country.
+However, this suggestion is not a free solution to the user since they have to pay for the SMS, which can become expensive if the user is not from Denmark.
 
 \subsection{Password Based}
-When the user arrives to the station he have to enter a password at the station to unlock a bicycle.
+When the user arrives at the station he has to enter a password at the station to unlock a bicycle.
 To be able to do this it will require additional hardware at the station to make it possible to input a password to the system.
 Therefore this solution will increase the price of each station, as the additional hardware have to be at every station.
-However, it solves the problem that it can become expensive for the user, as this suggestion only cost something for Aalborg Bycykel.
+However, it solves the problem that it can become expensive for the user, as this suggestion only cost something for Aalborg Bycykel\fxwarning{Er det aalborg kommune eller?}.
 
 \subsection{QR Code}
-In order to unlock a booked bicycle the user have to scan a QR code located next to one of the locked bicycles at the station.
+In order to unlock a booked bicycle the user has to scan a QR code located next to one of the locked bicycles at the station.
 This suggestion compared to the previous does not require any additional hardware and can therefore become cheaper for Aalborg Bycykel.
-However, it does require that the user has a mobile device that are able to scan a QR code and send the information over the internet to the global system.
+However, it does require that the user has a mobile device that is able to scan a QR code and send the information over the internet to the global system. This could, however, be as expensive for the foreign user as the \textit{SMS} solution.
 
 \subsection{GPS}
-This suggestion uses the GPS of a device to see if the user is close to the station, if the user is close to the station the booked bicycle will get unlocked.
-To use this suggestion the user are required to have a mobile device which are able to send GPS information to the global system.
+This suggestion uses the GPS of a device to see if the user is close to the station.
+If the user is close to the station the booked bicycle will get unlocked.
+To use this suggestion the user is required to have a mobile device which is able to send GPS information to the global system.
+This would need that the user has an internet connection.
 Additionally this is very resource demanding for the users mobile device as the use of GPS prevent sleep mode of the mobile device \citep{misc:gpsbatteryusage}, which results in significantly lower battery duration.
 Moreover, if the user passes by the station before he actually wants to use the bicycle there is a risk that the station will detect this, therefore unlocking the bicycle.
 
 \subsection{Preferred Solution}
-The chosen solution should be simple for the user, without requiring specific tools, while still being usable.
-The Unlock on Time solution is simple as it does not require anything from the user, it does, however, have the drawback that the user have to be at the station in time for the bicycle to unlock.
+The chosen solution should be simple for the user, without requiring specific tools, while still being usable, as specified in \secref{sec:systemCriteria}.
+The \textit{Unlock on Time} solution is simple as it does not require anything from the user, it does, however, have the drawback that the user has to be at the station in time when the bicycle unlocks.
 It does not leave much flexibility for the user to arrive a little early or a few minutes late.
 
-The SMS solution require that the user has a phone capable of sending an SMS. 
+The \textit{SMS} solution require that the user has a phone capable of sending an SMS. 
 It is expected that nearly everyone has a phone capable of sending SMS, but for tourists it might be a problem since not everyone is able to send an SMS to a foreign number or that it might be expensive.
 According to Danmarks Statistik 89\% of people aged 16-74 is able to send and receive an SMS in the year 2013 \citep{misc:dstMobilephone}.
-Since the bicycles is also minded towards tourists, this could prove to be a problem.
+Since the bicycles are also minded towards tourists, this could prove to be a problem.
 
 To be able to use a QR code the user would need some kind of scanner, for example a smartphone.
-60\% of the people aged 16-74 in the year 2013 was used internet on their phone, according to Danmarks Statistik \citep{misc:dstMobilephone}.
-With smart phones in mind, it is important that phones with an internet connection also usually has some kind of GPS capability.
+60\% of the people aged 16-74 in the year 2013 was using internet on their phone, according to Danmarks Statistik \citep{misc:dstMobilephone}.
+With smartphones in mind, it is important that phones with an internet connection also usually has some kind of GPS capability.
 Because of the relatively low adoption of smartphones it may not be the proper solution.
 
-The password based solution however appears to require more hardware installations at the stations, though it does solve the problems of the other solutions in that everyone can use it and the user is in control of when they get the bicycle.
+The \textit{Password Based} solution however appears to require more hardware installations at the stations, though it does solve the problems of the other solutions in that everyone can use it and the user is in control of when they get the bicycle.
 
 \subsection{Information Gain}
-The different solutions provide information to the system, to be able to register when a bicycle needs to be unlocked.
-Common to all but one solution can be mapped to a password sent to the system, in order to unlock a bicycle.
-The exception being the Unlock on Time solution, where instead once the time runs out the lock unlocks.
+The different solutions provide sufficient information to the system, to be able to register when a bicycle needs to be unlocked.
+Common to all but one solution is that it can be mapped to a password sent to the system, in order to unlock a bicycle.
+The exception being the \textit{Unlock on Time} solution, where instead once the time runs out the lock unlocks.
