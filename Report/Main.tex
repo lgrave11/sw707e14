@@ -1,7 +1,9 @@
 \input{Preamble.tex}
 \usepackage[draft]{fixme}				% FixMe notes.
 \usepackage[disable]{todonotes}					% Todo Notes
-\newcommand{\bycykel}{Aalborg Bycykel }
+\newcommand{\bycykelwithoutspace}{Aalborg Bycykel}
+\newcommand{\bycykel}{\bycykelwithoutspace{ }}
+
 \begin{document}
 	\include{Frontpage}
 	\newpage\null\thispagestyle{empty}\newpage
@@ -24,15 +26,15 @@
 	\chapter{Introduction}
 	\input{Src/Introduction}
 	\chapter{Analysis}
-	This chapter includes analysis of the Internet of Things, the current system already in place in Aalborg, other existing systems, the problem definition, and general requirements.
+	This chapter includes analysis of the current system already in place in Aalborg, other existing systems, the problem definition, and general requirements.
 	\input{Src/Analysis/CurrentSystem}
 	\input{Src/Analysis/ExistingSystems}
 	\input{Src/Analysis/ProblemDefinition}
 	\input{Src/Analysis/Requirements}
 	
 	\chapter{Suggested Solutions}
-	Various solutions to problems with the current system are proposed.
-	Those solutions are then in turn examined and evaluated, in order to determine if the solution is preferred and gives value-able information for the larger software system.
+	Various suggested extensions for the current system are proposed.
+	These solutions are then in turn examined and evaluated, in order to determine if the solution is preferred and gives value-able information for the software system.
 	An exception to this is the Booking Software examination, which makes a concrete choice on what solution to go for.
 	\input{Src/SuggestedSolutions/AvailabilityOfBicycles}
 	\input{Src/SuggestedSolutions/RemoteLock}
@@ -41,7 +43,7 @@
 	\input{Src/SuggestedSolutions/ChosenSolution}
 	
 	\chapter{Theory}
-	Various theory needed as background information for the development of a solution is examined and discussed.
+	Various theory needed as background information for the development of a solution is examined and discussed.\fxnote{her skal opremses hvad vi skriver om}
 	\input{Src/Theory/InternetOfThings}
 	
 	\afterpage{\thispagestyle{empty}}
