@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CrawlerModelStoreContainer" CdmEntityContainer="CrawlerContext5">
+    <EntitySetMapping Name="Crawler">
+      <EntityTypeMapping TypeName="CrawlerModel.Crawler">
+        <MappingFragment StoreEntitySet="Crawler">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Html" ColumnName="Html" />
+          <ScalarProperty Name="HashId" ColumnName="HashId" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hashes">
+      <EntityTypeMapping TypeName="CrawlerModel.Hashes">
+        <MappingFragment StoreEntitySet="Hashes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HashA" ColumnName="HashA" />
+          <ScalarProperty Name="HashB" ColumnName="HashB" />
+          <ScalarProperty Name="HashC" ColumnName="HashC" />
+          <ScalarProperty Name="HashD" ColumnName="HashD" />
+          <ScalarProperty Name="HashE" ColumnName="HashE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

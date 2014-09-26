@@ -1,0 +1,5 @@
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\StemmersNet\bin\Debug\StemmersNet.dll
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\StemmersNet\bin\Debug\StemmersNet.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\StemmersNet\obj\Debug\StemmersNet.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\StemmersNet\obj\Debug\StemmersNet.dll
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\StemmersNet\obj\Debug\StemmersNet.pdb

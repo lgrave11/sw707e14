@@ -1,0 +1,7 @@
+The indexer works as follows. 
+It takes a string html that it takes from the database of crawled pages and outputs a list of tokens that have been normalized.
+These tokens are then fed into a feature constructor where stop words are removed and stems of the words are found. Though this only works on English words. These features/terms are then fed into the indexer which uses the term as the key in a dictionary and the lit of doc ids are contained within a class for themselves. A frequency count of documents containing that word is also maintained.
+
+Cut corners:
+Stemmer, because we could not find one that would work on Danish words.
+The indexer is fairly simple and could be more in detail but time did not allow it. The term frequency within documents is not maintained.
