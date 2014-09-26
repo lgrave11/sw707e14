@@ -1,0 +1,93 @@
+//1 find lines with dog
+map(string key, string value)
+  //key: document name   value:contents
+  foreach line L in value
+       if L contains "dog"
+	       EmitIntermediate(L, "lol")
+		   
+reduce(string key, iterator values)
+    //key: a line; values list of trues
+	emit(key)
+--------------------------------------------
+//2 find number of hits per page
+map(string key, string value)
+	//key:weblog-navn       value: weblog-contents
+	foreach page p in value
+		emitintermediate(p, 1)
+		
+reduce(string key, iterator values)
+//key: page      values: list of 1s
+	int result = 0;
+	foreach v in values
+	  result += v
+	emit(result)
+--------------------------------------------
+//3 weblogs average gets
+map(string key, string value)
+//key: weblognavn, value: weblog-contents
+	dictionary<pagename, count-visits> D
+	foreach page p in value
+		D[p]++
+	
+	foreach key k in D
+		emitintermediate(k, D[k])
+reduce(string key, iterator values)
+   //key: pagenavn, values: different counts
+   emit(avg(values));
+--------------------------------------------
+//4 football bets -- proportion of bets result 0-0
+map(string key, string value)
+	//key: football-match, value all bets for match
+	result = (0,0)
+	foreach bet b in value
+		if bet = 0-0
+			result[0]++
+		result[1]++
+	emitintermediate("dummy", result)
+	
+reduce(string key, iterator values)
+	//key:dummy value, iterator pairs of results
+	proportion = (0,0)
+	foreach v in values
+	    proportion[0] += v[0]
+		proportion[1] += v[1]
+		
+	emit(proportion)
+--------------------------------------------
+//5 given football bets collection for each match find the average number of goals the betters expect in the match
+map(string key, string value)
+// key: football-match, value: all bets for match
+	foreach bet b in value
+		emitintermediate(key, numofgoals(b))
+	
+reduce(string key, iteratator values)
+//key: match-name, iteratator: num of goals list
+	emit(avg(values))
+
+--------------------------------------------
+//6 dictionary all words - find all anagrams.
+map(string key, string value)
+// key: word , value: whole dictionary
+   foreach word w in value
+	 if  w != key
+		if isanagram(w, key)
+			emitintermediate(key, w)
+		   
+reduce(string key, iteratator values)
+//key: word, values: words to compare with
+	foreach word w in values
+		emit(key/word)
+--------------------------------------------
+D)
+Yes, part 2, just fix map such that you acummulate the number first and then emitintermediate --- other ones we already use combiners
+
+
+E)
+HIVE is useful, as you do not have to code "how", just what information you want, then it translates this to map reduce language for you.
+it should not replace rdbms in my company, as it has a slow setup, so it is only applicable to large amounts of data, this is not the case for my index.
+
+F)
+since you don't have to run through all the date then, but can focus on the newest data instead.
+Ensure the newest data is easily accessible.
+
+G)
