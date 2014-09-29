@@ -1,0 +1,17 @@
+The architecture of the crawler is set up as such:
+
+There is a main entry point in a different class, that creates a new Crawler object. The object is passed a list of urls to be used as the seed. In the crawler itself, this list of strings is passed to a queue. The main entry point will then be prompted to Crawl the next page continuously. The CrawlNext method has a limit argument that can be passed in, that is the amount of pages that can be crawled after which the entry point will stop calling it. The actual crawling is done by dequeueing the frontier, checking if the limit is reached by checking the amount of rows in the database. The robots.txt is checked to determine the crawler is allowed to crawl on the current page, if it is it will attempt to download the content of the url. Then it will check the hash value of the current page against the hash value of previous pages crawled. If there is no hash that is equal to the current page it will be added to the database(index), otherwise it will start with the next url. It will then parse the document, and retrieve all the links using regular expressions. These links will then be normalized and made absolute if necessary. These links will then be checked against the frontier, and if they are already contained within it will not enqueue it, it also checks that the url is apparently pointing towards a text document and not a binary file and that it is on the correct domain. It will then finally add the current url to the visitedUrls list, to be recrawled at a later date and then the crawler will sleep to be polite.
+
+Cut corners:
+
+Sketch similarity was used because using shingles became intractable in that the amount of storage needed for just one website was upwards of 3000 hashes for one website, sketches reduced that to 8. Loss of accuracy here because we didn't know what hash functions to use.
+
+The mercator scheme was not implemented, but to implement politeness waiting was still necessary and as such 1 second between each call was implemented using Sleep. 
+
+The crawler only crawls a specific domain aswell, aau.dk and nothing else, if a link leads outside of that it will not be added to the frontier. 
+
+The links found on the page are not every link on the page, but rather the ones in a "href". 
+
+The crawler uses an MSSQL database to contain the pages crawled.
+
+The crawler was limited to very few pages for testing purposes.

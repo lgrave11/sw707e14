@@ -1,0 +1,35 @@
+c:\users\lasse\documents\visual studio 2012\Projects\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe.config
+c:\users\lasse\documents\visual studio 2012\Projects\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe
+c:\users\lasse\documents\visual studio 2012\Projects\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.pdb
+c:\users\lasse\documents\visual studio 2012\Projects\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.exe
+c:\users\lasse\documents\visual studio 2012\Projects\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe.config
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.pdb
+E:\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe.config
+E:\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.exe
+E:\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.pdb
+E:\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.csprojResolveAssemblyReference.cache
+E:\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe
+E:\Dropbox\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.pdb
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe.config
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.pdb
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.csprojResolveAssemblyReference.cache
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.exe
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.pdb
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe.config
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.pdb
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.csprojResolveAssemblyReference.cache
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.exe
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.pdb
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe.config
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.pdb
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.csprojResolveAssemblyReference.cache
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.exe
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.pdb

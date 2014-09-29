@@ -1,8 +1,8 @@
---DROP TABLE sale;
---DROP TABLE product;
---DROP TABLE member;
---DROP TABLE timeofday;
---DROP TABLE date;
+DROP TABLE sale;
+DROP TABLE product;
+DROP TABLE member;
+DROP TABLE timeofday;
+DROP TABLE date;
 
 CREATE TABLE "date"
 (
@@ -40,7 +40,6 @@ CREATE TABLE product
 surrogateid serial PRIMARY KEY,
 id int NOT NULL,
 name varchar(100),
-price int NOT NULL,
 active int NOT NULL,
 deactivation_date timestamp without time zone,
 version int NOT NULL DEFAULT 1
@@ -53,6 +52,7 @@ memberid int NOT NULL,
 productid int NOT NULL,
 dateid int NOT NULL,
 timeofdayid int NOT NULL,
+price int NOT NULL,
 FOREIGN KEY(memberid) REFERENCES member(surrogateid),
 FOREIGN KEY(productid) REFERENCES product(surrogateid),
 FOREIGN KEY(dateid) REFERENCES "date"(id),

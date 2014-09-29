@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrawlerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CrawlerModelStoreContainer">
+    <EntitySet Name="Crawler" EntityType="CrawlerModel.Store.Crawler" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Hashes" EntityType="CrawlerModel.Store.Hashes" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Crawler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Html" Type="text" />
+    <Property Name="HashId" Type="int" />
+    <Property Name="Url" Type="text" />
+  </EntityType>
+  <EntityType Name="Hashes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="HashA" Type="int" />
+    <Property Name="HashB" Type="int" />
+    <Property Name="HashC" Type="int" />
+    <Property Name="HashD" Type="int" />
+    <Property Name="HashE" Type="int" />
+  </EntityType>
+</Schema>

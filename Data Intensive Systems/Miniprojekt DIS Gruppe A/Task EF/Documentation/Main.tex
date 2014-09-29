@@ -1,0 +1,86 @@
+\input{Preamble.tex}
+
+\author{
+  Erik Sidelmann Jensen\\
+  \texttt{ejens11@student.aau.dk}
+  \and
+  Lasse Vang Gravesen\\
+  \texttt{lgrave11@student.aau.dk}
+  \and
+  Dennis Jakobsen\\
+  \texttt{djakob11@student.aau.dk}  
+}
+
+\title{Data Intensive Systems - Miniproject - Part 3}
+\date{}
+
+\begin{document}
+	\clearpage\maketitle
+	\thispagestyle{empty}
+	
+	\chapter{DIS Miniproject}
+	\section{Task E}
+	We defined our multidimensional cube using the following xml:
+	\lstinputlisting[language=XML]{fklubdw.xml}
+	
+	We then could answer the following questions:
+	
+	\textbf{How much is bought at some point during some day?}
+	
+	We can answer this by looking at summarized hours, we look at the hours with the most spent.
+	
+	28,618,675 Ører has been spent at the 12th hour and 20,400,875 Ører has been spent at the 13th hour.
+	
+	\textbf{How does the amount sold change over time?}
+	We can answer this by looking at individual years and how much is spent them on them.
+	\begin{table}[H]
+	    \begin{tabular}{l|l}
+	    Year & Sale Amount \\ \hline
+	    1996 & 187,650     \\
+	    1997 & 2,359,375   \\
+	    1998 & 13,696,025  \\
+	    1999 & 15,180,275  \\
+	    2000 & 15,763,800  \\
+	    2001 & 16,402,075  \\
+	    2002 & 19,679,050  \\
+	    2003 & 18,017,550  \\
+	    2004 & 19,876,325  \\
+	    2005 & 17,882,675  \\
+	    2006 & 20,225,450  \\
+	    2007 & 19,932,050  \\
+	    2008 & 61,650      \\
+	    \end{tabular}
+	\end{table}
+	
+	\textbf{When is it best to restock, given low activity?}
+	
+	We can answer this by looking at which hours have the least activity during 8-16.
+	
+	Those hours are 8 with 9,632,450 and 16 with 9,981,050.
+	
+	A better way of answering this would be to look at the weekdays too, but we do not have that field.
+	
+	\textbf{Which product gives the most revenue?}
+	\begin{table}[H]
+	    \begin{tabular}{l|l}
+	    Name               & Sale Amount \\ \hline
+	    ½L Vand excl. pant & 66,970,550  \\
+	    Øl                 & 20,272,250  \\
+	    ½L Matilde cacao   & 19,476,750  \\
+	    Kaffe/Choko(1 kop) & 11,578,400  \\
+	    Juice              & 8,738,675   \\
+	    \end{tabular}
+	\end{table}
+	
+	\textbf{What does the increase in sale for specific products look like over time?}
+	See the picture below.
+	
+	\textbf{Is it worth it to sell soda without deposit(pant)}
+	See the picture below.
+	
+	\textbf{Which member have spent the most?}
+	The member that has spent the most is '1704' having spent 1,439,650 Ører.
+	See the picture below.
+    
+    \section{Task F}
+\end{document}

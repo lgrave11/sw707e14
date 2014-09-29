@@ -1,0 +1,27 @@
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\bin\Debug\Indexer.exe.config
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\bin\Debug\Indexer.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\bin\Debug\Indexer.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\obj\Debug\Indexer.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\obj\Debug\Indexer.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\obj\Debug\Indexer.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\bin\Debug\EntityFramework.dll
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\bin\Debug\EntityFramework.xml
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\bin\Debug\Indexer.exe.config
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\obj\Debug\Indexer.exe
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Indexer\obj\Debug\Indexer.pdb
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Indexer\bin\Debug\Indexer.exe.config
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Indexer\obj\Debug\Indexer.exe
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Indexer\obj\Debug\Indexer.pdb
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Indexer\bin\Debug\Indexer.exe
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Indexer\bin\Debug\Indexer.pdb
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Indexer\bin\Debug\EntityFramework.dll
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Indexer\bin\Debug\EntityFramework.xml
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Indexer\obj\Debug\Indexer.csprojResolveAssemblyReference.cache
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\bin\Debug\Indexer.exe.config
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\obj\Debug\Indexer.exe
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\obj\Debug\Indexer.pdb
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\bin\Debug\Indexer.exe
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\bin\Debug\Indexer.pdb
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\bin\Debug\EntityFramework.dll
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\bin\Debug\EntityFramework.xml
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\obj\Debug\Indexer.csprojResolveAssemblyReference.cache

@@ -1,0 +1,1 @@
+The ranker is implemented by first getting the normalized query weights for the query.

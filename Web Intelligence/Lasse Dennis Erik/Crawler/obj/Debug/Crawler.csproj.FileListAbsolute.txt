@@ -1,0 +1,113 @@
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\Crawler.exe.config
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\Crawler.exe
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\Crawler.pdb
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\EntityFramework.dll
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\EntityFramework.xml
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\obj\Debug\Crawler.exe
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\obj\Debug\Crawler.pdb
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\RobotsTxt.dll
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\RobotsTxt.xml
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\Near Duplicates.exe
+c:\users\lasse\documents\visual studio 2012\Projects\Crawler\Crawler\bin\Debug\Near Duplicates.pdb
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Crawler.exe.config
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\obj\Debug\Crawler.exe
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\obj\Debug\Crawler.pdb
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Crawler.exe
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Crawler.pdb
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\EntityFramework.dll
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\EntityFramework.xml
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Crawler.exe.config
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\obj\Debug\Crawler.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\obj\Debug\Crawler.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Crawler.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Crawler.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\EntityFramework.dll
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\RobotsTxt.dll
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\EntityFramework.xml
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\RobotsTxt.xml
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Near Duplicates.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Near Duplicates.pdb
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Near Duplicates.exe
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\RobotsParser.exe
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\Near Duplicates.pdb
+E:\Dropbox\Mini Project\LasseCrawler\Crawler\bin\Debug\RobotsParser.pdb
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\Crawler.exe.config
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\obj\Debug\Crawler.exe
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\obj\Debug\Crawler.pdb
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\Crawler.exe
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\Crawler.pdb
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\EntityFramework.dll
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\MySql.Data.Entity.EF5.dll
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\Near Duplicates.exe
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\RobotsParser.exe
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\Near Duplicates.pdb
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\RobotsParser.pdb
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Project\LasseCrawler\Crawler\bin\Debug\EntityFramework.xml
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\bin\Debug\Crawler.exe.config
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\obj\Debug\Crawler.exe
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\obj\Debug\Crawler.pdb
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\bin\Debug\Crawler.exe
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\bin\Debug\Crawler.pdb
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\bin\Debug\EntityFramework.dll
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\bin\Debug\Near Duplicates.exe
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\bin\Debug\RobotsParser.exe
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\bin\Debug\Near Duplicates.pdb
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\bin\Debug\RobotsParser.pdb
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\bin\Debug\EntityFramework.xml
+C:\Users\Lasse\Documents\Visual Studio 2013\Projects\LasseCrawler\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Crawler.exe.config
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\obj\Debug\Crawler.exe
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\obj\Debug\Crawler.pdb
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Crawler.exe
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Crawler.pdb
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\EntityFramework.dll
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Near Duplicates.exe
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\RobotsParser.exe
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Near Duplicates.pdb
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\RobotsParser.pdb
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\EntityFramework.xml
+E:\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Crawler.exe.config
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\obj\Debug\Crawler.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\obj\Debug\Crawler.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Crawler.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Crawler.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\EntityFramework.dll
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Near Duplicates.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\RobotsParser.exe
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\Near Duplicates.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\RobotsParser.pdb
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\bin\Debug\EntityFramework.xml
+C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\bin\Debug\Crawler.exe.config
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\obj\Debug\Crawler.exe
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\obj\Debug\Crawler.pdb
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\bin\Debug\Crawler.exe
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\bin\Debug\Crawler.pdb
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\bin\Debug\EntityFramework.dll
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\bin\Debug\Near Duplicates.exe
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\bin\Debug\RobotsParser.exe
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\bin\Debug\Near Duplicates.pdb
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\bin\Debug\RobotsParser.pdb
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\bin\Debug\EntityFramework.xml
+C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\Crawler.exe.config
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\obj\Debug\Crawler.exe
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\obj\Debug\Crawler.pdb
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\Crawler.exe
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\Crawler.pdb
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\EntityFramework.dll
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\Near Duplicates.exe
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\RobotsParser.exe
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\Near Duplicates.pdb
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\RobotsParser.pdb
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\EntityFramework.xml
+E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
