@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<Schema name="FKlubDW">
+    <Cube name="Sales">
+        <Table name="sales"/>
+        <Dimension name="Product" foreignKey="productid">
+            <Hierarchy hasAll="true" allMemberName="All Products" primaryKey="productid">
+                <Table name="product"/>
+                <Level name="Name" column="name" uniqueMembers="false"/>
+            </Hierarchy>
+	  </Dimension>
+	<Dimension name="time" type="TimeDimension" foreignKey="timeid">
+	  <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="timeid">
+	    <Table name="time"/>
+	    <Level name="hour" column="hour" uniqueMembers="true" levelType="TimeHours" type="Numeric"/>
+	    <Level name="minute" column="minute" uniqueMembers="false" levelType="TimeMinutes" type="Numeric"/>
+	  </Hierarchy>
+	</Dimension>
+	<Dimension name="hour" type="TimeDimension" foreignKey="timeid">
+	  <Hierarchy hasAll="true" allMemberName="All Hours" primaryKey="timeid">
+	    <Table name="time"/>
+	    <Level name="hour" column="hour" uniqueMembers="true" levelType="TimeHours" type="Numeric"/>
+	  </Hierarchy>
+	</Dimension>
+	 <Dimension name="date" type="TimeDimension" foreignKey="dateid">
+	  <Hierarchy hasAll="true" allMemberName="All Dates" primaryKey="dateid">
+	    <Table name="date"/>
+	    <Level name="Year" column="year" uniqueMembers="true" levelType="TimeYears" type="Numeric"/>
+	    <Level name="Month" column="month" uniqueMembers="false" levelType="TimeMonths" type="Numeric"/>
+	    <Level name="Day" column="day" uniqueMembers="false" levelType="TimeDays" type="Numeric"/>
+	  </Hierarchy>
+	</Dimension>
+        <Dimension name="Member" foreignKey="memberid">
+            <Hierarchy hasAll="true" allMemberName="All Members" primaryKey="memberid">
+                <Table name="member"/>
+		<Level name="memberid" column="memberid" uniqueMembers="true" type="Numeric" />
+                <Level name="Balance" column="balance" uniqueMembers="false" type="Numeric" />
+                <Level name="Year" column="year" uniqueMembers="false" type="Numeric" />
+            </Hierarchy>
+	  </Dimension>
+        <Measure name="Sale Amount" column="sale" aggregator="sum" formatString="#,###"/>
+    </Cube>
+</Schema>
