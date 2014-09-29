@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<Schema name="FKlubDW">
+
+ <!-- Define your cube incl. its dimensions and measures here. See FoodMart.xml for an example and http://mondrian.pentaho.com/documentation/schema.php for documentation -->
+ <!--This is the awesome XML biks -->
+ 
+ <Dimension name="member">
+   <Hierachy hasAll="true" primaryKey="surrogateid">
+     <Table name="member"/>
+   </Hierachy>
+ </Dimension>
+
+  <Dimension name="product">
+   <Hierachy hasAll="true" primaryKey="surrogateid">
+     <Table name="product"/>
+   </Hierachy>
+ </Dimension>
+ 
+ 
+ <Dimension name="date" type="TimeDimension">
+  <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
+    <Table name="date"/>
+    <Level name="Year" column="year" uniqueMembers="true" levelType="TimeYears" type="Numeric"/>
+    <Level name="Month" column="month" uniqueMembers="false" ordinalColumn="month" nameColumn="month_name" levelType="TimeMonths" type="Numeric"/>
+    <Level name="Day" column="day" uniqueMembers="false" ordinalColumn="day" nameColumn="day_name" levelType="TimeDays" type="Numeric"/>
+  </Hierarchy>
+ </Dimension>
+ 
+  <Dimension name="time" type="TimeDimension">
+  <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="id">
+    <Table name="time"/>
+    <Level name="hour" column="hour" uniqueMembers="true" levelType="TimeHours" type="Numeric"/>
+    <Level name="minute" column="minute" uniqueMembers="false" ordinalColumn="minute" nameColumn="minute_name" levelType="TimeMinutes" type="Numeric"/>
+    <Level name="second" column="second" uniqueMembers="false" ordinalColumn="second" nameColumn="second_name" levelType="TimeSeconds" type="Numeric"/>
+  </Hierarchy>
+ </Dimension>
+ 
+ <Cube name="Sales">
+   <Table name="sale" />
+   <DimensionUsage name="memberid" source="member" foreignKey="surrogateid" />
+   <DimensionUsage name="productid" source="product" foreignKey="surrogateid"/>
+   <DimensionUsage name="dateid" source="date" foreignKey="id"/>
+   <DimensionUsage name="timeid" source="time" foreignKey="id"/>
+   <Measure name="price" column="price" aggregator="sum" formatString="Standard"/>
+ </Cube>
+ 
+</Schema>
