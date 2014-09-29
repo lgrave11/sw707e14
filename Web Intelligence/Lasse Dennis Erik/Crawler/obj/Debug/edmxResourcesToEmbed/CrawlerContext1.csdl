@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrawlerModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CrawlerContext1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Crawler" EntityType="CrawlerModel.Crawler" />
+  </EntityContainer>
+  <EntityType Name="Crawler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Html" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Hash" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Url" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

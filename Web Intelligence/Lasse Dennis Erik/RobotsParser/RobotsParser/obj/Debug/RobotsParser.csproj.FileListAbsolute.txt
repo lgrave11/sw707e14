@@ -1,0 +1,12 @@
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Lecture 2\RobotsParser\RobotsParser\bin\Debug\RobotsParser.exe.config
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Lecture 2\RobotsParser\RobotsParser\obj\Debug\RobotsParser.csprojResolveAssemblyReference.cache
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Lecture 2\RobotsParser\RobotsParser\bin\Debug\RobotsParser.exe
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Lecture 2\RobotsParser\RobotsParser\bin\Debug\RobotsParser.pdb
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Lecture 2\RobotsParser\RobotsParser\obj\Debug\RobotsParser.exe
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Lecture 2\RobotsParser\RobotsParser\obj\Debug\RobotsParser.pdb
+E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\bin\Debug\RobotsParser.exe.config
+E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\bin\Debug\RobotsParser.exe
+E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\bin\Debug\RobotsParser.pdb
+E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\obj\Debug\RobotsParser.csprojResolveAssemblyReference.cache
+E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\obj\Debug\RobotsParser.exe
+E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\obj\Debug\RobotsParser.pdb

@@ -1,0 +1,42 @@
+\documentclass[a4paper, oneside]{memoir}% Document class
+\usepackage[a4paper]{geometry}			% Margins
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[utf8x]{inputenc}			% Character encoding
+\usepackage{ucs}						% Extended character encoding
+\usepackage{t1enc}						% More character encoding	
+\usepackage{listings}
+\usepackage{courier}					% Code font.
+\usepackage[small,compact]{titlesec}	% No 'chapter' in chapter headings.
+\graphicspath{{Media/}}					% Directory that holds images.
+\setlength{\parindent}{0pt}
+\nonzeroparskip
+
+\titleformat{\chapter}[hang]
+{\normalfont\Large\bfseries}{\thechapter}{1em}{\Large}
+\titlespacing{\chapter}{0pt}{*0}{*1}
+
+\titleformat{\chapter}{\Huge\bfseries}{\thechapter}{1em}{}
+\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+\lstset{
+         basicstyle=\scriptsize\ttfamily, % Code text options
+         numberstyle=\scriptsize,          		% Code text size.
+         numbersep=5pt,             		% Distance from numbering to text.
+         tabsize=2,                 		% Size of tabs
+         extendedchars=true,         		% Extended ASCII
+         breaklines=true,            		% Break lines.
+         showspaces=false,           		% Visible spaces.
+         showtabs=false,             		% Visible tabs.
+         xleftmargin=0.9cm,
+         captionpos=b, 
+         numbers=left,
+         frame=single,
+         framexleftmargin=17pt,
+         framexrightmargin=5pt,
+         framexbottommargin=4pt,
+         showstringspaces=false,
+}
