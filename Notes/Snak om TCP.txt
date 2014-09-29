@@ -1,0 +1,6 @@
+Vi har snakket om, at der ikke skal køre en hjmmesideserver på hver station, men en lille server som lytter på en port(TCP).
+Hjemmeside, database og interface bør køre på hver deres server.
+Hjemmesiden bruger MVC
+Stationer skal snakke med databasen gennem et interface.
+Når en cykel bliver booket, skal databasen opdateres, og der sendes en "besked" til stationen, om at opdatere dens status.
+Når en cykel bliver taget/returneret, skal der sendes besked til databasen gennem interfacet, via en port(TCP).
