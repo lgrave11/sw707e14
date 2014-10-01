@@ -20,19 +20,18 @@
 	
 	\chapter{Crawler Miniproject}
 	\section{Crawler}
-	Our crawler works as follows:
+	The crawler retrieves the documents used for the search engine, it starts by using a list of seed urls.
+	The seed site for ours was \url{http://en.wikipedia.org/wiki/Internet_of_Things}.
+	Politeness was important, in that the crawler had to adhere to the `robots.txt' file on websites and determine if the crawler was allowed to visit the url in question and at the same time the crawler should not visit a page too often, this was implemented by simply just waiting a second after each visit. 
+	Equality of content on pages had to be checked because there is no reason to have multiple pages with the same content in the search engine, we did this using sketches with Shingling and Jaccard similarity. The general idea of shingling can be demonstrated using the following string: "This is a string", with a shingle size of 2, the resulting shingles would be "This is", "is a", "a string" and these strings are then hashed. These hashes can then be used to check equality against a different document using the aforementioned Jaccard similarity. 
 	
-	The Crawler class has a frontier, a list of visited urls, a dictionary of hashes for the visited urls to be used for checking content equality. It also uses a custom WebClient that has a timeout value along with a database for inserting crawled items into.
+	$$ J(A,B) = \frac{| A \cap B |}{|A \cup B|} $$
 	
-	The Crawler is started by setting a list of seed urls, which are added to the frontier. Then the amount of items to be crawled is set and these are run in a loop until it is complete.
+	The Jaccard similarity is then some value between 0 and 1, and if it's above the threshold say 0.9 the two documents are said to be roughly equal.
 	
-	It gets the next url to be crawled and if it passes politeness checks that is if the page to be crawled on the url is allowed by the `robots.txt' file and it also checks if the that url is not in the list of visited urls.
+	Sketching is then when you use multiple hashing functions and just get the minimum for each, and then run jaccard similarity on those.
 	
-	It tries to download the content of the url, and if it fails it just adds the url to the list of visited urls and sleeps for second.
-	
-	If the content downloaded correctly, it will check if an equal already exists in the system using shingling with sketches and Jaccard similarity, if it has an equal it adds it to the list of visited urls and sleeps and then `continue' the loop.
-	
-	If it does not have an equal it adds it to the visited urls, it extracts the urls in the content, normalizes them and if the frontier has not met the size limit it will check if it passes the checks and if it does it will add it to the frontier. It also adds the Html and Url to the database for later use. 
+	The crawler then also needs to extract urls from the document using regular expressions, though this is somewhat limiting in that we only get the urls following inside an href attribute. These urls then are normalized, fixed and added to the frontier if they have not already been visited or they are not in the frontier already.
 	
 	The architecture is somewhat similar to the architecture used by Bo in his slides, though there are some differences specifically with the `robots.txt' check in that it does that check for each url it visits instead of performing the check before adding it to the frontier.
 	
@@ -54,8 +53,16 @@
 	
 	To actually check for content it might be a good idea to remove all the tags from the HTML content retrieved, but we do not do that.
 	
+	The sketches for each document is kept in memory, which only works because we crawl very few pages.
+	
 	\section{Indexer}
-	The indexer retrieves the items in the database, makes from the content, and makes features from those tokens using a stemmer and a stopword list. That feature is then added to the inverted index along with the id of the document.
+	The purpose of the indexer is to sort through the crawled documents, and create something that can be easily utilized by the search engine by saying which pages contain which terms along with the frequency.
+	The indexer retrieves the items in the database.
+	These items contain the Html, Url and Document Id for the site.
+	The Html is the important part here. The Html has its html tags and attributes removed, and what remains are words and these are tokenized by splitting them. 
+	These words are made into features, by stemming them using an English premade stemmer and by removing the English stopwords.
+	Here it is important to note that the query gets the same treatment, in that its tokenized, stemmed and stopwords are removed.
+	That feature is then added to the inverted index along with the id of the document.
 	
 	Adding to the inverted index works as such, it receives the term and the document id as mentioned, checks if the inverted index, which is a dictionary with a string key where the term is the key, and a posting list that contains a list of postings.
 	
@@ -65,11 +72,26 @@
 	
 	Otherwise it increments the frequency the term has been seen in the current document.
 	
-	And that's the construction of the inverted index which is really all that is needed for the index.
+	This inverted index is kept in memory, which only works because only a small amount of sites are actually crawled.
+	
+	The general architecture of the indexer can be seen in the figure below.
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{./Media/indexer}
+	\caption{}
+	\label{fig:indexer}
+	\end{figure}
 	
 	\section{Ranker}
-	For the ranker we used the cosine score.
-		
+	The purpose of the ranker is to get the most relevant results for the user given some query.
+	For the ranker we used the cosine score algorithm based on tf-idf weighting.
+	
+	What the ranker does specifically is that it takes a query, tokenizes it and constructs features using the stemmer and stopword removal like in the indexer.
+	
+	The query weights are then constructed using the document frequency.
+	
+	These terms are then used to calculate a score for each document, and this is then used sort the results and provide a good output for the user, usually ~10 documents.
 	
 
 \end{document}

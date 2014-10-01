@@ -56,14 +56,15 @@ namespace CrawlerNamespace
 
                     if (HasEqual(content))
                     {
-                        if (!visitedUrls.Contains(currentUri)) 
-                        {
-                            visitedUrls.Add(currentUri);
-                        }
-                        
+                        visitedUrls.Add(currentUri);
+
                         continue;
                     }
-                    visitedUrls.Add(currentUri);
+                    else 
+                    {
+                        visitedUrls.Add(currentUri);
+                    }
+                    
                     ExtractAndFixUrls(content);
 
                 }
