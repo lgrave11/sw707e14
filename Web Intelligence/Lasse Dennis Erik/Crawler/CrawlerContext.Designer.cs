@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Mink\Dropbox\Mini Project\LasseCrawlerCleanup\Crawler\CrawlerContext.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\CrawlerContext.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

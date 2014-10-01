@@ -111,3 +111,15 @@ E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\Near Duplicates.pd
 E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\RobotsParser.pdb
 E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\bin\Debug\EntityFramework.xml
 E:\Dropbox\Mini Project\Crawler Miniprojekt\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\bin\Debug\Crawler.exe.config
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\obj\Debug\Crawler.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\obj\Debug\Crawler.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\bin\Debug\Crawler.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\bin\Debug\Crawler.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\bin\Debug\EntityFramework.dll
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\bin\Debug\Near Duplicates.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\bin\Debug\RobotsParser.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\bin\Debug\Near Duplicates.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\bin\Debug\RobotsParser.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\bin\Debug\EntityFramework.xml
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Crawler\obj\Debug\Crawler.csprojResolveAssemblyReference.cache

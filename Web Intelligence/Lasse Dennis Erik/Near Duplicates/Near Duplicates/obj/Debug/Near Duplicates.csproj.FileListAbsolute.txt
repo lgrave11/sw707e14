@@ -33,3 +33,9 @@ C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\bin\D
 C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.csprojResolveAssemblyReference.cache
 C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.exe
 C:\Users\Lasse\Desktop\LasseCrawlerCleanup\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe.config
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Near Duplicates\Near Duplicates\bin\Debug\Near Duplicates.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Near Duplicates\Near Duplicates\obj\Debug\Near Duplicates.pdb
