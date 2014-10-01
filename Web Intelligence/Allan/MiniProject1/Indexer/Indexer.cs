@@ -49,7 +49,10 @@ namespace MiniProject1
                 invertedIndex[pair.Term].AddPosting(pair.DocId);
             }
             pairSequence.Clear();
-            
+            foreach (var x in invertedIndex)
+            {
+                x.Value.GenerateChampionList();
+            }
         }
     }
 }

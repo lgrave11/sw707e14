@@ -26,7 +26,20 @@ namespace MiniProject1
 
         const int pageCount = 1000;
         Dictionary<string, float> normQ = new Dictionary<string, float>();
+
+        
         public List<int> GetSites(List<string> query)
+        {
+            List<int> returnList = GetSitesHelper(ref query, true);
+            if (returnList.Count <= 5)
+            {
+                Console.WriteLine("without champion");
+                returnList = GetSitesHelper(ref query, false);
+            }
+            return returnList;
+        }
+
+        private List<int> GetSitesHelper(ref List<string> query, bool withChampion)
         {
             query = Stemmer.DoStemmer(query.ToArray());
             float[] scores = new float[pageCount];
@@ -36,9 +49,13 @@ namespace MiniProject1
 
             foreach (string term in query)
             {
-                if(Indexer.Instance.invertedIndex.ContainsKey(term))
+                if (Indexer.Instance.invertedIndex.ContainsKey(term))
                 {
                     var node = Indexer.Instance.invertedIndex[term].PostingList.First;
+                    if (withChampion)
+                    {
+                        node = Indexer.Instance.invertedIndex[term].ChampionList.First;
+                    }
                     while (node != null)
                     {
                         int docId = node.Value.DocID;
@@ -64,7 +81,7 @@ namespace MiniProject1
 
             sortedList.Sort();
             int count = sortedList.Count > 10 ? 10 : sortedList.Count;
-            List<int> returnList= new List<int>();
+            List<int> returnList = new List<int>();
             foreach (var x in sortedList.GetRange(0, count))
             {
                 returnList.Add(x.DocID);
