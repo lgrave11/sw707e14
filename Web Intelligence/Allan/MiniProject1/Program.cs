@@ -30,19 +30,6 @@ namespace MiniProject1
                 Console.WriteLine(i + " - " + translatorIdtoURL[i]);
             }
             
-            //Testcase-we know it works
-            /*
-            List<string> contexts = new List<string>() { "fede fin fede fin fede fin", "fin og boys og fin boys fin boys", "fede fin og funny boys", "fede funny boys" };
-            foreach (string s in contexts)
-            {
-                Indexer.Instance.AddDoc(s);
-            }
-            Indexer.Instance.ConstructIndex();
-            Console.WriteLine("ranker started");
-            foreach (int i in Ranker.Instance.GetSites(new List<string>() {"funny", "fin"}))
-            {
-                Console.WriteLine(i);
-            }*/
             Console.Read();
         }
     }

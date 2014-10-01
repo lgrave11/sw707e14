@@ -12,6 +12,10 @@
 \begin{document}
 	\maketitle
 	\section*{Crawler}
+	The crawler serves as the obtainer of website links. When doing this, it has to make sure that it follows the robots.txt specification.
+	Furthermore, it should not visit a site too often.
+	In order to not consume too much space, near duplicate detection is also performed here.
+	
 	We decided to implement the crawler with mercator.
 	However, for the front queues we use a single queue, resulting in a uniform ranking. An example of ranking that could be used there would be to rank news sites who change regularly over more static websites.
 	Furthermore, the crawling is single threaded, as a proof of concept, but could be expanded to a multi threaded one.
@@ -27,6 +31,9 @@
 	
 	For the seed we used \url{http://aau.dk/} and \url{http://stackoverflow.com/}
 	\section*{Indexer}
+	The indexer has the purpose of constructing the inverted index, in that regard it is important to keep statistics of term and doc frequency, such that this information can be used by the ranker to rank pages.
+	
+	
 	For the indexer we cut corners as follows.
 	We only stem on the English language.
 	For stopwords it is used for English and Danish,
@@ -35,7 +42,12 @@
 	Furthermore, the postingslist are all kept in main memory. 
 	This works fine for a small size of websites crawler, however, if you were to crawl the whole web, you would have to have servers farms or write to disk(making it much slower).
 	
+	\section*{Ranker}
+	The ranker serves the purpose of ranking the pages, given a search query. This is meaningful, as it contrary to boolean matching can weight different documents, and as of such can rank the results on what matches the query best, and not just if the terms occur in the document or not.
 	
+	For ranking we used the algorithm provided from the slideshow, which means we used the CosineScore, based on the tf-idf weighting.
+	For contender pruning we used a precomputed champion list.
+	This made it possible to pre-compute this, and significantly reduce the computations needed when ranking, as the champion list limits each posting to a list of $r$ docs, the docs with the most occurrences of the given term the posting is associated with.
 	
 	
 \end{document}
