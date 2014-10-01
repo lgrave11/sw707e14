@@ -76,7 +76,7 @@ namespace CrawlerNamespace
 
         // Shingling is a major bottle neck. Replaced it with simple GetHashCode() check instead.
         public bool HasEqual(string html) {
-            List<long> hashes = NearDuplicates.NShingle(8, html, currentUri);
+            /*List<long> hashes = NearDuplicates.NShingle(8, html, currentUri);
             
             foreach(var l in otherHashes) 
             {
@@ -85,13 +85,13 @@ namespace CrawlerNamespace
                     return true;
                 }
             }
-            otherHashes.Add(currentUri, hashes);
-            /*int newHash = html.GetHashCode();
+            otherHashes.Add(currentUri, hashes);*/
+            int newHash = html.GetHashCode();
             if (otherSimpleHashes.ContainsKey(currentUri.ToString()) || otherSimpleHashes.ContainsValue(newHash)) 
             {
                 return true;
             }
-            otherSimpleHashes.Add(currentUri.ToString(), newHash);*/
+            otherSimpleHashes.Add(currentUri.ToString(), newHash);
             db.Crawler.Add(new Crawler { Html = ZipString.ZipStr(html), Url = currentUri.ToString() });
             db.SaveChanges();
             return false;
