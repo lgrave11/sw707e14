@@ -14,7 +14,7 @@ namespace CrawlerNamespace
             Stopwatch sw = new Stopwatch();
             sw.Start();
             Spider spider = new Spider(new List<string> { "http://en.wikipedia.org/wiki/Internet_of_Things" });
-            spider.CrawlAll(amount: 1000);
+            spider.CrawlAll(amount: 100);
             Console.WriteLine(sw.Elapsed);
 
             /*CrawlerContext db = new CrawlerContext();

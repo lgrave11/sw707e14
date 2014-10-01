@@ -58,10 +58,6 @@ namespace Indexer
             {
                 float actualLength = (float)Math.Sqrt(length[docId]);
                 
-                if (actualLength != 0)
-                {
-                    scores[docId] /= actualLength;
-                }
                 result.Add(docId, scores[docId]);
                 
             }

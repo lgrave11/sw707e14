@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CrawlerModelStoreContainer" CdmEntityContainer="CrawlerContext">
+  <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="CrawlerContext">
     <EntitySetMapping Name="Crawler">
-      <EntityTypeMapping TypeName="CrawlerModel.Crawler">
+      <EntityTypeMapping TypeName="masterModel.Crawler">
         <MappingFragment StoreEntitySet="Crawler">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Html" ColumnName="Html" />

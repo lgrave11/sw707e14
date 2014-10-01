@@ -25,3 +25,11 @@ E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\bin\Debug\Indexer.pdb
 E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\bin\Debug\EntityFramework.dll
 E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\bin\Debug\EntityFramework.xml
 E:\Dropbox\Mini Project\Crawler Miniprojekt\Indexer\obj\Debug\Indexer.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\Indexer.exe.config
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\obj\Debug\Indexer.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\obj\Debug\Indexer.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\Indexer.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\Indexer.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\EntityFramework.dll
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\EntityFramework.xml
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\obj\Debug\Indexer.csprojResolveAssemblyReference.cache

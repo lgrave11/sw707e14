@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fc8f46cd0ab9427497b250f047d95bf8" Name="Diagram1">
-        <EntityTypeShape EntityType="CrawlerModel.Crawler" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="c359522d23e94b88b1dc3556b9d24e57" Name="Diagram1">
+        <EntityTypeShape EntityType="masterModel.Crawler" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

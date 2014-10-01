@@ -10,3 +10,9 @@ E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\bin\Debug\RobotsP
 E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\obj\Debug\RobotsParser.csprojResolveAssemblyReference.cache
 E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\obj\Debug\RobotsParser.exe
 E:\Dropbox\Mini Project\LasseCrawler\RobotsParser\RobotsParser\obj\Debug\RobotsParser.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\bin\Debug\RobotsParser.exe.config
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\bin\Debug\RobotsParser.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\bin\Debug\RobotsParser.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\obj\Debug\RobotsParser.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\obj\Debug\RobotsParser.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\obj\Debug\RobotsParser.pdb

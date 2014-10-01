@@ -36,8 +36,9 @@ namespace CrawlerNamespace
             while (db.Crawler.Count() <= this.crawlAmount) 
             {
                 currentUri = frontier.Dequeue();
-                if (allowedRobotsTxt(currentUri))
+                if (allowedRobotsTxt(currentUri) && !visitedUrls.Contains(currentUri))
                 {
+                    System.Threading.Thread.Sleep(1000);
                     Console.WriteLine(String.Format("Frontier size: {0}, Urls crawled: #{1}, {2}", frontier.hashSet.Count(), db.Crawler.Count(), currentUri));
                     string content = "";
 
@@ -48,7 +49,7 @@ namespace CrawlerNamespace
                     catch (Exception e)
                     { // Empty page, no need to stay on this url because nothing useful is here.
                         visitedUrls.Add(currentUri);
-                        System.Threading.Thread.Sleep(1000);
+                        
                         continue;
                     }
 
@@ -60,11 +61,9 @@ namespace CrawlerNamespace
                             visitedUrls.Add(currentUri);
                         }
                         
-                        System.Threading.Thread.Sleep(1000);
                         continue;
                     }
                     visitedUrls.Add(currentUri);
-                    System.Threading.Thread.Sleep(1000);
                     ExtractAndFixUrls(content);
 
                 }
