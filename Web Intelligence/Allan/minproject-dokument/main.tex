@@ -13,23 +13,34 @@
 	\maketitle
 	\section*{Crawler}
 	The crawler serves as the obtainer of website links. When doing this, it has to make sure that it follows the robots.txt specification.
+	The robots.txt specification file, is a file that is places at the root of website, who wants to indicate what pages they want to have crawled by different search engines.
+	This ensures explicit politeness.
 	Furthermore, it should not visit a site too often.
 	In order to not consume too much space, near duplicate detection is also performed here.
+	The reason near duplicate detection is performed is that a large percentage of the internet content is duplicate information.
 	
 	We decided to implement the crawler with mercator.
-	However, for the front queues we use a single queue, resulting in a uniform ranking. An example of ranking that could be used there would be to rank news sites who change regularly over more static websites.
+	Mercator works by having several front and backqueues.
+    The front queues serves as ranking of what websites gets crawled first.
+    As an example, news sites can be put into a frontqueue with high priority, as such sites changes regularly, whereas a static site can have a lower priority for crawling.
+    However, for the front queues we use a single queue, resulting in a uniform ranking, as we have no detection of what is static and what is dynamic websites.
+    The backqueues makes you able to crawl different domains while still ensuring implicit politeness for the crawler.
+    Implicit politeness being not hitting the same domain more than once every two seconds.
+    
+    
 	Furthermore, the crawling is single threaded, as a proof of concept, but could be expanded to a multi threaded one.
 	This is also related to DNS lookup times, as it was found that some DNS lookups delayed the crawler severely.
 	
 	To check near duplicates we use shingles with sketches.
-	However, Google recommends 84 hash functions, but we only use 19 hashes.
-	Our shingle size is 8, which is recommended.
+	Shingles ia a continuous set of words, which in our case is a set of 8 words per shingle, thus a shingle size of 8, which is the recommended size.
+	Sketches is then to use hashing on these shingles, to reduce the storage necessary, as well as computation time, since the smallest of all the hashing values is chosen for each hash functions, and compares on this.
+	However, Google recommends 84 hash functions for sketching, but we only use 19 hashes, as we did it as a proof of concept.
 	
 	Furthermore, tackling documents on the website which is not html or txt encoded is not handled, which gives crawled text encoded in a strange manner, e.g. pdf files.
 	Image files are excluded, as some of those formats made the crawler otherwise crash, when trying to convert it to a string.
 	A library could be used to translate such text into a readable format, to be used for the indexing, and also to make more sensible near duplicate detection.
 	
-	For the seed we used \url{http://aau.dk/} and \url{http://stackoverflow.com/}
+	For the seed we used \url{http://aau.dk/} and \url{http://stackoverflow.com/}, which is the starting frontier of the crawler.
 	\section*{Indexer}
 	The indexer has the purpose of constructing the inverted index, in that regard it is important to keep statistics of term and doc frequency, such that this information can be used by the ranker to rank pages.
 	
