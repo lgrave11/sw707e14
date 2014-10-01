@@ -23,7 +23,7 @@
 	The crawler retrieves the documents used for the search engine, it starts by using a list of seed urls.
 	The seed site for ours was \url{http://en.wikipedia.org/wiki/Internet_of_Things}.
 	Politeness was important, in that the crawler had to adhere to the `robots.txt' file on websites and determine if the crawler was allowed to visit the url in question and at the same time the crawler should not visit a page too often, this was implemented by simply just waiting a second after each visit. 
-	Equality of content on pages had to be checked because there is no reason to have multiple pages with the same content in the search engine, we did this using sketches with Shingling and Jaccard similarity. The general idea of shingling can be demonstrated using the following string: "This is a string", with a shingle size of 2, the resulting shingles would be "This is", "is a", "a string" and these strings are then hashed. These hashes can then be used to check equality against a different document using the aforementioned Jaccard similarity. 
+	Equality of content on pages had to be checked because there is no reason to have multiple pages with the same content in the search results, we did this using sketches with Shingling and Jaccard similarity. The general idea of shingling can be demonstrated using the following string: "This is a string", with a shingle size of 2, the resulting shingles would be "This is", "is a", "a string" and these strings are then hashed. These hashes can then be used to check equality against a different document using the aforementioned Jaccard similarity. 
 	
 	$$ J(A,B) = \frac{| A \cap B |}{|A \cup B|} $$
 	
@@ -42,7 +42,7 @@
 	\label{fig:basiccrawlarchitecture}
 	\end{figure}
 	
-	It gets an url from the frontier, fetches the content if it can get past the `robots.txt' checker, checks if the content has already been seen, and adds it to the url filter after normalizing and checking if it does not already exist in the frontier or already visited urls.
+	It gets an url from the frontier, fetches the content if it can get past the `robots.txt' checker, parses out the word content and checks if that has already been seen, and adds it to the url filter after normalizing and checking if it does not already exist in the frontier or already visited urls.
 	
 	\subsection{Cut Corners}
 	We could have used the Mercator scheme instead of just sleeping 1 second whenever the Crawler has finished with a page.

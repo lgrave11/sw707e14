@@ -79,6 +79,7 @@
     <Compile Include="TimedWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="HtmlCleanUp.cs" />
     <Compile Include="ZipString.cs" />
   </ItemGroup>
   <ItemGroup>
