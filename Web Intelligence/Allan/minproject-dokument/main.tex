@@ -31,6 +31,14 @@
 	Furthermore, the crawling is single threaded, as a proof of concept, but could be expanded to a multi threaded one.
 	This is also related to DNS lookup times, as it was found that some DNS lookups delayed the crawler severely.
 	
+	An illustration of the Mercator scheme can be seen in Figure \ref{fig:mercator}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.5]{mercator}
+		\caption{Basic structure of Mercator Scheme, taken from slides.}\label{fig:mercator}
+	\end{figure}
+	
+	
 	To check near duplicates we use shingles with sketches.
 	Shingles ia a continuous set of words, which in our case is a set of 8 words per shingle, thus a shingle size of 8, which is the recommended size.
 	Sketches is then to use hashing on these shingles, to reduce the storage necessary, as well as computation time, since the smallest of all the hashing values is chosen for each hash functions, and compares on this.
@@ -41,12 +49,24 @@
 	A library could be used to translate such text into a readable format, to be used for the indexing, and also to make more sensible near duplicate detection.
 	
 	For the seed we used \url{http://aau.dk/} and \url{http://stackoverflow.com/}, which is the starting frontier of the crawler.
+	A figure of the basic structure of a crawler can be seen in Figure \ref{fig:crawler}.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3]{basiccrawlarchitecture}
+		\caption{Basic structure of crawler, taken from slides.}\label{fig:crawler}
+	\end{figure}
+	
 	\section*{Indexer}
 	The indexer has the purpose of constructing the inverted index, in that regard it is important to keep statistics of term and doc frequency, such that this information can be used by the ranker to rank pages.
-	
+	An inverted index is just similar to the back of a book, when you lookup a term, the pages containing the term are referenced.
+	This provides the advantage that only documents containing the term are listed, and thus greatly reducing the memory required for storage.
+	An example is a term only occuring on 100 out of 1 million sites crawled, then you only have to list 100 documents in the index, instead of the whole million, containing a lot of zeroes.
 	
 	For the indexer we cut corners as follows.
 	We only stem on the English language.
+	Stemming means cutting off unnecessary parts of the words to greatly reduce the index size.
+	We do not develop our own stem method, but instead relies on an already developed one from the internet.
+	
 	For stopwords it is used for English and Danish,
 	As we encode weird strings due to extracting pdf files without a library, we get some strange terms that fill the index unnecessarily.
 	
