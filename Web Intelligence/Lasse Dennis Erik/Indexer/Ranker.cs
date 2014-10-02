@@ -62,7 +62,6 @@ namespace Indexer
                 
             }
             
-
             var sortedResult = (from entry in result
                                 orderby entry.Value descending
                                 select entry).ToList().Take(K+1).ToList();

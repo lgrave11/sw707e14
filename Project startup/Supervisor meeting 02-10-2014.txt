@@ -1,0 +1,43 @@
+Supervisor meeting 02-10-2014 10:00
+
+Agenda
+======
+
+1. Status
+We've pretty much done the analysis and decided how to tackle this project, we focus on the booking and make that work, and then later we'll include tracking in the booking. We have a general idea for the architecture, set up ER diagrams and made a database from that. 
+
+Question about sketching the visual design for the website so we can get a general idea.
+
+2. Report feedback
+Page 18: You mention interfaces for the hardware part. What about the interface between the user and the system? It can also be part of the hardware. This is also related to the design of the architecture. You should highlight the difference between software and hardware interface.
+
+Availability of bicycles: You suggest several means, if you have multiple choice it would be a good idea to summarize it using a table.
+
+Section 3.2: Title is remote lock, from the content it's more about when you are there. Think about renaming it to match the content.
+
+Tracking of bicycles: Again you suggest means of doing it, GPS and WiFi. WiFi is not practical or realistic, you can leave it out - In general it is possible, but it requires a very good coverage of WiFi. Briefly mention it, but it's not a practical solution of any kind.
+
+Pictures are good but need to cover interface between the user too.
+
+Theory needs to come before the concrete stuff.
+
+The report is good, keep going this way.
+
+Comments on internet of things: It's fine. As a very general comment, can the lead be distributed to the subsections or can the lead be put into a subsection of its own. This would create better structure. 
+
+What else do you plan to put into the theory chapter? Tracking and statistics, model-view-controller, data warehousing(Think about if it is relevant to the project - Maybe not). Focus on what you want to do, and then later extract what you need for theory. Maybe change the title to something like 'Related Background' or 'Related Technologies'.
+
+3. Architecture
+The general idea of the architecture is that we have a webpage here, a database. A bunch of stations, that have docks that can be read from and give information about change like a new bicycle. The stations notify the interface of changes, which are then added to the database. We think we'll do the communication between the station and the interface will be using TCP(just listening). 
+
+How is controlling done? Is it entirely done through the webpage? ...
+
+4. A.O.B
+Do you think there are any problems so far? No but maybe problems will occur with late start of development.
+
+Prototypes: These are different options, and we need to decide which parts to use for the next iteration. It would be very nice to have maps, it's always possible to use the API from Google Maps. 
+
+Should we be able to simulate a real-use of the system(e.g booking, get the bike, ride around, and put it back in a dock)? It's okay to use full simulation, you should demonstrate from different angles, like if one user books the system should change for a different user to show that a bicycle has been booked. Show the different sides of the system.
+
+5. Next meeting
+Maybe in two weeks, we'll send a mail to organize it. Organize next week of when.

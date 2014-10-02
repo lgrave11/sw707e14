@@ -41,12 +41,15 @@ namespace CrawlerNamespace
                     System.Threading.Thread.Sleep(1000);
                     Console.WriteLine(String.Format("Frontier size: {0}, Urls crawled: #{1}, {2}", frontier.hashSet.Count(), db.Crawler.Count(), currentUri));
                     string content = "";
+                    string cleanedContent;
 
                     try
                     {
                         content = client.DownloadString(currentUri);
+                        // We clean it up because the html might be different but the text isn't, which is what we're interested in.
+                        cleanedContent = HtmlCleanUp.ExtractText(content);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     { // Empty page, no need to stay on this url because nothing useful is here.
                         visitedUrls.Add(currentUri);
                         
@@ -54,13 +57,10 @@ namespace CrawlerNamespace
                     }
 
 
-                    if (HasEqual(content))
+                    if (HasEqual(cleanedContent))
                     {
-                        if (!visitedUrls.Contains(currentUri)) 
-                        {
-                            visitedUrls.Add(currentUri);
-                        }
-                        
+                        visitedUrls.Add(currentUri);
+
                         continue;
                     }
                     visitedUrls.Add(currentUri);

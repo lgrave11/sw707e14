@@ -9,7 +9,7 @@ namespace CrawlerNamespace
 {
     public class NearDuplicates
     {
-        static Dictionary<Uri, Dictionary<Func<string, Int64>, Int64>> cachedShingle = new Dictionary<Uri, Dictionary<Func<string, Int64>, Int64>>();
+        static Dictionary<Uri, List<string>> cachedShingles = new Dictionary<Uri, List<string>>();
 
         static void Main(string[] args)
         {
@@ -43,24 +43,41 @@ namespace CrawlerNamespace
 
         public static Int64 HashAndGetMin(string[] splitInput, int sizeShingle, Func<string, Int64> hashFunction, Uri uri) 
         {
-            if (cachedShingle.ContainsKey(uri) && cachedShingle[uri].ContainsKey(hashFunction)) 
-            {
-                return cachedShingle[uri][hashFunction];
-            }
             long minValue = Int64.MaxValue;
-            for (int i = 0; i < splitInput.Count(); i++) {
-                long value = hashFunction(string.Concat(splitInput.Skip(i).Take(sizeShingle)));
-                if (value < minValue) 
+            // The idea of using cachedShingles is so when we don't have to reshingle the input for every hash function, but just once.
+            if (cachedShingles.ContainsKey(uri))
+            {
+                foreach (string s in cachedShingles[uri])
                 {
-                    minValue = value;
+                    long value = hashFunction(s);
+                    Console.WriteLine(String.Format("{0} - {1}", s, value));
+                    if (value < minValue)
+                    {
+                        minValue = value;
+                    }
                 }
             }
-
-            if (!cachedShingle.ContainsKey(uri)) 
+            else 
             {
-                cachedShingle[uri] = new Dictionary<Func<string, long>, long>();
+                cachedShingles[uri] = new List<string>();
+                for (int i = 0; i < splitInput.Count() - sizeShingle; i++)
+                {
+                    StringBuilder builder = new StringBuilder();
+                    foreach (string s in splitInput.Skip(i).Take(sizeShingle))
+                    {
+                        builder.Append(s);
+                    }
+                    string shingle = builder.ToString();
+                    cachedShingles[uri].Add(shingle);
+                    long value = hashFunction(shingle);
+
+                    if (value < minValue)
+                    {
+                        minValue = value;
+                    }
+                }
+
             }
-            cachedShingle[uri][hashFunction] = minValue;
 
             return minValue;
         }

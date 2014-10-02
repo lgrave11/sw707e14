@@ -16,3 +16,9 @@ C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsPa
 C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\obj\Debug\RobotsParser.csprojResolveAssemblyReference.cache
 C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\obj\Debug\RobotsParser.exe
 C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\obj\Debug\RobotsParser.pdb
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\bin\Debug\RobotsParser.exe.config
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\bin\Debug\RobotsParser.exe
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\bin\Debug\RobotsParser.pdb
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\obj\Debug\RobotsParser.csprojResolveAssemblyReference.cache
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\obj\Debug\RobotsParser.exe
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\RobotsParser\RobotsParser\obj\Debug\RobotsParser.pdb
