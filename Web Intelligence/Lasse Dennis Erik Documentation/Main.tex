@@ -56,12 +56,12 @@
 	The sketches for each document is kept in memory, which only works because we crawl very few pages.
 	
 	\section{Indexer}
-	The purpose of the indexer is to sort through the crawled documents, and create something that can be easily utilized by the search engine by saying which pages contain which terms along with the frequency.
-	The indexer retrieves the items in the database.
-	These items contain the Html, Url and Document Id for the site.
-	The Html is the important part here. The Html has its html tags and attributes removed, and what remains are words and these are tokenized by splitting them. 
-	These words are made into features, by stemming them using an English premade stemmer and by removing the English stopwords.
-	Here it is important to note that the query gets the same treatment, in that its tokenized, stemmed and stopwords are removed.
+	The purpose of the indexer is to sort through the crawled documents, and create something that can be easily utilized by the search engine. It does this by providing an inverted index of the terms and which documents contain them and their frequency in said documents.
+	We use an inverted index because then we do not need to investigate every document for matches but rather we can just look at the individual terms and see what documents match.
+	The indexer works by retrieving the crawled pages in the database as an object that contains the html document, the url and the document id.
+	The html document is converted into only words and these are tokenized by splitting them. 
+	These words are made into features, by stemming them using an English language stemmer. It also the English stopwords, such as "the" or "a".
+	It is important to note that the query gets the same treatment, in that its tokenized, stemmed and that the stopwords are removed because if you do not do that the terms in the inverted index will not match.
 	That feature is then added to the inverted index along with the id of the document.
 	
 	Adding to the inverted index works as such, it receives the term and the document id as mentioned, checks if the inverted index, which is a dictionary with a string key where the term is the key, and a posting list that contains a list of postings.
@@ -72,26 +72,47 @@
 	
 	Otherwise it increments the frequency the term has been seen in the current document.
 	
+	The structure of the inverted index can be seen in the figure below.
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{./Media/InvertedIndex}
+	\caption{Source: From the Lecture 3 slides page 36.}
+	\label{fig:InvertedIndex}
+	\end{figure}
+	
 	This inverted index is kept in memory, which only works because only a small amount of sites are actually crawled.
 	
-	The general architecture of the indexer can be seen in the figure below.
+	The general idea of what the indexer does can be seen in the figure below.
 	
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{./Media/indexer}
-	\caption{}
+	\caption{Source: From the Lecture 3 slides page 7.}
 	\label{fig:indexer}
 	\end{figure}
 	
 	\section{Ranker}
 	The purpose of the ranker is to get the most relevant results for the user given some query.
 	For the ranker we used the cosine score algorithm based on tf-idf weighting.
+	The cosine score algorithm uses cosine similarity between the angle of tf-idf vectors.
 	
-	What the ranker does specifically is that it takes a query, tokenizes it and constructs features using the stemmer and stopword removal like in the indexer.
+	What the ranker does specifically is that it takes a query, tokenizes it and constructs features using the stemmer and stopword removal because the query needs to be treated the same way as the documents were in the indexer.
 	
-	The query weights are then constructed using the document frequency.
+	The tf(Term Frequency) weight is the amount of times a document contains a term.
 	
-	These terms are then used to calculate a score for each document, and this is then used sort the results and provide a good output for the user, usually ~10 documents.
+	The tf* weight is $$log_{10}(1+tf_{t,d})$$ because relevance does not increase proportionally we need to log10 it.
+	
+	The df(Document Frequency) weight is the amount of times a term is mentioned in all the documents.
+	
+	The idf(Inverse Document Frequency) weight is $$log_{10}(\frac{N}{df_{t}})$$ where N is the total amount of documents.
+	
+	The tf-idf weight is then $$tf*idf$$
+	
+	Using tf-idf we can then calculate a score for each document using the cosine score algorithm mentioned previously, and this is then used sort the results and provide a good output for the user, for example ~10 documents.
+	
+	\subsection{Cut Corners}
+	We could have used PageRank or HITS along with content based ranking as well to give more authoritative sources a better ranking.
 	
 	\section{Demonstration}
 	The query used was "internet of things"
