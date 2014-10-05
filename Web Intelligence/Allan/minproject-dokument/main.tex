@@ -14,13 +14,12 @@
 	
 	\section*{Crawler}
 	The crawler serves as the obtainer of website links. When doing this, it has to make sure that it follows the robots.txt specification.
-	The robots.txt specification file, is a file that is places at the root of website, who wants to indicate what pages they want to have crawled by different search engines.
+	The robots.txt specification file, is a file that is placed at the root of websites, who wants to indicate what pages they want to have crawled by different search engines.
 	This ensures explicit politeness.
-	Furthermore, it should not visit a site too often.
 	In order to not consume too much space, near duplicate detection is also performed here.
 	The reason near duplicate detection is performed is that a large percentage of the internet content is duplicate information.
 	
-	We decided to implement the crawler with Mercator.
+	We decided to implement the crawler with Mercator scheme.
 	Mercator works by having several front and backqueues.
     The front queues serves as ranking of what websites gets crawled first.
     As an example, news sites can be put into a frontqueue with high priority, as such sites changes regularly, whereas a static site can have a lower priority for crawling.
@@ -41,7 +40,7 @@
 	
 	
 	To check near duplicates we use shingles with sketches.
-	Shingles ia a continuous set of words, which in our case is a set of 8 words per shingle, thus a shingle size of 8, which is the recommended size.
+	Shingles ia a continuous set of words, which in our case is a set of 8 words per shingle, thus a shingle size of 8, which is the size recommended by Google.
 	Sketches is then to use hashing on these shingles, to reduce the storage necessary, as well as computation time, since the smallest of all the hashing values is chosen for each hash functions, and compares on this.
 	However, Google recommends 84 hash functions for sketching, but we only use 19 hashes, as we did it as a proof of concept.
 	
@@ -66,7 +65,7 @@
 	For the indexer we cut corners as follows.
 	We only stem on the English language.
 	Stemming means cutting off unnecessary parts of the words to greatly reduce the index size.
-	We do not develop our own stem method, but instead relies on an already developed one from the internet.
+	We do not develop our own stem method, but instead relies on an already developed one found on the web.
 	
 	For stopwords it is used for English and Danish,
 	Which are common words without much meaning, such as "the", "about", "then", "by" etc.
