@@ -68,17 +68,31 @@
 	We do not develop our own stem method, but instead relies on an already developed one from the internet.
 	
 	For stopwords it is used for English and Danish,
+	Which are common words without much meaning, such as "the", "about", "then", "by" etc.
+	
 	As we encode weird strings due to extracting pdf files without a library, we get some strange terms that fill the index unnecessarily.
+	Services could be used to tackle such file formats, in order to extract the text from the pdf, word, and other such files.
 	
 	Furthermore, the postingslist are all kept in main memory. 
 	This works fine for a small size of websites crawler, however, if you were to crawl the whole web, you would have to have servers farms or write to disk(making it much slower).
 	
+	A figure showing the basic steps of the indexer can be seen in Figure \ref{fig:indexer}. Where for the inverted index shown in the lower left, we also keep track of the amount of times the term occurs in the document, as that is used for the ranker.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.5]{indexer}
+		\caption{Basic structure of Indexer, taken from slides.}\label{fig:indexer}
+	\end{figure}
+	
 	\section*{Ranker}
-	The ranker serves the purpose of ranking the pages, given a search query. This is meaningful, as it contrary to boolean matching can weight different documents, and as of such can rank the results on what matches the query best, and not just if the terms occur in the document or not.
+	The ranker serves the purpose of ranking the pages, given a search query.
+	This means that 
+	
+	 This is meaningful, as it contrary to boolean matching can weight different documents, and as of such can rank the results on what matches the query best, and not just if the terms occur in the document or not.
 	
 	For ranking we used the algorithm provided from the slideshow, which means we used the CosineScore, based on the tf-idf weighting.
-	For contender pruning we used a precomputed champion list.
-	This made it possible to pre-compute this, and significantly reduce the computations needed when ranking, as the champion list limits each posting to a list of $r$ docs, the docs with the most occurrences of the given term the posting is associated with.
+	For contender pruning we used a precomputed champion list, which is a list of the $R$ documents for each term which has the highest weight.
 	
+	This made it possible to pre-compute this, and significantly reduce the computations needed when ranking, as the champion list limits each posting to a list of $r$ docs, the docs with the most occurrences of the given term the posting is associated with.
 	
 \end{document}
