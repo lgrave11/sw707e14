@@ -96,6 +96,28 @@
 	
 	This made it possible to pre-compute this, and significantly reduce the computations needed when ranking, as the champion list limits each posting to a list of $r$ docs, the docs with the most occurrences of the given term the posting is associated with.
 	
+	A more specific description of the ranker comes here:
+	The ranker takes a query as input and stems, uses stop-words and tokenizes, in the same manner as the indexer did for the documents, as the terms have to be treated in the same way, to locate them in the inverted index.
+	
+	The term frequency weight ($tf$) is the amount a given document contains the given term, where a logarithm is used as relevance is not proportional to frequency.
+	$$log_{10} (1 + tf_{t,d})$$ 
+	
+	The document frequency is ($df$) is the total sum of occurences of a term across all documents.
+	the inverse document frequency ($id$f) can then be calculated as follows
+	
+	$$log_{10}(\frac{N}{df_t})$$
+	Where N is the total amount of documents, which is 1000 in our case.
+	
+	The tf-idf weight, which is used for calculation of the score, can then be calculated as follows:
+	$$tf-idf = tf*idf$$
+	
+	A small example, for calculating the score for a single document, given a query, can then be seen in Figure \ref{fig:exampleranking}
+	\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{exampleranking}
+	\caption{Example of ranking score calculation, picture taken from slides.}\label{fig:exampleranking}
+	\end{figure}
+	
 	Finally, to see how the crawler, indexer and ranker is structured in a broad sense, see Figure \ref{fig:bigpicture}
 	
 	\begin{figure}[h]
