@@ -23,7 +23,7 @@ namespace Indexer
 
         public List<KeyValuePair<int, float>> GetKSites(string query, int K = 10) 
         {
-            var KSites = CalculateScores(query, K, withChampionListPruning: false);
+            var KSites = CalculateScores(query, K, withChampionListPruning: true);
             if (KSites.Count < K) 
             {
                 KSites = CalculateScores(query, K, withChampionListPruning: false);

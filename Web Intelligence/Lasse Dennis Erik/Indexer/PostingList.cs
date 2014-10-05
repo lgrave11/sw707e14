@@ -16,7 +16,7 @@ namespace Indexer
 
         public void makeChampionsList()
         {
-            int r = 5;
+            int r = 50;
             Champions = Postings.OrderByDescending(x => x.frequencyInDoc).Take(r).ToList();
         }
     }
