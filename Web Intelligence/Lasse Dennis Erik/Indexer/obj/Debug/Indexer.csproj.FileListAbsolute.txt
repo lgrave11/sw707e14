@@ -33,3 +33,11 @@ C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\
 C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\EntityFramework.dll
 C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\EntityFramework.xml
 C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\obj\Debug\Indexer.csprojResolveAssemblyReference.cache
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\Indexer.exe.config
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\obj\Debug\Indexer.exe
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\obj\Debug\Indexer.pdb
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\obj\Debug\Indexer.csprojResolveAssemblyReference.cache
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\Indexer.exe
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\Indexer.pdb
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\EntityFramework.dll
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik\Indexer\bin\Debug\EntityFramework.xml

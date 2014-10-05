@@ -9,10 +9,35 @@ namespace Indexer
     public class Indexer
     {
         public Dictionary<string, PostingList> invertedIndex;
+        public CrawlerContext db;
+        public List<Crawler> items;
 
         public Indexer() 
         {
             invertedIndex = new Dictionary<string, PostingList>();
+            CrawlerContext db = new CrawlerContext();
+            items = (from b in db.Crawler
+                         select b).ToList();
+        }
+
+        public void makeInvertedIndex() 
+        {
+            foreach (Crawler item in items)
+            {
+                //Console.WriteLine("On item {0} out of {1}", items.IndexOf(item), items.Count);
+                List<string> tokens = Tokenizer.ExtractText(ZipString.UnZipStr(item.Html));
+                List<string> features = FeatureConstructor.RemoveAndStem(tokens);
+                foreach (string term in features)
+                {
+                    this.addIncidence(term, item.Id);
+                }
+
+            }
+
+            foreach (var postingList in invertedIndex.Values) 
+            {
+                postingList.makeChampionsList();
+            }
         }
 
         public int getDocumentFrequency(string term) 

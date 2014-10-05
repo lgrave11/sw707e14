@@ -50,7 +50,6 @@ namespace CrawlerNamespace
                 foreach (string s in cachedShingles[uri])
                 {
                     long value = hashFunction(s);
-                    Console.WriteLine(String.Format("{0} - {1}", s, value));
                     if (value < minValue)
                     {
                         minValue = value;
