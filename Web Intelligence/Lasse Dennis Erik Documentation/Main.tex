@@ -47,7 +47,7 @@
 	\subsection{Cut Corners}
 	We could have used the Mercator scheme instead of just sleeping 1 second whenever the Crawler has finished with a page.
 	
-	The Crawler does find every url in the visited urls, but rather just the ones that are inside href attribute.
+	The Crawler does not find every url in the visited urls, but rather just the ones that are inside href attribute.
 	
 	The Crawler was limited to very few pages, 100-1000 primarily because the shingling with sketches is extremely slow for some reason.
 	
@@ -60,17 +60,17 @@
 	We use an inverted index because then we do not need to investigate every document for matches but rather we can just look at the individual terms and see what documents match.
 	The indexer works by retrieving the crawled pages in the database as an object that contains the html document, the url and the document id.
 	The html document is converted into only words and these are tokenized by splitting them. 
-	These words are made into features, by stemming them using an English language stemmer. It also the English stopwords, such as "the" or "a".
-	It is important to note that the query gets the same treatment, in that its tokenized, stemmed and that the stopwords are removed because if you do not do that the terms in the inverted index will not match.
+	These words are made into features, by stemming them using an English language stemmer. It also removes the English stopwords, such as "the" or "a".
+	It is important to note that the query gets the same treatment, in that it is tokenized, stemmed and that the stopwords are removed because if you do not do that the terms in the inverted index will not match.
 	That feature is then added to the inverted index along with the id of the document.
 	
 	Adding to the inverted index works as such, it receives the term and the document id as mentioned, checks if the inverted index, which is a dictionary with a string key where the term is the key, and a posting list that contains a list of postings.
 	
 	If the inverted index does not already contained the term, it creates a list of postings, adds a posting with the document id, and adds that to inverted index using the term and a new posting list.
 	
-	If the inverted index does contain it, it checks if the document id already has a posting in that we might encounter the same word multiple times in the same document. It then sorts the postings.
+	If the inverted index does contain it, it checks if the document id already has a posting because we might encounter the same word multiple times in the same document. It then sorts the postings.
 	
-	Otherwise it increments the frequency the term has been seen in the current document.
+	Otherwise it increments the term frequency of that term for the current document.
 	
 	The structure of the inverted index can be seen in \figref{fig:InvertedIndex}.
 	
@@ -118,7 +118,7 @@
 	
 	The tf-idf weight is then $$tf*idf$$
 	
-	Using tf-idf we can then calculate a score for each document using the cosine score algorithm mentioned previously, and this is then used sort the results and provide a good output for the user, for example ~10 documents.
+	Using tf-idf we can then calculate a score for each document using the cosine score algorithm mentioned previously, and this is then used to sort the results and provide a good output for the user, for example ~10 documents.
 	
 	tf-idf weighting has different variants, like ltc or lnc. The one we use is ltc.
 	
