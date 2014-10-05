@@ -11,6 +11,7 @@
 \author{Lars Andersen, Mathias Winde Pedersen \& Søren Skibsted Als}
 \begin{document}
 	\maketitle
+	
 	\section*{Crawler}
 	The crawler serves as the obtainer of website links. When doing this, it has to make sure that it follows the robots.txt specification.
 	The robots.txt specification file, is a file that is places at the root of website, who wants to indicate what pages they want to have crawled by different search engines.
@@ -35,7 +36,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.5]{mercator}
-		\caption{Basic structure of Mercator Scheme, taken from slides.}\label{fig:mercator}
+		\caption{Basic structure of Mercator Scheme, picture taken from slides.}\label{fig:mercator}
 	\end{figure}
 	
 	
@@ -53,7 +54,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.3]{basiccrawlarchitecture}
-		\caption{Basic structure of crawler, taken from slides.}\label{fig:crawler}
+		\caption{Basic structure of crawler, picture taken from slides.}\label{fig:crawler}
 	\end{figure}
 	
 	\section*{Indexer}
@@ -81,7 +82,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.5]{indexer}
-		\caption{Basic structure of Indexer, taken from slides.}\label{fig:indexer}
+		\caption{Basic structure of Indexer, picture taken from slides.}\label{fig:indexer}
 	\end{figure}
 	
 	\section*{Ranker}
@@ -94,5 +95,14 @@
 	For contender pruning we used a precomputed champion list, which is a list of the $R$ documents for each term which has the highest weight.
 	
 	This made it possible to pre-compute this, and significantly reduce the computations needed when ranking, as the champion list limits each posting to a list of $r$ docs, the docs with the most occurrences of the given term the posting is associated with.
+	
+	Finally, to see how the crawler, indexer and ranker is structured in a broad sense, see Figure \ref{fig:bigpicture}
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{generalarch}
+	\caption{Basic structure of a search engine, picture taken from slides.}\label{fig:bigpicture}
+	\end{figure}
+	
 	
 \end{document}
