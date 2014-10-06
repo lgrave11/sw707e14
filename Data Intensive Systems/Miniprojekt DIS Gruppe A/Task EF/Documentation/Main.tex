@@ -1,4 +1,5 @@
 \input{Preamble.tex}
+\usepackage{subcaption}
 
 \author{
   Erik Sidelmann Jensen\\
@@ -76,23 +77,43 @@
 	\end{table}
 	
 	\textbf{What does the increase in sale for specific products look like over time?}
-	See Figure \ref{fig:yearProduct} for a graphical overview of how the sales for soda without deposit(pant), Matilde kakao, juice, and beer changes over each year. For example it can be seen that beer was a popular drink in 2002.
+	See Figure \ref{fig:yearProduct} for a graphical overview of how the sales for soda without deposit(pant), Matilde kakao, juice, and beer changes over each year. For example it can be seen that beer was a popular drink in 2002. The figure is split in a non-drilled version in Figure \ref{fig:yearProductNormal} and a drilled in Figure \ref{fig:yearProductDrilled}
 	
 	\begin{figure}
-		\centering
-		\includegraphics[scale=0.5]{year_productName1.png}
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{year_productName.png}
+			\caption{Normal version}
+			\label{fig:yearProductNormal}
+		\end{subfigure}
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{drilldownMonthProduct.png}
+			\caption{Drilled down version}
+			\label{fig:yearProductDrilled}
+		\end{subfigure}
 		\caption{Different product sales over time.}
 		\label{fig:yearProduct}
 	\end{figure}
 	
 	\textbf{Is it worth it to sell soda without deposit(pant)}
-	See Figure \ref{fig:sodaSales} for an illustration of how the sales are of soda with and without deposit(pant). It can for example be seen that the sale for soda with deposit(pant) is only a fraction of the sales of soda without.
+	See Figure \ref{fig:sodaSales} for an illustration of how the sales are of soda with and without deposit(pant). It can for example be seen that the sale for soda with deposit(pant) is only a fraction of the sales of soda without. The figure is split in a non-sliced and sliced version in Figure \ref{fig:sodaSalesNormal} and Figure \ref{fig:sodaSalesSliced}
 	
 	\begin{figure}
-		\centering
-		\includegraphics[scale=0.5]{product_hour_sales.png}
-		\caption{Sales of soda with and without deposit(pant)}
-		\label{fig:sodaSales}
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{product_hour_sales.png}
+			\caption{Normal version}
+			\label{fig:sodaSalesNormal}
+		\end{subfigure}
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{drilldownProductHourSales.png}
+			\caption{Slice and diced}
+			\label{fig:sodaSalesSliced}
+		\end{subfigure}
+\caption{Sales of soda with and without deposit(pant)}
+\label{fig:sodaSales}
 	\end{figure}
 	
 	\textbf{Which member have spent the most?}
