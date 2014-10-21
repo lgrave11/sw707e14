@@ -12,8 +12,8 @@ namespace MiniProject1
         {
             CrawlerContext1 db = new CrawlerContext1();
 
-            //Crawler crawler = new Crawler(new List<Uri>() { new Uri("http://aau.dk/"), new Uri("http://stackoverflow.com/") }, "Allan");
-            //crawler.StartCrawling();
+            Crawler crawler = new Crawler(new List<Uri>() { new Uri("http://aau.dk/"), new Uri("http://stackoverflow.com/") }, "Allan");
+            crawler.StartCrawling();
 
             Dictionary<int, string> translatorIdtoURL = new Dictionary<int, string>();
             int id = 0;

@@ -11,7 +11,7 @@
 \author{Lars Andersen, Mathias Winde Pedersen \& Søren Skibsted Als}
 \begin{document}
 	\maketitle
-	\begin{comment}
+	
 
 	\section*{B}
 	By looking at the data, different business processes have been considered.
@@ -36,7 +36,7 @@
 	
 	\textbf{Questions that can be asked:}
 	
-	Does sales increase during break times (12:00 to 12:30)?
+	Does sales increase during break times?
 	
 	How has the total sales per year evolved?
 	
@@ -70,7 +70,7 @@
 		\label{fig:schema}
 	\end{figure}
 	\newpage
-		\end{comment}
+
 	
 	\section*{D}
 	We started this exercise with an overall plan, where we decided to load the data from the database, and then to transform this data and insert it into the dimension tables.
@@ -103,5 +103,43 @@
 	The figure depicts how the various surrogatekeys gets looked up in the dimension tables, as well as the price which is looked up in the old product table.
 	After the lookups, the same generation of surrogate keys as in the filling of date and time dimensions are used, to get the same keys.
 	Lastly, the mentioned erroneous memberids are filtered, such that members with an invalid memberid(0) gets changed to -1.
-		
+	
+	\section*{E}
+	For this part, the work consists of writing the xml file specifying the cube. This can be seen in Figure \ref{fig:dimensioncube}
+	\begin{figure}[h]
+		\lstinputlisting[language=XML]{saikoschema.txt}
+		\caption{Definition of Cube}\label{fig:dimensioncube}
+	\end{figure}
+	The xml file consists of the definitions of the dimensions first, whereafter the cube is defined, referencing the defined dimensions.
+	For date and time, a default TimeDimension type is used, as this can specify the wanted hierachy.
+	
+	\section*{F}
+	Do note for this section that the price is counted in danish "oere" so you have to divide by 100 to get the sale in DKK.
+	In section B we wanted to see if sales increase during break times, and it can be seen that Figure \ref{fig:breaktimes} confirms this.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics{breaktimes}
+		\caption{Sales increase during break times}\label{fig:breaktimes}
+	\end{figure}
+	
+	Next we examine the total sales per year, seen in Figure \ref{fig:salesperyear}. The sudden drop in 2008 is probably because the whole year has not been logged there yet.
+	As can be seen, the sales have increased almost for each year, with a slight drop in 2003, 2005, and 2007, but this is not by a lot, as the overall tendency is an increase in sales.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics{salesperyear}
+		\caption{Sales per year}\label{fig:salesperyear}
+	\end{figure}
+
+	We also take a look at which product has been sold the most, see Figure \ref{fig:salesproduct}.
+	As can be seen, soda has been sold the most, with beer on a second place.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics{salesproduct}
+		\caption{Sales per product}\label{fig:salesproduct}
+	\end{figure}
+	
+	This rounds up some interesting analysis that can be performed, and shows that the model works.
 \end{document}
