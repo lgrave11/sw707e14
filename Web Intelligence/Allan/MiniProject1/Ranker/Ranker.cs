@@ -31,7 +31,7 @@ namespace MiniProject1
         public List<int> GetSites(List<string> query)
         {
             List<int> returnList = GetSitesHelper(ref query, true);
-            if (returnList.Count <= 5)
+            if (returnList.Count <= 500000)
             {
                 Console.WriteLine("without champion");
                 returnList = GetSitesHelper(ref query, false);

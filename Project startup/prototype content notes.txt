@@ -1,0 +1,43 @@
+forside:
+liste af stationer med search
+map over stationer
+Knapper:
+	login -> login side
+	book -> login med besked om login required
+
+Login side:
+username
+password
+knapper:
+	login -> booking side hvis korrekt login information
+	new user -> ændre bruger side
+
+Ny bruger side:
+username
+password
+password again
+phone number
+email
+knapper:
+	create profile -> booking side hvis profil information godtages
+
+booking side:
+reuse forside
+start tid
+knapper:
+	login replaced med logout
+	logout -> forside
+	profil -> bruger side
+	book -> booking side med besked om resultat af booking forsøg
+
+
+Bruger side:
+skift kodeord
+skift telefon nummer
+skift email
+knapper:
+	opdater information -> bruger side
+	(brugs statestik) -> brugs side
+
+brugs side:
+liste over tidligere bookings af bruger

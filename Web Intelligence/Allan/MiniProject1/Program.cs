@@ -12,8 +12,8 @@ namespace MiniProject1
         {
             CrawlerContext1 db = new CrawlerContext1();
 
-            //Crawler crawler = new Crawler(new List<Uri>() { new Uri("http://aau.dk/"), new Uri("http://stackoverflow.com/") }, "Allan");
-            //crawler.StartCrawling();
+            Crawler crawler = new Crawler(new List<Uri>() { new Uri("http://aau.dk/"), new Uri("http://stackoverflow.com/") }, "Allan");
+            crawler.StartCrawling();
 
             Dictionary<int, string> translatorIdtoURL = new Dictionary<int, string>();
             int id = 0;
@@ -25,7 +25,7 @@ namespace MiniProject1
             }
             Indexer.Instance.ConstructIndex();
             Console.WriteLine("ranker started");
-            foreach (int i in Ranker.Instance.GetSites(new List<string>() {"Kom", "med", "ind", "i", "byens", "maskinrum.", "Hør,", "hvad", "Frank", "Jensen", "og", "førende", "fagfolk", "forestiller", "sig", "for", "byens", "fremtid", "med", "100.000", "nye", "københavnere,", "og", "kom", "med", "din", "vision", "for", "fremtidens", "København" }))
+            foreach (int i in Ranker.Instance.GetSites(new List<string>() {"Kom", "med"/*, "ind", "i", "byens", "maskinrum.", "Hør,", "hvad", "Frank", "Jensen", "og", "førende", "fagfolk", "forestiller", "sig", "for", "byens", "fremtid", "med", "100.000", "nye", "københavnere,", "og", "kom", "med", "din", "vision", "for", "fremtidens", "København" */}))
             {
                 Console.WriteLine(i + " - " + translatorIdtoURL[i]);
             }

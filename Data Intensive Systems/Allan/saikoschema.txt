@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<Schema name="FKlubDW">
+ <Dimension name="member">
+   <Hierarchy hasAll="true" allMemberName="All Members" 
+		primaryKey="surrogateid">
+     <Table name="member"/>
+     <level name="memberid" column="memberid" uniqueMembers="false" 
+		type="Numeric"/>
+     <Property name="active" column="active" type="Numeric" 
+		dependsOnLevelValue="true"/><--property example-->
+   </Hierarchy></Dimension>
+
+  <Dimension name="product" type="StandardDimension">
+   <Hierarchy hasAll="true" allMemberName="All Products" 
+		primaryKey="surrogateid">
+     <Table name="product"/>
+     <level name="productid" column="id" type="Numeric"/>
+   </Hierarchy></Dimension>
+ 
+ <Dimension name="date" type="TimeDimension">
+  <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
+    <Table name="date"/>
+    <Level name="Year" column="year" uniqueMembers="true" 
+		levelType="TimeYears" type="Numeric"/>
+    <Level name="Month" column="month" uniqueMembers="false" 
+		ordinalColumn="month" levelType="TimeMonths" type="Numeric"/>
+    <Level name="Day" column="day" uniqueMembers="false" 
+		ordinalColumn="day" levelType="TimeDays" type="Numeric"/>
+  </Hierarchy></Dimension>
+ 
+  <Dimension name="time" type="TimeDimension">
+  <Hierarchy hasAll="true" allMemberName="All Times" 
+	primaryKey="id">
+    <Table name="timeofday"/>
+    <Level name="hour" column="hour" uniqueMembers="true" 
+		levelType="TimeHours" type="Numeric"/>
+    <Level name="minute" column="minute" uniqueMembers="false" 
+		ordinalColumn="minute" levelType="TimeMinutes" 
+			type="Numeric"/>
+    <Level name="second" column="second" uniqueMembers="false" 
+		ordinalColumn="second" levelType="TimeSeconds" 
+			type="Numeric"/>
+  </Hierarchy></Dimension>
+ 
+ <Cube name="Sales">
+   <Table name="sale" />
+   <DimensionUsage name="member" source="member" foreignKey="memberid" />
+   <DimensionUsage name="product" source="product" foreignKey="productid"/>
+   <DimensionUsage name="date" source="date" foreignKey="dateid"/>
+   <DimensionUsage name="time" source="time" foreignKey="timeofdayid"/>
+   <Measure name="price" column="price" aggregator="sum" 
+	formatString="Standard"/>
+ </Cube> 
+</Schema>

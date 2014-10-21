@@ -1,4 +1,5 @@
 \input{Preamble.tex}
+\usepackage{subcaption}
 
 \author{
   Erik Sidelmann Jensen\\
@@ -19,7 +20,7 @@
 	\thispagestyle{empty}
 	
 	\chapter{DIS Miniproject}
-	\section{Task E}
+	\section{Task E \& F}
 	We defined our multidimensional cube using the following xml:
 	\lstinputlisting[language=XML]{fklubdw.xml}
 	
@@ -32,7 +33,7 @@
 	28,618,675 Ører has been spent at the 12th hour and 20,400,875 Ører has been spent at the 13th hour.
 	
 	\textbf{How does the amount sold change over time?}
-	We can answer this by looking at individual years and how much is spent them on them.
+	We can answer this by looking at individual years and how much is total spent on each of the years.
 	\begin{table}[H]
 	    \begin{tabular}{l|l}
 	    Year & Sale Amount \\ \hline
@@ -52,6 +53,9 @@
 	    \end{tabular}
 	\end{table}
 	
+	As it can be seen the first years had little sales compared to the later years such as 2002 through 2007. The last year presented 2008 may be an invalid
+	year since the total sales may be misleading if sales for a whole year is not considered.
+
 	\textbf{When is it best to restock, given low activity?}
 	
 	We can answer this by looking at which hours have the least activity during 8-16.
@@ -73,14 +77,52 @@
 	\end{table}
 	
 	\textbf{What does the increase in sale for specific products look like over time?}
-	See the picture below.
+	See Figure \ref{fig:yearProduct} for a graphical overview of how the sales for soda without deposit(pant), Matilde kakao, juice, and beer changes over each year. For example it can be seen that beer was a popular drink in 2002. The figure is split in a non-drilled version in Figure \ref{fig:yearProductNormal} and a drilled in Figure \ref{fig:yearProductDrilled}
+	
+	\begin{figure}
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{year_productName.png}
+			\caption{Normal version}
+			\label{fig:yearProductNormal}
+		\end{subfigure}
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{drilldownMonthProduct.png}
+			\caption{Drilled down version}
+			\label{fig:yearProductDrilled}
+		\end{subfigure}
+		\caption{Different product sales over time.}
+		\label{fig:yearProduct}
+	\end{figure}
 	
 	\textbf{Is it worth it to sell soda without deposit(pant)}
-	See the picture below.
+	See Figure \ref{fig:sodaSales} for an illustration of how the sales are of soda with and without deposit(pant). It can for example be seen that the sale for soda with deposit(pant) is only a fraction of the sales of soda without. The figure is split in a non-sliced and sliced version in Figure \ref{fig:sodaSalesNormal} and Figure \ref{fig:sodaSalesSliced}
+	
+	\begin{figure}
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{product_hour_sales.png}
+			\caption{Normal version}
+			\label{fig:sodaSalesNormal}
+		\end{subfigure}
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[scale=0.5]{drilldownProductHourSales.png}
+			\caption{Slice and diced}
+			\label{fig:sodaSalesSliced}
+		\end{subfigure}
+\caption{Sales of soda with and without deposit(pant)}
+\label{fig:sodaSales}
+	\end{figure}
 	
 	\textbf{Which member have spent the most?}
-	The member that has spent the most is '1704' having spent 1,439,650 Ører.
-	See the picture below.
-    
-    \section{Task F}
+	The member that has spent the most is '1704' having spent 1,439,650 ører, see Figure \ref{fig:memberSales}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.5]{member_sales.png}
+		\caption{Member ids and sales}
+		\label{fig:memberSales}
+	\end{figure}
 \end{document}

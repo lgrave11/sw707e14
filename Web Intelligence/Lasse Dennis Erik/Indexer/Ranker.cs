@@ -23,11 +23,22 @@ namespace Indexer
 
         public List<KeyValuePair<int, float>> GetKSites(string query, int K = 10) 
         {
+            var KSites = CalculateScores(query, K, withChampionListPruning: true);
+            if (KSites.Count < K) 
+            {
+                KSites = CalculateScores(query, K, withChampionListPruning: false);
+            }
 
+            return KSites;
+            
+        }
+
+        public List<KeyValuePair<int, float>> CalculateScores(string query, int K = 10, bool withChampionListPruning = false) 
+        {
             Dictionary<int, float> scores = new Dictionary<int, float>();
             Dictionary<int, float> length = new Dictionary<int, float>();
 
-            foreach (int docId in _docIds) 
+            foreach (int docId in _docIds)
             {
                 scores.Add(docId, 0.0f);
                 length.Add(docId, 0.0f);
@@ -36,11 +47,16 @@ namespace Indexer
             List<string> terms = FeatureConstructor.RemoveAndStem(tokens);
             Dictionary<string, float> normalizedQueryWeights = ConstructQueryWeights(terms);
 
-            foreach (string term in terms) 
+            foreach (string term in terms)
             {
                 if (_index.invertedIndex.ContainsKey(term))
                 {
-                    foreach (var item in _index.invertedIndex[term].Postings)
+                    var postings = _index.invertedIndex[term].Postings;
+                    if (withChampionListPruning) 
+                    {
+                        postings = _index.invertedIndex[term].Champions;
+                    }
+                    foreach (var item in postings)
                     {
                         int docId = item.docId;
                         float tf_raw = item.frequencyInDoc;
@@ -54,17 +70,17 @@ namespace Indexer
 
             Dictionary<int, float> result = new Dictionary<int, float>();
 
-            foreach(int docId in _docIds) 
+            foreach (int docId in _docIds)
             {
                 float actualLength = (float)Math.Sqrt(length[docId]);
-                
+
                 result.Add(docId, scores[docId]);
-                
+
             }
-            
+
             var sortedResult = (from entry in result
                                 orderby entry.Value descending
-                                select entry).ToList().Take(K+1).ToList();
+                                select entry).ToList().Take(K + 1).ToList();
 
             return sortedResult;
         }
