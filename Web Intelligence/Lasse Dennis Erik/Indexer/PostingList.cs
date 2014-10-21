@@ -9,10 +9,16 @@ namespace Indexer
     // Man ligger ikke normalt frequency her.
     public class PostingList
     {
+        
         public List<Posting> Postings;
+        public List<Posting> Champions;
         public int Frequency { get { return Postings.Count(); } }
 
-
+        public void makeChampionsList()
+        {
+            int r = 50;
+            Champions = Postings.OrderByDescending(x => x.frequencyInDoc).Take(r).ToList();
+        }
     }
 
     public class Posting : IComparable

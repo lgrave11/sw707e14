@@ -11,15 +11,15 @@
 \author{Lars Andersen, Mathias Winde Pedersen \& Søren Skibsted Als}
 \begin{document}
 	\maketitle
+	
 	\section*{Crawler}
 	The crawler serves as the obtainer of website links. When doing this, it has to make sure that it follows the robots.txt specification.
-	The robots.txt specification file, is a file that is places at the root of website, who wants to indicate what pages they want to have crawled by different search engines.
+	The robots.txt specification file, is a file that is placed at the root of websites, who wants to indicate what pages they want to have crawled by different search engines.
 	This ensures explicit politeness.
-	Furthermore, it should not visit a site too often.
 	In order to not consume too much space, near duplicate detection is also performed here.
 	The reason near duplicate detection is performed is that a large percentage of the internet content is duplicate information.
 	
-	We decided to implement the crawler with mercator.
+	We decided to implement the crawler with Mercator scheme.
 	Mercator works by having several front and backqueues.
     The front queues serves as ranking of what websites gets crawled first.
     As an example, news sites can be put into a frontqueue with high priority, as such sites changes regularly, whereas a static site can have a lower priority for crawling.
@@ -35,12 +35,12 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.5]{mercator}
-		\caption{Basic structure of Mercator Scheme, taken from slides.}\label{fig:mercator}
+		\caption{Basic structure of Mercator Scheme, picture taken from slides.}\label{fig:mercator}
 	\end{figure}
 	
 	
 	To check near duplicates we use shingles with sketches.
-	Shingles ia a continuous set of words, which in our case is a set of 8 words per shingle, thus a shingle size of 8, which is the recommended size.
+	Shingles ia a continuous set of words, which in our case is a set of 8 words per shingle, thus a shingle size of 8, which is the size recommended by Google.
 	Sketches is then to use hashing on these shingles, to reduce the storage necessary, as well as computation time, since the smallest of all the hashing values is chosen for each hash functions, and compares on this.
 	However, Google recommends 84 hash functions for sketching, but we only use 19 hashes, as we did it as a proof of concept.
 	
@@ -53,7 +53,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.3]{basiccrawlarchitecture}
-		\caption{Basic structure of crawler, taken from slides.}\label{fig:crawler}
+		\caption{Basic structure of crawler, picture taken from slides.}\label{fig:crawler}
 	\end{figure}
 	
 	\section*{Indexer}
@@ -65,7 +65,7 @@
 	For the indexer we cut corners as follows.
 	We only stem on the English language.
 	Stemming means cutting off unnecessary parts of the words to greatly reduce the index size.
-	We do not develop our own stem method, but instead relies on an already developed one from the internet.
+	We do not develop our own stem method, but instead relies on an already developed one found on the web.
 	
 	For stopwords it is used for English and Danish,
 	Which are common words without much meaning, such as "the", "about", "then", "by" etc.
@@ -81,18 +81,57 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[scale=0.5]{indexer}
-		\caption{Basic structure of Indexer, taken from slides.}\label{fig:indexer}
+		\caption{Basic structure of Indexer, picture taken from slides.}\label{fig:indexer}
 	\end{figure}
 	
 	\section*{Ranker}
 	The ranker serves the purpose of ranking the pages, given a search query.
-	This means that 
 	
 	 This is meaningful, as it contrary to boolean matching can weight different documents, and as of such can rank the results on what matches the query best, and not just if the terms occur in the document or not.
 	
 	For ranking we used the algorithm provided from the slideshow, which means we used the CosineScore, based on the tf-idf weighting.
 	For contender pruning we used a precomputed champion list, which is a list of the $R$ documents for each term which has the highest weight.
 	
+	A picture of CosineScores can be seen in Figure \ref{fig:exampleconsinescore}.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.7]{CosineScore}
+		\caption{Example of CosineScore, picture taken from slides.}
+		\label{fig:exampleconsinescore}
+	\end{figure}
+
 	This made it possible to pre-compute this, and significantly reduce the computations needed when ranking, as the champion list limits each posting to a list of $r$ docs, the docs with the most occurrences of the given term the posting is associated with.
+	
+	A more specific description of the ranker comes here:
+	The ranker takes a query as input and stems, uses stop-words and tokenizes, in the same manner as the indexer did for the documents, as the terms have to be treated in the same way, to locate them in the inverted index.
+	
+	The term frequency weight ($tf$) is the amount a given document contains the given term, where a logarithm is used as relevance is not proportional to frequency.
+	$$log_{10} (1 + tf_{t,d})$$ 
+	
+	The document frequency is ($df$) is the total sum of occurrences of a term across all documents.
+	the inverse document frequency ($id$f) can then be calculated as follows
+	
+	$$log_{10}(\frac{N}{df_t})$$
+	Where N is the total amount of documents, which is 1000 in our case.
+	
+	The tf-idf weight, which is used for calculation of the score, can then be calculated as follows:
+	$$tf-idf = tf*idf$$
+	
+	A small example, for calculating the score for a single document, given a query, can then be seen in Figure \ref{fig:exampleranking}
+	\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{exampleranking}
+	\caption{Example of ranking score calculation, picture taken from slides.}\label{fig:exampleranking}
+	\end{figure}
+	
+	Finally, to see how the crawler, indexer and ranker is structured in a broad sense, see Figure \ref{fig:bigpicture}
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{generalarch}
+	\caption{Basic structure of a search engine, picture taken from slides.}\label{fig:bigpicture}
+	\end{figure}
+	
 	
 \end{document}
