@@ -1,0 +1,25 @@
+Supervisor meeting 21-10-2014 9:30
+
+Agenda
+
+- Status
+We've been working on the website, and developing the application. We think it's been going fine, and we will show you a demonstration later. We're still working on the simulation.
+
+- Customer Meeting
+We presented the current website to them and they were generally positive about it. They said they didn't have any knowledge about the current position of the bicycles, they just hired someone to find them and repair them. They were most interested in the GPS part of it, which hasn't been a focus for us. We have to take that into account. We might be able to have three meetings to show our progress to them. Also have them show up for the exam to see the final result. Two other groups were also involved in customer meetings.
+
+- Booking vs tracking
+It sounded like the customers wanted the tracking more.
+
+These are two different things, for the booking it is for the people who want to use the bicycles meanwhile the tracking is more for the administrators. It would be perfect if both were implemented, but given time constraint it might be a good idea to focus on one part instead of both. Booking is easier to implement than tracking. They're different things, and they don't conflict. 
+
+For the exam how much should have been developed? The more solid the system is, the better the chance of a better grade. The focus should be on making the components work together as a whole. 
+
+It might be a good time to start documenting what has already been implemented. You should also think about how the things done so far are relevant to the theme of "The Internet of Things".
+
+Tracking is very relevant to the Kommune's needs. This could be used for 'Big Data', and could be used to answer interesting questions. If you feel you have time and energy you should maybe explore more about the tracking part and how to make use of tracking data.
+
+Focus should be report(Design, how components are connected, database design and so on) and making the components work together.
+
+- AOB
+Given the amount of time left, more development could be done. 
