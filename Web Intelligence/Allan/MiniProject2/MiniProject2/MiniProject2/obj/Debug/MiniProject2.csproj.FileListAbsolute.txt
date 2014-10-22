@@ -1,0 +1,13 @@
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MiniProject2.exe.config
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MiniProject2.exe
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MiniProject2.pdb
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\Accord.dll
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\Accord.Math.dll
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\Accord.pdb
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\Accord.xml
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\Accord.Math.pdb
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\Accord.Math.xml
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\obj\Debug\MiniProject2.csprojResolveAssemblyReference.cache
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\obj\Debug\MiniProject2.exe
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\obj\Debug\MiniProject2.pdb
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\alglibnet2.dll
