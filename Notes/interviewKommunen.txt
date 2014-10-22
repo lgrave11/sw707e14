@@ -1,0 +1,72 @@
+Interviewede personer:
+Brian Høj
+Jesper
+Anne Mette / Anette ?
+
+Hvilket overblik har I over cyklerne? lokation, forbrug, antal, osv.
+- Hvordan finder I ud af om der skal flere cykler i brug, og hvor cyklerne skal placeres?
+Der er i øjeblikket ingen kontrol med cyklerne og dermed heller ingen  data omkring brugen
+af cyklerne. Den eneste information er gehør, altså hvad de selv observerer ude i byen,
+og de opringninger de modtager fra borgerne der melder en cykel forsvundet.
+
+- Får I nogle klager? Hvis ja, hvad lyder klagerne på?
+De klager de oftest får er at der ikke er nok cykler tilgængelig. De observerer også selv
+at der er helt tomme stationer.
+
+- Har I nogle statistikker/data om systemet vi kan få adgang til?
+Der er ingen data overhovedet. Kun anelser om hvordan cyklerne bliver brugt. En af de interviewede
+observerede at der holdt mange bycykler ved skoler og universiteter, hvilket de fortolker som om
+at der er mange der bruger cyklerne som privatcykler.
+Hvad de fandt interessant er at få mere data om brugen af cyklerne. Dette kunne fås v.h.a. GPS, ruter, strækning, stationer, tid, 
+stilstand, samme bruger?
+
+- Kan vi bruge det samme layout som http://www.aalborgbycyklen.dk m.h.t. Copyright?
+De mener at det er dem der ejer siden, og vil lige undersøge om ikke også de har rettighederne.
+
+- Hvad er jeres egentlige behov? Hvilke mål har i med projektet og hvilke restriktioner er blevet påsat jer for at opnå disse mål?
+De er usikre på om det er turister eller borgere der er målgruppen for brugen af cyklerne, men de ligger vægt på at den ikke
+bliver brugt som privatcykler. For eksempel hvis en person ønsker at bruge den resten af året ud.
+Den større politiske opmærksomhed på bycykler sammen med tendensn til at der bliver afsat flere penge af til sådanne projekter
+leder dem til at konkludere at det er et system der skal udvides på, og gøres mere moderne.
+
+- Har i nogle udvidelser/videreudviklings planer til projektet?
+De er interesseret i at tracke cyklerne med GPS og indsamle data om cyklernes brug, men de har ikke nogle konkrete planer om hvad
+der skal laves og hvordan man sikrer at GPS'en ikke bliver stjålet fra cyklen.
+
+- Har i haft nogle tanker om reservering af bycyklerne?
+Der var ingen tanker i den retning med systemet, men idéen om at booke en cykel virkede interessant for dem. De var åbne overfor
+muligheden, men kunne også ulemperne ved et sådant system, da det kan blive for restriktivt i forhold til brugeren.
+For eksempel, hvad sker der hvis brugeren slet ikke dukker op til sin booking? Hvor længe i forvejen skal man kunne booke en cykel?
+Hvornår må systemet konstatere at brugeren ikke dukker op?
+De ser brugen af cyklerne som en spontan handling fra brugeren og måske ikke så meget planlagt.
+ 
+- Har i lyst til at være vores kunde? Højst 3 møder mere i løbet af semester.
+Ja, de var villige til at lave en forsøgsperiode på en uge eller mere, hvor eksempelvis ti cykler blev udstyret med GPS, så man kunne
+studere cyklernes færden.
+Aftalen lyder, at vi tre grupper snakker sammen om vores videre arbejde og kontakt med dem som kunder.
+
+Rå notater:
+Oprindeligt 200 cykler men kun 140 cykler ude nu.
+Resten er i depot.
+Et privat firma der står for driften. En dyr ordning. Der mangles sponsor indtægter.
+Ingen GPS på cyklerne. Simpelt system.
+Har overvejet at se på noget mere avanceret. Måske nogle nye cykler? tænker de
+Århus, har andre cykler hvor de ikke har problemer med sponsorer (store reklamer på hjulene). Færre driftsomkostninger
+Der forsvinder ikke mange cykler. (ikke noget særligt)
+Cyklerne samles ind i oktober. De finder allesammen, men de kan godt finde mærkelige steder. De kommer ud igen først i april.
+De har problemer med at cyklerne ikke bliver fundet af sig selv men rapporteret forsvundet af brugerne.
+De kunne godt tænke sig at have kontrol af cyklerne (med GPS har de overvejet)
+De vil også gerne vide mønstrene af brug af cyklerne.
+Der findes ingen data for brug af cyklerne. Det eneste der sker ved cyklerne er vedligeholdelse.
+De vil gerne have turister til at bruge cyklerne
+Målgruppen er: turist eller borger (ikke så meget hvem der er, men at den ikke bliver brugt som sin private cykel)
+
+GPS ideen lyder spændende for dem.
+De er bevidste om at det er en dårlig ordning.
+De er interesseret i data og statistikker om hvordan det bliver brugt.
+Booking er også interessant, men GPS delen er særlig interessant.
+Hvor længe holder de stille? Hvor meget er de i brug?
+Deres egne observationer er at der holder mange ved skoler og universiteter og kan måske konkludere ud fra det at de
+bliver brugt til privat brug.
+De tror mere på de spontane brug af bycyklerne, og mener at det bliver meget restriktivt med booking.
+
