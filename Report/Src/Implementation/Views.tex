@@ -1,5 +1,35 @@
 \section{Views}
 This section will describe the view layer and what it does. For more detail about Model-View-Controller architecture, see \secref{sec:mvc}.
 
+In \lstref{lst:homeIndexView} a truncated version of the home index view can be seen. Most of it is normal HTML, but the important part is how it utilizes variables set in the controller, that once the view is included it gets access to. This allows it to use them to generate more HTML as can be seen lines 9--13, where it uses the array of stations, to output option elements in the html.
 
-
+\begin{lstlisting}[language=html, label=lst:homeIndexView, caption={Home Index View}]
+[...]
+<form action="/Home/Book/" method="post">
+    <h2>Station</h2>
+    <input type="text" id="searchstation" name="searchstation" class="searchbox" placeholder="Search Station" oninput="SearchStation();MouseOverSearch();" onfocus="ShowSearch();MouseOverSearch();" onmouseover="ShowSearch();MouseOverSearch();" onmouseout="MouseLeaveSearch()" autocomplete="off" /><br />
+    <div id="searchresult" onmouseover="MouseOverSearch()" onmouseout="MouseLeaveSearch()"></div>
+    <select name="station" id="stations" style="width: 243px;" onchange="UpdateMarker()">
+    <option value="0" disabled selected>- Select Station -</option>
+    <?php
+    foreach($stations as $station){
+        echo '<option value="'.$station->station_id.'">'.$station->name.'</option>';
+    }
+    ?>
+    </select><br />
+    <div id="freebicycles"></div>
+    <br />
+    <h2>Time for booking:</h2>
+    Date: <input id="datepicker" type="text" readonly name="date" value="<?php echo ViewHelper::printDate(); ?>" style="width: 75px; text-align: center;" /> Time: <input id="hourpicker" type="text" readonly name="hour" value="<?php echo ViewHelper::printHour(); ?>" style="width: 25px; text-align: center;" />:<input id="minutepicker" type="text" readonly name="minute" value="<?php echo ViewHelper::printMinute(); ?>" style="width: 25px;  text-align: center;" />
+    <div class="centerblock"><br />
+    <?php
+        if (Tools::isLoggedIn()){
+            echo '<input type="submit" value="Book" />';
+        } else {
+            echo '<a href="/User/Login/">Login</a>';
+        }
+    ?>
+    </div>
+</form>
+[...]
+\end{lstlisting}

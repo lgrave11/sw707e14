@@ -25,7 +25,7 @@ class Bicycle
 
 The corresponding BicycleService, though very truncated, can be seen in \lstref{lst:bicycleService}. The BicycleService implements CRUD methods for the Bicycle model.
 
-BicycleService has the following methods,
+BicycleService contains the following methods,
 
 \begin{itemize}
 \item \lstinline|__construct($database)|: Constructs the BicycleService, with the Controller's database instance.
@@ -74,29 +74,8 @@ class BicycleService implements iService
             return null;
         }
     }
-
-    public function read($id)
-    {
-        // Read from database.
-    }
     
-    // [..]
-
-    public function update($bicycle)
-    {
-        // Update in database.
-    }
-
-    public function delete($bicycle)
-    {
-        // Delete from database.
-    }
-
-    public function validate($bicycle)
-    {
-        // Validate bicycle.
-    }
-
+    //[...]
 }
 
 ?>
