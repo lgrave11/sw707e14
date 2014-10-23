@@ -1,4 +1,10 @@
 \section{Framework}
 To set up the Model-View-Controller architecture for development a modified PHP MVC framework was used, see \citep{misc:mvc-framework} for details on it.
 
-The framework provides a controller base class that the new controllers can reuse mainly providing a database instance. It also provides a application class that handles 
+The framework provides a controller base class that the new controllers can reuse mainly providing a database instance.
+It also provides a application class that handles url parsing and navigating to the correct pages based on the url.
+It also provides a directory structure such that it is plug-and-play with much of it. 
+You can, for example, add a controller to the controller directory and they will be available to view on the site or you can add a model to the model directory and they can be used by the controllers or you can add views to the view directory and they can be shown by the controllers.
+Here our modifications come into play, in that instead of the models containing CRUD behaviour they are instead used to represent the data in the database locally, and a different aspect to the model layer is added called services, that work on models and return models.
+We also changed class loading to use autoloading instead.
+
