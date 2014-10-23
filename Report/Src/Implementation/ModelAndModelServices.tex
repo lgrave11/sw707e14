@@ -4,7 +4,7 @@ This section will the model layer, specifically going into what a specific model
 The Bicycle model can be seen in \lstref{lst:bicycleModel}. Our modification to the original MVC skeleton here is then that instead of using the models to implement behaviour, we use it to model the corresponding database table.
 
 \begin{minipage}{\textwidth}
-\begin{lstlisting}[language=php, label=lst:bicycleModel]
+\begin{lstlisting}[language=php, label=lst:bicycleModel, caption={Bicycle Class}]
 <?php
 class Bicycle
 {
@@ -37,7 +37,7 @@ BicycleService has the following methods,
 \item \lstinline|validate($bicycle)|: Validates a bicycle.
 \end{itemize}
 
-\begin{lstlisting}[language=php, label=lst:bicycleService]
+\begin{lstlisting}[language=php, label=lst:bicycleService, caption={BicycleService Class}]
 <?php
 
 //create read update delete
