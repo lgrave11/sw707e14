@@ -75,15 +75,15 @@ class BicycleService implements iService
 The models and their associated services, are as follows:
 
 \begin{itemize}
-\item Account \& AccountService -- Account for the database representation, and AccountService for CRUD functionality and verifying logins.
-\item Bicycle \& BicycleService -- Bicycle for representation and BicycleService for CRUD.
-\item Booking \& BookingService -- Booking for representation and BookingService for CRUD and getting/deleting bookings for a specific user.
-\item Dock \& DockService -- Dock for representation and DockService for CRUD and determining if a dock is currently holding a bicycle or getting all docks at a station.
-\item Station \& StationService -- Station for representation and DockService for CRUD and special functionality such as getting counts of available bicycles at stations or for searching for a station.
+\item Account \& AccountService -- \textbf{Account} for the database representation, and \textbf{AccountService} for CRUD functionality and verifying logins.
+\item Bicycle \& BicycleService -- \textbf{Bicycle} for representation and \textbf{BicycleService} for CRUD.
+\item Booking \& BookingService -- \textbf{Booking} for representation and \textbf{BookingService} for CRUD and getting/deleting bookings for a specific user.
+\item Dock \& DockService -- \textbf{Dock} for representation and \textbf{DockService} for CRUD and determining if a dock is currently holding a bicycle or getting all docks at a station.
+\item Station \& StationService -- \textbf{Station} for representation and \textbf{StationService} for CRUD and special functionality such as getting counts of available bicycles at stations or for searching for a station.
 \end{itemize}
 
-We also provide various helper functionality in Tools and ViewHelper. 
-In Tools we provide helper functionality for determining if the user is logged in, for including CSS and JavaScript, and for validating special fields like email addresses.
-In ViewHelper we provide helper functionality for printing error or success messages, and printing date components.
+We also provide various helper functionality in \textbf{Tools} and \textbf{ViewHelper}. 
+In \textbf{Tools} we provide helper functionality for determining if the user is logged in, for including CSS and JavaScript, and for validating special fields like email addresses.
+In \textbf{ViewHelper} we provide helper functionality for printing error or success messages, and printing date components.
 
  The next section will show how they are used in the context of the controller layer.
