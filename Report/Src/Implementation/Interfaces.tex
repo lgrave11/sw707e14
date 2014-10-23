@@ -17,7 +17,7 @@ public static function notifyStationBooking($station_id, $booking_id, $start_tim
 {
 	$message = self::makeJson("booking", $station_id, $booking_id, $start_time, $password);
 	
-	$sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);b
+	$sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 	$sock_data = socket_connect($sock, self::$station_ips[$station_id - 1], self::$port);
 	
 	$sock_data = socket_write($sock, $message);
