@@ -1,21 +1,21 @@
-\section{ER-Diagram}
-In order to have an idea of how the database for handling bookings and location of bicycles and their relation to the location of the stations, an ER-Diagram was made, see \figref{fig:er-dia}.
+\section{Entity--Relationship Diagram}
+In order to have an idea of how the database for handling bookings, location of bicycles, and their relation to the location of the stations, an ER Diagram was made, see \figref{fig:er-dia}.
 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.4]{relevantmaterial/erdiagram}
-	\caption{ER-Diagram for database overview.}\label{fig:er-dia}
+	\caption{The ER Diagram for database overview. Does not include less important attributes.}\label{fig:er-dia}
 \end{figure}
 
 As seen in the diagram, the entities consists of bicycle, dock, station, booking, and account.
-An account consists of a username and email, which both must be unique, and a phone-number and password.
+An account consists of a username, email, which both must be unique, a phone-number, and password.
 These attributes are common for an account entity, with the phone-number being special in that the idea is they will receive the booking-password over SMS.
 
-In relation to this is the booking entity, where it can be seen that a user can have zero to many bookings whereas a booking is registered to one and only one account.
-The booking then has a booking-id, to uniquely identify a booking, a start-time, such that a station knows when to lock a bicycle, and a booking-password used to unlock a bicycle at the given start-time if a correct password is entered.
-The idea is that if a booking is not used in a given timeframe at the start-time, the booking will be removed, to prevent spamming of bookings without use.
+In relation to this is the booking entity, where it can be seen that a user can have many bookings whereas a booking is registered to one and only one account.
+The booking then has a booking-id, to uniquely identify a booking, a start-time, such that a station knows when to lock a bicycle, and a booking-password, used to unlock a bicycle at the given start-time if a correct password is entered.
+The idea is that if a booking is not used in a given time frame at the start-time, the booking will be removed, to prevent spamming of bookings without use.
 
-A booking is also tied to a station, such that a booking is located at one and only one station, whereas a station has zero to many bookings.
+A booking is also tied to a station, such that a booking is located at one and only one station, whereas a station can have many bookings.
 
 A station has the attribute station-id, to uniquely identify the station.
 Furthermore, it has a name, which is thought to be used to give a meaningful description of a given station.
