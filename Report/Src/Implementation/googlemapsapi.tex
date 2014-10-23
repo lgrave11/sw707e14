@@ -1,0 +1,88 @@
+\section{Google Maps API}
+The Google Maps API \citep{misc:googlemapsapi} is used to show the map on both the front page and the admin page.
+However, both of these pages use the API differently, the front page uses the API to show the map with the stations that are currently in the system, whereas the admin page shows all the bicycles that are in use.
+
+To use the API several things have to be taken care of first, which is constructing the map, which can be seen in \lstref{lst:mapoptions}.
+Here decisions about the map options are chosen here, these decisions are e.g. the center of the map, which zoom level the map should be, and the style of the map.
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[caption={Construction of the map}, label={lst:mapoptions}, language=Javascript]
+var mapOptions = {
+	zoom: 13,
+	center: aalborg,
+	panControl: false,
+    zoomControlOptions: {
+		style: google.maps.ZoomControlStyle.LARGE,
+		position: google.maps.ControlPosition.RIGHT_TOP,
+	},
+};
+\end{lstlisting}
+\end{minipage}
+
+After the map is constructed the map is filled with either the stations or the bicycles, depends on front page or admin page.
+
+For the front page the stations are inserted into the map by use of AJAX.
+To add a station to the map first the data is gathered, which is the free bicycles and docks for each station, where after the stations are created.
+The creation of stations can be seen in \lstref{lst:creationofstations}, which starts by creating a info window.
+The info window is a window that appearers whenever the user clicks on a station marker, the info window shows information about the station, which is the name, amount of free bicycles, and the amount of free docks, the info window construction can be seen in line 2 to 3.
+After the info window is created a marker is created, see line 5 to 12, which is a given station, here the position of the marker is set, as well as the title, icon, and settings.
+The settings for a marker is that the marker should not be draggable for the user, so the user cannot change the position of a marker.
+Furthermore, an animation for the marker is created, such that the marker falls down from the sky and lands where it is placed.
+Another animation added to the marker is a bouncing animation, which is used to show which station is selected. The selection of a station can happen by clicking the marker of a station or by selection the station by name in the search menu.
+The image of a station in the map is also changed to be a red marker containing a bicycle in the middle.
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[caption={Construction of stations}, label={lst:creationofstations}, language=Javascript]
+for(i = 0; i < stations.length; i++){
+	var info = new google.maps.InfoWindow(
+		{ content: "<div style=\"overflow:hidden;white-space:nowrap;\"><b>" + stations[i]["name"] + "</b><br/> Available Bicycles: " + freeBicycleList[i+1] + "<br/> Available Docks: " + freeDockList[i+1] + "</div>"});
+            
+	var marker = new google.maps.Marker({
+		map:map,
+		draggable:false,
+		animation: google.maps.Animation.DROP,
+		position: new google.maps.LatLng(stations[i]["latitude"],stations[i]["longitude"]),
+		title: stations[i]["name"],
+		icon: image
+	});
+            
+	google.maps.event.addListener(marker, 'click', helperBounce(marker,toggleBounce));
+	google.maps.event.addListener(marker, 'click', helperSelectStation(SelectStationFromList, marker.title));
+	google.maps.event.addListener(marker, 'click', infoHelper(marker,info,map));
+	infowindow.push(info);
+	mark.push(marker);
+}
+\end{lstlisting}
+\end{minipage}
+
+For the admin page the markers are bicycles, which are updated now and then using AJAX, see \lstref{lst:updatemarker}.
+The main purpose of this page is to be able to see where the different bicycles are at a given time, which are the reason why the markers are updated once in a while.
+For the purpose of this project it updates every tenth second, to be able to simulate how it could look like, however, in the real system every tenth second might be too often, depending on how often the GPS's of the bicycle sent data to the database.
+For the update marker position the AJAX is used to get all the positions of the different bicycles, as can be seen in line 1.
+Hereafter all the markers are removed, because else the same bicycle would be showed multiple times, this is done by a simple procedure call, see line 2.
+To insert the bicycles onto the map, a marker for each bicycle is created.
+The bicycles, just as the stations, are given a position and are unable to be dragged, moreover, the icon is also replaced with a black dot, to show where the bicycles are.
+The black dot was used because it was a simple way of showing a bicycle, and it did not fill that much on the map, furthermore, if it was replaced with a bicycle, it could become hard to see if multiple bicycles where almost at the same place.
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[caption={Update the bicycles marker position}, label={lst:updatemarker}, language=Javascript]
+var result = $.ajax({url: "/Ajax/GetBicyclePositions"}).success(function() {
+	setAllMap(null);
+	var j = $.parseJSON(result.responseText);
+	for(i = 0; i < j.length; i++) {
+		mark.push(
+			new google.maps.Marker({ 
+				map:map, 
+				draggable:false, 
+				position: new google.maps.LatLng(j[i]["latitude"], j[i]["longitude"]), 
+				icon: bicycleimage }
+			)
+		);
+	}
+	setTimeout(function() {updateMarkers();}, 1000);
+});
+\end{lstlisting}
+\end{minipage}
+
+All in all the Google Maps API is a very good API to show a map with markers on it, and is used to this as well. 
+The map is also very easy to change, and construct it the way we wanted.
