@@ -1,0 +1,139 @@
+\section{Interfaces}
+As is evident from the chosen solution, some communication between the stations and the database has to be established, to retrieve bookings etc..
+This communication is established through a series of interfaces.
+These interfaces being from website to station, station to database, and bicycle to database.
+Each of these interfaces are described hereafter.
+
+\subsection{Website to Station}
+The website has to establish contact to a station when a booking or un-booking has been performed.
+It is evident that this is important, as the stations need to be notified to keep track of bookings involving themselves as station.
+
+How this contact is established is through TCP.
+The call to the notification methods is added in the \textit{BookingService}, as each time a booking is created, updated, or deleted, it is called through BookingService, and as of such we ensure the notification method is always called.
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[caption = {Function for notifying a station of a new booking.}, label = {lst:notifystationbooking}]
+public static function notifyStationBooking($station_id, $booking_id, $start_time, $password)
+{
+	$message = self::makeJson("booking", $station_id, $booking_id, $start_time, $password);
+	
+	$sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);b
+	$sock_data = socket_connect($sock, self::$station_ips[$station_id - 1], self::$port);
+	
+	$sock_data = socket_write($sock, $message);
+	socket_close($sock);
+}
+\end{lstlisting}
+\end{minipage}
+
+In order to see how the notification to a station is performed, see \lstref{lst:notifystationbooking}.
+As can be seen in the code, on line 3, a message is JSON encoded with an action, station-id, booking-id, start-time, and password.
+This is performed to have a standard way of encoded data, which can be easily decoded by the station.
+Afterwards in line 5-9, the tcp-socket is constructed and sent to the affected station.
+
+It is then up to the station to read this information and handle it in the station's local database.
+
+As can be seen from the code, the action is in this case "booking", but to notify with an un-booking this difference is that the action is "unbooking" and you only need the station- and booking-id.
+
+\subsection{Station to Database}
+The station to database interface is important to register whether bicycles has been taken at stations, in order to give correct information on the website status page.
+Additionally the interface is used to retrieve information about bookings registered in the large database, in case of power-up of a given station.
+
+The interface has been implemented in a SOAP encoding by help of the NuSOAP library.\fxwarning{kilde her}
+This library makes you able to write regular PHP functions and then register these with the NuSOAP library, in order to have a webservice generated.
+Bare in mind that all methods registered with NuSOAP needs to have a return value, and could not figure out how to specify void, as of such, a dummy boolean value is used where no other return value is needed.
+
+An example of the implementation of an update and read operation on the database is presented hereafter.
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[caption = {Method for registering a bicycle as been returned to a dock at a given station.}, label = {lst:bicycledockstationreturned}]
+$server->register('BicycleReturnedToDockAtStation',
+	array('bicycle_id' => 'xsd:int',
+	'station_id' => 'xsd:int',
+	'dock_id'    => 'xsd:int'),
+	array('return' => 'xsd:boolean'),
+	$SERVICE_NAMESPACE,
+	$SERVICE_NAMESPACE . '#soapaction',
+	'rpc',
+	'literal',
+	'Registers that a given bicycle has arrived at a given dock at a given station'
+);
+function BicycleReturnedToDockAtStation($bicycle_id, $station_id, $dock_id)
+{
+	global $db;
+	$stmt = $db->prepare("UPDATE dock SET holds_bicycle = ? WHERE station_id = ? AND dock_id = ?");
+	$stmt->bind_param("iii", $bicycle_id, $station_id, $dock_id);
+	$stmt->execute();
+	$stmt->close();
+	
+	return true;
+}
+\end{lstlisting}
+\end{minipage}
+
+If you take a look at \lstref{lst:bicycledockstationreturned}, the code is split into two parts, line 1-11 and line 12-21, which handles different parts of providing a method to register that a bicycle has returned to a dock at given station.
+
+Line 1-11 takes care of registering the PHP function, such that it can be included in the auto-generation of the SOAP encoded webservice.
+As can be seen from this specification, we tell the NuSOAP library the name of the function to register on line 1.
+Then line 2-4 specifies the input parameters, line 5 specifies the return value, and line 6-11 is less interesting parts with deals with how the method should be represented in SOAP.
+
+Line 12-21 is the actual method for registering that a bicycle has been return to a dock at a given station.
+This is performed with use of prepared statements, as can be seen in line 15-18, as is done to prevent MySQL injection attempts.
+As you can see, the actual statement expresses an update on the dock, such that the dock where the bicycle has been placed at gets this information updated.
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[caption = {Method for reading all bookings for a given station}, label = {lst:getallbookingstation}]
+$server->register(
+	'GetAllBookingsForStation',
+	array('station_id' => 'xsd:int'),
+	array('return' => 'tns:BookingObjectArray'),
+	$SERVICE_NAMESPACE,
+	$SERVICE_NAMESPACE . '#soapaction',
+	'rpc',
+	'encoded',
+	'Get all bookings for station'
+);
+//in case you want to read everything.
+function GetAllBookingsForStation($station_id)
+{
+	global $db;
+	$stmt = $db->prepare("SELECT booking_id, start_time, start_station, password, for_user FROM booking WHERE start_station = ? AND password IS NOT NULL");
+	$stmt->bind_param("i", $station_id);
+	$stmt->execute();
+	$stmt->bind_result($booking_id, $start_time, $start_station, $password, $for_user);
+	
+	$returnarray = array();
+	while($stmt->fetch())
+	{
+	$to_add_class = new stdclass();
+	$to_add_class->booking_id = $booking_id;
+	$to_add_class->start_time = $start_time;
+	$to_add_class->start_station = $start_station;
+	$to_add_class->password = $password;
+	$to_add_class->for_user = $for_user;
+	
+	$returnarray[] = json_encode($to_add_class);
+	}
+	$stmt->close();
+	return $returnarray;
+}
+\end{lstlisting}
+\end{minipage}
+
+An example of a method that reads from the database is the \textit{GetAllBookingsForStation} function, seen in \lstref{lst:getallbookingstation}.
+Such a method is for example useful when first booting a station where its local database is empty.
+
+Taking a look at line 1-10, you see the registration of the PHP function for integration in the SOAP specification.
+As can be seen, it utilised a custom type called \textit{BookingObjectArray}, which is an array type used to contain multiple string JSON encoded that represents bookings.
+If you then take a look at line 15-16, you see how the fields in the booking table is selected.
+The results you get from the select statement is then bound to variables as seen in line 18.
+Finally on line 21-31 you can see how each booking is JSON encoded and appended to a return array, which is then returned on line 33, and can be used by station to traverse the array returned and decode each string to get its corresponding booking information.
+
+\subsection{Bicycle to Database}
+The interface from bicycle to database, is an interface that is needed to register the location of a bicycle if GPS tracking is to be implemented.
+The idea is that each bicycle would use the interface to inform the system where the given bicycle is located, according to GPS.
+
+The interface is implemented in the same fashion as the interface from station to database.
+As of such, it is implemented as a SOAP web-service, using the NuSOAP library to gain the desired encoding.
+There exists one method, the RegisterGPS method, which takes three arguments, the bicycle-id, latitude and longitude.
+It is then coded similar to \lstref{lst:bicycledockstationreturned}, but where a given bicycles latitude and longitude is updated instead.
