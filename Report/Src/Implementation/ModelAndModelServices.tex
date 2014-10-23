@@ -1,5 +1,8 @@
 \section{Model \& Model Services}
-This section will describe the model layer, specifically going into what a specific model and what its associated model service does. For more detail about Model-View-Controller architecture, see \secref{sec:mvc}.
+This section will describe the model and model service layer.
+It will illustrate this by giving an example model, showing what they it looks like and what it does and then illustrating the corresponding service.
+It will then provide an overview over the rest of the models, their model services and their functions.
+For more detail about Model-View-Controller architecture, see \secref{sec:mvc}.
 
 The Bicycle model can be seen in \lstref{lst:bicycleModel}. Our modification to the original MVC skeleton here is then that instead of using the models to implement behaviour, we use it to model the corresponding database table.
 
@@ -24,18 +27,6 @@ class Bicycle
 \end{minipage}
 
 The corresponding BicycleService, though very truncated, can be seen in \lstref{lst:bicycleService}. The BicycleService implements CRUD methods for the Bicycle model.
-
-BicycleService contains the following methods,
-
-\begin{itemize}
-\item \lstinline|__construct($database)|: Constructs the BicycleService, with the Controller's database instance.
-\item \lstinline|create($bicycle)|: Creates a new bicycle in the database.
-\item \lstinline|read($id)|: Reads a bicycle from the database based on id.
-\item \lstinline|readAll()|: Reads all bicycles from the database.
-\item \lstinline|update($bicycle)|: Updates a bicycle in the database with new information.
-\item \lstinline|delete($bicycle)|: Delete a bicycle in the database.
-\item \lstinline|validate($bicycle)|: Validates a bicycle.
-\end{itemize}
 
 \begin{lstlisting}[language=php, label=lst:bicycleService, caption={BicycleService Class}]
 <?php
@@ -81,4 +72,18 @@ class BicycleService implements iService
 ?>
 \end{lstlisting}
 
-These illustrate the model layer well, and the next section will show how they are used in the context of the controller layer.
+The models and their associated services, are as follows:
+
+\begin{itemize}
+\item Account \& AccountService -- Account for the database representation, and AccountService for CRUD functionality and verifying logins.
+\item Bicycle \& BicycleService -- Bicycle for representation and BicycleService for CRUD.
+\item Booking \& BookingService -- Booking for representation and BookingService for CRUD and getting/deleting bookings for a specific user.
+\item Dock \& DockService -- Dock for representation and DockService for CRUD and determining if a dock is currently holding a bicycle or getting all docks at a station.
+\item Station \& StationService -- Station for representation and DockService for CRUD and special functionality such as getting counts of available bicycles at stations or for searching for a station.
+\end{itemize}
+
+We also provide various helper functionality in Tools and ViewHelper. 
+In Tools we provide helper functionality for determining if the user is logged in, for including CSS and JavaScript, and for validating special fields like email addresses.
+In ViewHelper we provide helper functionality for printing error or success messages, and printing date components.
+
+ The next section will show how they are used in the context of the controller layer.
