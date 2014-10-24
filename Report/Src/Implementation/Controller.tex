@@ -1,5 +1,8 @@
 \section{Controller}
-This section will show how the controller layer works. For more detail about Model-View-Controller architecture, see \secref{sec:mvc}.
+This section will show how the controller layer works. 
+It will illustrate this by giving an example controller, showing what it looks like and what it does.
+It will then provide an overview of the rest of the controllers and their function.
+For more detail about Model-View-Controller architecture, see \secref{sec:mvc}.
 
 In \lstref{lst:homeController}, part of the Home Controller can be seen. 
 It defines an `action', this action is what is pointed to by the client. 
@@ -33,5 +36,15 @@ class Home extends Controller
     // [...]
 }
 \end{lstlisting}
+
+The controllers and their `actions' are as such,
+
+\begin{itemize}
+\item Home -- \textbf{Index}, the homepage and what is shown by default. \textbf{Unbook}, for unbooking a booking for the logged in user. \textbf{Book}, for booking a booking for the logged in user. 
+\item User -- \textbf{Index}. \textbf{Logout}, for logging out. \textbf{Login}, for logging in. \textbf{createUser}, for creating a new user. \textbf{changePassword}, for changing the password of the logged in user. \textbf{editProfile}, and \textbf{changeAccountInfo} for changing email or phone number of the logged in user. \textbf{forgotPassword}, \textbf{forgotPasswordForm}, \textbf{resetPassword}, and \textbf{resetPasswordForm} for resetting a lost password.
+\item About -- \textbf{Index}, showing an about page.
+\item Admin -- \textbf{Index}, showing a special map for administrative purposes.
+\item Ajax -- \textit{Index}, does nothing. \textbf{getBicyclePositions}, get an array of coordinates of all bicycles. \textbf{getStations}, get json encoded information about stations for dynamic updating. \textbf{getFreeBicyclesList}, get json encoded information about amount of free bicycles at all station. \textbf{getFreeDocksList}, get json encoded information about amount of free docks at all station.
+\end{itemize}
 
 What views look like will be illustrated in the next section.
