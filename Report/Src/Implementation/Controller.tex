@@ -1,16 +1,15 @@
 \section{Controller}
 This section will show how the controller layer works. 
 It will illustrate this by giving an example controller, showing what it looks like and what it does.
-It will then provide an overview of the rest of the controllers and their function.
-For more detail about Model-View-Controller architecture, see \secref{sec:mvc}.
+An overview is then provided of the rest of the controllers and their functions.
+For more detail about the Model-View-Controller architecture, see \secref{sec:mvc}.
 
 In \lstref{lst:homeController}, part of the Home Controller can be seen. 
 It defines an `action', this action is what is pointed to by the client. 
-For space saving purposes all actions but the index action have been removed.
-It then uses two services, StationService and BookingService. 
-The StationService is used to retrieve an array of all stations(lines 8--9), and the BookingService is used to retrieve an array of all active bookings for the currently logged in user(lines 11-14). 
-This illustrates the general idea behind the separation of the entities(The Models) and the services corresponding to those models.
-It then uses the information loaded by 'including' views, and these views then use the information for displaying.
+For space saving purposes all actions but the index action have been omitted.
+The home controller uses two services, StationService, used to retrieve an array of all stations, line 8-9, and BookingService, used to retrieve an array of all active bookings for the currently logged in user, line 11-14. 
+This illustrates the general idea behind the separation of the entities (the models) and the services associated with those entities.
+It then uses the information loaded by 'including' views, and these views then use the information retrieved for displaying.
 
 \begin{lstlisting}[language=php, label=lst:homeController, caption={Home Controller Class}]
 <?php
@@ -41,15 +40,15 @@ The controllers and their `actions' are as such,
 \begin{itemize}
 \item Home {\begin{itemize} 
             \item Index -- The homepage and what is shown by default.
-            \item Unbook -- For unbooking a booking for the logged in user.
-            \item Book -- For booking a booking for the logged in user.
+            \item Unbook -- For cancelling a booking for the logged in user.
+            \item Book -- For arranging a booking for the logged in user.
             \end{itemize}}
 \item User {\begin{itemize} 
-            \item Index -- Nothing special.
+            \item Index -- Redirects to login page if not logged in, and status page otherwise.
             \item Logout -- For logging out.
             \item Login -- For logging in.
-            \item createUser -- For creating a nw user.
-            \item changePassword -- For changingthe password of the logged in user.
+            \item createUser -- For creating a new user.
+            \item changePassword -- For changing the password of the logged in user.
             \item editProfile and changeAccountInfo -- For changing email or phone number of the logged in user.
             \item forgotPassword, forgotPasswordForm, resetPassword, and resetPasswordForm -- For resetting a lost password.
             \end{itemize}}
@@ -60,7 +59,7 @@ The controllers and their `actions' are as such,
             \item Index -- Showing a special map for administrative purposes.
             \end{itemize}}
 \item Ajax {\begin{itemize} 
-            \item Index -- Does nothing.
+            \item Index -- Redirects to status page.
             \item getBicyclePositions -- Get a JSON encoded array of coordinates of all bicycles that have not null coordinates.
             \item getStations -- Get JSON encoded information about stations for dynamic updating.
             \item getFreeDocksList -- Get json encoded information about amount of free docks at all station.
