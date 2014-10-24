@@ -8,7 +8,7 @@ Each of these interfaces are described below.
 The website has to establish contact to a station when a booking or un-booking has been performed.
 It is evident that this is important, as the stations need to be notified to keep track of bookings involving themselves as station.
 
-This contact is established is through TCP.
+This contact is established through TCP.
 The call to the notification methods is added in the \textit{BookingService}, as each time a booking is created, updated, or deleted, it is called through BookingService, and as of such we ensure the notification method is always called.
 
 \begin{minipage}{\textwidth}
@@ -71,11 +71,11 @@ function BicycleReturnedToDockAtStation($bicycle_id, $station_id, $dock_id)
 \end{lstlisting}
 \end{minipage}
 
-If you take a look at \lstref{lst:bicycledockstationreturned}, the code is split into two parts, line 1-11 and line 12-21, which handles different parts of providing a method to register that a bicycle has returned to a dock at given station.
+If you take a look at \lstref{lst:bicycledockstationreturned}, the code is split into two parts, line 1-11 and line 12-21, which handles different parts of providing a method to register that a bicycle has returned to a dock at a given station.
 
 Line 1-11 takes care of registering the PHP function, such that it can be included in the auto-generation of the SOAP encoded webservice.
 As can be seen from this specification, we tell the NuSOAP library the name of the function to register on line 1.
-Then line 2-4 specifies the input parameters, line 5 specifies the return value, and line 6-11 is less interesting parts with deals with how the method should be represented in SOAP.
+Then line 2-4 specifies the input parameters, line 5 specifies the return value, and line 6-11 is less interesting parts which deals with how the method should be represented in SOAP.
 
 Line 12-21 is the actual method for registering that a bicycle has been return to a dock at a given station.
 This is performed with use of prepared statements, as can be seen in line 15-18, which is done to prevent MySQL injection.
@@ -126,7 +126,7 @@ Such a method is for example useful when first booting a station where its local
 Taking a look at line 1-10, you see the registration of the PHP function for integration in the SOAP specification.
 As can be seen, it utilised a custom type called \textit{BookingObjectArray}, which is an array type used to contain multiple JSON encoded strings that represents bookings.
 If you then take a look at line 15-16, you see how the fields in the booking table is selected.
-The results you get from the select statement is then bound to variables as seen in line 18.
+The results you get from the select statement is then bound to variables, as seen in line 18.
 Finally on line 21-31 you can see how each booking is JSON encoded and appended to a return array, which is then returned on line 33, and can be used by station to traverse the array returned and decode each string to get its corresponding booking information.
 
 \subsection{Bicycle to Database}
@@ -135,5 +135,5 @@ The idea is that each bicycle would use the interface to inform the system where
 
 The interface is implemented in the same fashion as the interface from station to database.
 As such, it is implemented as a SOAP web-service, using the NuSOAP library to gain the desired encoding.
-There exists one method, the RegisterGPS method, which takes three arguments, the bicycle-id, latitude and longitude.
+There exists one method, the \textit{RegisterGPS} method, which takes three arguments, the bicycle-id, latitude, and longitude.
 It is then coded similar to \lstref{lst:bicycledockstationreturned}, but where a given bicycles latitude and longitude is updated instead.
