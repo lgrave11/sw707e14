@@ -1,9 +1,9 @@
 \section{Google Maps API}
 The Google Maps API \citep{misc:googlemapsapi} is used to show the map on both the front page and the admin page.
-However, both of these pages use the API differently, the front page uses the API to show the map with the stations that are currently in the system, whereas the admin page shows all the bicycles that are in use.
+However, both of these pages use the API differently, the front page uses the API to show the map with the stations that are currently in the system, whereas the admin page visualizes where all the bicycles are located.
 
 To use the API several things have to be taken care of first, which is constructing the map, which can be seen in \lstref{lst:mapoptions}.
-Here decisions about the map options are chosen here, these decisions are e.g. the center of the map, which zoom level the map should be, and the style of the map.
+Map options are chosen here, these options are e.g. the center of the map, which zoom level the map should be, and the style of the map.
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[caption={Construction of the map}, label={lst:mapoptions}, language=Javascript]
@@ -19,13 +19,13 @@ var mapOptions = {
 \end{lstlisting}
 \end{minipage}
 
-After the map is constructed the map is filled with either the stations or the bicycles, depends on front page or admin page.
+After the map is constructed the map is filled with either the stations or the bicycles, depending on the page.
 
 For the front page the stations are inserted into the map by use of AJAX.
-To add a station to the map first the data is gathered, which is the free bicycles and docks for each station, where after the stations are created.
+To add a station to the map first the data is gathered, which is the free bicycles and docks for each station, after which the stations are created.
 The creation of stations can be seen in \lstref{lst:creationofstations}, which starts by creating a info window.
-The info window is a window that appearers whenever the user clicks on a station marker, the info window shows information about the station, which is the name, amount of free bicycles, and the amount of free docks, the info window construction can be seen in line 2 to 3.
-After the info window is created a marker is created, see line 5 to 12, which is a given station, here the position of the marker is set, as well as the title, icon, and settings.
+The info window is a window that appears whenever the user clicks on a station marker, the info window shows information about the station, which is the name, amount of free bicycles, and the amount of free docks, the info window construction can be seen in line 2--3.
+After the info window is created a marker is created, see line 5--12, which is a given station, here the position of the marker is set, as well as the title, icon, and settings.
 The settings for a marker is that the marker should not be draggable for the user, so the user cannot change the position of a marker.
 Furthermore, an animation for the marker is created, such that the marker falls down from the sky and lands where it is placed.
 Another animation added to the marker is a bouncing animation, which is used to show which station is selected. The selection of a station can happen by clicking the marker of a station or by selection the station by name in the search menu.
@@ -55,7 +55,7 @@ for(i = 0; i < stations.length; i++){
 \end{lstlisting}
 \end{minipage}
 
-For the admin page the markers are bicycles, which are updated now and then using AJAX, see \lstref{lst:updatemarker}.
+For the admin page the markers are bicycles, which are updated at a set frequency using AJAX, see \lstref{lst:updatemarker}.
 The main purpose of this page is to be able to see where the different bicycles are at a given time, which are the reason why the markers are updated once in a while.
 For the purpose of this project it updates every tenth second, to be able to simulate how it could look like, however, in the real system every tenth second might be too often, depending on how often the GPS's of the bicycle sent data to the database.
 For the update marker position the AJAX is used to get all the positions of the different bicycles, as can be seen in line 1.
