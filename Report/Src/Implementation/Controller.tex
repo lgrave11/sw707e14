@@ -1,16 +1,15 @@
 \section{Controller}
 This section will show how the controller layer works. 
 It will illustrate this by giving an example controller, showing what it looks like and what it does.
-It will then provide an overview of the rest of the controllers and their function.
-For more detail about Model-View-Controller architecture, see \secref{sec:mvc}.
+An overview is then provided of the rest of the controllers and their functions.
+For more detail about the Model-View-Controller architecture, see \secref{sec:mvc}.
 
 In \lstref{lst:homeController}, part of the Home Controller can be seen. 
 It defines an `action', this action is what is pointed to by the client. 
-For space saving purposes all actions but the index action have been removed.
-It then uses two services. 
-The StationService is used to retrieve an array of all stations(lines 8--9), and the BookingService is used to retrieve an array of all active bookings for the currently logged in user(lines 11-14). 
-This illustrates the general idea behind the separation of the entities(The Models) and the services corresponding to those models. '
-It then uses the information loaded by 'including' views, and these views then use the information for displaying.
+For space saving purposes all actions but the index action have been omitted.
+The home controller uses two services, StationService, used to retrieve an array of all stations, line 8-9, and BookingService, used to retrieve an array of all active bookings for the currently logged in user, line 11-14. 
+This illustrates the general idea behind the separation of the entities (the models) and the services associated with those entities.
+It then uses the information loaded by 'including' views, and these views then use the information retrieved for displaying.
 
 \begin{lstlisting}[language=php, label=lst:homeController, caption={Home Controller Class}]
 <?php
@@ -28,7 +27,6 @@ class Home extends Controller
             $activeBookings = $bookingService->getActiveBookings($_SESSION["login_user"]);
         }
 
-        // load views. within the views we can echo out $songs and $amount_of_songs easily
         require 'application/views/_templates/header.php';
         require 'application/views/home/index.php';
         require 'application/views/_templates/footer.php';
@@ -40,11 +38,32 @@ class Home extends Controller
 The controllers and their `actions' are as such,
 
 \begin{itemize}
-\item Home -- \textbf{Index}, the homepage and what is shown by default. \textbf{Unbook}, for unbooking a booking for the logged in user. \textbf{Book}, for booking a booking for the logged in user. 
-\item User -- \textbf{Index}. \textbf{Logout}, for logging out. \textbf{Login}, for logging in. \textbf{createUser}, for creating a new user. \textbf{changePassword}, for changing the password of the logged in user. \textbf{editProfile}, and \textbf{changeAccountInfo} for changing email or phone number of the logged in user. \textbf{forgotPassword}, \textbf{forgotPasswordForm}, \textbf{resetPassword}, and \textbf{resetPasswordForm} for resetting a lost password.
-\item About -- \textbf{Index}, showing an about page.
-\item Admin -- \textbf{Index}, showing a special map for administrative purposes.
-\item Ajax -- \textit{Index}, does nothing. \textbf{getBicyclePositions}, get an array of coordinates of all bicycles. \textbf{getStations}, get json encoded information about stations for dynamic updating. \textbf{getFreeBicyclesList}, get json encoded information about amount of free bicycles at all station. \textbf{getFreeDocksList}, get json encoded information about amount of free docks at all station.
+\item Home {\begin{itemize} 
+            \item Index -- The homepage and what is shown by default.
+            \item Unbook -- For cancelling a booking for the logged in user.
+            \item Book -- For arranging a booking for the logged in user.
+            \end{itemize}}
+\item User {\begin{itemize} 
+            \item Index -- Redirects to login page if not logged in, and status page otherwise.
+            \item Logout -- For logging out.
+            \item Login -- For logging in.
+            \item createUser -- For creating a new user.
+            \item changePassword -- For changing the password of the logged in user.
+            \item editProfile and changeAccountInfo -- For changing email or phone number of the logged in user.
+            \item forgotPassword, forgotPasswordForm, resetPassword, and resetPasswordForm -- For resetting a lost password.
+            \end{itemize}}
+\item About {\begin{itemize} 
+            \item Index -- Showing an about page.
+            \end{itemize}}
+\item Admin {\begin{itemize} 
+            \item Index -- Showing a special map for administrative purposes.
+            \end{itemize}}
+\item Ajax {\begin{itemize} 
+            \item Index -- Redirects to status page.
+            \item getBicyclePositions -- Get a JSON encoded array of coordinates of all bicycles that have not null coordinates.
+            \item getStations -- Get JSON encoded information about stations for dynamic updating.
+            \item getFreeDocksList -- Get json encoded information about amount of free docks at all station.
+            \end{itemize}}
 \end{itemize}
 
 What views look like will be illustrated in the next section.

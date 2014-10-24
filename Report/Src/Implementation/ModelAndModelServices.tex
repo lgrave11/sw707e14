@@ -1,10 +1,11 @@
-\section{Model \& Model Services}
+\section{Model \& Model Services}\fxwarning{Det er for redegørende}
 This section will describe the model and model service layer.
-It will illustrate this by giving an example model, showing what they it looks like and what it does and then illustrating the corresponding service.
-It will then provide an overview over the rest of the models, their model services and their functions.
+It will illustrate this by giving an example model, showing what it looks like and what it does and then illustrating the corresponding service.
+It will then provide an overview over the rest of the models, their model services, and their functions.
 For more detail about Model-View-Controller architecture, see \secref{sec:mvc}.
 
-The Bicycle model can be seen in \lstref{lst:bicycleModel}. Our modification to the original MVC skeleton here is then that instead of using the models to implement behaviour, we use it to model the corresponding database table.
+The Bicycle model can be seen in \lstref{lst:bicycleModel}.
+Our modification to the original MVC skeleton is to use the models to implement behaviour, we use it to model the corresponding database table.
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[language=php, label=lst:bicycleModel, caption={Bicycle Class}]
@@ -21,12 +22,12 @@ class Bicycle
         $this->latitude = $latitude;
     }
 }
-
 ?>
 \end{lstlisting}
 \end{minipage}
 
-The corresponding BicycleService, though very truncated, can be seen in \lstref{lst:bicycleService}. The BicycleService implements CRUD methods for the Bicycle model.
+The corresponding BicycleService, though very truncated, can be seen in \lstref{lst:bicycleService}. 
+The BicycleService implements CRUD methods for the Bicycle model.
 
 \begin{lstlisting}[language=php, label=lst:bicycleService, caption={BicycleService Class}]
 <?php
@@ -58,7 +59,7 @@ class BicycleService implements iService
             $stmt->execute();
             $id = $this->db->insert_id;
             $stmt->close();
-            return new Bicycle($id, null, null);
+            return new Bicycle($id, $bicycle->longitude, $bicycle->latitude);
         }
         else
         {
@@ -70,20 +71,21 @@ class BicycleService implements iService
 }
 
 ?>
-\end{lstlisting}
+\end{lstlisting}\fxwarning{Erstattet nulls med longitude and latitude i return.}
 
-The models and their associated services, are as follows:
+The models represent the database tables and the services contain Create, Read, Update, Delete functionality. 
+The models and their associated services are as follows:
 
 \begin{itemize}
-\item Account \& AccountService -- \textbf{Account} for the database representation, and \textbf{AccountService} for CRUD functionality and verifying logins.
-\item Bicycle \& BicycleService -- \textbf{Bicycle} for representation and \textbf{BicycleService} for CRUD.
-\item Booking \& BookingService -- \textbf{Booking} for representation and \textbf{BookingService} for CRUD and getting/deleting bookings for a specific user.
-\item Dock \& DockService -- \textbf{Dock} for representation and \textbf{DockService} for CRUD and determining if a dock is currently holding a bicycle or getting all docks at a station.
-\item Station \& StationService -- \textbf{Station} for representation and \textbf{StationService} for CRUD and special functionality such as getting counts of available bicycles at stations or for searching for a station.
+\item Account \& AccountService -- \textbf{AccountService} also for verifying logins.
+\item Bicycle \& BicycleService -- No special functionality.
+\item Booking \& BookingService -- \textbf{BookingService} also for getting/deleting bookings for a specific user.
+\item Dock \& DockService -- \textbf{DockService} also for determining if a dock is currently holding a bicycle or getting all docks at a station.
+\item Station \& StationService -- \textbf{StationService} also for getting counts of available bicycles at stations or for searching for a station.
 \end{itemize}
 
 We also provide various helper functionality in \textbf{Tools} and \textbf{ViewHelper}. 
 In \textbf{Tools} we provide helper functionality for determining if the user is logged in, for including CSS and JavaScript, and for validating special fields like email addresses.
-In \textbf{ViewHelper} we provide helper functionality for printing error or success messages, and printing date components.
+In \textbf{ViewHelper} we provide helper functionality for printing error or success messages, and printing date components.\fxwarning{Burde disse være i model laget?}
 
  The next section will show how they are used in the context of the controller layer.

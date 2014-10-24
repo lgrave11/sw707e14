@@ -1,5 +1,5 @@
 \section{Entity--Relationship Diagram}
-In order to have an idea of how the database for handling bookings, location of bicycles, and their relation to the location of the stations, an ER Diagram was made, see \figref{fig:er-dia}.
+In order to have an idea of how the database handles bookings, location of bicycles, and their relation to the location of the stations, an ER Diagram was made, see \figref{fig:er-dia}.
 
 \begin{figure}
 	\centering
@@ -25,10 +25,10 @@ In addition to this, a station has a location, which is used to easily place a s
 A station also has two derived attributes, which are available-bicycles and amount-of-bookings, these are attributes that is beneficial to show to the user, such that they can see if it is possible to gather a bicycle at a given station.
 
 Next is the dock entity, which is a weak entity, as it cannot exist without a station.
-This represent the real-life situation with stations located around the city, and each of these has a number of docks.
+This represents the real-life situation with stations located around the city, and each of these has a number of docks.
 The dock only has one attribute, which is the dock-id, used to identify a dock in combination with a station-id.
 
 The interesting part of a dock is its relation with a bicycle.
-A dock may or may not hold a bicycle, which is represented with the holds relation.
+A dock may or may not hold a bicycle, which is represented with the holds relation.\fxwarning{Locked docks?}
 
-The bicycle entity then consists of a bicycle-id, to uniquely identify a given bicycle, and a location, which can be used to locate the given bicycle, as can be beneficial to calculate distances, but also to locate lost bicycles.
+The bicycle entity then consists of a bicycle-id, to uniquely identify a given bicycle, and a location, which can be used to locate lost bicycles.
