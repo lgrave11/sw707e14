@@ -11,3 +11,8 @@ C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\Mini
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\obj\Debug\MiniProject2.exe
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\obj\Debug\MiniProject2.pdb
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\alglibnet2.dll
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\friendships.txt
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\libiomp5md.dll
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MathNet.Numerics.MKL.dll
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MathNet.Numerics.dll
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MathNet.Numerics.xml
