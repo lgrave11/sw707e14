@@ -11,12 +11,11 @@ namespace MiniProject2
     {
         private string _name;
         public string Name { get { return _name; } }
-        public string[] Friends { get; set; }
+        public List<string> Friends { get; set; }
 
         public string Summary = "";
         public string Review = "";
-        
-        public User(string name, string summary, string review, string[] friends)
+        public User(string name, string summary, string review, List<string> friends)
         {
             _name = name;
             Summary = summary;
@@ -24,23 +23,23 @@ namespace MiniProject2
             Friends = friends;
         }
 
-        public static List<User> LoadAllUsers()
+        public static List<User> ReadUserFile()
         {
-            string[] lines = System.IO.File.ReadAllLines("friendships.txt");
-
-            List<User> users = new List<User>();
-
-            /*Find users */
-            for (int userindex = 0, friendsindex = 1, summaryindex = 2, reviewindex = 3; reviewindex < lines.Count(); userindex += 5, friendsindex+=5, summaryindex+= 5, reviewindex+=5 )
+            List<User> userList = new List<User>();
+            string fileContent = System.IO.File.ReadAllText("friendships.txt");
+            List<string> userBlocks = new List<string>();
+            userBlocks.AddRange(fileContent.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.None));
+            foreach (string block in userBlocks)
             {
-                string username = lines[userindex].Split(' ')[1];
-                string summary = lines[summaryindex].Split(' ')[1];
-                string review = lines[reviewindex].Split(' ')[1];
-                string[] friends = lines[friendsindex].Split(':')[1].Trim().Split('\t');
-                users.Add(new User(username, summary, review, friends));
+                string[] splitBlock = block.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                
+                string name = splitBlock[0].Substring(5).Trim();
+                List<string> friends = splitBlock[1].Substring(8).Trim().Split('\t').ToList();
+                string Summary = splitBlock[2].Substring(8).Trim();
+                string Review = splitBlock[3].Substring(7).Trim();
+                userList.Add(new User(name, Summary, Review, friends));
             }
-
-            return users;
+            return userList;
         }
     }
 }
