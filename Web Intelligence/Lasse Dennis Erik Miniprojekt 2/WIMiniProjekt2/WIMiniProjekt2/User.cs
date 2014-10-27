@@ -9,6 +9,7 @@ namespace WIMiniProjekt2
     class User
     {
         public int Index;
+        public double Eigen;
         public string Username;
         public List<string> Friends = new List<string>();
         public string Review;

@@ -8,3 +8,13 @@ C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Projekt 2\WIMiniProjekt2\WIMi
 C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Projekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\MathNet.Numerics.xml
 C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Projekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\libiomp5md.dll
 C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Projekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\MathNet.Numerics.MKL.dll
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\WIMiniProjekt2.exe.config
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\obj\Debug\WIMiniProjekt2.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\obj\Debug\WIMiniProjekt2.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\libiomp5md.dll
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\MathNet.Numerics.MKL.dll
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\WIMiniProjekt2.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\WIMiniProjekt2.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\MathNet.Numerics.dll
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\MathNet.Numerics.xml
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\obj\Debug\WIMiniProjekt2.csprojResolveAssemblyReference.cache
