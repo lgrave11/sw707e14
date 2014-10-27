@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Factorization;
+using System.Drawing;
 
 namespace MiniProject2
 {
@@ -13,74 +14,174 @@ namespace MiniProject2
     {
         static void Main(string[] args)
         {
-            /*
-            double[,] array = new double[9, 9] { { 2, -1, -1, 0, 0, 0, 0, 0, 0 }, { -1,2,-1,0,0,0,0,0,0 }, {-1,-1,4,-1,-1,0,0,0,0 }, {0,0,-1,4,-1,-1,-1,0,0 }, {0,0,-1,-1,4,-1,-1,0,0 },{0,0,0,-1,-1,4,-1,-1,0},{0,0,0,-1,-1,-1,4,-1,0},{0,0,0,0,0,-1,-1,3,-1},{0,0,0,0,0,0,0,-1,1} };
-
-            
-            var gevd = new EigenvalueDecomposition(array);
-            
-            for(int i = 0; i < 9; i++)
-            {
-                Console.WriteLine(gevd.DiagonalMatrix[i, i]);
-            }
-
-            for (int i = 0; i < 9; i++)
-            {
-                for(int j = 0; j < 9; j++)
-                {
-                    Console.Write(gevd.Eigenvectors[i, j] + " ");
-                }
-                Console.Write("\n");
-            }           
-
-            Console.Read();
-             */
-
-            /*foreach(User user in User.LoadAllUsers())
-            {
-                Console.WriteLine(user.Name);
-            }*/
-            
             Control.UseNativeMKL();
-            FindCommunities(User.LoadAllUsers());
-            Console.Read();
+            List<List<User>> lala = FindCommunities(User.ReadUserFile());
+            int counts = lala.Count;
+            for (int i = 0; i < counts; i++)
+            {
+                printer(lala[i],"penisgarden" + i);
+            }
+                Console.Read();
         }
 
-        static void FindCommunities(List<User> users)
+        static int countzor = 1;
+
+        static List<List<User>> FindCommunities(List<User> users)
         {
-            Console.WriteLine("Fik kaldt metoden");
-            double[,] aMatrix = new double[users.Count, users.Count];
-            
-            for(int i = 0; i < users.Count; i++)
+            if (users.Count == 1)
             {
-                for(int j = 0; j < users.Count; j++)
+                return new List<List<User>>() { users };
+            }
+            Evd<double> evd = ConstructEvd(users);
+            List<SortClass> sortedEVD = SortEVD(users, evd);
+            Pair<List<User>> cutUserResult = CutUsers(sortedEVD);
+
+            if(cutUserResult == null)
+            {
+                return new List<List<User>>() { users };
+            }
+
+            List<List<User>> returnList = new List<List<User>>();
+            foreach (var x in FindCommunities(cutUserResult.left))
+            {
+                returnList.Add(x);
+            }
+            foreach(var x in FindCommunities(cutUserResult.right))
+            {
+                returnList.Add(x);
+            }
+
+            return returnList;
+        }
+
+        private static Pair<List<User>> CutUsers(List<SortClass> sortedUsers)
+        {
+            List<User> returnValLeft = new List<User>(), returnValRight = new List<User>();
+
+            double largestGap = 0.0;
+            int index = 0;
+            for (int i = 0; i < sortedUsers.Count - 1; i++ )
+            {
+                if(Math.Abs(sortedUsers[i].EVDValue-sortedUsers[i+1].EVDValue) > largestGap)
+                {
+                    index = i;
+                    largestGap = Math.Abs(sortedUsers[i].EVDValue - sortedUsers[i + 1].EVDValue);
+                }
+            }
+            if(largestGap > 0.7)
+            {
+                return null;
+            }
+            Console.WriteLine(largestGap);
+
+            for (int i = 0; i <= index; i++ )
+            {
+                for(int j = index + 1; j < sortedUsers.Count; j++)
+                {
+                    sortedUsers[i].User.Friends.Remove(sortedUsers[j].User.Name);
+                    sortedUsers[j].User.Friends.Remove(sortedUsers[i].User.Name);
+                }
+            }
+
+            for(int i = 0; i <= index; i++)
+            {
+                returnValLeft.Add(sortedUsers[i].User);
+            }
+            for (int i = index + 1; i < sortedUsers.Count; i++)
+            {
+                returnValRight.Add(sortedUsers[i].User);
+            }
+            Console.WriteLine("L: " + returnValLeft.Count + " R: " + returnValRight.Count);
+            return new Pair<List<User>>(returnValLeft, returnValRight);
+        }
+
+        private static List<SortClass> SortEVD(List<User> users, Evd<double> evd)
+        {
+            List<SortClass> sortedEvd = new List<SortClass>();
+
+            for (int i = 0; i < evd.EigenVectors.Column(1).Count; i++)
+            {
+                sortedEvd.Add(new SortClass(users[i], evd.EigenVectors.Column(1)[i]));
+            }
+            sortedEvd.Sort();
+            return sortedEvd;
+        }
+
+        private static Evd<double> ConstructEvd(List<User> users)
+        {
+            double[,] aMatrix = new double[users.Count, users.Count];
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                for (int j = 0; j < users.Count; j++)
                 {
                     if (i == j)
                         aMatrix[i, j] = 0;
                     else if (users[i].Friends.Contains(users[j].Name))
-                        aMatrix[i, j] = 1;
+                        aMatrix[i, j] = 1.0;
                     else
                         aMatrix[i, j] = 0;
                 }
-                
-            }
 
-            Console.WriteLine("evd konstruktion\n");
+            }
 
             Matrix<double> A = Matrix<double>.Build.DenseOfArray(aMatrix);
             Vector<double> dVector = A.RowAbsoluteSums();
             Matrix<double> D = Matrix<double>.Build.DenseOfDiagonalVector(dVector);
             Matrix<double> L = D - A;
+            //WriteImage(A, "evd" + countzor);
 
             Evd<double> evd = L.Evd();
+            return evd;
+        }
 
-            //Console.WriteLine(evd.EigenVectors.Column(1));
-            foreach(var x in evd.EigenVectors.Column(1))
+        private static void printer(List<User> users, string name)
+        {
+            double[,] aMatrix = new double[users.Count, users.Count];
+
+            for (int i = 0; i < users.Count; i++)
             {
-                Console.Write(x+ " ");
+                for (int j = 0; j < users.Count; j++)
+                {
+                    if (i == j)
+                        aMatrix[i, j] = 0;
+                    else if (users[i].Friends.Contains(users[j].Name))
+                        aMatrix[i, j] = 1.0;
+                    else
+                        aMatrix[i, j] = 0;
+                }
+
             }
-            
-          
+
+            Matrix<double> A = Matrix<double>.Build.DenseOfArray(aMatrix);
+            Vector<double> dVector = A.RowAbsoluteSums();
+            Matrix<double> D = Matrix<double>.Build.DenseOfDiagonalVector(dVector);
+            Matrix<double> L = D - A;
+            WriteImage(A, name);
+        }
+
+        public static void WriteImage(Matrix<double> matrix, string name)
+        {
+            Bitmap bm = new Bitmap(matrix.ColumnCount, matrix.ColumnCount);
+            for (int m = 0; m < matrix.ColumnCount; m++)
+            {
+                for (int n = 0; n < matrix.ColumnCount; n++)
+                {
+                    if (matrix[m, n] > 0)
+                    {
+                        bm.SetPixel(m, n, Color.Blue);
+                    }
+                    else if(matrix[m,n] < 0)
+                    {
+                        bm.SetPixel(m, n, Color.Red);
+                    }
+                    else
+                    {
+                        bm.SetPixel(m, n, Color.White);
+                    }
+                }
+            }
+            bm.Save(name + ".png");
         }
 
       
