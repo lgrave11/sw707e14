@@ -16,14 +16,25 @@ namespace WIMiniProjekt2
         static void Main(string[] args)
         {
             Control.UseNativeMKL();
-            Console.WriteLine("Making A, D, L");
+            Console.WriteLine("Starting...");
             List<User> userList = ReadUserFile();
+            var communities = FindCommunities(userList);
+            int i = 0;
+            foreach (var v in communities)
+            {
+                Matrix<double> vA = MakeMatrix(v);
+                WriteImage(vA, filename: string.Format("community-{0}", i++));
+            }
+        }
+
+
+        public static List<List<User>> FindCommunities(List<User> userList) 
+        {
+            Console.WriteLine("Making matrixes");
             Matrix<double> A = MakeMatrix(userList);
-            //Matrix<double> aOriginal = MakeMatrix(userList);
             Vector<double> dVector = A.RowAbsoluteSums();
             Matrix<double> D = Matrix<double>.Build.DenseOfDiagonalVector(dVector);
             Matrix<double> L = D - A;
-
 
             Console.WriteLine("Finding EVD.");
             Evd<double> evd = L.Evd();
@@ -32,78 +43,71 @@ namespace WIMiniProjekt2
             int p = 0;
             eigenVector.ToList().ForEach(x => { evdDictionary.Add(p, x); p++; });
 
-            Dictionary<int, double> sortedEvd = evdDictionary.OrderBy(x => x.Value).Select(x => x)
-                                                             .ToDictionary(x => x.Key, y => y.Value);
-            #region stuff
-            /*
-            int[] permutation = new int[A.ColumnCount];
-            int k = 0;
-            foreach (KeyValuePair<int, double> entry in sortedEvd)
+            Console.WriteLine("Adding eigen vector value to users.");
+            for (int ev = 0; ev < eigenVector.Count; ev++)
             {
-                permutation[entry.Key] = k++;
+                userList[ev].Eigen = eigenVector[ev];
             }
-            A.PermuteColumns(new Permutation(permutation));
-            A.PermuteRows(new Permutation(permutation));
-            */
+            var sortedUserList = userList.OrderBy(x => x.Eigen).ToList();
 
-            #endregion
-            Console.WriteLine("Finding differences");
-            Dictionary<int, double> differences = sortedEvd.Zip(sortedEvd.Skip(1), (x, y) => new KeyValuePair<int, double>(x.Key, Math.Abs(x.Value - y.Value)))
-                                                           .ToDictionary(x => x.Key, y => y.Value);
-
-            Dictionary<int, double> sortedDifferences = differences.OrderBy(x => x.Value)
-                                                                   .ToDictionary(x => x.Key, y => y.Value);
-
-            Dictionary<int, double> before = new Dictionary<int, double>();
-            Dictionary<int, double> after = new Dictionary<int, double>();
-            int index = sortedDifferences.Last().Key;
-            bool b = false;
-            foreach (KeyValuePair<int, double> kv in evdDictionary)
+            Console.WriteLine("Cutting communities.");
+            Tuple<List<User>, List<User>> cutCommunities = Cut(sortedUserList);
+            if (cutCommunities == null)
             {
-                if (kv.Key == index)
-                {
-                    b = true;
-                }
-                if (b)
-                {
-                    after.Add(kv.Key, kv.Value);
-                }
-                else
-                {
-                    before.Add(kv.Key, kv.Value);
-                }
-            }
-            Console.WriteLine("Splitting graphs.");
-            List<User> userListBefore = new List<User>();
-            List<User> userListAfter = new List<User>();
-            foreach (KeyValuePair<int, double> kv in evdDictionary)
-            {
-                userList[kv.Key].Eigen = kv.Value;
-                if (before.ContainsKey(kv.Key)) 
-                {
-                    foreach (var v in after)
-                    {
-                        userList[kv.Key].Friends.Remove(userList[v.Key].Username);
-                    }
-                    userListBefore.Add(userList[kv.Key]);
-                }
-                else if (after.ContainsKey(kv.Key)) 
-                {
-                    foreach (var v in before)
-                    {
-                        userList[kv.Key].Friends.Remove(userList[v.Key].Username);
-                    }
-                    userListAfter.Add(userList[kv.Key]);
-                }
+                return new List<List<User>>() { userList };
             }
 
-            userListBefore = userListBefore.OrderByDescending(x => x.Eigen).ToList();
-            userListAfter = userListAfter.OrderByDescending(x => x.Eigen).ToList();
-            var ABefore = MakeMatrix(userListBefore);
-            var AAfter = MakeMatrix(userListAfter);
+            List<List<User>> allCommunities = new List<List<User>>();
+            foreach (var x in FindCommunities(cutCommunities.Item1))
+            {
+                allCommunities.Add(x);
+            }
+            foreach (var x in FindCommunities(cutCommunities.Item2))
+            {
+                allCommunities.Add(x);
+            }
+            return allCommunities;
+        }
 
-            WriteImage(ABefore, filename:"ABefore.png");
-            WriteImage(AAfter, filename: "AAfter.png");
+        public static Tuple<List<User>, List<User>> Cut(List<User> sortedUserList) 
+        {
+            double largestGap = 0.0;
+            int index = 0;
+            for (int i = 0; i < sortedUserList.Count - 1; i++)
+            {
+                var gap = Math.Abs(sortedUserList[i].Eigen - sortedUserList[i + 1].Eigen);
+                if (gap > largestGap)
+                {
+                    index = i;
+                    largestGap = gap;
+                }
+            }
+            if (largestGap > 0.7)
+            {
+                return null;
+            }
+
+            Console.WriteLine("Making new lists.");
+            List<User> ListLeft = sortedUserList.Take(index + 1).ToList();
+            List<User> ListRight = sortedUserList.Skip(index + 1).ToList();
+
+            Console.WriteLine("Cutting connections, should we be doing this?");
+            for (int ll = 0; ll < ListLeft.Count; ll++)
+            {
+                foreach (User u in ListRight)
+                {
+                    ListLeft[ll].Friends.Remove(u.Username);
+                }
+            }
+            for (int ll = 0; ll < ListRight.Count; ll++)
+            {
+                foreach (User u in ListLeft)
+                {
+                    ListRight[ll].Friends.Remove(u.Username);
+                }
+            }
+
+            return new Tuple<List<User>, List<User>>(ListLeft, ListRight);
         }
 
         public static Matrix<double> MakeMatrix(List<User> listOfUsers) 
@@ -131,12 +135,11 @@ namespace WIMiniProjekt2
             List<User> userList = new List<User>();
             string fileContent = File.ReadAllText("friendships.txt");
             List<string> userBlocks = new List<string>();
-            userBlocks.AddRange(fileContent.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.None));
+            userBlocks.AddRange(fileContent.Split(new string[] { "\n\n" }, StringSplitOptions.None));
             foreach (string block in userBlocks)
             {
-                string[] splitBlock = block.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                string[] splitBlock = block.Split(new string[] { "\n" }, StringSplitOptions.None);
                 User user = new User();
-                user.Index = i++;
                 user.Eigen = 0.0;
                 user.Username = splitBlock[0].Substring(5).Trim();
                 user.Friends = splitBlock[1].Substring(8).Trim().Split('\t').ToList();
@@ -147,7 +150,7 @@ namespace WIMiniProjekt2
             return userList;
         }
 
-        public static void WriteImage(Matrix<double> matrix, int special = -1, string filename = "matrix.png")
+        public static void WriteImage(Matrix<double> matrix, int special = -1, string filename = "matrix")
         {
             Bitmap bm = new Bitmap(matrix.ColumnCount, matrix.ColumnCount);
             for (int m = 0; m < matrix.ColumnCount; m++)
@@ -168,7 +171,7 @@ namespace WIMiniProjekt2
                     }
                 }
             }
-            bm.Save(filename);
+            bm.Save(filename + ".png");
         }
     }
 }

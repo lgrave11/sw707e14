@@ -55,6 +55,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="friendships.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="libiomp5md.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
