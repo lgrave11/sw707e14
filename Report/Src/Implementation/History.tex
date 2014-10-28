@@ -7,10 +7,16 @@ A part of the business intelligence of the overall system that could be interest
 \begin{description}
 \item[Where are individual bicycles right now?] The capability of determining where bicycles currently are, would allow easier recovery of missing bicycles.
 \item[Which routes are used?] If routes could be determined, patterns could possibly be seen, e.g. if someone is using the system to ride to school every single day or if there is a particular route that is very popular.
-\item[Are there hotspots for bicycles?] If positions of bicycles could be determined, it would mean that hotspots(places where there is a lot of bicycle activity) could be found.
+\item[Are there hotspots for bicycles?] If positions of bicycles could be determined, it would mean that hotspots(places where there is a lot of bicycle activity) could be found. This could provide valuable knowledge about for example where to add new stations.
 \end{description}
 
 Which is why a table about the historical location of bicycles was added, and functionality to add it to the global database was added to the services at the same time as when the 'temporary' current location is addesd to the global database.
 
 \subsection{Station History}
-Blabla
+The station history business intelligence could also provide interesting areas for analysis, specifically
+
+\begin{description}
+\item[Station activity?] Knowing which stations are very busy, and which have very low rates of activity could give the 'county' information about which stations could possibly be removed, where to expand stations and add more bicycles.
+\end{description}
+
+The system implements station history through the booking history, in that it provides all the information necessary to perform analysis.
