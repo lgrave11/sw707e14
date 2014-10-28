@@ -11,9 +11,16 @@ In this section we will raise some questions that need attention or describe a s
 \begin{description}[style=nextline]
 \item[Problem 1.1] Consider the scenario where a user $u_1$ makes a booking $b_1$ on the website at time $t_1$ wanting to reserve a bicycle for time $t_3$. Before time $t_1$ another user $u_2$ made a booking $b_2$ of a bicycle for time $t_2$. Both users made a booking at the same station, and the amount of available bicycles for that station was for both users 1. Under the assumption that a bicycle cannot be locked and thereby reserved before some amount of time, say $t_{before}$, before usage, this scenario is possible in the following way.
 
-Let $TSB(b) = \{(t_1,t_2) | t_1 = st(b) - t_{before} \wedge t_2 = st(b) \}$, where $st(b)$ is defined as the start time of booking $b$ and $TSB(b)$ defines the Time Span Before of booking $b$.
+First consider this definition of a time $t$, it is a time represented as the number of seconds from Thursday, 1 January 1970 at 00:00:00 UTC, which is the Epoch time, as of such comparisons such as $>$ is just computed as usual on numbers.
+Let, 
+$$TSB(b) = \{(t_1,t_2) | t_1 = st(b) - t_{before} \land t_2 = st(b) \land t_1 \leq t_2 \}$$
+where,
+\begin{itemize}[align = left]
+	\item[$st(b)$] is defined as the start time of booking $b$.
+	\item[$TSB(b)$] defines the Time Span Before of booking $b$.
+\end{itemize} 
 
-Then the scenario is given if $TSB(b_1) > TSB(b_2) > t_1$, where comparison of each time span $(t_1, t_2)$ is a comparison on the first element (e.g. $(t_1, t_2) > (t_3, t_4)$ if $t1 > t3$).
+Then the scenario is given if $TSB(b_1) > TSB(b_2) > t_1$, where comparison of each time span $(t_1, t_2)$ is a comparison on the first element (e.g. $(t_1, t_2) > (t_3, t_4)$ if $t1 > t3$), and for comparison of a timespan to a time is comparison of the start-time of the timespan and the time.
 
 The problem for user $u_1$ is then at time $t_1$ it appeared that a bicycle was available, but the bicycle will be locked for user $u_2$ (although not entirely certain, see Problem 1.2) before it will be locked for $u_1$ resulting in an availability count of 0 for $u_1$, thereby having no bicycle to lock for $u_1$.
 
