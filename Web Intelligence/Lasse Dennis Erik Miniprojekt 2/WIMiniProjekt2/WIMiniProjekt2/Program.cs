@@ -28,6 +28,11 @@ namespace WIMiniProjekt2
         }
 
 
+        /// <summary>
+        /// Find all the communities in a list of users.
+        /// </summary>
+        /// <param name="userList"></param>
+        /// <returns></returns>
         public static List<List<User>> FindCommunities(List<User> userList) 
         {
             Console.WriteLine("Making matrixes");
@@ -39,9 +44,6 @@ namespace WIMiniProjekt2
             Console.WriteLine("Finding EVD.");
             Evd<double> evd = L.Evd();
             Vector<double> eigenVector = evd.EigenVectors.Column(1);
-            Dictionary<int, double> evdDictionary = new Dictionary<int, double>();
-            int p = 0;
-            eigenVector.ToList().ForEach(x => { evdDictionary.Add(p, x); p++; });
 
             Console.WriteLine("Adding eigen vector value to users.");
             for (int ev = 0; ev < eigenVector.Count; ev++)
@@ -69,6 +71,11 @@ namespace WIMiniProjekt2
             return allCommunities;
         }
 
+        /// <summary>
+        /// Cut a sorted user list two make two different 'graphs'.
+        /// </summary>
+        /// <param name="sortedUserList"></param>
+        /// <returns></returns>
         public static Tuple<List<User>, List<User>> Cut(List<User> sortedUserList) 
         {
             double largestGap = 0.0;
@@ -110,6 +117,11 @@ namespace WIMiniProjekt2
             return new Tuple<List<User>, List<User>>(ListLeft, ListRight);
         }
 
+        /// <summary>
+        /// Create an adjacency matrix from a list of users.
+        /// </summary>
+        /// <param name="listOfUsers"></param>
+        /// <returns></returns>
         public static Matrix<double> MakeMatrix(List<User> listOfUsers) 
         {
             double[,] matrix1 = new double[listOfUsers.Count, listOfUsers.Count];
@@ -129,6 +141,11 @@ namespace WIMiniProjekt2
             return Matrix<double>.Build.DenseOfArray(matrix1);
         }
 
+        /// <summary>
+        /// Read the user file by splitting it into blocks, and then splitting those blocks into individual lines
+        /// to read the relevant information.
+        /// </summary>
+        /// <returns></returns>
         public static List<User> ReadUserFile()
         {
             int i = 0;
@@ -140,6 +157,7 @@ namespace WIMiniProjekt2
             {
                 string[] splitBlock = block.Split(new string[] { "\n" }, StringSplitOptions.None);
                 User user = new User();
+                // Eigen to be used to sort later.
                 user.Eigen = 0.0;
                 user.Username = splitBlock[0].Substring(5).Trim();
                 user.Friends = splitBlock[1].Substring(8).Trim().Split('\t').ToList();

@@ -28,10 +28,10 @@ namespace MiniProject2
             List<User> userList = new List<User>();
             string fileContent = System.IO.File.ReadAllText("friendships.txt");
             List<string> userBlocks = new List<string>();
-            userBlocks.AddRange(fileContent.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.None));
+            userBlocks.AddRange(fileContent.Split(new string[] { "\n\n" }, StringSplitOptions.None));
             foreach (string block in userBlocks)
             {
-                string[] splitBlock = block.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                string[] splitBlock = block.Split(new string[] { "\n" }, StringSplitOptions.None);
                 
                 string name = splitBlock[0].Substring(5).Trim();
                 List<string> friends = splitBlock[1].Substring(8).Trim().Split('\t').ToList();
