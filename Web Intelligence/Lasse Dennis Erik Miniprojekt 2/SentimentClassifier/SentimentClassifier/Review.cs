@@ -32,6 +32,7 @@ namespace SentimentClassifier
         public int Time { get; set; }
         public string Summary { get; set; }
         public string Text { get; set; }
+        public List<string> Tokens { get; set; }
 
     }
 }

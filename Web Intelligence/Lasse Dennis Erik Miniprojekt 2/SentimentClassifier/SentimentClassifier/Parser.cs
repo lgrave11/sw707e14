@@ -11,9 +11,11 @@ namespace SentimentClassifier
     class Parser
     {
         private string text;
+        bool debugging = false;
         StreamReader reader;
-        public Parser(string path)
+        public Parser(string path, bool debug = false)
         {
+            debugging = debug;
             MemoryMappedFile file = MemoryMappedFile.CreateFromFile(path);
             MemoryMappedViewStream fileContent = file.CreateViewStream();
             reader = new StreamReader(fileContent);
@@ -46,6 +48,7 @@ namespace SentimentClassifier
 
         public Review ReadReview()
         {
+            Tokenizer tok = new Tokenizer();
             Review review = new Review()
             {
                 ProductId = reader.ReadLine().Substring(18).Trim(),
@@ -57,6 +60,7 @@ namespace SentimentClassifier
                 Summary = reader.ReadLine().Substring(15).Trim(),
                 Text = reader.ReadLine().Substring(12).Trim()
             };
+            review.Tokens = tok.tokenize(review.Summary + " " + review.Text);
             if (reader.Peek() > -1)
                 reader.ReadLine();
             return review;
@@ -64,9 +68,15 @@ namespace SentimentClassifier
 
         public List<List<Review>> getDataSets(int numberOfPartitions)
         {
+            int limit = 0;
             List<Review> reviews = new List<Review>();
-            while (reader.Peek() > -1)
+            while (reader.Peek() > -1 && limit < 50)
+            {
                 reviews.Add(ReadReview());
+                if (debugging)
+                    limit++;
+            }
+                
 
             List<List<Review>> returnList = new List<List<Review>>();
             int partitionSize;

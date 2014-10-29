@@ -11,10 +11,11 @@ namespace SentimentClassifier
     {
         static void Main(string[] args)
         {
-            //Parser parser = new Parser("SentimentTrainingData.txt");
-            //List<List<Review>> partitions = parser.getDataSets(10);
-            Console.WriteLine(HttpUtility.HtmlDecode("&amp;"));
-            Console.ReadLine();
+            Parser parser = new Parser("SentimentTrainingData.txt", debug:true);
+            List<List<Review>> partitions = parser.getDataSets(10);
+            Tokenizer tok = new Tokenizer();
+            var tokens = tok.tokenize(partitions.First().First().Summary + " " + partitions.First().First().Text);
+            Console.WriteLine("");
         }
     }
 }
