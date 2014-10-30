@@ -48,7 +48,6 @@ namespace SentimentClassifier
 
         public Review ReadReview()
         {
-            Tokenizer tok = new Tokenizer();
             Review review = new Review()
             {
                 ProductId = reader.ReadLine().Substring(18).Trim(),
@@ -60,7 +59,7 @@ namespace SentimentClassifier
                 Summary = reader.ReadLine().Substring(15).Trim(),
                 Text = reader.ReadLine().Substring(12).Trim()
             };
-            review.Tokens = tok.tokenize(review.Summary + " " + review.Text);
+            review.Tokens = Tokenizer.tokenize(review.Summary + " " + review.Text);
             review.c = review.Score >= 4 ? Classification.Positive : Classification.Negative;
             if (reader.Peek() > -1)
                 reader.ReadLine();
@@ -74,6 +73,7 @@ namespace SentimentClassifier
             while (reader.Peek() > -1 && limit < 15000)
             {
                 reviews.Add(ReadReview());
+                Console.WriteLine(reviews.Count);
                 if (debugging)
                     limit++;
             }

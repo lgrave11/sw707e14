@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SentimentClassifier
 {
+    [Serializable]
     class Review
     {
         public Review()

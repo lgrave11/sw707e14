@@ -60,6 +60,9 @@ namespace SentimentClassifier
 
         public void ScoreData(List<Review> TestData) 
         {
+            int totalRight = 0;
+            int totalWrong = 0;
+            int total = TestData.Count;
             foreach (Review r in TestData.ToList()) 
             {
                 Console.WriteLine("###################");
@@ -70,31 +73,39 @@ namespace SentimentClassifier
                 if(r.c == Classification.Negative && scoreNegative > scorePositive) 
                 {
                     Console.WriteLine("True");
+                    totalRight++;
                 }
                 else if (r.c == Classification.Positive && scoreNegative < scorePositive)
                 {
                     Console.WriteLine("True");
+                    totalRight++;
                 }
-                else 
+                else if(r.c == Classification.Negative && scoreNegative < scorePositive)
                 {
                     Console.WriteLine("False");
+                    totalWrong++;
                 }
-
-                
+                else if (r.c == Classification.Positive && scoreNegative > scorePositive)
+                {
+                    Console.WriteLine("False");
+                    totalWrong++;
+                }
             }
+            Console.WriteLine("#######");
+            Console.WriteLine(String.Format("Total Right: {0}", totalRight));
+            Console.WriteLine(String.Format("Total Wrong: {0}", totalWrong));
+            Console.WriteLine(String.Format("Total: {0}", total));
             
         }
 
         public decimal score(string x, Classification c) 
         {
-            Tokenizer tok = new Tokenizer();
             decimal sum = 0;
-            foreach (string w in tok.tokenize(x)) 
+            foreach (string w in Tokenizer.tokenize(x)) 
             {
                 decimal val = 0;
                 PxiC[c].TryGetValue(w, out val);
                 sum += val;
-
             }
 
             return (decimal)Math.Log10(Decimal.ToSingle(Pc[c] + sum));

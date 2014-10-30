@@ -8,18 +8,18 @@ using System.Web;
 
 namespace SentimentClassifier
 {
-    class Tokenizer
+    public static class Tokenizer
     {
         #region negation_string
-        string negation_string = @"(?:"+
+        static string negation_string = @"(?:"+
                             @"^(?:never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint"+
                         @")$"+
                    @")|"+
                    @"n't";
         #endregion
-        string punctuation_string = @"^[.:;!?]$";
+        static string punctuation_string = @"^[.:;!?]$";
         #region emoticon_string
-        public const string emoticon_string = @"(?:" +
+        static string emoticon_string = @"(?:" +
                                       @"[<>]?" +
                                       @"[:;=8]" +
                                       @"[\-o\*\']?" +
@@ -32,7 +32,7 @@ namespace SentimentClassifier
                                     @")";
         #endregion
         #region regex_strings
-        List<string> regex_strings = new List<string> {
+        static List<string> regex_strings = new List<string> {
         // Phone numbers:
         @"(?:" +
           @"(?:" +
@@ -68,21 +68,12 @@ namespace SentimentClassifier
         @"(?:\S)"
         };
         #endregion
-        Regex re_strings;
-        Regex re_emoticons;
-        Regex re_negation;
-        Regex re_punctuation;
+        public static Regex re_strings = new Regex(String.Format(@"({0})", string.Join("|", regex_strings)), RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        public static Regex re_emoticons = new Regex(emoticon_string, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        public static Regex re_negation = new Regex(negation_string, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        public static Regex re_punctuation = new Regex(punctuation_string, RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-        public Tokenizer() 
-        {
-            re_strings = new Regex(String.Format(@"({0})", string.Join("|", regex_strings)), RegexOptions.IgnoreCase);
-            re_emoticons = new Regex(emoticon_string, RegexOptions.IgnoreCase);
-            re_negation = new Regex(negation_string, RegexOptions.IgnoreCase);
-            re_punctuation = new Regex(punctuation_string, RegexOptions.IgnoreCase);
-            
-        }
-
-        public List<string> tokenize(string s) 
+        public static List<string> tokenize(string s) 
         {
             s = HttpUtility.HtmlDecode(s);
             MatchCollection matches = re_strings.Matches(s);
