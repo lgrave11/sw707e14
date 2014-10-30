@@ -1,5 +1,5 @@
 \section{Usage History for Business Intelligence Purposes}
-This section will describe various usage history features that were implemented, and why. It includes the GPS History.
+This section describes various usage history features that were implemented, and why. It includes the GPS History.
 
 \subsection{GPS History}
 The system saves the location of bicycles registered in the system, which could be helpful for determining where bicycles currently are. 
@@ -7,9 +7,10 @@ This would allow the 'county' to determine where 'lost' bicycles are, which in t
 Having this already implemented, it makes sense to store the GPS coordinates in a separate table for historical and business intelligence purposes.
 This kind of historical data could be interesting for intelligence purposes because it would allow knowledge about the following:
 
-\begin{description}
+\begin{description}[style=nextline]
 \item[Which routes are used?] If routes could be determined, patterns could possibly be seen, e.g. if there is a particular route that is very popular.
-\item[Are there hotspots for bicycles?] If positions of bicycles could be determined, it would mean that hotspots(places where there is a lot of bicycle activity) could be found. This could provide valuable knowledge about for example where to add new stations.
+\item[Are there hotspots for bicycles?] If positions of bicycles could be determined, it would mean that hotspots(places where there is a lot of bicycle activity) could be found. 
+This could provide valuable knowledge about for example where to add new stations.
 \end{description}
 
 Which is why a table about the historical location of bicycles was added with the following structure,
@@ -20,7 +21,7 @@ Which is why a table about the historical location of bicycles was added with th
 \item The latitude and the longitude.
 \end{itemize}
 
-\fxwarning{Er det nok? Ville det ikke være dejligt hvis man kunne se information om hvilken booking det nu engang er det GPS signal/tilhører.}
+\fxwarning{Er det nok? Ville det ikke være dejligt hvis man kunne se information om hvilken booking det nu engang er det GPS signal/tilhører. Jo synes jeg også}
 
 At the same time when location is recorded temporarily from a service, it needs to also record it permanently in the global database, the code to do this can be seen in \lstref{lst:registergps} on lines 10--14, to read more about services see \secref{sec:interfaces}.
 
