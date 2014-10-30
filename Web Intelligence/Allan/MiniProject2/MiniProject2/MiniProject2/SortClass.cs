@@ -14,6 +14,7 @@ namespace MiniProject2
         {
             User = user;
             EVDValue = evdValue;
+            
         }
 
         public int CompareTo(object obj)

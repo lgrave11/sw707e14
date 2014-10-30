@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AllanDatabaseModelStoreContainer" CdmEntityContainer="AllanDatabaseEntities">
+    <EntitySetMapping Name="Review">
+      <EntityTypeMapping TypeName="AllanDatabaseModel.Review">
+        <MappingFragment StoreEntitySet="Review">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="profileName" ColumnName="profileName" />
+          <ScalarProperty Name="helpfulness" ColumnName="helpfulness" />
+          <ScalarProperty Name="score" ColumnName="score" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
