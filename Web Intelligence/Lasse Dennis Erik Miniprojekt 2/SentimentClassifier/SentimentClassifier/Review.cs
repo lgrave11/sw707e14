@@ -33,6 +33,7 @@ namespace SentimentClassifier
         public string Summary { get; set; }
         public string Text { get; set; }
         public List<string> Tokens { get; set; }
+        public Classification c {get; set;}
 
     }
 }

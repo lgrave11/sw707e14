@@ -55,12 +55,13 @@ namespace SentimentClassifier
                 UserId = reader.ReadLine().Substring(14).Trim(),
                 ProfileName = reader.ReadLine().Substring(19).Trim(),
                 Helpfulness = reader.ReadLine().Substring(19).Trim(),
-                Score = Convert.ToSingle(reader.ReadLine().Substring(13).Trim()),
+                Score = Convert.ToSingle(reader.ReadLine().Substring(13).Trim().Replace('.', ',')),
                 Time = Convert.ToInt32(reader.ReadLine().Substring(12).Trim()),
                 Summary = reader.ReadLine().Substring(15).Trim(),
                 Text = reader.ReadLine().Substring(12).Trim()
             };
             review.Tokens = tok.tokenize(review.Summary + " " + review.Text);
+            review.c = review.Score >= 4 ? Classification.Positive : Classification.Negative;
             if (reader.Peek() > -1)
                 reader.ReadLine();
             return review;
@@ -70,7 +71,7 @@ namespace SentimentClassifier
         {
             int limit = 0;
             List<Review> reviews = new List<Review>();
-            while (reader.Peek() > -1 && limit < 50)
+            while (reader.Peek() > -1 && limit < 15000)
             {
                 reviews.Add(ReadReview());
                 if (debugging)
