@@ -1,24 +1,44 @@
 \section{Usage History for Business Intelligence Purposes}
-This section will describe various usage history features that were implemented, and why. It includes the GPS History, and the Station History.
+This section describes various usage history features that were implemented, and why. It includes the GPS History.
 
 \subsection{GPS History}
-A part of the business intelligence of the overall system that could be interesting for the 'county' to analyze would be where individual bicycles are, because it opens up the possibility getting knowledge about the following:
+The system saves the location of bicycles registered in the system, which could be helpful for determining where bicycles currently are. 
+This would allow the 'county' to determine where 'lost' bicycles are, which in turn would allow for easier recovery of bicycles.
+Having this already implemented, it makes sense to store the GPS coordinates in a separate table for historical and business intelligence purposes.
+This kind of historical data could be interesting for intelligence purposes because it would allow knowledge about the following:
 
-\begin{description}
-\item[Where are individual bicycles right now?] The capability of determining where bicycles currently are, would allow easier recovery of missing bicycles.
-\item[Which routes are used?] If routes could be determined, patterns could possibly be seen, e.g. if someone is using the system to ride to school every single day or if there is a particular route that is very popular.
-\item[Are there hotspots for bicycles?] If positions of bicycles could be determined, it would mean that hotspots(places where there is a lot of bicycle activity) could be found. This could provide valuable knowledge about for example where to add new stations.
+\begin{description}[style=nextline]
+\item[Which routes are used?] If routes could be determined, patterns could possibly be seen, e.g. if there is a particular route that is very popular.
+\item[Are there hotspots for bicycles?] If positions of bicycles could be determined, it would mean that hotspots(places where there is a lot of bicycle activity) could be found. 
+This could provide valuable knowledge about for example where to add new stations.
 \end{description}
 
-Which is why a table about the historical location of bicycles was added, and functionality to add it to the global database was added to the services at the same time as when the 'temporary' current location is addesd to the global database.
+Which is why a table about the historical location of bicycles was added with the following structure,
 
-\subsection{Station History}
-The station history business intelligence could also provide interesting areas for analysis, specifically
+\begin{itemize}
+\item The ID of the Bicycle
+\item A timestamp of when the coordinates was recorded.
+\item The latitude and the longitude.
+\end{itemize}
 
-\begin{description}
-\item[Station activity?] Knowing which stations are very busy, and which have very low rates of activity could give the 'county' information about which stations could possibly be removed, where to expand stations and add more bicycles.
-\end{description}
+\fxwarning{Er det nok? Ville det ikke være dejligt hvis man kunne se information om hvilken booking det nu engang er det GPS signal/tilhører. Jo synes jeg også}
 
-The system implements station history through the booking table, in that it provides all the information necessary to perform analysis.
+At the same time when location is recorded temporarily from a service, it needs to also record it permanently in the global database, the code to do this can be seen in \lstref{lst:registergps} on lines 10--14, to read more about services see \secref{sec:interfaces}.
 
-\fxwarning{Der skal nok nogle rigtige features some udnytter denne information på en eller anden måde ind over det.}
+\begin{lstlisting}[language=PHP, caption={The function that records the location of a bicycle.}, label=lst:registergps]
+function RegisterGPS($bicycle_id, $latitude, $longitude)
+{
+    global $db;
+    
+    $stmt = $db->prepare("UPDATE bicycle SET latitude = ?, longitude = ? WHERE bicycle_id = ?");
+    $stmt->bind_param("ddi", $latitude, $longitude, $bicycle_id);
+    $stmt->execute();
+    $stmt->close();
+    
+    $stmt = $db->prepare("INSERT INTO historylocationbicycle(bicycle_id, latitude, longitude) VALUES (?,?,?)");
+    $stmt->bind_param("idd", $bicycle_id, $latitude, $longitude);
+    $stmt->execute();
+    $stmt->close();
+    return true;
+}
+\end{lstlisting}

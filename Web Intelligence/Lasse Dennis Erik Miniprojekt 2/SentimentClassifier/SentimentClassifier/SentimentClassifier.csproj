@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Classification.cs" />
     <Compile Include="NaiveBayesClassifier.cs" />
+    <Compile Include="NaiveBayesClassifer.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
