@@ -59,11 +59,19 @@ namespace SentimentClassifier
                 Summary = reader.ReadLine().Substring(15).Trim(),
                 Text = reader.ReadLine().Substring(12).Trim()
             };
-            review.Tokens = Tokenizer.tokenize(review.Summary + " " + review.Text);
+            review.Tokens = Tokenizer.tokenize(review.Summary);
             review.c = review.Score >= 4 ? Classification.Positive : Classification.Negative;
             if (reader.Peek() > -1)
                 reader.ReadLine();
-            return review;
+            if (review.Score == 3)
+            {
+                return null;
+            }
+            else 
+            {
+                return review;
+            }
+            
         }
 
         public List<List<Review>> getDataSets(int numberOfPartitions)
@@ -72,10 +80,15 @@ namespace SentimentClassifier
             List<Review> reviews = new List<Review>();
             while (reader.Peek() > -1 && limit < 15000)
             {
-                reviews.Add(ReadReview());
-                Console.WriteLine(reviews.Count);
-                if (debugging)
-                    limit++;
+                Review r = ReadReview();
+                if (r != null) 
+                {
+                    reviews.Add(r);
+                    //Console.WriteLine(reviews.Count);
+                    if (debugging)
+                        limit++;
+                }
+                
             }
                 
 

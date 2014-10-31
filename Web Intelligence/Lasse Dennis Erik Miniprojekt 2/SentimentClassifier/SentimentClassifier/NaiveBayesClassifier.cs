@@ -62,38 +62,59 @@ namespace SentimentClassifier
         {
             int totalRight = 0;
             int totalWrong = 0;
+            int totalRightOfNegative = 0;
+            int totalRightOfPositive = 0;
+            int totalWrongOfNegative = 0;
+            int totalWrongOfPositive = 0;
+            int totalPositive = TestData.Where(x => x.c == Classification.Positive).Count();
+            int totalNegative = TestData.Where(x => x.c == Classification.Negative).Count();
             int total = TestData.Count;
             foreach (Review r in TestData.ToList()) 
             {
-                Console.WriteLine("###################");
-                Console.WriteLine(string.Format("Score: {0}", r.c.ToString()));
-                decimal scorePositive = this.score(r.Summary + " " + r.Text, Classification.Positive);
-                decimal scoreNegative = this.score(r.Summary + " " + r.Text, Classification.Negative);
-                Console.WriteLine(String.Format("Positive: {0}, Negative: {1}", scorePositive, scoreNegative));
+                //Console.WriteLine("###################");
+                //Console.WriteLine(string.Format("Score: {0}", r.c.ToString()));
+                decimal scorePositive = this.score(r.Summary, Classification.Positive);
+                decimal scoreNegative = this.score(r.Summary, Classification.Negative);
+                //Console.WriteLine(String.Format("Positive: {0}, Negative: {1}", scorePositive, scoreNegative));
                 if(r.c == Classification.Negative && scoreNegative > scorePositive) 
                 {
-                    Console.WriteLine("True");
+                    //Console.WriteLine("True");
                     totalRight++;
+                    totalRightOfNegative++;
                 }
                 else if (r.c == Classification.Positive && scoreNegative < scorePositive)
                 {
-                    Console.WriteLine("True");
+                    //Console.WriteLine("True");
                     totalRight++;
+                    totalRightOfPositive++;
                 }
                 else if(r.c == Classification.Negative && scoreNegative < scorePositive)
                 {
-                    Console.WriteLine("False");
+                    //Console.WriteLine("False");
                     totalWrong++;
+                    totalWrongOfNegative++;
                 }
                 else if (r.c == Classification.Positive && scoreNegative > scorePositive)
                 {
-                    Console.WriteLine("False");
+                    //Console.WriteLine("False");
                     totalWrong++;
+                    totalWrongOfPositive++;
                 }
+
+                if (r.c == Classification.Positive) 
+                {
+                    
+                }
+                //Console.Write(string.Format("{0} ", totalRight + totalWrong));
             }
-            Console.WriteLine("#######");
-            Console.WriteLine(String.Format("Total Right: {0}", totalRight));
-            Console.WriteLine(String.Format("Total Wrong: {0}", totalWrong));
+            Console.WriteLine(String.Format("Total Guessed Right: {0}", totalRight));
+            Console.WriteLine(String.Format("Total Guessed Wrong: {0}", totalWrong));
+            Console.WriteLine(String.Format("Total Guessed Right of Positive: {0}", totalRightOfPositive));
+            Console.WriteLine(String.Format("Total Guessed Wrong of Positive: {0}", totalWrongOfPositive));
+            Console.WriteLine(String.Format("Total Guessed Right of Negative: {0}", totalRightOfNegative));
+            Console.WriteLine(String.Format("Total Guessed Wrong of Negative: {0}", totalWrongOfNegative));
+            Console.WriteLine(String.Format("Total Positive in TestData: {0}", totalPositive));
+            Console.WriteLine(String.Format("Total Negative in TestData: {0}", totalNegative));
             Console.WriteLine(String.Format("Total: {0}", total));
             
         }
@@ -105,11 +126,12 @@ namespace SentimentClassifier
             {
                 decimal val = 0;
                 PxiC[c].TryGetValue(w, out val);
-                sum += val;
+                sum += (decimal)Math.Log((double)val + 1.0);
             }
 
-            return (decimal)Math.Log10(Decimal.ToSingle(Pc[c] + sum));
-            /*foreach (string w in tok.tokenize(x)) 
+            return (decimal)Math.Log(Decimal.ToSingle(Pc[c] + sum) + 1);
+            /*decimal prod = 1;
+            foreach (string w in Tokenizer.tokenize(x)) 
             {
                 decimal val = 0;
                 PxiC[c].TryGetValue(w, out val);
