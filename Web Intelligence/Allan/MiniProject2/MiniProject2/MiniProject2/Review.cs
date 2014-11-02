@@ -16,7 +16,7 @@ namespace MiniProject2
         public int time { get; set; }
         public string summary { get; set; }
         public string text { get; set; }
-
+        private static List<Task> Tasks = new List<Task>();
         public List<string> tokenStream { get; set; }
 
         public Review(string productid, string userid, string profilename, double helpfu, double score, int time, string summary, string txt)
@@ -30,7 +30,8 @@ namespace MiniProject2
             this.summary = summary;
             this.text = txt;
 
-            tokenStream = (new Tokenizer()).tokenize(summary + text);
+            Tasks.Add(Task.Factory.StartNew(() => {tokenStream = Tokenizer.tokenize(summary + text).Distinct().ToList();}));
+            
         }
 
         public static List<Review> LoadAllReviews()
@@ -92,12 +93,16 @@ namespace MiniProject2
                 {
                     counter = 0;
                     returnList.Add(new Review(productID, USerID, profilename, helpfulness, score, time, summary, text));
+                    if (returnList.Count % 10000 == 0)
+                        Console.WriteLine(returnList.Count);
                 }
 
+                
             }
 
             file.Close();
 
+            Task.WaitAll(Tasks.ToArray());
             // Suspend the screen.
             return returnList;
         }

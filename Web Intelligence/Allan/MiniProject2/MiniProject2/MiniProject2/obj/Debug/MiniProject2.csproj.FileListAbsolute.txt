@@ -22,3 +22,14 @@ C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\Mini
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\EntityFramework.xml
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MiniProject2.exe.config
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\friendships.txt
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\libiomp5md.dll
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MathNet.Numerics.MKL.dll
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\SentimentTrainingData.txt
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MiniProject2.exe
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MiniProject2.pdb
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MathNet.Numerics.dll
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MathNet.Numerics.xml
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\obj\Debug\MiniProject2.csprojResolveAssemblyReference.cache
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\obj\Debug\MiniProject2.exe
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\obj\Debug\MiniProject2.pdb
