@@ -21,3 +21,4 @@ C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\Mini
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\EntityFramework.xml
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Wirack\Documents\p7\Web Intelligence\Allan\MiniProject2\MiniProject2\MiniProject2\bin\Debug\MiniProject2.exe.config
