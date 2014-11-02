@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SentimentClassifier
 {
@@ -18,105 +19,76 @@ namespace SentimentClassifier
 
         public NaiveBayesClassifier(List<Review> learningData) 
         {
+            //Console.WriteLine("Learning the model...");
             LearningData = learningData;
             N = LearningData.Count;
             NumberOfReviews();
             Probability();
+            //Console.WriteLine("Calculating the word probs...");
             PxiC.Add(Classification.Negative, new Dictionary<string, decimal>());
             PxiC.Add(Classification.Positive, new Dictionary<string, decimal>());
             ProbabilityOfWordInSentimentC();
-            /*List<string> words = LearningData.Where(x => x.c == Classification.Negative).SelectMany(x => x.Tokens).ToList();
+            //Console.WriteLine("Calculating empty score...");
+            calculateEmptyScore();
+        }
 
-            decimal prod = 1;
-            foreach (string w in words) 
+        public void calculateEmptyScore() 
+        {
+            decimal sumPositive = 0;
+            decimal sumNegative = 0;
+            foreach (var w in PxiC[Classification.Positive])
             {
-                decimal val = 0;
-                PxiC[Classification.Negative].TryGetValue(w, out val);
-                if(val == 0) 
-                {
-                    val = 1;
-                }
-                prod *= 1m - val;
+                sumPositive += (decimal)Math.Log(1 - (double)w.Value);
             }
-            emptyScore.Add(Classification.Negative, prod * Pc[Classification.Negative]);
-
-            words = LearningData.Where(x => x.c == Classification.Positive).SelectMany(x => x.Tokens).ToList();
-
-            prod = 1;
-            foreach (string w in words)
+            foreach (var w in PxiC[Classification.Negative]) 
             {
-                decimal val = 0;
-                PxiC[Classification.Positive].TryGetValue(w, out val);
-                if (val == 0)
-                {
-                    val = 1;
-                }
-                prod *= 1m - val;
+                sumNegative += (decimal)Math.Log(1 - (double)w.Value);
             }
-            emptyScore.Add(Classification.Positive, prod * Pc[Classification.Positive]);*/
 
-
+            sumPositive += (decimal)Math.Log(Nc[Classification.Positive]);
+            sumNegative += (decimal)Math.Log(Nc[Classification.Negative]);
+            emptyScore[Classification.Positive] = sumPositive;
+            emptyScore[Classification.Negative] = sumNegative;
         }
 
         public void ScoreData(List<Review> TestData) 
         {
-            int totalRight = 0;
-            int totalWrong = 0;
-            int totalRightOfNegative = 0;
-            int totalRightOfPositive = 0;
-            int totalWrongOfNegative = 0;
-            int totalWrongOfPositive = 0;
-            int totalPositive = TestData.Where(x => x.c == Classification.Positive).Count();
-            int totalNegative = TestData.Where(x => x.c == Classification.Negative).Count();
-            int total = TestData.Count;
-            foreach (Review r in TestData.ToList()) 
+            int truePositive = 0, falseNegative = 0, falsePositive = 0, trueNegative = 0;
+            int whatever = 0;
+            foreach (Review r in TestData)
             {
-                //Console.WriteLine("###################");
-                //Console.WriteLine(string.Format("Score: {0}", r.c.ToString()));
                 decimal scorePositive = this.score(r.Summary, Classification.Positive);
                 decimal scoreNegative = this.score(r.Summary, Classification.Negative);
-                //Console.WriteLine(String.Format("Positive: {0}, Negative: {1}", scorePositive, scoreNegative));
-                if(r.c == Classification.Negative && scoreNegative > scorePositive) 
-                {
-                    //Console.WriteLine("True");
-                    totalRight++;
-                    totalRightOfNegative++;
-                }
-                else if (r.c == Classification.Positive && scoreNegative < scorePositive)
-                {
-                    //Console.WriteLine("True");
-                    totalRight++;
-                    totalRightOfPositive++;
-                }
-                else if(r.c == Classification.Negative && scoreNegative < scorePositive)
-                {
-                    //Console.WriteLine("False");
-                    totalWrong++;
-                    totalWrongOfNegative++;
-                }
-                else if (r.c == Classification.Positive && scoreNegative > scorePositive)
-                {
-                    //Console.WriteLine("False");
-                    totalWrong++;
-                    totalWrongOfPositive++;
-                }
 
-                if (r.c == Classification.Positive) 
+                if (r.Score > 3.0)
                 {
-                    
+                    if (scorePositive >= scoreNegative)
+                        truePositive++;
+                    else if (scorePositive < scoreNegative) 
+                    {
+                        falseNegative++;
+                    }
+                    else
+                        whatever++;
                 }
-                //Console.Write(string.Format("{0} ", totalRight + totalWrong));
+                else
+                {
+                    if (scorePositive >= scoreNegative)
+                        falsePositive++;
+                    else if (scorePositive < scoreNegative)
+                        trueNegative++;
+                    else
+                        whatever++;
+                }
             }
-            Console.WriteLine(String.Format("Total Guessed Right: {0}", totalRight));
-            Console.WriteLine(String.Format("Total Guessed Wrong: {0}", totalWrong));
-            Console.WriteLine(String.Format("Total Guessed Right of Positive: {0}", totalRightOfPositive));
-            Console.WriteLine(String.Format("Total Guessed Wrong of Positive: {0}", totalWrongOfPositive));
-            Console.WriteLine(String.Format("Total Guessed Right of Negative: {0}", totalRightOfNegative));
-            Console.WriteLine(String.Format("Total Guessed Wrong of Negative: {0}", totalWrongOfNegative));
-            Console.WriteLine(String.Format("Total Positive in TestData: {0}", totalPositive));
-            Console.WriteLine(String.Format("Total Negative in TestData: {0}", totalNegative));
-            Console.WriteLine(String.Format("Total: {0}", total));
-            
+
+            Console.WriteLine("TP: " + truePositive);
+            Console.WriteLine("FN: " + falseNegative);
+            Console.WriteLine("FP: " + falsePositive);
+            Console.WriteLine("TN: " + trueNegative);
+            var accuracy = ((double)truePositive + trueNegative) / ((double)truePositive + falseNegative + falsePositive + trueNegative);
+            Console.WriteLine("Accuracy: " + accuracy);
+            Console.WriteLine("Error rate: " + (1.0 - accuracy));       
         }
 
         public decimal score(string x, Classification c) 
@@ -124,37 +96,15 @@ namespace SentimentClassifier
             decimal sum = 0;
             foreach (string w in Tokenizer.tokenize(x)) 
             {
-                decimal val = 0;
-                PxiC[c].TryGetValue(w, out val);
-                sum += (decimal)Math.Log((double)val + 1.0);
-            }
-
-            return (decimal)Math.Log(Decimal.ToSingle(Pc[c] + sum) + 1);
-            /*decimal prod = 1;
-            foreach (string w in Tokenizer.tokenize(x)) 
-            {
-                decimal val = 0;
-                PxiC[c].TryGetValue(w, out val);
-                if(val == 0) 
+                if (PxiC[c].ContainsKey(w)) 
                 {
-                    val = 1;
-                }
-                prod *= (val / (1m - val));
-            }
-            return emptyScore[c] * prod;*/
-            /*foreach(string w in tok.tokenize(x)) 
-            {
-                try
-                {
-                    sum += PxiC[c][w];
-                }
-                catch (Exception) 
-                {
-                    sum += 0;
+                    decimal val = PxiC[c][w] / (1 - PxiC[c][w]);
+                    sum += (decimal)Math.Log((double)val);
                 }
                 
             }
-            return (float)Math.Log(Pc[c] + sum);*/
+
+            return emptyScore[Classification.Positive] + sum;
         }
 
         public void NumberOfReviews() 
@@ -185,20 +135,34 @@ namespace SentimentClassifier
 
         public void ProbabilityOfWordInSentimentC() 
         {
-            List<string> allWords = LearningData.SelectMany(x => x.Tokens).ToList(); // X
-            List<string> uniqueWords = allWords.Distinct().ToList();
+            foreach (Classification c in Enum.GetValues(typeof(Classification))) 
+            {
+                foreach (Review r in LearningData)
+                {
+                    foreach (string s in r.Tokens)
+                    {
+                        PxiC[c][s] = 0m;
+                    }
+                }
+            }            
+
+            List<string> allWords = LearningData.SelectMany(x => x.Tokens).ToList();
+            List<string> uniqueWords = allWords.Distinct().ToList(); // X
             foreach (Classification c in Enum.GetValues(typeof(Classification))) 
             {
                 List<string> words = LearningData.Where(x => x.c == c).SelectMany(x => x.Tokens).ToList();
                 var counts = words.GroupBy(x => x).ToDictionary(x => x.Key, x => x.Count());
                 foreach (string w in uniqueWords)
                 {
-                    int count;
-                    counts.TryGetValue(w, out count);
+                    int count = 0;
+                    if (counts.ContainsKey(w)) 
+                    {
+                        count = counts[w];
+                    }
                     decimal tmp = Convert.ToDecimal(count + 1.0m);
                     decimal tmp2 = Convert.ToDecimal(Nc[c]) + uniqueWords.Count();
                     decimal pxic = tmp / tmp2;
-                    PxiC[c].Add(w, pxic);
+                    PxiC[c][w] = pxic;
                     
                 }
             }
