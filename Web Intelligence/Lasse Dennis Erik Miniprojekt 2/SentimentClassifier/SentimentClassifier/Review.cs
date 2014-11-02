@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SentimentClassifier
 {
+    [Serializable]
     class Review
     {
         public Review()
@@ -33,6 +34,7 @@ namespace SentimentClassifier
         public string Summary { get; set; }
         public string Text { get; set; }
         public List<string> Tokens { get; set; }
+        public Classification c {get; set;}
 
     }
 }

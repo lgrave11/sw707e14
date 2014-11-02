@@ -17,3 +17,9 @@ C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniproj
 C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\SentimentClassifier\SentimentClassifier\bin\Debug\SentimentClassifier.exe
 C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\SentimentClassifier\SentimentClassifier\bin\Debug\SentimentClassifier.pdb
 C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\SentimentClassifier\SentimentClassifier\obj\Debug\SentimentClassifier.csprojResolveAssemblyReference.cache
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\SentimentClassifier\SentimentClassifier\bin\Debug\SentimentClassifier.exe.config
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\SentimentClassifier\SentimentClassifier\bin\Debug\SentimentClassifier.exe
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\SentimentClassifier\SentimentClassifier\bin\Debug\SentimentClassifier.pdb
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\SentimentClassifier\SentimentClassifier\obj\Debug\SentimentClassifier.exe
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\SentimentClassifier\SentimentClassifier\obj\Debug\SentimentClassifier.pdb
+C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\SentimentClassifier\SentimentClassifier\obj\Debug\SentimentClassifier.csprojResolveAssemblyReference.cache
