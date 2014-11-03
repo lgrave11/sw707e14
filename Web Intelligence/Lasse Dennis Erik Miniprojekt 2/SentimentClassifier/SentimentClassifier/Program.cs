@@ -16,13 +16,14 @@ namespace SentimentClassifier
         static void Main(string[] args)
         {
             List<List<Review>> partitions = LoadPartitions(10);
-            for (int i = 0; i < 1; i++) 
+            for (int i = 0; i < 10; i++) 
             {
                 Console.WriteLine("######");
                 List<int> range = Enumerable.Range(0, 10).ToList();
                 List<Review> testData = partitions.ElementAt(i);
                 List<Review> learnData = partitions.Where((value, index) => index != i).SelectMany(x => x).ToList();
                 NaiveBayesClassifier nbc = new NaiveBayesClassifier(learnData);
+                nbc.ScoreData(testData);
             }
         }
 

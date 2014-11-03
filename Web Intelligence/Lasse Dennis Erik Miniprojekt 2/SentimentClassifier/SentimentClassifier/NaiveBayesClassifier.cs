@@ -96,10 +96,13 @@ namespace SentimentClassifier
             decimal sum = 0;
             foreach (string w in Tokenizer.tokenize(x)) 
             {
-                if (PxiC[c].ContainsKey(w)) 
+                if (PxiC[c].ContainsKey(w))
                 {
                     decimal val = PxiC[c][w] / (1 - PxiC[c][w]);
-                    sum += (decimal)Math.Log((double)val);
+                    if (val != 0 || val > 0)
+                    {
+                        sum += (decimal)Math.Log((double)val);
+                    }
                 }
                 
             }
@@ -160,8 +163,12 @@ namespace SentimentClassifier
                         count = counts[w];
                     }
                     decimal tmp = Convert.ToDecimal(count + 1.0m);
-                    decimal tmp2 = Convert.ToDecimal(Nc[c]) + uniqueWords.Count();
+                    decimal tmp2 = Convert.ToDecimal(Nc[c]) + uniqueWords.Count;
                     decimal pxic = tmp / tmp2;
+                    if (pxic > 1) 
+                    {
+                        pxic = 0m;
+                    }
                     PxiC[c][w] = pxic;
                     
                 }

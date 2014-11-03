@@ -13,6 +13,7 @@ namespace SentimentClassifier
         private string text;
         bool debugging = false;
         StreamReader reader;
+        private static int counter = 0;
         public Parser(string path, bool debug = false)
         {
             debugging = debug;
@@ -43,11 +44,14 @@ namespace SentimentClassifier
                 };
                 returnList.Add(review);
             }
+
+
             return returnList;
         }
 
         public Review ReadReview()
         {
+            counter++;
             Review review = new Review()
             {
                 ProductId = reader.ReadLine().Substring(18).Trim(),
@@ -59,6 +63,10 @@ namespace SentimentClassifier
                 Summary = reader.ReadLine().Substring(15).Trim(),
                 Text = reader.ReadLine().Substring(12).Trim()
             };
+            if (counter % 10000 == 0) 
+            {
+                Console.WriteLine(counter);
+            }
             review.Tokens = Tokenizer.tokenize(review.Summary);
             review.c = review.Score >= 4 ? Classification.Positive : Classification.Negative;
             if (reader.Peek() > -1)
@@ -90,7 +98,6 @@ namespace SentimentClassifier
                 }
                 
             }
-                
 
             List<List<Review>> returnList = new List<List<Review>>();
             int partitionSize;
