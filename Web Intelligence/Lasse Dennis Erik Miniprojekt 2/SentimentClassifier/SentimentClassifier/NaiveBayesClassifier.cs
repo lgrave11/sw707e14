@@ -57,8 +57,8 @@ namespace SentimentClassifier
             int whatever = 0;
             foreach (Review r in TestData)
             {
-                decimal scorePositive = this.score(r.Summary, Classification.Positive);
-                decimal scoreNegative = this.score(r.Summary, Classification.Negative);
+                decimal scorePositive = this.score(r.Tokens, Classification.Positive);
+                decimal scoreNegative = this.score(r.Tokens, Classification.Negative);
 
                 if (r.Score > 3.0)
                 {
@@ -105,6 +105,25 @@ namespace SentimentClassifier
                     }
                 }
                 
+            }
+
+            return emptyScore[Classification.Positive] + sum;
+        }
+
+        public decimal score(List<string> x, Classification c) 
+        {
+            decimal sum = 0;
+            foreach (string w in x)
+            {
+                if (PxiC[c].ContainsKey(w))
+                {
+                    decimal val = PxiC[c][w] / (1 - PxiC[c][w]);
+                    if (val != 0 || val > 0)
+                    {
+                        sum += (decimal)Math.Log((double)val);
+                    }
+                }
+
             }
 
             return emptyScore[Classification.Positive] + sum;
