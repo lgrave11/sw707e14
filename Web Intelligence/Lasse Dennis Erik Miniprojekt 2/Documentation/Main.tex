@@ -20,10 +20,21 @@
 	
 	\chapter{Social Network Miniproject}
 	\section{Network Communities}
-	Network Community detection was done by using Spectral Analysis. Specifically a User class was created to hold the basic information, the Username, the list of friends, the review and the summary. This is then used to load the users from the file.
+	Network Community detection was done by using spectral clustering. This was the procedure:
 	
-	From that list of users an adjacency matrix is created based on who they are friends with. A row count diagonal matrix is created based on that adjacency matrix.
+	A User class was created to hold the basic information, the Username, the list of friends, the review, the summary, and a sortable eigen value. This is then used to load the users from the file.
+	
+	From that list of users an adjacency matrix is created based on who they are friends with, called A. A row count diagonal matrix is created based on that adjacency matrix, called D. The laplacian is then L = D - A. The eigen decomposition is then found on L, and the second smallest eigenvector is found. Every value in the eigenvector is then assigned to a user object in the user list, after which the user list can be sorted and cut at the first-largest gap between eigen values. This is then run recursively on both communities until the gap becomes larger than 0.7 after which it stops and returns the list of communities.
+	
+	The results of this is 4 very segregated communities, on the first run-through the communities are obvious as can be seen in the figure below.
+	
+	\begin{figure}[H]
+	\includegraphics[scale=0.15]{matrix.png}
+	\end{figure}
+	
+	The spectral clustering algorithm was used because it is simple to implement, and works well.
 	
 	\section{Sentiment Analysis}
+	Sentiment analysis of text was done 
 
 \end{document}
