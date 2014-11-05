@@ -8,7 +8,7 @@ using System.Diagnostics;
 namespace SentimentClassifier
 {
     
-    class NaiveBayesClassifier
+    public class NaiveBayesClassifier
     {
         List<Review> LearningData { get; set; }
         int N; // N

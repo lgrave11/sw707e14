@@ -65,6 +65,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SentimentClassifier\SentimentClassifier\SentimentClassifier.csproj">
+      <Project>{ae0f06ed-3124-4129-a9ed-619278eb8e98}</Project>
+      <Name>SentimentClassifier</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
