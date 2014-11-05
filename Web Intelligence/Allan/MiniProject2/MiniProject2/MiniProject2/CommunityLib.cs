@@ -13,6 +13,9 @@ namespace MiniProject2
     {
         public static List<List<User>> FindCommunities(List<User> users)
         {
+            List<User> tempList = new List<User>();
+            users.ForEach(x => tempList.Add((User)x.Clone()));
+            users = tempList;
             if (users.Count == 1)
             {
                 return new List<List<User>>() { users };

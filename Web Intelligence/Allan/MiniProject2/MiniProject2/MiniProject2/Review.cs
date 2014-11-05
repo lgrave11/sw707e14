@@ -34,6 +34,13 @@ namespace MiniProject2
             
         }
 
+        public Review(string summary, string text)
+        {
+            this.summary = summary;
+            this.text = text;
+            tokenStream = Tokenizer.tokenize(summary + text).Distinct().ToList();
+        }
+
         public static List<Review> LoadAllReviews()
         {
             List<Review> returnList = new List<Review>();
