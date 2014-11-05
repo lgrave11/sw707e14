@@ -8,23 +8,134 @@ using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Factorization;
 using System.Drawing;
+using SentimentClassifier;
 
 namespace WIMiniProjekt2
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             Control.UseNativeMKL();
             Console.WriteLine("Starting...");
             List<User> userList = ReadUserFile();
-            var communities = FindCommunities(userList);
+            List<List<Review>> partitions = LoadPartitions(10);
+            List<Review> learnData = partitions.SelectMany(x => x).ToList();
+            NaiveBayesClassifier nbc = new NaiveBayesClassifier(learnData);
+            
+            //List<User> usersWithReview = userList.Where(x => x.Review != "*" && x.Summary != "*").ToList();
+            //List<User> usersWithoutReview = userList.Where(x => x.Review == "*" && x.Summary == "*").ToList();
+
+            foreach (User user in userList)
+            {
+                if (user.Review != "*" && user.Summary != "*")
+                    ScoreReview(user, ref nbc);
+                /*if (user.Score == 1)
+                {
+                    Console.WriteLine("User: " + user.Username);
+                    Console.WriteLine("Summary: " + user.Summary);
+                    Console.WriteLine("Review: " + user.Review);
+
+                    Console.WriteLine("");
+                }
+                */
+            }
+
+
+            //Console.WriteLine("Positive Count: " + usersWithReview.Where(x => x.Score == 5).Count());
+
+            //Console.WriteLine("Negative Count: " + usersWithReview.Where(x => x.Score == 1).Count());
+            //Console.ReadLine();
+            
+            List<List<User>> communities = FindCommunities(userList);
+            foreach (User user in userList)
+            {
+                if (user.Review == "*" && user.Summary == "*")
+                {
+                    int sum = 0;
+                    int counter = 0;
+                    foreach (string friend in user.Friends)
+                    {
+                        User currentUser = userList.Where(x => x.Username == friend).FirstOrDefault();
+                        int score = userList.Where(x => x.Username == friend).Select(x => x.Score).FirstOrDefault();
+                        if (score != 0)
+                        {
+                            if (friend == "kyle")
+                            {
+                                score = score * 10;
+                                counter += 10;
+                            }
+                            foreach (List<User> community in communities)
+                            {
+                                if (community.Contains(user) && community.Contains(currentUser))
+                                    break;
+                                else if (community.Contains(user) && !community.Contains(currentUser))
+                                {
+                                    score *= 10;
+                                    counter += 10;
+                                    break;
+                                }
+                                else if (!community.Contains(user) && community.Contains(currentUser))
+                                {
+                                    score *= 10;
+                                    counter += 10;
+                                    break;
+                                }
+                            }
+
+                            if (score <= 5)
+                                counter++;
+
+                            sum += score;
+                        }
+                            
+                    }
+                    if (counter > 0)
+                    {
+                        double userScore = Convert.ToDouble(sum) / Convert.ToDouble(counter);
+                        user.WillBuy = (userScore >= 3);
+                    }
+                }
+            }
+            /*
             int i = 0;
             foreach (var v in communities)
             {
                 Matrix<double> vA = MakeMatrix(v);
                 WriteImage(vA, filename: string.Format("community-{0}", i++));
             }
+            */
+
+            foreach (User user in userList)
+            {
+                Console.WriteLine(user.ToString());
+            }
+        }
+
+        static void ScoreReview(User user, ref NaiveBayesClassifier nbc)
+        {
+            decimal scorePositive = nbc.score(user.Summary, Classification.Positive);
+            decimal scoreNegative = nbc.score(user.Summary, Classification.Negative);
+
+            if (scorePositive > scoreNegative)
+            {
+                user.Score = 5;
+            }
+            else
+            {
+                user.Score = 1;
+            }
+                
+        }
+
+        static List<List<Review>> LoadPartitions(int dataSets, bool debug = false)
+        {
+            List<List<Review>> partitions = new List<List<Review>>();
+            Parser parser = new Parser("SentimentTrainingData.txt", debug: debug);
+            partitions = parser.getDataSets(dataSets);
+
+            return partitions;
         }
 
 
@@ -97,7 +208,7 @@ namespace WIMiniProjekt2
             Console.WriteLine("Making new lists.");
             List<User> ListLeft = sortedUserList.Take(index + 1).ToList();
             List<User> ListRight = sortedUserList.Skip(index + 1).ToList();
-
+            /*
             Console.WriteLine("Cutting connections, should we be doing this?");
             for (int ll = 0; ll < ListLeft.Count; ll++)
             {
@@ -113,7 +224,7 @@ namespace WIMiniProjekt2
                     ListRight[ll].Friends.Remove(u.Username);
                 }
             }
-
+            */
             return new Tuple<List<User>, List<User>>(ListLeft, ListRight);
         }
 
@@ -148,14 +259,13 @@ namespace WIMiniProjekt2
         /// <returns></returns>
         public static List<User> ReadUserFile()
         {
-            int i = 0;
             List<User> userList = new List<User>();
-            string fileContent = File.ReadAllText("friendships.txt");
+            string fileContent = File.ReadAllText("friendships.reviews.txt");
             List<string> userBlocks = new List<string>();
-            userBlocks.AddRange(fileContent.Split(new string[] { "\n\n" }, StringSplitOptions.None));
+            userBlocks.AddRange(fileContent.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.None));
             foreach (string block in userBlocks)
             {
-                string[] splitBlock = block.Split(new string[] { "\n" }, StringSplitOptions.None);
+                string[] splitBlock = block.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                 User user = new User();
                 // Eigen to be used to sort later.
                 user.Eigen = 0.0;

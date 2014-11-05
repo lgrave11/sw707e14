@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace SentimentClassifier
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -28,7 +28,7 @@ namespace SentimentClassifier
         }
 
 
-        static List<List<Review>> LoadPartitions(int dataSets, bool debug=false) 
+        static List<List<Review>> LoadPartitions(int dataSets, bool debug = false)
         {
             List<List<Review>> partitions = new List<List<Review>>();
             Parser parser = new Parser("SentimentTrainingData.txt", debug: debug);

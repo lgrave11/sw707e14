@@ -8,7 +8,7 @@ using System.IO.MemoryMappedFiles;
 
 namespace SentimentClassifier
 {
-    class Parser
+    public class Parser
     {
         private string text;
         bool debugging = false;
@@ -58,7 +58,7 @@ namespace SentimentClassifier
                 UserId = reader.ReadLine().Substring(14).Trim(),
                 ProfileName = reader.ReadLine().Substring(19).Trim(),
                 Helpfulness = reader.ReadLine().Substring(19).Trim(),
-                Score = Convert.ToSingle(reader.ReadLine().Substring(13).Trim().Replace('.', ',')),
+                Score = Convert.ToSingle(reader.ReadLine().Substring(13).Trim()),
                 Time = Convert.ToInt32(reader.ReadLine().Substring(12).Trim()),
                 Summary = reader.ReadLine().Substring(15).Trim(),
                 Text = reader.ReadLine().Substring(12).Trim()

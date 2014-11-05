@@ -13,5 +13,12 @@ namespace WIMiniProjekt2
         public List<string> Friends = new List<string>();
         public string Review;
         public string Summary;
+        public int Score;
+        public bool WillBuy;
+
+        public override string ToString()
+        {
+            return Username + "\t" + ((Score > 0) ? Score.ToString() : "*") + "\t" + ((Score > 0) ? "*" : (WillBuy) ? "yes" : "no");
+        }
     }
 }
