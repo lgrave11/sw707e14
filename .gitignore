@@ -68,5 +68,6 @@ Report/Main.pdf
 Usability Test/usability-test.pdf
 
 SentimentTrainingData.txt
+friendships.reviews.txt
 *.bin
 *.vspx

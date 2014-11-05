@@ -23,32 +23,15 @@ namespace WIMiniProjekt2
             List<List<Review>> partitions = LoadPartitions(10);
             List<Review> learnData = partitions.SelectMany(x => x).ToList();
             NaiveBayesClassifier nbc = new NaiveBayesClassifier(learnData);
-            
-            //List<User> usersWithReview = userList.Where(x => x.Review != "*" && x.Summary != "*").ToList();
-            //List<User> usersWithoutReview = userList.Where(x => x.Review == "*" && x.Summary == "*").ToList();
 
             foreach (User user in userList)
             {
                 if (user.Review != "*" && user.Summary != "*")
                     ScoreReview(user, ref nbc);
-                /*if (user.Score == 1)
-                {
-                    Console.WriteLine("User: " + user.Username);
-                    Console.WriteLine("Summary: " + user.Summary);
-                    Console.WriteLine("Review: " + user.Review);
-
-                    Console.WriteLine("");
-                }
-                */
             }
-
-
-            //Console.WriteLine("Positive Count: " + usersWithReview.Where(x => x.Score == 5).Count());
-
-            //Console.WriteLine("Negative Count: " + usersWithReview.Where(x => x.Score == 1).Count());
-            //Console.ReadLine();
             
             List<List<User>> communities = FindCommunities(userList);
+            Console.WriteLine("Calculating will buy for users with no reviews..");
             foreach (User user in userList)
             {
                 if (user.Review == "*" && user.Summary == "*")
@@ -59,12 +42,14 @@ namespace WIMiniProjekt2
                     {
                         User currentUser = userList.Where(x => x.Username == friend).FirstOrDefault();
                         int score = userList.Where(x => x.Username == friend).Select(x => x.Score).FirstOrDefault();
+                        bool flag = true;
                         if (score != 0)
                         {
                             if (friend == "kyle")
                             {
                                 score = score * 10;
                                 counter += 10;
+                                flag = false;
                             }
                             foreach (List<User> community in communities)
                             {
@@ -74,17 +59,19 @@ namespace WIMiniProjekt2
                                 {
                                     score *= 10;
                                     counter += 10;
+                                    flag = false;
                                     break;
                                 }
                                 else if (!community.Contains(user) && community.Contains(currentUser))
                                 {
                                     score *= 10;
                                     counter += 10;
+                                    flag = false;
                                     break;
                                 }
                             }
 
-                            if (score <= 5)
+                            if (flag)
                                 counter++;
 
                             sum += score;
@@ -98,19 +85,24 @@ namespace WIMiniProjekt2
                     }
                 }
             }
-            /*
+
+            Console.WriteLine("Outputting matrixes to image.");
             int i = 0;
             foreach (var v in communities)
             {
                 Matrix<double> vA = MakeMatrix(v);
                 WriteImage(vA, filename: string.Format("community-{0}", i++));
             }
-            */
-
-            foreach (User user in userList)
+            Console.WriteLine("Outputting result.");
+            using (StreamWriter writer = new StreamWriter("Result.txt")) 
             {
-                Console.WriteLine(user.ToString());
+                foreach (User user in userList)
+                {
+                    writer.WriteLine(user.ToString());
+                }
+                
             }
+            
         }
 
         static void ScoreReview(User user, ref NaiveBayesClassifier nbc)

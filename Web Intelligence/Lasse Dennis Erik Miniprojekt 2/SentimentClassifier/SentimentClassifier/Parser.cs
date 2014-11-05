@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.IO.MemoryMappedFiles;
+using System.Globalization;
 
 namespace SentimentClassifier
 {
@@ -37,7 +38,7 @@ namespace SentimentClassifier
                     UserId = splitBlock[1].Substring(14).Trim(),
                     ProfileName = splitBlock[2].Substring(19).Trim(),
                     Helpfulness = splitBlock[3].Substring(19).Trim(),
-                    Score = Convert.ToSingle(splitBlock[4].Substring(13).Trim()),
+                    Score = float.Parse(splitBlock[4].Substring(13).Trim(), CultureInfo.InvariantCulture),
                     Time = Convert.ToInt32(splitBlock[5].Substring(12).Trim()),
                     Summary = splitBlock[6].Substring(15).Trim(),
                     Text = splitBlock[7].Substring(12).Trim()
@@ -58,7 +59,7 @@ namespace SentimentClassifier
                 UserId = reader.ReadLine().Substring(14).Trim(),
                 ProfileName = reader.ReadLine().Substring(19).Trim(),
                 Helpfulness = reader.ReadLine().Substring(19).Trim(),
-                Score = Convert.ToSingle(reader.ReadLine().Substring(13).Trim()),
+                Score = float.Parse(reader.ReadLine().Substring(13).Trim(), CultureInfo.InvariantCulture),
                 Time = Convert.ToInt32(reader.ReadLine().Substring(12).Trim()),
                 Summary = reader.ReadLine().Substring(15).Trim(),
                 Text = reader.ReadLine().Substring(12).Trim()
