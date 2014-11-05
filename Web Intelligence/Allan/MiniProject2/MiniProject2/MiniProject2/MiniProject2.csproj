@@ -81,6 +81,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="friendships.reviews.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="friendships.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
