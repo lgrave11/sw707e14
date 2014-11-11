@@ -33,7 +33,7 @@ namespace MiniProject2
             Console.WriteLine("Assigning user scores");
             foreach(User u in allUsers.Where(x=> !string.IsNullOrEmpty(x.Review)))
             {
-                u.score = classifier.WantsToBuy(new Review(u.Summary, u.Review)) == "yes" ? 5 : 1;
+                u.score = classifier.WantsToBuy(new Review(u.Summary)) == "yes" ? 5 : 1;
             }
 
             Console.WriteLine("Assigning purchase decisions");
@@ -103,9 +103,6 @@ namespace MiniProject2
             System.IO.File.WriteAllText("outputfile.txt", finalOutputstring);
             Console.WriteLine("We are done");
             Console.Read();
-        }
-
-        
-      
+        }      
     }
 }
