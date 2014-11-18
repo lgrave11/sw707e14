@@ -1,5 +1,5 @@
 \section{Usage History for Business Intelligence Purposes}
-This section describes various usage history features that were implemented, and why. It includes the GPS History.
+This section describes various usage history features that were implemented, and why. It includes the GPS History and Bicycle Usage History.
 
 \subsection{GPS History}
 The system saves the location of bicycles registered in the system, which could be helpful for determining where bicycles currently are. 
@@ -42,3 +42,30 @@ function RegisterGPS($bicycle_id, $latitude, $longitude)
     return true;
 }
 \end{lstlisting}
+
+\subsection{Bicycle Usage History}
+% Disposition:
+% What does it track?
+% Which questions can be answered?
+% How is it implemented?
+
+Besides recording the exact location of each bicycle with GPS coordinates, the system also records the stations each bicycle visits. 
+This can be used to give an overview of the bicycle traffic between stations.
+Furthermore the amount of docked bicycles is tracked for each station, giving an overall view of which stations that have high and low activity.
+
+\begin{description}[style=nextline]
+\item[Where is the most traffic of bicycles during some period?] An admin user would be able to see how many bicycles leaves and arrives at each station and thereby get an overview of where the traffic is high and low, providing an indication of where to put focus for relocation of bicycles and expansion of stations.
+\item[What is the current amount of bicycles at a given station?] A graph is shown providing the amount of bicycles on the y-axis and the provided timespan on the x-axis. This gives the admin user an idea when bicycles leave each station.
+\item[How does the amount of bicycles at a given station change over time?] Taking the same graph as above, the admin user can also choose a long period of time for example a week, month or a year, providing a more general overview of when the activity at each station is high or low.
+\end{description}
+
+These features are implemented through two additional tables added to the database, where the first table keeps information about the amount of bicycles at a station along with a timestamp. 
+The other table keeps information about the time and station a bicycle left from and arrived to, along with the specific bicycle id and a possible booking id associated with the bicycle trip.
+
+As this information needs to be captured and updated when an event occurs, either being a bicycle that is taken from a station dock or a bicycle return to a station dock, these operations are performed in the interface between the stations and the global database. 
+The stations will communicate with this interface when either of these events occur. 
+The timestamp is generated just before query execution, which means that some delay can occur from the actual event firing time to the insertion time, resulting in an imprecise trip duration. 
+This is, however, considered a minor deviation in most cases, because the communication delay is short (seconds maybe even less).
+In case of a bad connection, the generated timestamp will cause useless data in the light of statistical usage, if time is an important aspect of the analysis.
+For showing the traffic between stations the timestamp is used for filtering on a specified time interval and thereby allowing up to an hour of imprecision.
+The graph showing the amount of bicycles docked at a station shows the timestamp on the x-axis, however, in this case it is considered acceptable with some imprecision since this data will not be used for statistics but for an visual overview.
