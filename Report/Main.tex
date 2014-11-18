@@ -47,10 +47,6 @@
 	\input{Src/RelevantMaterial/InternetOfThings}
 	\input{Src/RelevantMaterial/MVC}
 	\input{Src/RelevantMaterial/ajax}
-	
-	\chapter{Behaviour}
-	This chapter will outline the behaviour of the system in the situations listed in \secref{sec:behaviourProblems}.
-	\input{Src/Behaviour/problems}
 		
 	\chapter{Design}
 	This chapter will present the design of the product, where a prototype is created hereafter the ER-diagram of the database is explained.
@@ -60,6 +56,13 @@
 	\input{Src/design/station}
 	\section{Components Interactions}
 	\section{Flow of control data/info}
+	
+	\chapter{Implementation Problems}
+	This chapter outlines how we tackle various problems found for implementing the system.
+	These problems consists of various scenarios where a decision has to be taken on how this is handled.
+	As we do not have a customer, the decisions have been taken ourselves, but could be changed in the system if wanted by a future customer.
+	Additionally, for future work, these decisions could be set as configurable variables on the admin page, letting the customers decide how the system should act in a given scenario.
+	\input{Src/Behaviour/problems}
 	
 	\chapter{Implementation}
 	This chapter covers implementation details.
@@ -75,6 +78,10 @@
 	\input{Src/Implementation/History}
 	
 	\chapter{Test}
+	In order to verify that the functionality of our system is as advised, we perform unit tests on our code. Also, to test the understandability of our system, Usability tests are performed on the visual sides of system.
+	\input{Src/Test/Unittest}
+	\input{Src/Test/Usabilitytest}
+	
 	\chapter{Discussion}
 	\chapter{Conclusion}
 	
