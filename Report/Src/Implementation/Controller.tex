@@ -1,7 +1,6 @@
 \section{Controller}
 This section will show how the controller layer works. 
 It will illustrate this by giving an example controller, showing what it looks like and what it does.
-An overview is then provided of the rest of the controllers and their functions.
 For more detail about the Model-View-Controller architecture, see \secref{sec:mvc}.
 
 In \lstref{lst:homeController}, part of the Home Controller can be seen. 
@@ -35,35 +34,6 @@ class Home extends Controller
 }
 \end{lstlisting}
 
-The controllers and their `actions' are as such,
-
-\begin{itemize}
-\item Home {\begin{itemize} 
-            \item Index -- The homepage and what is shown by default.
-            \item Unbook -- For cancelling a booking for the logged in user.
-            \item Book -- For arranging a booking for the logged in user.
-            \end{itemize}}
-\item User {\begin{itemize} 
-            \item Index -- Redirects to login page if not logged in, and status page otherwise.
-            \item Logout -- For logging out.
-            \item Login -- For logging in.
-            \item createUser -- For creating a new user.
-            \item changePassword -- For changing the password of the logged in user.
-            \item editProfile and changeAccountInfo -- For changing email or phone number of the logged in user.
-            \item forgotPassword, forgotPasswordForm, resetPassword, and resetPasswordForm -- For resetting a lost password.
-            \end{itemize}}
-\item About {\begin{itemize} 
-            \item Index -- Showing an about page.
-            \end{itemize}}
-\item Admin {\begin{itemize} 
-            \item Index -- Showing a special map for administrative purposes.
-            \end{itemize}}
-\item Ajax {\begin{itemize} 
-            \item Index -- Redirects to status page.
-            \item getBicyclePositions -- Get a JSON encoded array of coordinates of all bicycles that have not null coordinates.
-            \item getStations -- Get JSON encoded information about stations for dynamic updating.
-            \item getFreeDocksList -- Get json encoded information about amount of free docks at all station.
-            \end{itemize}}
-\end{itemize}
+The controllers and their `actions' can be seen in \appref{app-arch:controller}.
 
 What views look like will be illustrated in the next section.
