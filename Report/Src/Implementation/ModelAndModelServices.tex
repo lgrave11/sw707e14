@@ -1,7 +1,6 @@
 \section{Model \& Model Services}\fxwarning{Det er for redegørende}
 This section will describe the model and model service layer.
 It will illustrate this by giving an example model, showing what it looks like and what it does and then illustrating the corresponding service.
-It will then provide an overview over the rest of the models, their model services, and their functions.
 For more detail about Model-View-Controller architecture, see \secref{sec:mvc}.
 
 The Bicycle model can be seen in \lstref{lst:bicycleModel}.
@@ -74,18 +73,6 @@ class BicycleService implements iService
 \end{lstlisting}\fxwarning{Erstattet nulls med longitude and latitude i return.}
 
 The models represent the database tables and the services contain Create, Read, Update, Delete functionality. 
-The models and their associated services are as follows:
+The models and their associated services can be seen in \appref{app-arch:model}.
 
-\begin{itemize}
-\item Account \& AccountService -- \textbf{AccountService} also for verifying logins.
-\item Bicycle \& BicycleService -- No special functionality.
-\item Booking \& BookingService -- \textbf{BookingService} also for getting/deleting bookings for a specific user.
-\item Dock \& DockService -- \textbf{DockService} also for determining if a dock is currently holding a bicycle or getting all docks at a station.
-\item Station \& StationService -- \textbf{StationService} also for getting counts of available bicycles at stations or for searching for a station.
-\end{itemize}
-
-We also provide various helper functionality in \textbf{Tools} and \textbf{ViewHelper}. 
-In \textbf{Tools} we provide helper functionality for determining if the user is logged in, for including CSS and JavaScript, and for validating special fields like email addresses.
-In \textbf{ViewHelper} we provide helper functionality for printing error or success messages, and printing date components.\fxwarning{Burde disse være i model laget?}
-
- The next section will show how they are used in the context of the controller layer.
+The next section will show how they are used in the context of the controller layer.
