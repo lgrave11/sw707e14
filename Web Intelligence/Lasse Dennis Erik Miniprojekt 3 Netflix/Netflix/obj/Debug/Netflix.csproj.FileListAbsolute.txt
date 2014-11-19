@@ -1,0 +1,7 @@
+C:\Users\Dennis\Dropbox\Uni2\Web Intelligence\Mini Projekt 3\Netflix\Netflix\bin\Debug\Netflix.exe.config
+C:\Users\Dennis\Desktop\Netflix\Netflix\bin\Debug\Netflix.exe.config
+C:\Users\Dennis\Desktop\Netflix\Netflix\bin\Debug\Netflix.exe
+C:\Users\Dennis\Desktop\Netflix\Netflix\bin\Debug\Netflix.pdb
+C:\Users\Dennis\Desktop\Netflix\Netflix\obj\Debug\Netflix.csprojResolveAssemblyReference.cache
+C:\Users\Dennis\Desktop\Netflix\Netflix\obj\Debug\Netflix.exe
+C:\Users\Dennis\Desktop\Netflix\Netflix\obj\Debug\Netflix.pdb
