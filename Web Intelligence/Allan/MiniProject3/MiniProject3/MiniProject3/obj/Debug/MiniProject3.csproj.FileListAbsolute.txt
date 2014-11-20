@@ -1,0 +1,6 @@
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\bin\Debug\MiniProject3.exe.config
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\bin\Debug\MiniProject3.exe
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\bin\Debug\MiniProject3.pdb
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\obj\Debug\MiniProject3.csprojResolveAssemblyReference.cache
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\obj\Debug\MiniProject3.exe
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\obj\Debug\MiniProject3.pdb
