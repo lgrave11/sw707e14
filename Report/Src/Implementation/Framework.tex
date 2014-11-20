@@ -1,14 +1,13 @@
 \section{Framework}
-To set up the Model-View-Controller architecture for development, a modified PHP MVC framework was used, see \citep{misc:mvc-framework} for details on it.
+To set up the Model-View-Controller architecture for development, a modified PHP MVC framework is used, see \citep{misc:mvc-framework} for details on it.
 
-The framework provides a controller base class that the new controllers can reuse, mainly providing a database instance.
+The framework provides a controller base class that the new controllers inherit from, mainly providing a database instance.
 It also provides an application class that handles url parsing and navigation to the correct pages based on the url.
 The framework also provides a directory structure. 
-You can, for example, add a controller to the controller directory and they will be available to view on the site. 
+You can, for example, add a controller to the controller directory and the Application class is able to load them. 
 Another example is to add a model to the model directory and that can be used by the controllers. 
-Additionally, you can add views to the view directory and they can be shown by the controllers.
+Additionally, you can add views to the view directory and they can be included by the controllers.
 
-Here our modifications come into play, in that instead of the models containing CRUD behaviour, they are instead used to represent the data in the database locally.
-A different aspect to the model layer is added called services that work on models and return models.
-This is useful to separate the data and the methods working on the data.
-We also changed class loading to use autoloading instead.\fxnote{please explain why}
+Some modifications are applied, in that instead of a single model class per entity in the database, it is split into an entity class, wrapping the database data, and an associated service, implementing CRUD behaviour to work on said entities in the database.
+This is useful, as it separates the data and the methods working on the data, as it improves cohesion and reduces coupling in the code.
+We also change class loading to use autoloading instead. This is to not be enforced to include all files manually.

@@ -34,7 +34,7 @@ A listener that listens for signals from the global database interface, signalli
 A lock manager that is responsible for locking a dock when a booking is close to its start time, and unlocking if a booking has expired.
 And communication with the global database through a SOAP service interface described in \secref{sec:webToStationI}.
 
-\subsubsection{Listener}
+\subsubsection{Listener}\label{subsubsec:listener}
 The listener is made as a TCP Listener based heavily on code found on Microsofts Developer Network \citep{misc:TcpListenerSource}. 
 The listener listens for messages, which is done on port 10000, reporting changes in bookings, either addition of a booking or removal of one. 
 The messages are JSON encoded strings of two different forms depending on the content which can be seen in \lstref{lst:JsonUnbooking} and \lstref{lst:JsonBooking}.

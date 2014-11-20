@@ -8,32 +8,21 @@ Each of these interfaces are described below.
 The website has to establish contact to a station when a booking or un-booking has been performed.
 It is evident that this is important, as the stations need to be notified to keep track of bookings involving themselves as station.
 
-This contact is established through TCP.
+This contact is established through TCP/IP, and is used in implemented notification methods.
 The call to the notification methods is added in the \textit{BookingService}, as each time a booking is created, updated, or deleted, it is called through BookingService, and as of such we ensure the notification method is always called.
 
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[caption = {Function for notifying a station of a new booking.}, label = {lst:notifystationbooking}]
-public static function notifyStationBooking($station_id, $booking_id, $start_time, $password)
-{
-	$message = self::makeJson("booking", $station_id, $booking_id, $start_time, $password);
-	
-	$sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-	$sock_data = socket_connect($sock, self::$station_ips[$station_id - 1], self::$port);
-	
-	$sock_data = socket_write($sock, $message);
-	socket_close($sock);
-}
-\end{lstlisting}
-\end{minipage}
+In general, the notification methods work in the following way:
+\begin{itemize}
+	\item Construct JSON encoded message to be sent to the station.
+	\item Create the TCP socket.
+	\item Connect the socket to the station involved with the booking.
+	\item Send the data to the station.
+	\item Close the socket.
+\end{itemize}
 
-In order to see how the notification to a station is performed, see \lstref{lst:notifystationbooking}.
-As can be seen in the code, on line 3, a message is JSON encoded with an action, station-id, booking-id, start-time, and password.
-This is performed to have a standard way of encoded data, which can be easily decoded by the station.
-Afterwards in line 5-9, the TCP-socket is constructed and sent to the affected station.
-
+The reason the message is JSON encoded, is to have a standard way of encoding data, which can be easily decoded by the station.
 It is then up to the station to read this information and handle it in the station's local database.
-
-As can be seen from the code, the action is in this case "booking".
+How the JSON encoded message looks like, as well as how the station handles this notification is elaborated in \secref{subsubsec:listener}.
 
 \subsection{Station to Database}
 The station to database interface is important to register whether bicycles has been taken at stations, in order to give correct information on the website status page.
@@ -66,6 +55,7 @@ function BicycleReturnedToDockAtStation($bicycle_id, $station_id, $dock_id)
 	$stmt->execute();
 	$stmt->close();
 	
+	[...]
 	return true;
 }
 \end{lstlisting}
@@ -96,44 +86,23 @@ $server->register(
 //in case you want to read everything.
 function GetAllBookingsForStation($station_id)
 {
-	global $db;
-	$stmt = $db->prepare("SELECT booking_id, start_time, start_station, password, for_user FROM booking WHERE start_station = ? AND password IS NOT NULL");
-	$stmt->bind_param("i", $station_id);
-	$stmt->execute();
-	$stmt->bind_result($booking_id, $start_time, $start_station, $password, $for_user);
-	
-	$returnarray = array();
-	while($stmt->fetch())
-	{
-	$to_add_class = new stdclass();
-	$to_add_class->booking_id = $booking_id;
-	$to_add_class->start_time = $start_time;
-	$to_add_class->start_station = $start_station;
-	$to_add_class->password = $password;
-	$to_add_class->for_user = $for_user;
-	
-	$returnarray[] = json_encode($to_add_class);
-	}
-	$stmt->close();
-	return $returnarray;
+	//returns all bookings from database from a given station, as a json encoded array.
 }
 \end{lstlisting}
 \end{minipage}
 
 An example of a method that reads from the database is the \textit{GetAllBookingsForStation} function, seen in \lstref{lst:getallbookingstation}.
-Such a method is for example useful when first booting a station where its local database is empty.
+Such a method is for example useful when first booting a station where its local database is empty or that the local database data is outdated, e.g. it has been offline for some time.
 
 Taking a look at line 1-10, you see the registration of the PHP function for integration in the SOAP specification.
 As can be seen, it utilised a custom type called \textit{BookingObjectArray}, which is an array type used to contain multiple JSON encoded strings that represents bookings.
-If you then take a look at line 15-16, you see how the fields in the booking table is selected.
-The results you get from the select statement is then bound to variables, as seen in line 18.
-Finally on line 21-31 you can see how each booking is JSON encoded and appended to a return array, which is then returned on line 33, and can be used by station to traverse the array returned and decode each string to get its corresponding booking information.
+The result is a JSON encoded array and can be used by the given station to traverse the array returned and decode each string to get its corresponding booking information.
 
 \subsection{Bicycle to Database}
-The interface from bicycle to database, is an interface that is needed to register the location of a bicycle if GPS tracking is to be implemented.
-The idea is that each bicycle would use the interface to inform the system where the given bicycle is located, according to GPS.
+The interface from bicycle to database, is an interface that is needed to register the location of a bicycle, as GPS tracking is decided to be implemented, due to the meeting held with Aalborg Kommune.
+The idea is that each bicycle use the interface to inform the system where it is located, according to the coordinates received from GPS.
 
 The interface is implemented in the same fashion as the interface from station to database.
-As such, it is implemented as a SOAP web-service, using the NuSOAP library to gain the desired encoding.
+As such, it is implemented as a SOAP web-service, using the NuSOAP library to gain the an encoding that makes the interface easy to call.
 There exists one method, the \textit{RegisterGPS} method, which takes three arguments, the bicycle-id, latitude, and longitude.
-It is then coded similar to \lstref{lst:bicycledockstationreturned}, but where a given bicycles latitude and longitude is updated instead.
+The way this interface is constructed is similar to the other SOAP encoded interface, but where the bicycle location is updated instead.

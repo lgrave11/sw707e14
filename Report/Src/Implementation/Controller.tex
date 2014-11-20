@@ -1,14 +1,13 @@
 \section{Controller}
-This section will show how the controller layer works. 
-It will illustrate this by giving an example controller, showing what it looks like and what it does.
-For more detail about the Model-View-Controller architecture, see \secref{sec:mvc}.
+This section shows how the controller layer works. 
+It illustrates this by giving an example controller, showing what it looks like and what it does.
 
-In \lstref{lst:homeController}, part of the Home Controller can be seen. 
+In \lstref{lst:homeController} part of the Home Controller can be seen. 
 It defines an `action', this action is what is pointed to by the client. 
 For space saving purposes all actions but the index action have been omitted.
 The home controller uses two services, StationService, used to retrieve an array of all stations, line 8-9, and BookingService, used to retrieve an array of all active bookings for the currently logged in user, line 11-14. 
 This illustrates the general idea behind the separation of the entities (the models) and the services associated with those entities.
-It then uses the information loaded by 'including' views, and these views then use the information retrieved for displaying.
+It then uses the information loaded by 'including' views, and these views then use the information retrieved for displaying the content read from the services.
 
 \begin{lstlisting}[language=php, label=lst:homeController, caption={Home Controller Class}]
 <?php
@@ -35,5 +34,3 @@ class Home extends Controller
 \end{lstlisting}
 
 The controllers and their `actions' can be seen in \appref{app-arch:controller}.
-
-What views look like will be illustrated in the next section.
