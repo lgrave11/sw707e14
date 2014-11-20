@@ -1,13 +1,29 @@
 \section{Administration}
-This page will describe the administrative functionality.
+This section will describe the administrative functionality. 
+It covers usage history, GPS route history, GPS booking history, and an add/remove page. 
+For detail on GPS tracking see \secref{sec:googlemapsapi}.
 
-\subsection{GPS Tracking}
+\subsection{Route History}
+This part of the administration site handles showing a map of the historical locations of a bicycle.
+The administrator provides one or more bicycles, a start, and end date.
+Then if there are historical GPS coordinates for the bicycle(s), they will be shown on the map. 
 
-\subsection{Usage History}
+The purpose of the route history page is to give the administrators an idea of which roads the bicycles are traveling a lot on. 
+This can then be used as a decision-making tool to decide where to put new stations, in that if the administrator can see that a lot of bicycles are traveling to a specific point it might be a good idea to put a station there.
+It could also be used to see if a specific bicycle is being 'misused' in the sense that it would be visible if the bicycle is only being used to travel to one spot and nowhere else.
 
-\subsection{GPS Route History}
+See \figref{fig:routehistory} for a figure of what the page looks like.
 
-\subsection{GPS Booking History}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.75]{RouteHistory.png}
+	\caption{Picture of Route History}
+	\label{fig:routehistory}
+\end{figure}
+
+
+\subsection{Booking Routes}
+%This part of the administration site handles showing a map of the routes associated with a booking. Skal det bruges til noget???
 
 \subsection{Add/Remove}
 This part of the administration site handles the adding and removing of users, bicycles, docks, and stations.
