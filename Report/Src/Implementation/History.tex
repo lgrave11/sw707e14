@@ -4,7 +4,7 @@ This section describes various usage history features that were implemented, and
 \subsection{GPS History}
 The system saves the location of bicycles registered in the system, which could be helpful for determining where bicycles currently are. 
 This would allow the 'county' to determine where 'lost' bicycles are, which in turn would allow for easier recovery of bicycles.
-Having this already implemented, it makes sense to store the GPS coordinates in a separate table for historical and business intelligence purposes.
+Having the GPS tracking already implemented, it makes sense to store the GPS coordinates in a separate table for historical and business intelligence purposes.
 This kind of historical data could be interesting for intelligence purposes because it would allow knowledge about the following:
 
 \begin{description}[style=nextline]
@@ -13,7 +13,7 @@ This kind of historical data could be interesting for intelligence purposes beca
 This could provide valuable knowledge about for example where to add new stations.
 \end{description}
 
-Which is why a table about the historical location of bicycles was added with the following structure,
+A table to store this is created, containing the following information:
 
 \begin{itemize}
 \item The ID of the Bicycle
@@ -21,27 +21,7 @@ Which is why a table about the historical location of bicycles was added with th
 \item The latitude and the longitude.
 \end{itemize}
 
-\fxwarning{Er det nok? Ville det ikke være dejligt hvis man kunne se information om hvilken booking det nu engang er det GPS signal/tilhører. Jo synes jeg også}
-
-At the same time when location is recorded temporarily from a service, it needs to also record it permanently in the global database, the code to do this can be seen in \lstref{lst:registergps} on lines 10--14, to read more about services see \secref{sec:interfaces}.
-
-\begin{lstlisting}[language=PHP, caption={The function that records the location of a bicycle.}, label=lst:registergps]
-function RegisterGPS($bicycle_id, $latitude, $longitude)
-{
-    global $db;
-    
-    $stmt = $db->prepare("UPDATE bicycle SET latitude = ?, longitude = ? WHERE bicycle_id = ?");
-    $stmt->bind_param("ddi", $latitude, $longitude, $bicycle_id);
-    $stmt->execute();
-    $stmt->close();
-    
-    $stmt = $db->prepare("INSERT INTO historylocationbicycle(bicycle_id, latitude, longitude) VALUES (?,?,?)");
-    $stmt->bind_param("idd", $bicycle_id, $latitude, $longitude);
-    $stmt->execute();
-    $stmt->close();
-    return true;
-}
-\end{lstlisting}
+At the same time when location is recorded from a service, it needs to also record it permanently in the global database.
 
 \subsection{Bicycle Usage History}
 % Disposition:
@@ -49,9 +29,9 @@ function RegisterGPS($bicycle_id, $latitude, $longitude)
 % Which questions can be answered?
 % How is it implemented?
 
-Besides recording the exact location of each bicycle with GPS coordinates, the system also records the stations each bicycle visits. 
+Besides recording the exact location of each bicycle with GPS coordinates, the system also records the stations a given bicycle visits. 
 This can be used to give an overview of the bicycle traffic between stations.
-Furthermore the amount of docked bicycles is tracked for each station, giving an overall view of which stations that have high and low activity.
+Furthermore, the amount of docked bicycles is tracked for each station, giving an overview of which stations that have high and low activity.
 
 \begin{description}[style=nextline]
 \item[Where is the most traffic of bicycles during some period?] An admin user would be able to see how many bicycles leaves and arrives at each station and thereby get an overview of where the traffic is high and low, providing an indication of where to put focus for relocation of bicycles and expansion of stations.
@@ -62,10 +42,11 @@ Furthermore the amount of docked bicycles is tracked for each station, giving an
 These features are implemented through two additional tables added to the database, where the first table keeps information about the amount of bicycles at a station along with a timestamp. 
 The other table keeps information about the time and station a bicycle left from and arrived to, along with the specific bicycle id and a possible booking id associated with the bicycle trip.
 
-As this information needs to be captured and updated when an event occurs, either being a bicycle that is taken from a station dock or a bicycle return to a station dock, these operations are performed in the interface between the stations and the global database. 
+As this information needs to be captured and updated when an event occurs, either being a bicycle that is taken from a station dock or a bicycle return to a station dock, these operations are performed in the interface between the stations and the global database, see \figref{fig:overallarch}. 
 The stations will communicate with this interface when either of these events occur. 
 The timestamp is generated just before query execution, which means that some delay can occur from the actual event firing time to the insertion time, resulting in an imprecise trip duration. 
 This is, however, considered a minor deviation in most cases, because the communication delay is short (seconds maybe even less).
 In case of a bad connection, the generated timestamp will cause useless data in the light of statistical usage, if time is an important aspect of the analysis.
 For showing the traffic between stations the timestamp is used for filtering on a specified time interval and thereby allowing up to an hour of imprecision.
-The graph showing the amount of bicycles docked at a station shows the timestamp on the x-axis, however, in this case it is considered acceptable with some imprecision since this data will not be used for statistics but for an visual overview.
+This time interval is an assumed granularity and would have to be specified by the admin.
+The graph showing the amount of bicycles docked at a station shows the timestamp on the x-axis, however, in this case it is considered acceptable with some imprecision since this data will not be used for statistics but for a visual overview.
