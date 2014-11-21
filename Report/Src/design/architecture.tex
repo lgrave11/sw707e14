@@ -9,15 +9,15 @@ As we have a central booking system, and multiple simultaneous access points, th
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[trim=2cm 15.5cm 5cm 0cm, clip, scale=0.9]{design/architecture}
+	\includegraphics[trim=2cm 1.5cm 1cm 1.5cm, clip, scale=0.7]{design/architecture}
 	\caption{Overall architecture}\label{fig:overallarch}
 \end{figure}
-\fxwarning{Det mangler vist nogle prikker ved de cykler med mindre der kun er 3 cykler}
 
 As can be seen from the figure, the architecture consists of a central database as well as a website and three interfaces, where two of them contacts the central database.
-Additionally, multiple stations and their associated local database exists.
+Additionally, multiple stations and their associated local database and docks exists.
 The reason each station needs to have its own local database, and not merely use the central one is to minimize the necessary network communication, as well as allowing the stations to remain operational in case of network failure.
 As of such, the local databases contains a subset of the central database, corresponding to the data involving the given station.
+Each dock is associated with a given station, and is used by the users to take or deliver bicycles.
 
 Additionally, the three interfaces each serves a function, as described here.
 The gpsregister interface, is provided for the bicycles to register their current position in the central database, as well as logging its path in another table.
@@ -29,6 +29,29 @@ The websitetostationnotifier is a little different, in that it is an interface p
 
 For the website part of the architecture, it is structured according to the MVC pattern, see \secref{sec:mvc}.
 A detailed overview of the architecture of the controller and model part of the website are provided in \appref{app-arch:controller} and \appref{app-arch:model}
+
+Another part of the architecture is the user interaction.
+For the website, we distinguish between admin and regular users.
+The admin user has access to an admin webpage, where he can modify stations, bicycles, docks, and users. 
+Although a regular user can also create an account themselves.
+In addition to this, the admin user is also provided with some statistics pages about the usage of the system.
+The admin user also has access to the features a regular user has access to.
+
+A regular user can interact with the system in several ways.
+The website allows for station status, in order to see how many bicycles and docks are available at any given station, but also the position of each station.
+In addition to this, the website also provides the option to book bicycles in advance for a given station, where the station locks a bicycle sometime in advance.
+If you book a bicycle, you are provided with a password that needs to be used when you want to unlock a bicycle at the station booked at.
+
+For the station interaction, two interactions are involved.
+If you have booked a bicycle at the station in advance, you use the password provided from the website to unlock a bicycle for usage, by entering this password in the station automata.
+
+The automata then tells you at which dock a bicycle is unlocked, and you can retrieve your bicycle.
+However, if you have not booked a bicycle in advance, you do not use the station automate, but instead check each dock for available bicycles.
+In that regard, we imagine a distinction between reserved unlocked bicycles and free bicycles, such that you do not on accident steal someone else's booked bicycle.
+
+For the deliverance of bicycles, the interaction is the same whether the bicycle is booked or not.
+The process is easy, as you locate a free dock and then place the bicycle at that dock.
+The system will then automatically register that the bicycle has been returned to a dock at a station.
 
 %stationer skal have egen database
 %forklaring af figur
