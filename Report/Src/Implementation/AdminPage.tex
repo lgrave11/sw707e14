@@ -1,6 +1,7 @@
-\section{Administration}
+%!TEX root = ../../main.tex
+\section{Administration Tools}
 This section describes the administrative functionality. 
-It covers usage history, route history, booking routes, and an add/remove page.
+It covers route history, GPS history, bicycle usage history, and an add/remove page.
 It also contains a bicycle GPS tracking, but this has been mentioned in \secref{sec:googlemapsapi}.
 
 \subsection{Route History}
@@ -21,6 +22,55 @@ See \figref{fig:routehistory} for a figure of what the page looks like.
 	\label{fig:routehistory}
 \end{figure}
 
+\subsection{GPS History}
+The system saves the location of bicycles registered in the system, which could be helpful for determining where bicycles currently are. 
+This would allow the 'county' to determine where 'lost' bicycles are, which in turn would allow for easier recovery of bicycles.
+Having the GPS tracking already implemented, it makes sense to store the GPS coordinates in a separate table for historical and business intelligence purposes.
+This kind of historical data could be interesting for intelligence purposes because it would allow knowledge about the following:
+
+\begin{description}[style=nextline]
+\item[Which routes are used?] If routes could be determined, patterns could possibly be seen, e.g. if there is a particular route that is very popular.
+\item[Are there hotspots for bicycles?] If positions of bicycles could be determined, it would mean that hotspots(places where there is a lot of bicycle activity) could be found. 
+This could provide valuable knowledge about for example where to add new stations.
+\end{description}
+
+A table to store this is created, containing the following information:
+
+\begin{itemize}
+\item The ID of the Bicycle
+\item A timestamp of when the coordinates was recorded.
+\item The latitude and the longitude.
+\end{itemize}
+
+At the same time when location is recorded from a service, it needs to also record it permanently in the global database.
+
+\subsection{Bicycle Usage History}
+% Disposition:
+% What does it track?
+% Which questions can be answered?
+% How is it implemented?
+
+Besides recording the exact location of each bicycle with GPS coordinates, the system also records the stations a given bicycle visits. 
+This can be used to give an overview of the bicycle traffic between stations.
+Furthermore, the amount of docked bicycles is tracked for each station, giving an overview of which stations that have high and low activity.
+
+\begin{description}[style=nextline]
+\item[Where is the most traffic of bicycles during some period?] An admin user would be able to see how many bicycles leaves and arrives at each station and thereby get an overview of where the traffic is high and low, providing an indication of where to put focus for relocation of bicycles and expansion of stations.
+\item[What is the current amount of bicycles at a given station?] A graph is shown providing the amount of bicycles on the y-axis and the provided timespan on the x-axis. This gives the admin user an idea when bicycles leave each station.
+\item[How does the amount of bicycles at a given station change over time?] Taking the same graph as above, the admin user can also choose a long period of time for example a week, month or a year, providing a more general overview of when the activity at each station is high or low.
+\end{description}
+
+These features are implemented through two additional tables added to the database, where the first table keeps information about the amount of bicycles at a station along with a timestamp. 
+The other table keeps information about the time and station a bicycle left from and arrived to, along with the specific bicycle id and a possible booking id associated with the bicycle trip.
+
+As this information needs to be captured and updated when an event occurs, either being a bicycle that is taken from a station dock or a bicycle return to a station dock, these operations are performed in the interface between the stations and the global database, see \figref{fig:overallarch}. 
+The stations will communicate with this interface when either of these events occur. 
+The timestamp is generated just before query execution, which means that some delay can occur from the actual event firing time to the insertion time, resulting in an imprecise trip duration. 
+This is, however, considered a minor deviation in most cases, because the communication delay is short (seconds maybe even less).
+In case of a bad connection, the generated timestamp will cause useless data in the light of statistical usage, if time is an important aspect of the analysis.
+For showing the traffic between stations the timestamp is used for filtering on a specified time interval and thereby allowing up to an hour of imprecision.
+This time interval is an assumed granularity and would have to be specified by the admin.
+The graph showing the amount of bicycles docked at a station shows the timestamp on the x-axis, however, in this case it is considered acceptable with some imprecision since this data will not be used for statistics but for a visual overview.
 
 \subsection{Booking Routes}
 %This part of the administration site handles showing a map of the routes associated with a booking. Skal det bruges til noget???
@@ -32,9 +82,9 @@ This part of the administration site handles the adding and removing of users, b
 \item[User] 
 The admin can add a normal user and set up his or her details or the admin can add another admin.
 Removal of users by the admin is also provided functionality.
-However, while the admin can remove all other users and admins he cannot remove himself.
+However, while the admin can remove all other users and admins, he cannot remove himself.
 \item[Bicycle] 
-Functionality for adding bicycles was added, this requires no information about the bicycle being given.
+Functionality for adding bicycles was added, which requires no information about the bicycle.
 The reason why no dock have to be given when adding a bicycle is because the bicycle has to be inserted manually into a dock.
 While addition of bicycles require no information being provided, removal of bicycles requires providing the id of the bicycle.
 Furthermore, the admin should remove the bicycle from the dock it is located at, before it is removed from the system.
@@ -42,7 +92,7 @@ Furthermore, the admin should remove the bicycle from the dock it is located at,
 Addition of docks requires the admin choosing which station to which the dock has to be added.
 After adding a dock, the station has to be notified because the database on the station has to be updated.
 Removal of docks requires the admin choosing which dock at which station to remove from, with the notice that it only allows removal of docks not currently used.
-After removing a dock the station containing the dock has to be notified that the dock have been removed from the station.
+After removing a dock, the station containing the dock has to be notified that the dock have been removed from the station.
 \item[Station] 
 Adding a station requires information about the name, the coordinates, and the ip address, given that we simulate the stations we also need to notify the station software that a new station has been added, however, this is not needed for the final version as ours only work as a prototype.
 Removal of station requires the admin to choose which station that has to be removed.
