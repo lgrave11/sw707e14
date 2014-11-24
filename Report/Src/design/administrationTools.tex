@@ -1,3 +1,4 @@
+%!TEX root = ../../main.tex
 \section{Administration Tools}
 In order for the administrator of the bicycle system to make reasonable decision about future actions/improvements towards the bicycle system, statistical data has to be collected and shown to the administrator. This will give him an overview of the usage of the bicycles and prepare him to possibly make a better decision or just provide him with a knowledge of how the system is used.
 A list of questions should be able to be answered or hinted by the system:
@@ -22,3 +23,8 @@ Putting all this together, also illustrating foreign key references, can be seen
 \vspace*{-2cm}
 \caption{ER-diagram showing relations covering data logging.}\label{fig:er-dia-log}
 \end{figure}
+
+Since the logging tables use the other tables like the station and bicycle tables it is important to handle deletion of stations and bicycles. 
+If deletion is not handled properly the logged data could end up being inconsistent. 
+In our case we handle deletion by adding a column to the affected tables indicating if the row is deleted or not. 
+When using the station and bicycles table on the website we make sure to only use the rows that is not deleted, while for the history data we use all rows.
