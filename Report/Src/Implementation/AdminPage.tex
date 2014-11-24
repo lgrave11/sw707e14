@@ -82,9 +82,9 @@ This part of the administration site handles the adding and removing of users, b
 \item[User] 
 The admin can add a normal user and set up his or her details or the admin can add another admin.
 Removal of users by the admin is also provided functionality.
-However, while the admin can remove all other users and admins he cannot remove himself.
+However, while the admin can remove all other users and admins, he cannot remove himself.
 \item[Bicycle] 
-Functionality for adding bicycles was added, this requires no information about the bicycle being given.
+Functionality for adding bicycles was added, which requires no information about the bicycle.
 The reason why no dock have to be given when adding a bicycle is because the bicycle has to be inserted manually into a dock.
 While addition of bicycles require no information being provided, removal of bicycles requires providing the id of the bicycle.
 Furthermore, the admin should remove the bicycle from the dock it is located at, before it is removed from the system.
@@ -92,7 +92,7 @@ Furthermore, the admin should remove the bicycle from the dock it is located at,
 Addition of docks requires the admin choosing which station to which the dock has to be added.
 After adding a dock, the station has to be notified because the database on the station has to be updated.
 Removal of docks requires the admin choosing which dock at which station to remove from, with the notice that it only allows removal of docks not currently used.
-After removing a dock the station containing the dock has to be notified that the dock have been removed from the station.
+After removing a dock, the station containing the dock has to be notified that the dock have been removed from the station.
 \item[Station] 
 Adding a station requires information about the name, the coordinates, and the ip address, given that we simulate the stations we also need to notify the station software that a new station has been added, however, this is not needed for the final version as ours only work as a prototype.
 Removal of station requires the admin to choose which station that has to be removed.
