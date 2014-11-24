@@ -1,6 +1,6 @@
 \section{Usability Test}
 This section covers the usability tests performed on the system.
-Tests have been performed on the publicly available part of the website, which are the status and booking.
+Tests have been performed on the public part of the website, which are the status and booking.
 
 These are the tasks:
 
@@ -16,7 +16,8 @@ For a full description of the tasks see \appref{app:usability-test}.
 
 The problems were uncovered using Instant Data Analysis.
 
-The procedure is as follows:
+The procedure for IDA is as follows:
+
 \begin{itemize}
 \item Test monitor introduces test subject to the evaluation procedure. After which the test monitor gives the first task to the test subject.
 \item The test subject attempts to solve the task until they have accomplished it, feel they have accomplished it or until the test monitor gives them a new task.
@@ -26,10 +27,10 @@ The procedure is as follows:
 
 After the test, there is a meeting with the user where problems are discussed and which they felt were significant.
 The result of Instant Data Analysis is a set of usability problems categorized into one of three categories: Critical, Serious and Cosmetic.
-We used IDA because it is quick and usually catches most of the usability problems a more rigorous approach would have caught.
+We used IDA because it catches most of the usability problems a more rigorous approach would have caught, in much less time.
 
 \subsection{Testees}
-The tests were performed on four testees, whose demographics are as follows.
+The tests were performed on four test subjects, whose demographics are as follows.
 \begin{description}[style=nextline]
 \item[Subject 1]
 Gender: Female, Age: 29, Profession: Lawyer, Technological abilities: Average
@@ -49,7 +50,7 @@ As a result of the tests, the following usability issues were uncovered.
 		All subjects experienced a problem with the fields resetting if they tried to book with incorrect information.
 		This is for test subject 3 particularly critical, as she double booked a bicycle.
 	\item[{\#}2 Error message understandability] Test subject 4 had a problem with understanding the error message if location is not selected.
-												The error message is not descriptive enough, as it says "Please fill in all fields" instead of "please choose a location" or something of the like.
+												The error message is not descriptive enough, as it says "Please fill in all fields" instead of "please choose a location".
 	\item[{\#}3 Difficulty finding history] Test subject 1 and 3 both experienced some problems finding the booking history button, with subject 3 having it being a bit more severe, as it took her half a minute to find the button, whereas for subject 1, it took about 15 seconds. The problem for both of them being that they did not notice the button the first time they navigated to the profile part of the site.
 	\item[{\#}4 Booking/Unbooking confirmation] Subject 2 became a bit confused on whether he booked/unbooked something, as no confirmation is shown to the user.
 												Additionally, he requested a confirmation box, to prevent a person with clumpsy fingers to on accident book/unbook a bicycle.
@@ -60,7 +61,7 @@ The issues are ranked for each test subject, such that Cos means a cosmetic issu
 \begin{table}[h]
 	\centering
 	\begin{tabular}{ll|cccc}
-		\multicolumn{1}{c}{}&\multicolumn{4}{r}{Test Subject Number}&\\
+		\multicolumn{1}{c}{}&\multicolumn{4}{r}{Test Subject ID}&\\
 		%	\cline{3-6}
 		\multicolumn{2}{c|}{}&1&2&3&4\\
 		\cline{2-6}
@@ -76,9 +77,9 @@ The issues are ranked for each test subject, such that Cos means a cosmetic issu
 	\caption{Usability issues overview.}\label{tab:usabilityissues}
 \end{table}
 
-As is found, the amount of usability issues found is very low.
+As can be seen, the amount of usability issues found is very low.
 This may be because the website is simple and easy to use, however, it is probably also connected to the size of the usability tasks document.
-Four issues was, however, found, and for each of these issues, we go through what might be changed in order to touch upon these issues.
+Four issues was, however, found, and for each of these issues, we go through what might be changed in order to fix these issues.
 
 \begin{description}[style=nextline]
 	\item[{\#}1 Fields reset]
@@ -95,7 +96,7 @@ Four issues was, however, found, and for each of these issues, we go through wha
 	\item[{\#}4 Booking/Unbooking confirmation]
 	The booking/unbooking issue can be solved in two ways.
 	One way is to present some status text when the booking/unbooking action has been performed.
-	Another way is to enforce a confirmation box for the user to agreed on the action initiated.
+	Another way is to enforce a confirmation box for the user to agree with the action initiated.
 	
 	We find the first way better, for the booking action, and the confirmation box better for the unbooking action.
 	This is due to booking a bicycle by accident is not as severe an action as the unbooking, since if you booked something by accident, you can unbook it after and no harm is done.
