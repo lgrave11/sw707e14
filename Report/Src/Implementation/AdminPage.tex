@@ -1,10 +1,16 @@
 %!TEX root = ../../main.tex
 \section{Administration Tools}
-This section describes the administrative functionality. 
-It covers route history, GPS history, bicycle usage history, and an add/remove page.
-It also contains a bicycle GPS tracking, but this has been mentioned in \secref{sec:googlemapsapi}.
+% This section describes the administrative functionality. 
+% It covers route history, GPS history, bicycle usage history, and an add/remove page.
+% It also contains a bicycle GPS tracking, but this has been mentioned in \secref{sec:googlemapsapi}.
+In \secref{sec:designAdminTools} some questions was asked. 
+In this section we answer these questions.
+To answer the question about which routes are used we implemented a feature to show route history, which can be seen in \secref{sec:routeHistory}.
+The hotspots is found using the implemented GPS history in \secref{sec:gpsHistory}.
+The traffic og bicycles during some period and the current amount of bicycles at a given station can be seen using the implemented graph in \secref{sec:bicycleUsageHistory}.
+How the amount of bicycles at a station change over time can be seen in the same graph.
 
-\subsection{Route History}
+\subsection{Route History}\label{sec:routeHistory}
 This part of the administration site handles showing a map of the historical locations of a bicycle.
 The admin provides one or more bicycles, a start, and end date.
 Then if there are historical GPS coordinates for the bicycle(s), they will be shown on the map. 
@@ -22,7 +28,7 @@ See \figref{fig:routehistory} for a figure of what the page looks like.
 	\label{fig:routehistory}
 \end{figure}
 
-\subsection{GPS History}
+\subsection{GPS History}\label{sec:gpsHistory}
 The system saves the location of bicycles registered in the system, which could be helpful for determining where bicycles currently are. 
 This would allow the 'county' to determine where 'lost' bicycles are, which in turn would allow for easier recovery of bicycles.
 Having the GPS tracking already implemented, it makes sense to store the GPS coordinates in a separate table for historical and business intelligence purposes.
@@ -44,7 +50,7 @@ A table to store this is created, containing the following information:
 
 At the same time when location is recorded from a service, it needs to also record it permanently in the global database.
 
-\subsection{Bicycle Usage History}
+\subsection{Bicycle Usage History}\label{sec:bicycleUsageHistory}
 % Disposition:
 % What does it track?
 % Which questions can be answered?
@@ -72,8 +78,8 @@ For showing the traffic between stations the timestamp is used for filtering on 
 This time interval is an assumed granularity and would have to be specified by the admin.
 The graph showing the amount of bicycles docked at a station shows the timestamp on the x-axis, however, in this case it is considered acceptable with some imprecision since this data will not be used for statistics but for a visual overview.
 
-\subsection{Booking Routes}
-%This part of the administration site handles showing a map of the routes associated with a booking. Skal det bruges til noget???
+% \subsection{Booking Routes}
+% %This part of the administration site handles showing a map of the routes associated with a booking. Skal det bruges til noget???
 
 \subsection{Add/Remove}
 This part of the administration site handles the adding and removing of users, bicycles, docks, and stations.
