@@ -6,7 +6,7 @@ The process of a unit test follows these steps:
 \item[Set Up] The objects, and/or data needed is set up.
 \item[Action] Some action are performed on the objects and the data.
 Some times not necessary.
-\item[Test] The output of the actions are tested if they match expectations.
+\item[Test] The output of the actions are tested if they match the expectations through assertions.
 \item[Tear Down/Clean Up] The objects and data are cleaned up. This is specifically important for us because we insert data into a database and it needs to be removed afterwards in order for the tests to be repeatable and to remove test data that might be shown on the website if not removed. 
 Sometimes not necessary.
 \end{description}
@@ -41,4 +41,4 @@ As can be seen it sets up the data on lines 3-6, acts on line 7 and 15, tests on
 We currently have 44 tests with 181 assertions and these cover every model and their associated modelservices. 
 The benefit from unit testing was great as it showed errors that were not immediately obvious, for example multiple places when binding parameters to mysqli statements incorrect types were used and as another example methods were called incorrectly.
 As such the unit testing led to a lot of errors being resolved.
-
+Additionally, unit testing was good to register erroneous changes made to the program, as you could run your tests and the erroneous parts of the program would be located.
