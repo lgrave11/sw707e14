@@ -1,0 +1,34 @@
+While developing the system, various problems were found, which may affect the applicability of the system.
+Several of the problems were solved, but some problems still exist that may affect the applicability of the system in the Aalborg Bycykel domain.
+For that reason, it is necessary to touch upon these issues and discuss what can be done differently, or why the chosen solution is sufficient.
+
+In relation to this, implementation decisions made are discussed.
+Additionally, the system is compared to the existing systems discussed in \secref{sec:existing-systems}, in order to determine the pros and cons of the developed system.
+
+\section*{Booking Static}
+A concern of Aalborg Kommune, mentioned in \secref{subsec:meetingaalborg}, is that the booking system might be too static.
+By that meaning that too many bicycles are locked at docks instead of actively being used around Aalborg.
+The problem with the system is that as the booking part of the website is used more, the system becomes more static.
+Ways to ensure that the system stays a bit dynamic are one or more of the following, each of which are discussed in turn:
+
+\begin{description}[style=nextline]
+		\item[Lock late]
+		The idea of this solution is to delay the locking of bicycles, reducing the static time each booking affects the system.
+		However, the risk with this approach is that as you reduce the amount of time a bicycle is locked, you increase the risk of the bicycle not being available for the planned booking.
+		This is a weighting you have to consider, but for the moment, the simulation of a station has a lock time of one hour before a bicycle is planned to be obtained.
+		Alone, this solution is not desireable, as you have no way of detecting how many bicycles are available in the future.
+		To compensate this, the lock time could wary if you were to integrate the locking mechanism with GPS tracking, and is related to the latter point about prediction.
+		
+		\item[Subset of bicycles for booking]
+		\item[Prediction]
+\end{description}
+
+\section*{Website Designed for PC}
+
+\section*{Hardware vs. Simulation}
+
+\section*{Sufficient Stats}
+	\begin{itemize}
+		\item intelligence
+		\item Prediction
+	\end{itemize}
