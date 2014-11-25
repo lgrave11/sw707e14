@@ -20,10 +20,33 @@ Ways to ensure that the system stays a bit dynamic are one or more of the follow
 		To compensate this, the lock time could wary if you were to integrate the locking mechanism with GPS tracking, and is related to the latter point about prediction.
 		
 		\item[Subset of bicycles for booking]
+		The idea here is to only allow a subset of the amount of bicycles on a station to be booked, this could for instance be that at all times at most half of the bicycles on a station can be booked.
+		There are a few different approaches to how this could be handled.
+		One option is to simply exclude some of the docks from the system, so that at each station some of the docks physically placed at the station will not be in the system.
+		Another option is that the system itself keeps track of how many bicycles are currently at each station, and then it cannot lock anymore than a predefined percentage of these.
+		The problem with the first option is that the system cannot accurately tell how many bicycles are available at a station, if it does not have access to read from all the docks.
+		The problem with the second approach is that it is difficult for users of the website to know when a booking is possible as the amount of lockable bicycles at each station is dynamically updating.
+		This leads to a third option, which is a combination of the first two.
+		This option is that each station has a set amount of bicycles that it can lock.
+		As this a fixed amount, it is possible to predict if a bicycle can be locked at the given time and due to this, it is possible to inform users at the time of booking creation, whether the booking was successful or not, but also give a status of how many bicycles are available for booking and how many are free to take.
+		
 		\item[Prediction]
+		The idea here is that if you are able to predict when bicycles are returning to the station, you can unlock bicycles on that basis.
+		An example of this is that you have a booking in 15 minutes, there is one bicycle left at the station. Then since you know that a bicycle returns to the station in about 5 minutes, the last remaining bicycle can be unlocked for use.
+		How you are then able to predict this could be with use of GPS tracking and substantial statistical analysis.
+		However, it is a project on its own, but is elaborated a bit further in \secref{subsec:prediction}.
 \end{description}
 
 \section*{Website Designed for PC}
+At the current stage, the website part of the system have been designed with a PC in mind.
+However, it is evident that there is a tendency to more people using smartphones and tablets \citep{article:smartphonetabletincrease}.
+For that reason, it would be a good idea to design the website such that it is also easy to use for such devices.
+There are several ways to tackle this, each of which are discussed in turn.
+\begin{description}[style=nextline]
+	\item[Dynamic scaling]
+	\item[Detection of device type]
+	\item[Seperate App]
+\end{description}
 
 \section*{Hardware vs. Simulation}
 
