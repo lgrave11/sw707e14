@@ -107,7 +107,20 @@ namespace Netflix
             Console.WriteLine("ratingSumAvg: " + ratingSumAvg.ToString());
 
             CalcRMUHat(userMean, movieMean, trainingData, sum, N);
-            Console.ReadLine();
+            double RMSE = 0.0;
+            int n = 0;
+            foreach (var v in trainingData.Values) 
+            {
+                foreach (var l in v) 
+                {
+                    if (l.Value.Rating != null && l.Value.Rating != 0) 
+                    {
+                        RMSE += Math.Pow(Convert.ToDouble((l.Value.RMUHat - l.Value.Rating)), 2);
+                        n++;
+                    }
+                }
+            }
+            Console.WriteLine(Math.Sqrt(RMSE / n));
         }
 
         private Dictionary<int, int> CreateUserMapper(Dictionary<int, double?> userMean)
@@ -136,7 +149,7 @@ namespace Netflix
 
         private void CalcRMUHat(Dictionary<int, double?> userMean, Dictionary<int, double?> movieMean, Dictionary<int, Dictionary<int, UserRating>> trainingData, int? sum, int N)
         {
-            int k = 29;
+            int k = 28;
             double n = 0.001;
             double[,] A = new double[movieMean.Count, k];
             for (int i = 0; i < movieMean.Count; i++)
@@ -225,7 +238,8 @@ namespace Netflix
                         
                         
                     }
-                    trainingData[movieID][userID].RMUHat += movieMean[movieID] + userMean[userID] - (Convert.ToDouble(sum.Value) / N); ;
+                    trainingData[movieID][userID].RMUHat += movieMean[movieID] + userMean[userID] - (Convert.ToDouble(sum.Value) / N);
+                    trainingData[movieID][userID].RMUHat = trainingData[movieID][userID].RMUHat > 5 ? 5 : trainingData[movieID][userID].RMUHat < 1 ? 1 : (double?)Math.Round((decimal)trainingData[movieID][userID].RMUHat);
                 }
             }
         }

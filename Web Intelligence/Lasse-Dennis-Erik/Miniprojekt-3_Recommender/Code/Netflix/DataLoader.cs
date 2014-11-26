@@ -64,7 +64,7 @@ namespace Netflix
                     Console.WriteLine(i.ToString());
                 }
                 i++;
-                if (i == 500)
+                if (i == 250)
                     break;
                 
                 StreamReader reader = new StreamReader("training_set/" + item.Name);
@@ -90,20 +90,26 @@ namespace Netflix
                     }
                 }
             }
-            Console.WriteLine("Manipulating data");
-            ManipulateData(trainingData, probeData);
-
+            
             return trainingData;
         }
 
-        private void ManipulateData(Dictionary<int, Dictionary<int, UserRating>> trainingData, Dictionary<int, Dictionary<int, UserRating>> probeData)
+        public Tuple<Dictionary<int, Dictionary<int, UserRating>>, Dictionary<int, Dictionary<int, UserRating>>> ManipulateData(Dictionary<int, Dictionary<int, UserRating>> trainingData, Dictionary<int, Dictionary<int, UserRating>> probeData)
         {
+            Dictionary<int, Dictionary<int, UserRating>> newProbeData = new Dictionary<int, Dictionary<int, UserRating>>();
             foreach (KeyValuePair<int, Dictionary<int, UserRating>> item in trainingData)
             {
                 foreach (KeyValuePair<int, UserRating> itemValue in item.Value)
                 {
                     if (probeData[item.Key].ContainsKey(itemValue.Key))
+                    {
                         probeData[item.Key][itemValue.Key].Rating = itemValue.Value.Rating;
+                        if (!newProbeData.ContainsKey(item.Key)) 
+                        {
+                            newProbeData.Add(item.Key, new Dictionary<int, UserRating>());
+                        }
+                        newProbeData[item.Key].Add(itemValue.Key, probeData[item.Key][itemValue.Key]);
+                    }
                 }
             }
 
@@ -117,6 +123,8 @@ namespace Netflix
                     }
                 }
             }
+
+            return new Tuple<Dictionary<int, Dictionary<int, UserRating>>, Dictionary<int, Dictionary<int, UserRating>>>(trainingData, newProbeData);
         }
     }
 }
