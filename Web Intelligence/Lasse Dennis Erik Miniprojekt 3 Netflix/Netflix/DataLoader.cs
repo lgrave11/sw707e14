@@ -42,16 +42,32 @@ namespace Netflix
         public Dictionary<int, Dictionary<int, UserRating>> LoadTrainingData(string path, Dictionary<int, Dictionary<int, UserRating>> probeData)
         {
             Dictionary<int, Dictionary<int, UserRating>> trainingData = new Dictionary<int, Dictionary<int, UserRating>>();
-            string[] files = Directory.GetFiles(path);
-            int i = 0;
-            foreach(int item in probeData.Keys.Take(10000))
+            DirectoryInfo di = new DirectoryInfo(path);
+            List<FileInfo> fi = new List<FileInfo>();
+            string[] files = new string[500];
+            foreach (FileInfo fileInfo in di.GetFiles())
             {
+                if (fileInfo.Length <= 10240)
+                    fi.Add(fileInfo);
+            }
+            
+            int i = 0;
+
+            foreach(FileInfo item in fi)
+            {
+                if (!probeData.ContainsKey(Convert.ToInt32(item.Name.Remove(item.Name.Length - 4).Replace("mv_", string.Empty))))
+                {
+                    continue;
+                }
                 if (i % 250 == 0)
                 {
                     Console.WriteLine(i.ToString());
                 }
                 i++;
-                StreamReader reader = new StreamReader("training_set/mv_" + item.ToString("D7") + ".txt");
+                if (i == 500)
+                    break;
+                
+                StreamReader reader = new StreamReader("training_set/" + item.Name);
                 //Console.WriteLine("Reading file mv_" + item.ToString("D7"));
                 int movieId = 0;
                 bool j = true;

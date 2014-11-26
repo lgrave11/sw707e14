@@ -13,6 +13,7 @@ namespace Netflix
             Dictionary<int, Dictionary<int, UserRating>> probeData;
             Dictionary<int, Dictionary<int, UserRating>> trainingData;
             DataLoader dataLoader = new DataLoader();
+            Learning learner = new Learning();
             bool saveData = false;
             //if ((probeData = Binary.LoadProbeData()) == null)
            // {
@@ -25,7 +26,7 @@ namespace Netflix
                 trainingData = dataLoader.LoadTrainingData("training_set", probeData);
             //    saveData = true;
             //}
-                
+                learner.SubtractMeans(trainingData);
             if (saveData)
                 Binary.SaveData(probeData, trainingData);
             

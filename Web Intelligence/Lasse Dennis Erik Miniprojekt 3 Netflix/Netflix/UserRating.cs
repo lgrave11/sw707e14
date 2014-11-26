@@ -20,5 +20,6 @@ namespace Netflix
         public int? Rating;
         public double? RatingFixed;
         public double? Structure;
+        public double? RMUHat = 0;
     }
 }

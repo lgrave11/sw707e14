@@ -10,12 +10,14 @@ namespace Netflix
     {
         public void SubtractMeans(Dictionary<int, Dictionary<int, UserRating>> trainingData)
         {
+            
             Dictionary<int, double?> movieMean = new Dictionary<int, double?>();
             Dictionary<int, double?> userMean = new Dictionary<int, double?>();
             Dictionary<int, List<int?>> tmp = new Dictionary<int, List<int?>>();
             int N = 0;
             int? sum = 0;
 
+            // Calculate movie means
             foreach (KeyValuePair<int, Dictionary<int, UserRating>> item in trainingData)
             {
                 var ratings = item.Value.Select(x => x.Value.Rating).ToList();
@@ -24,6 +26,8 @@ namespace Netflix
                 sum += ratings.Sum();
                 N += ratings.Count;
             }
+
+            // Calculate user means
             foreach (KeyValuePair<int, Dictionary<int, UserRating>> item in trainingData)
             {
                 
@@ -32,18 +36,19 @@ namespace Netflix
                     if (!tmp.ContainsKey(itemValue.Key)) 
                     {
                         tmp.Add(itemValue.Key, new List<int?>());
-                        tmp[itemValue.Key].Add(itemValue.Value.Rating);
-
+                        
                     }
+                    tmp[itemValue.Key].Add(itemValue.Value.Rating);
                 }
             }
-
 
             foreach (var v in tmp) 
             {
                 userMean.Add(v.Key, v.Value.Average());
             }
 
+
+            // Remove obvious structures
             foreach (KeyValuePair<int, Dictionary<int, UserRating>> item in trainingData)
             {
                 foreach (KeyValuePair<int, UserRating> itemValue in item.Value)
@@ -53,7 +58,137 @@ namespace Netflix
                 }
             }
 
+            // Check if mean is 0
+            double ratingSum = 0;
+            int ratingCount = 0;
+            foreach (KeyValuePair<int, Dictionary<int, UserRating>> item in trainingData)
+            {
+                foreach (KeyValuePair<int, UserRating> itemValue in item.Value)
+                {
+                    ratingSum += itemValue.Value.RatingFixed.Value;
+                    ratingCount++;
+                }
+            }
+            double ratingSumAvg = ratingSum / Convert.ToDouble(ratingCount);
+            Console.WriteLine("ratingSumAvg: " + ratingSumAvg.ToString());
 
+            CalcRMUHat(userMean, movieMean, trainingData, sum, N);
+            Console.ReadLine();
+        }
+
+        private Dictionary<int, int> CreateUserMapper(Dictionary<int, double?> userMean)
+        {
+            int i = 0;
+            Dictionary<int, int> userMapping = new Dictionary<int, int>();
+            foreach (KeyValuePair<int, double?> item in userMean)
+            {
+                userMapping.Add(item.Key, i);
+                i++;
+            }
+            return userMapping;
+        }
+
+        private Dictionary<int, int> CreateMovieMapper(Dictionary<int, double?> movieMean)
+        {
+            int i = 0;
+            Dictionary<int, int> movieMapping = new Dictionary<int, int>();
+            foreach (KeyValuePair<int, double?> item in movieMean)
+            {
+                movieMapping.Add(item.Key, i);
+                i++;
+            }
+            return movieMapping;
+        }
+
+        private void CalcRMUHat(Dictionary<int, double?> userMean, Dictionary<int, double?> movieMean, Dictionary<int, Dictionary<int, UserRating>> trainingData, int? sum, int N)
+        {
+            int k = 29;
+            double n = 0.001;
+            double[,] A = new double[movieMean.Count, k];
+            for (int i = 0; i < movieMean.Count; i++)
+            {
+                for (int j = 0; j < k; j++)
+                {
+                    A[i, j] = 1;
+                }
+            }
+
+            double[,] B = new double[k, userMean.Count];
+            for (int i = 0; i < k; i++)
+            {
+                for (int j = 0; j < userMean.Count; j++)
+                {
+                    B[i, j] = 1;
+                }
+            }
+
+            Dictionary<int, int> userMapper = CreateUserMapper(userMean);
+            Dictionary<int, int> movieMapper = CreateMovieMapper(movieMean);
+
+            int traversals = 0;
+            while (traversals < 10000)
+            {
+                Random r = new Random();
+
+                int posMovie = r.Next(0, movieMean.Keys.Count);
+                int movieID = trainingData.Keys.ToArray()[posMovie];
+                int posUser = r.Next(0, trainingData[movieID].Keys.Count);
+                int userID = trainingData[movieID].Keys.ToArray()[posUser];
+
+                double? innerparanthesis = 0.0;
+                innerparanthesis = trainingData[movieID][userID].RatingFixed;
+                for (int i = 0; i < k; i++)
+                {
+                    innerparanthesis -= A[movieMapper[movieID], i] * B[i, userMapper[userID]];
+                }
+
+                double[,] oldA = A, oldB = B;
+                for (int j = 0; j < k; j++)
+                {
+                    A[movieMapper[movieID], j] = oldA[movieMapper[movieID], j] + n * innerparanthesis.Value * oldB[j, userMapper[userID]];
+                    B[j, userMapper[userID]] = oldB[j, userMapper[userID]] + n * oldA[movieMapper[movieID], j] * innerparanthesis.Value;
+                }
+
+                if (traversals % 100 == 0)
+                    Console.WriteLine(traversals);
+                traversals++;
+            }
+
+            Dictionary<int, UserRating> userRatings = new Dictionary<int, UserRating>();
+
+            foreach (KeyValuePair<int, Dictionary<int, UserRating>> item in trainingData)
+            {
+                foreach (KeyValuePair<int, UserRating> itemValue in item.Value)
+                {
+                    if (!userRatings.ContainsKey(itemValue.Key))
+                        userRatings.Add(itemValue.Key, itemValue.Value);
+                }
+            }
+
+            foreach (int movieID in movieMean.Keys)
+            {
+                Console.WriteLine(movieID);
+                foreach (int userID in userMean.Keys)
+                {
+                    for (int j = 0; j < k; j++)
+                    {
+
+                        if (!trainingData[movieID].ContainsKey(userID)) 
+                        {
+                            UserRating ur = userRatings[userID];
+                            ur.MovieId = movieID;
+                            ur.Rating = 0;
+                            ur.RatingFixed = 0;
+                            trainingData[movieID].Add(userID, ur);
+                        }
+                        trainingData[movieID][userID].RMUHat += A[movieMapper[movieID], j] * B[j, userMapper[userID]];
+
+                        
+                        
+                    }
+                    trainingData[movieID][userID].RMUHat += movieMean[movieID] + userMean[userID] - (Convert.ToDouble(sum.Value) / N); ;
+                }
+            }
         }
     }
 }
