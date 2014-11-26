@@ -11,3 +11,11 @@ C:\Users\Dennis\Desktop\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\obj\Debu
 C:\Users\Dennis\Desktop\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\bin\Debug\Netflix.exe
 C:\Users\Dennis\Desktop\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\bin\Debug\Netflix.pdb
 C:\Users\Dennis\Desktop\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\obj\Debug\Netflix.csprojResolveAssemblyReference.cache
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\bin\Debug\Netflix.exe.config
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\obj\Debug\Netflix.exe
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\obj\Debug\Netflix.pdb
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\bin\Debug\Netflix.exe
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\bin\Debug\Netflix.pdb
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\obj\Debug\Netflix.csprojResolveAssemblyReference.cache
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\bin\Debug\MathNet.Numerics.dll
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 3 Netflix\Netflix\bin\Debug\MathNet.Numerics.xml

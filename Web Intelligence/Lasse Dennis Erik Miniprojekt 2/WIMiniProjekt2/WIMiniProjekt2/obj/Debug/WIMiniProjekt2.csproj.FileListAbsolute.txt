@@ -44,3 +44,6 @@ C:\Users\Dennis\Desktop\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\SentimentClassif
 C:\Users\Dennis\Desktop\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\SentimentClassifier.pdb
 C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\SentimentClassifier.exe
 C:\Users\Lasse\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\SentimentClassifier.pdb
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\bin\Debug\WIMiniProjekt2.exe.config
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\obj\Debug\WIMiniProjekt2.exe
+E:\Subversion\P7\sw707e14\Web Intelligence\Lasse Dennis Erik Miniprojekt 2\WIMiniProjekt2\WIMiniProjekt2\obj\Debug\WIMiniProjekt2.pdb

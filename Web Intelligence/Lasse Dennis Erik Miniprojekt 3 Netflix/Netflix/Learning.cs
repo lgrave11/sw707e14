@@ -10,7 +10,41 @@ namespace Netflix
     {
         public void SubtractMeans(Dictionary<int, Dictionary<int, UserRating>> trainingData)
         {
-            
+
+            /*
+             [5 3 4 5 x
+              2 2 x 1 x
+              3 x 3 3 4
+              5 5 5 x 5]
+             */
+            /*trainingData = new Dictionary<int, Dictionary<int, UserRating>>();
+            var d = new Dictionary<int, UserRating>();
+            d.Add(1, new UserRating { MovieId = 1, Rating = 5, UserId = 1 });
+            d.Add(2, new UserRating { MovieId = 1, Rating = 3, UserId = 2 });
+            d.Add(3, new UserRating { MovieId = 1, Rating = 4, UserId = 3 });
+            d.Add(4, new UserRating { MovieId = 1, Rating = 5, UserId = 4 });
+            trainingData.Add(1, d);
+
+            d = new Dictionary<int, UserRating>();
+            d.Add(1, new UserRating { MovieId = 2, Rating = 2, UserId = 1 });
+            d.Add(2, new UserRating { MovieId = 2, Rating = 2, UserId = 2 });
+            d.Add(4, new UserRating { MovieId = 2, Rating = 1, UserId = 4 });
+            trainingData.Add(2, d);
+
+            d = new Dictionary<int, UserRating>();
+            d.Add(1, new UserRating { MovieId = 3, Rating = 3, UserId = 1 });
+            d.Add(3, new UserRating { MovieId = 3, Rating = 3, UserId = 3 });
+            d.Add(4, new UserRating { MovieId = 3, Rating = 3, UserId = 4 });
+            d.Add(5, new UserRating { MovieId = 3, Rating = 4, UserId = 5 });
+            trainingData.Add(3, d);
+
+            d = new Dictionary<int, UserRating>();
+            d.Add(1, new UserRating { MovieId = 4, Rating = 5, UserId = 1 });
+            d.Add(2, new UserRating { MovieId = 4, Rating = 5, UserId = 2 });
+            d.Add(3, new UserRating { MovieId = 4, Rating = 5, UserId = 3 });
+            d.Add(5, new UserRating { MovieId = 4, Rating = 5, UserId = 5 });
+            trainingData.Add(4, d);*/
+
             Dictionary<int, double?> movieMean = new Dictionary<int, double?>();
             Dictionary<int, double?> userMean = new Dictionary<int, double?>();
             Dictionary<int, List<int?>> tmp = new Dictionary<int, List<int?>>();
@@ -109,7 +143,7 @@ namespace Netflix
             {
                 for (int j = 0; j < k; j++)
                 {
-                    A[i, j] = 1;
+                    A[i, j] = 0.1;
                 }
             }
 
@@ -118,12 +152,21 @@ namespace Netflix
             {
                 for (int j = 0; j < userMean.Count; j++)
                 {
-                    B[i, j] = 1;
+                    B[i, j] = 0.1;
                 }
             }
 
             Dictionary<int, int> userMapper = CreateUserMapper(userMean);
             Dictionary<int, int> movieMapper = CreateMovieMapper(movieMean);
+
+            /*double[,] test = new double[movieMean.Count,userMean.Count];
+             foreach (var i in trainingData) 
+            {
+                foreach (var j in i) 
+                {
+                    test[i,j] = j
+                }
+            }*/
 
             int traversals = 0;
             while (traversals < 10000)
@@ -141,7 +184,6 @@ namespace Netflix
                 {
                     innerparanthesis -= A[movieMapper[movieID], i] * B[i, userMapper[userID]];
                 }
-
                 double[,] oldA = A, oldB = B;
                 for (int j = 0; j < k; j++)
                 {
@@ -175,10 +217,7 @@ namespace Netflix
 
                         if (!trainingData[movieID].ContainsKey(userID)) 
                         {
-                            UserRating ur = userRatings[userID];
-                            ur.MovieId = movieID;
-                            ur.Rating = 0;
-                            ur.RatingFixed = 0;
+                            UserRating ur = new UserRating { MovieId = movieID, UserId = userID, Rating = 0, RatingFixed = 0 };
                             trainingData[movieID].Add(userID, ur);
                         }
                         trainingData[movieID][userID].RMUHat += A[movieMapper[movieID], j] * B[j, userMapper[userID]];

@@ -72,3 +72,5 @@ SentimentTrainingData.txt
 friendships.reviews.txt
 *.bin
 *.vspx
+training_set
+training_set/*
