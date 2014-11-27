@@ -15,14 +15,16 @@ namespace MiniProject3
         Dictionary<int, Dictionary<int, int>> dicProbe = new Dictionary<int, Dictionary<int, int>>(); //movieid --> userid --> rating
         Dictionary<int, Dictionary<int, int>> dicTraining = new Dictionary<int, Dictionary<int, int>>(); //movieid --> userid --> rating
 
-        Dictionary<int, double> dicMovieMean = new Dictionary<int, double>();
-        Dictionary<int, double> dicUserMean = new Dictionary<int, double>();
+        public Dictionary<int, double> dicMovieMean = new Dictionary<int, double>();
+        public Dictionary<int, double> dicUserMean = new Dictionary<int, double>();
 
-        Dictionary<int, int> userMapper = new Dictionary<int, int>();
-        Dictionary<int, int> movieMapper = new Dictionary<int, int>();
-        double overallMean = 0.0;
+        public Dictionary<int, int> userMapper = new Dictionary<int, int>();
+        public Dictionary<int, int> movieMapper = new Dictionary<int, int>();
+        public double overallMean = 0.0;
 
         Dictionary<int, Dictionary<int, double>> dicRMU = new Dictionary<int, Dictionary<int, double>>();
+
+        public double[,] RMUHat;
         public Recommender()
         {
            // FillProbeDictionary(dicProbe);
@@ -34,6 +36,10 @@ namespace MiniProject3
             CalcRMU();
             Console.WriteLine("calc RMU done");
             AssignMappers();
+            Console.WriteLine("mappers assigned");
+            RMUHat = CalcRMUHat();
+            Console.WriteLine("RmuHat done");
+
             Console.Read();
         }
 
@@ -61,35 +67,54 @@ namespace MiniProject3
             double n = 0.001;
             double[,] A = new double[dicMovieMean.Count, k];
             double[,] B = new double[k, dicUserMean.Count];
-
+            Random r = new Random();
             int traversals = 0;
-            while(traversals < 10000)
+            while(traversals < 100000)
             {
-                Random r = new Random();
+                
 
                 int posMovie = r.Next(0, dicMovieMean.Keys.Count);
                 int movieID = dicRMU.Keys.ToArray()[posMovie];
                 int posUser = r.Next(0, dicRMU[movieID].Keys.Count);
                 int userID = dicRMU[movieID].Keys.ToArray()[posUser];
 
-                double innerparanthesis = 0.0;
-                innerparanthesis = dicRMU[movieID][userID];
-                for (int i = 0; i < k; i++ )
-                {
-                    innerparanthesis -= A[movieMapper[movieID], i] * B[i, userMapper[userID]];
-                }
 
-                double[,] oldA  = A, oldB = B;
+
+                double[,] oldA = (double[,])A.Clone(), oldB = (double[,])B.Clone();
                 for (int j = 0; j < k; j++)
                 {
-                    A[movieMapper[movieID], j] = oldA[movieMapper[movieID], j] + n * innerparanthesis * oldB[j, userMapper[userID]];
-                    B[j, userMapper[userID]] = oldB[j, userMapper[userID]] + n * oldA[movieMapper[movieID], j] * innerparanthesis;
+                    posUser = r.Next(0, dicRMU[movieID].Keys.Count);
+                    userID = dicRMU[movieID].Keys.ToArray()[posUser];
+
+                    double innerparanthesis = 0.0;
+                    innerparanthesis = dicRMU[movieID][userID];
+                    for (int i = 0; i < k; i++)
+                    {
+                        innerparanthesis -= A[movieMapper[movieID], i] * B[i, userMapper[userID]];
+                    }
+
+                    if(oldB[j, userMapper[userID]] == 0)
+                    {
+                        A[movieMapper[movieID], j] = oldA[movieMapper[movieID], j] + n * innerparanthesis;
+                    }
+                    else
+                    {
+                        A[movieMapper[movieID], j] = oldA[movieMapper[movieID], j] + n * innerparanthesis * oldB[j, userMapper[userID]];
+                    }
+
+                    if( oldA[movieMapper[movieID], j] == 0)
+                    {
+                        B[j, userMapper[userID]] = oldB[j, userMapper[userID]] + n * innerparanthesis;
+                    }
+                    else
+                    {
+                        B[j, userMapper[userID]] = oldB[j, userMapper[userID]] + n * oldA[movieMapper[movieID], j] * innerparanthesis;
+                    }
                 }
 
 
                 traversals++;
             }
-
             double[,] rmuhat = new double[dicMovieMean.Keys.Count, dicUserMean.Keys.Count];
 
             foreach(int movieid in dicMovieMean.Keys)

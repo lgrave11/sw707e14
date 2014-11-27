@@ -37,7 +37,6 @@ namespace MiniProject3
                     sw.WriteLine(kvPair.Key + "," + dicProbe[movieId][kvPair.Key]);
                 }
             }
-            Console.Read();
         }
 
         private static void CreateTrainingSubset(Dictionary<int, Dictionary<int, int>> dicProbe, Dictionary<int, Dictionary<int, int>> dicProbeClone)
@@ -88,14 +87,14 @@ namespace MiniProject3
                 if (line.Contains(':'))
                 {
                     count++;
-                    if (count > 1000)
+                    if (count > 100)
                         break;
                     currentMovieID = Convert.ToInt32(line.Split(':')[0].Trim());
                     dicProbe[currentMovieID] = new Dictionary<int, int>();
                 }
                 else
                 {
-                    int itemToAdd = Convert.ToInt32(line.Trim());
+                    int itemToAdd = Convert.ToInt32(line.Split(',')[0].Trim());
                     dicProbe[currentMovieID][itemToAdd] = -1;
                 }
             }
