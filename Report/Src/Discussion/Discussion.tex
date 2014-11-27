@@ -45,9 +45,23 @@ For that reason, it would be a good idea to design the website such that it is a
 There are several ways to tackle this, each of which are discussed in turn.
 \begin{description}[style=nextline]
 	\item[Dynamic scaling]
+	The main idea of this approach is to make the website more dynamic. This can be achieved with CSS to consider your screen size, and then transform the site such that each element of the site can be seen clearly, where to obtain all information, you then have to use scrolling.
+	This is better than the standard webpage, as the website at the moment for small screens, known from smartphones, is near unusable unless you zoom in.
+	However, it does not touch upon the type of device used for the website, an example is the touch gestures known from tablets and smarthpones.
 	\item[Detection of device type]
-	\item[Seperate App]
+	The idea of here is to read the device type, and then have separate website layouts for each type of device. Contrary to the previous method, this makes it easier to design the layout for the different type of devices.
+	Furthermore, it can change some elements to be better suitable for touch devices, an example is a list of items, for smartphones the list can then be automatically zoomed on to select a specific item.
+	However, it still does not give the best feel for smartphone devices, as you are constrained to a browser.
+	The pro is that you can reach many devices this way, on the other hand, apps could gain a more specialised feel, and is described hereafter,
+	\item[Separate Application]
+	The idea of this approach is to develop apps for some regularly used smart-phone and tablet devices.
+	The advantage of this approach is that you can specialise the interaction with the system for a specific device, ensuring the best interaction overall.
+	The disadvantage is that it increases the workload a lot, as you have to create and maintain each such app for changes performed to the system.	
 \end{description}
+This ends the discussion of website designed for PC versus a more dynamic website.
+While it would definitely increase the accessibility of the system if the website became more dynamic, it would at the same time require additional resources.
+Our target for the project has been to develop the website for PC usage, and that being optimal.
+However, in the future with more time available, the other options are definitely worth considering.
 
 \section*{Hardware vs. Simulation}
 One aspect of the system implemented that would have to be changed in the situation that the system was put into actual use, would be the simulation of the hardware.
