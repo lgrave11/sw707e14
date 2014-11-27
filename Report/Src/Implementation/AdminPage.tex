@@ -3,10 +3,10 @@
 % This section describes the administrative functionality. 
 % It covers route history, GPS history, bicycle usage history, and an add/remove page.
 % It also contains a bicycle GPS tracking, but this has been mentioned in \secref{sec:googlemapsapi}.
-In \secref{sec:designAdminTools} some questions was asked. 
+In \secref{sec:designAdminTools} some questions were asked. 
 In this section we answer these questions.
 To answer the question about which routes are used we implemented a feature to show route history, which can be seen in \secref{sec:routeHistory}.
-The hotspots is found using the implemented GPS history in \secref{sec:gpsHistory}.
+Hotspot detection was not implemented, but GPS history was implemented in \secref{sec:gpsHistory}.
 The traffic og bicycles during some period and the current amount of bicycles at a given station can be seen using the implemented graph in \secref{sec:bicycleUsageHistory}.
 How the amount of bicycles at a station change over time can be seen in the same graph.
 
@@ -27,6 +27,10 @@ See \figref{fig:routehistory} for a figure of what the page looks like.
 	\caption{Picture of Route History}
 	\label{fig:routehistory}
 \end{figure}
+
+It is implemented by finding all the bicycles that have associated historical GPS data.
+ The administrator then chooses which bicycles to map, and these bicycles then have their routes loaded which are then given to Google Maps API to display.
+
 
 \subsection{GPS History}\label{sec:gpsHistory}
 The system saves the location of bicycles registered in the system, which could be helpful for determining where bicycles currently are. 
@@ -82,6 +86,9 @@ The graph showing the amount of bicycles docked at a station shows the timestamp
 % %This part of the administration site handles showing a map of the routes associated with a booking. Skal det bruges til noget???
 
 \subsection{Add/Remove}
+% What does it do?
+% How is it implemented?
+
 This part of the administration site handles the adding and removing of users, bicycles, docks, and stations.
 
 \begin{description}[style=nextline]
@@ -106,3 +113,7 @@ The admin will be warned that removing this station will also remove all the doc
 In our simulated world the station software also needs to be notified to update the database, just as adding a new station this is not needed for the final version.
 \end{description}
 See \appref{app:addremove} for a picture of the administration page.
+
+The add/remove features are implemented using very simple forms that get transmitted over POST. 
+For example removal of user is done by sending  the chosen user over POST, this user is then verified to be a valid and existing user, after which it uses an AccountService to remove the user.
+A more complex example would be addition of a user, where there are more fields but it is essentially the same concept.
