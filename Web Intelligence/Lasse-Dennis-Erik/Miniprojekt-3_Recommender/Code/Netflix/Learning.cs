@@ -149,7 +149,7 @@ namespace Netflix
 
         private void CalcRMUHat(Dictionary<int, double?> userMean, Dictionary<int, double?> movieMean, Dictionary<int, Dictionary<int, UserRating>> trainingData, int? sum, int N)
         {
-            int k = 28;
+            int k = 10;
             double n = 0.001;
             double[,] A = new double[movieMean.Count, k];
             for (int i = 0; i < movieMean.Count; i++)
@@ -180,12 +180,10 @@ namespace Netflix
                     test[i,j] = j
                 }
             }*/
-
+            Random r = new Random();
             int traversals = 0;
             while (traversals < 10000)
             {
-                Random r = new Random();
-
                 int posMovie = r.Next(0, movieMean.Keys.Count);
                 int movieID = trainingData.Keys.ToArray()[posMovie];
                 int posUser = r.Next(0, trainingData[movieID].Keys.Count);

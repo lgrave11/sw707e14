@@ -25,3 +25,9 @@ E:\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recom
 E:\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recommender\Code\Netflix\bin\Debug\Netflix.exe
 E:\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recommender\Code\Netflix\bin\Debug\Netflix.pdb
 E:\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recommender\Code\Netflix\obj\Debug\Netflix.csprojResolveAssemblyReference.cache
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recommender\Code\Netflix\bin\Debug\Netflix.exe.config
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recommender\Code\Netflix\obj\Debug\Netflix.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recommender\Code\Netflix\obj\Debug\Netflix.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recommender\Code\Netflix\bin\Debug\Netflix.exe
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recommender\Code\Netflix\bin\Debug\Netflix.pdb
+C:\Users\Mink\Subversion\P7\sw707e14\Web Intelligence\Lasse-Dennis-Erik\Miniprojekt-3_Recommender\Code\Netflix\obj\Debug\Netflix.csprojResolveAssemblyReference.cache
