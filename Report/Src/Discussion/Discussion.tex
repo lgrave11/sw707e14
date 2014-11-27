@@ -49,6 +49,19 @@ There are several ways to tackle this, each of which are discussed in turn.
 \end{description}
 
 \section*{Hardware vs. Simulation}
+One aspect of the system implemented that would have to be changed in the situation that the system was put into actual use, would be the simulation of the hardware.
+Specifically, the station, docks, and bicycles are all simulated and in the real world these would need to be changed to be real hardware.
+The simulation is done by have multiple programs behaving somewhat similar to how the real world would interact with the system.
+An example of this is the bicycle, the bicycle should upload its GPS coordinates to the system every now and then, a program was created to upload GPS coordinates that are loaded from a file instead of a real bicycle reporting the actual coordinates.
+
+A big difference between the simulation and the hardware going to be used, is how the simulation works.
+For example the simulation of all the stations is implemented in a single program that handles all interaction. 
+This would, however, not be the case in the real world where each station would have its own software.
+However, this problem was thought of in the development of the station software, such that each station has its own ip address, and can therefore work even if multiple computers are running the station software. As the central server requests the right IP address when sending a booking/unbooking to the station.
+
+The simulation is done such that the development of this system does not require real station hardware.
+Furthermore, this project is a software development project, and therefore hardware is not the focus of this project.
+For this purpose of this project the simulation is considered sufficient because it allows the system to be interacted with as it is supposed to be in the real world without making it needlessly complex, for example by having to run multiple stations at the same time on several different computers.
 
 \section*{Sufficient Stats}
 	\begin{itemize}
