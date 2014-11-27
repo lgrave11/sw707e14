@@ -1,29 +1,30 @@
 \section{Usability Test}
 This section covers the usability tests performed on the system.
-Tests have been performed on the public part of the website, which are the status and booking.
+Tests have been performed on the public part of the website.
+The administrator page was not tested because no potential users were available to do so.
 
 These are the tasks:
 
-\begin{description}[style=nextline]
-\item[Task 1] Establish an overview
-\item[Task 2] Status for bicycle
-\item[Task 3] Booking - Login
-\item[Task 4] Booking - Time and booking
-\item[Task 5] Cancel planned booking
-\item[Task 6] Examine the booking history
-\end{description}
+\begin{enumerate}
+\item Establish an overview
+\item Status for bicycle
+\item Booking - Login
+\item Booking - Time and booking
+\item Cancel planned booking
+\item Examine the booking history
+\end{enumerate}
 For a full description of the tasks see \appref{app:usability-test}.
 
-The problems were uncovered using Instant Data Analysis.
+The usability problems were uncovered using Instant Data Analysis \citep{misc:usabilitytest}.
 
 The procedure for IDA is as follows:
 
 \begin{itemize}
 \item Test monitor introduces test subject to the evaluation procedure. After which the test monitor gives the first task to the test subject.
-\item The test subject attempts to solve the task until they have accomplished it, feel they have accomplished it or until the test monitor gives them a new task.
+\item The test subject attempts to solve the task until feel they have accomplished it, they have accomplished it, or until the test monitor gives them a new task.
 \item Test subjects talk about what they are doing, explaining what they are doing, and how they feel they understand the overall system. Test monitor does not help.
 \item The test subject is interviewed and talk about their experience.
-\end{itemize}\citep{misc:usabilitytest}
+\end{itemize}
 
 After the test, there is a meeting with the user where problems are discussed and which they felt were significant.
 The result of Instant Data Analysis is a set of usability problems categorised into one of three categories: Critical, Serious, and Cosmetic.
@@ -31,16 +32,12 @@ We used IDA because it catches most of the usability problems a more rigorous ap
 
 \subsection{Test Subjects}
 The tests were performed on four test subjects, whose demographics are as follows.
-\begin{description}[style=nextline]
-\item[Subject 1]
-Gender: Female, Age: 29, Profession: Lawyer, Technological abilities: Average
-\item[Subject 2]
-Gender: Male, Age: 28, Profession: Lawyer, Technological abilities: Above average
-\item[Subject 3]
-Gender: Female, Age: 56, Profession: Office clerk, Technological abilities: Average
-\item[Subject 4]
-Gender: Male, Age: 58, Profession: Electrician, Technological abilities: Above average
-\end{description}
+\begin{enumerate}
+\item Gender: Female, Age: 29, Profession: Lawyer, Technological abilities: Average
+\item Gender: Male, Age: 28, Profession: Lawyer, Technological abilities: Above average
+\item Gender: Female, Age: 56, Profession: Office clerk, Technological abilities: Average
+\item Gender: Male, Age: 58, Profession: Electrician, Technological abilities: Above average
+\end{enumerate}
 
 \subsection{Usability Problems}
 As a result of the tests, the following usability issues were uncovered.
@@ -103,3 +100,6 @@ Four issues was, however, found, and for each of these issues, we go through wha
 	This is due to booking a bicycle by accident is not as severe an action as the unbooking, since if you booked something by accident, you can unbook it after and no harm is done.
 	On the other hand, if you by accident unbook something, it is a more severe action, since you might not be guaranteed to have a bicycle booked again, if for instance another person books the last bicycle in the meantime.
 \end{description}
+
+An effort to correct the problems was made, and these are the changes that were made: More descriptive error messages, confirmation dialog boxes added for unbooking, and the history button was made easier to locate by making the font size larger.
+At the same time corrections for fields being reset was not done because ??? .\fxwarning{Hvorfor ikke?}
