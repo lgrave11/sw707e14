@@ -4,3 +4,5 @@ C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\Mini
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\obj\Debug\MiniProject3.csprojResolveAssemblyReference.cache
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\obj\Debug\MiniProject3.exe
 C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\obj\Debug\MiniProject3.pdb
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\bin\Debug\MathNet.Numerics.dll
+C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MiniProject3\MiniProject3\bin\Debug\MathNet.Numerics.xml
