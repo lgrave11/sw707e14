@@ -3,7 +3,7 @@ Examples of such problems are listed underneath, and thereafter further describe
 \item When should a bicycle become unavailable for others, as a result of a booking?
 \item When should a bicycle become available again after a booking has exceeded its reservation time?
 \item How often does the GPS needs to read data?
-\item What should happen if a station have a failure and restarts during communication with the global system?
+\item How should syncronization between the stations and the global system be handled?
 \end{itemize}
 
 \begin{description}[style=nextline]
@@ -57,8 +57,11 @@ The reason why 30 seconds was chosen is because you are not able to move that fa
 \end{figure}
 
 \item[Problem 1.4]
-Determining what should happen when a station fails trying to communicate its current state to the global system, lies with the developer of the system.
-The scenario is as follows. 
+As the stations and the website are located on different addresses and communication is through TCP, you have to consider how to synchronise the various parts of the system, in order to avoid an inconsistent state.
+
+Several types of such inconsistent information could happen if you are not careful.
+
+An scenario that could lead to an inconsistent state, if not handled well, is what happens when a station fails to communicate its current state to the global system.
 A station maintains a local database holding information about each current booking made at that station.
 When a booking has been processed, meaning that the user has taken the bicycle associated with the booking, the state of the local database changes in that the booking does not exist any more.
 This change in state is also communicated to the global database maintained by the global system.
@@ -66,15 +69,18 @@ But when trying to communicate the change, the connection is interrupted due to 
 
 The problem is then, formulated with other words, which database will hold the correct state of the overall system?
 This depends highly on the direction of communication failure. 
-In the described case above, the communication failure lies with the station software resulting in the local database of the station having the correct and current state of the system. 
-But if the direction of communication is the opposite, having the global system trying to update the state of the local database of the station, the global system will have the correct state of the system.
+In the described case above, the communication failure lies with the station software resulting in the local database of the station having the correct and current state of the system, which is when it comes to the state of the docks.
 
-The desired behaviour of the system is to always be in a correct state, which requires that when a communication failure happens, the part participating in the communication holding the correct state will resend its information.
+
+But if the direction of communication is the opposite, which would be involving bookings registered, the global system would have the correct booking information.
+
+The desired behaviour of the system is to always be in a correct state, which requires that when a communication failure happens, the part participating in the communication holding the correct state will resend its information, or the one with the inconsistent reads the state from the consistent counterpart.
 
 There are two cases for the communication between the station software and the global system (web-service).
 
 \textbf{Station to Global System}\\
 A communication failure in this direction will result in a faulty state of how many bicycles are available at the given station thereby resulting in a rather useless website for booking.
+Additionally, this can also involve the global system having the incorrect amount of docks registered, if such a change were performed at the station.
 
 \textbf{Global System to Station}\\
 A communication failure in this direction will result in a failing booking system, in that no booking made at the website will reach the station and thereby have no effect at all.

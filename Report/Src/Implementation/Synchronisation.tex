@@ -1,0 +1,70 @@
+\section{Synchronisation}
+As the system is split into stations and a central system, it is necessary to have communication between them, and tackle the synchronisation of data.
+This communication data flow have been illustrated in \figref{fig:overallarch}, additonally problem 1.4 in \chapref{chap:implementationproblems} have introduced the synchronisation problem.
+
+\begin{description}[style=nextline]
+	\item[Bicycle locking/unlocking not synchronised]
+	What is important for the central part of the system to know is at what docks at stations bicycles are placed.
+	However, it is not important to keep track on what bicycles are locked and unlocked at the station, as this information is of no use for the central system.
+	The information is on the other hand important for the station, as this is the part of the system that ensures that bicycles are locked in time.
+	For that reason, the information is kept at the station. Furthermore, the central system can calculate how many bicycles are locked at a given station, as it can use the bookings for this.
+	
+	\item[Removal/Insertion of bicycles]
+	On the other hand it is important for the central system to know when a bicycle has been removed or inserted at a station.
+	This is due to the website providing status information to the user, such that they can know where free bicycles are located.
+	The communication to ensure this, as previously mentioned, is then performed by use of SOAP.
+	In order to ensure that this communication goes through, the station has a seperate thread to communicate this information, if the station is unable to communicate that a bicycle has been removed/inserted, it will wait a bit and then try again until connection has been established.
+	
+	\item[Booking/Unbooking]
+	The booking and unbooking of bicycles are performed on the website. 
+	The central database is then updated accordingly, and in order to ensure that the station affected is notified, a TCP package is sent, which contains the JSON encoded action, as described earlier.
+	However, problems may arise if the connection to the station is down.
+	In such a case, you can risk the station not registering the booking, and as of such, one of the following actions have to be performed.
+	\begin{itemize}
+		\item Flag to indicate new bookings
+		\item Constantly ping central database (unreliable)
+		\item Call local service to continuously try and connect until notification has been achieved.
+		\item Give user an error message, telling him to try and book/unbook again later. 
+	\end{itemize}
+	
+	The idea behind having a flag to indicate new bookings is that a flag will be set for the station that failed to be connected to.
+	On the station side, a thread will then run and check every $x$ amount of seconds for a flag that may have been sent.
+	If such a flag is registered, the station then knows that it should update its bookings to correspond to those of the central database.
+	
+	Another more simple, but non reliable, idea is to constantly ping the central database.
+	If you for one or several of your pings then fail to connect to the central system, you know that the next time you get connection, you have to update the bookings.
+	One problem that makes us not use this approach, though, is in the timespan of two pings, if the connection fails there, the station will not get notified of a registered booking in that said time-period.
+	
+	Those two ideas involves giving the station the responsibility of having up to date booking information.
+	However, another perspective can also be taken.
+	One such approach is to develop a service to run on the central part of the system.
+	The responsibility of this service is then to ensure that the station will get notified.
+	The idea here is that the service holds queues of notifications to be sent out, one such queue for each station.
+	The service can then get notified to enqueue a notification, but the service will then continuously try and deliver the notifications from the queues to the stations. This is found to be a good approach, since it ensures that when connection is established to a station again, the notifications it needs gets delivered.
+	
+	The last approach is to give the user an error message telling him to try and book/unbook again later.
+	This approach is not desirable as we want the system to be as responsive as possible.
+	The approach with a flag or the additional notification service is desirable.
+	However, due to lack of time, it has been chosen as the solution, it was deemed a necessary compromise, but with more time, the flag or the separate service solution would be strived for.
+	 
+	
+	\item[Station boot/reboot]
+	When the station boots/reboots it may have missed some booking information.
+	For that reason, when the station boots/reboots it reloads the booking information.
+	However, with the notification securing set in place, this should not be necessary.
+	This part of the synchronisation was developed before the other part, though, and is kept in case the other synchronisation techniques for some reason fails.
+	Additionally, as this is a simulation, we run the station software on different computer, and as of such it is advantageous for testing to keep this updating of booking information in place, such that the various computers gets the booking information updated.
+	
+	\item[Dock insertion/removal]
+	When a dock gets inserted or removed from a station, the station has a separate thread that keeps trying to call the web-service set in place on the central system part, to register that a dock has been inserted/removed at the given station, this is repeated until the web-service has been correctly used.
+	This is achieved with specific functions set in place for the `stationtodbregister' service.
+	
+	\item[Hardware versus software simulation]
+	For the system developed, software simulation of hardware has been used.
+	However, if you were to implement real docking hardware, a synchronisation between the stations and its docks would have to be considered.
+	This is somewhat achieved with the local database set for each station, however, with the sensors active, you would need to setup some communication protocol between the station and its docks, to ensure that the local database is up to date.
+	Additionally, to go the other way around and send signals to the docks, notifying them if they should lock or unlock some bicycle.
+	
+\end{description}
+
+This ends the general synchronisation implementation details, with a brief documentation of our testing following hereafter.
