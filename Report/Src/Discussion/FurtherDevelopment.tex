@@ -1,11 +1,11 @@
 \section{Further Development}\label{sec:furdev}
-This section covers various features that could be implemented in future iterations of the system. Specifically a mobile booking application, closest available station information, hotspot detection,
+This section covers various features that could be implemented in future iterations of the system. Specifically a mobile booking application, closest available station information, hotspot detection,\fxwarning{Den her metatekst skal fixes når vi er færdig med further deflopment}
 
 \subsection{Mobile Booking Application}\label{sec:fd-mobileapp}
 During early analysis, a mobile platform was suggested for implementation, but in the end the target platform chosen was the web. 
 However, a simplified mobile application could be implemented, simplified in the sense that it would only provide login and booking functionality and not much else.
 It would, however, also be an ideal platform for another further development feature, see \secref{subsec:closeststation}, given that GPS and internet connection are pervasive in modern mobile platforms.
-The fact that you can take them with you makes them much more practical in the sense that you can determine at any time where the nearest station is.
+The fact that you can take smart-phones with you makes them much more practical in the sense that you can determine at any time where the nearest station is.
 
 \subsection{Closest Available Station}\label{subsec:closeststation}
 During usability testing, one of the test subjects brought up an idea.
@@ -24,15 +24,16 @@ Specifically, should only location data where the bicycle has been at the same p
 Should all location data be used, and would this not mean that popular routes would be hotspots as well and therefore be misleading? 
 
 % Algorithms
-There are many different ways of detecting hotspots, or clusters. One way is agglomerative clustering, others ways are K-Means, BIRCH, and DBSCAN.
+There are many different ways of detecting hotspots, or clusters. %One way is agglomerative clustering, others ways are K-Means, BIRCH, and DBSCAN.
 
-Agglomerative would have worked by comparing the distances to all coordinates, which would have been very inefficient and thus not practical for a lot of points. 
+%Agglomerative would have worked by comparing the distances to all coordinates, which would have been very inefficient and thus not practical for a lot of points. 
 
-K-Means could have worked but because it requires a specified amount K number of clusters, it is apparently not practical either. K-Means also includes outliers in existing clusters.
+%K-Means could have worked but because it requires a specified amount K number of clusters, it is apparently not practical either. K-Means also includes outliers in existing clusters.
 
-BIRCH and DBSCAN are made for large databases, which would likely be a benefit for this system given that a large amount of GPS coordinates would be registered, on the order of $10E5$ coordinates per bicycle per year. 
+%BIRCH and DBSCAN are made for large databases, which would likely be a benefit for this system given that a large amount of GPS coordinates would be registered, on the order of $10E5$ coordinates per bicycle per year. 
 
-There are also simpler methods that might work, such as using a premade library for Google Maps API called MarkerClusterer that would greatly simplify the process but we do not know the algorithm it uses for clustering which could create performance problem. See \figref{fig:markerclusterer}.
+There simplest method that might work is using a premade library for Google Maps API called MarkerClusterer.
+However, we do not know the algorithm it uses for clustering which could create performance problems. See \figref{fig:markerclusterer}.
 
 \begin{figure}[h]
 \begin{center}
@@ -53,4 +54,4 @@ This usability could have given more features to be implemented on the admin pag
 It could also have resolved potential problems that we were not previously aware of it.
 Furthermore, the usability test would be sufficient to make sure that the admins could use the page.
 
-This is test should be done before the website is released, since this part is very relevant for the admin part.
+The admin usability test should be done before the website is released, since it might reveal some problems with the page.
