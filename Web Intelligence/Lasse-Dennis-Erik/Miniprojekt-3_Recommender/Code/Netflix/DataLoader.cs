@@ -47,7 +47,7 @@ namespace Netflix
             string[] files = new string[500];
             foreach (FileInfo fileInfo in di.GetFiles())
             {
-                if (fileInfo.Length <= 10240)
+                if (fileInfo.Length > 300000)
                     fi.Add(fileInfo);
             }
             
@@ -64,7 +64,7 @@ namespace Netflix
                     Console.WriteLine(i.ToString());
                 }
                 i++;
-                if (i == 250)
+                if (i == 3)
                     break;
                 
                 StreamReader reader = new StreamReader("training_set/" + item.Name);
