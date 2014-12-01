@@ -4,8 +4,20 @@
 \newcommand{\bycykelwithoutspace}{Aalborg Bycykel}
 \newcommand{\bycykel}{\bycykelwithoutspace{ }}
 
+\backgroundsetup{
+scale=0.6,
+color=black,
+opacity=1,
+angle=0,
+contents={%
+  \includegraphics{bicycle-wide}
+  }%
+}
+
 \begin{document}
+	\BgThispage
 	\include{Frontpage}
+	\clearpage
 	\newpage\null\thispagestyle{empty}\newpage
 	\include{Titlesheet}
 	\addtocounter{page}{4}
