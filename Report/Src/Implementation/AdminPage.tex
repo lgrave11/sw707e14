@@ -10,9 +10,6 @@ Hotspot detection was not implemented, but GPS history was implemented in \secre
 The traffic og bicycles during some period and the current amount of bicycles at a given station can be seen using the implemented graph in \secref{sec:bicycleUsageHistory}.
 How the amount of bicycles at a station change over time can be seen in the same graph.
 
-%We also implemented a page for addition and removal of users, bicycles, and stations.
-
-
 \subsection{Route History}\label{sec:routeHistory}
 This part of the administration site handles showing a map of the historical locations of a bicycle.
 The admin provides one or more bicycles, a start, and end date.
@@ -30,6 +27,9 @@ See \figref{fig:routehistory} for a figure of what the page looks like.
 	\caption{Picture of Route History}
 	\label{fig:routehistory}
 \end{figure}
+
+From the figure, the presentation of routes are shown for the bicycles with id 36 and 95.
+The reason multiple bicycles can be selected is to enable the admin to compare routes on the same map, this includes the route polyline, chosen bicycle and length,
 
 It is implemented by finding all the bicycles that have associated historical GPS data.
  The administrator then chooses which bicycles to map, and these bicycles then have their routes loaded which are then given to Google Maps API to display.
