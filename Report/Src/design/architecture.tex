@@ -13,7 +13,7 @@ As we have a central booking system, and multiple simultaneous access points, th
 	\caption{Overall architecture}\label{fig:overallarch}
 \end{figure}
 
-As can be seen from the figure, the architecture consists of a central database as well as a website and three interfaces, where two of them contacts the central database.
+As can be seen from the figure, the architecture consists of a central database as well as a website and three interfaces, named 'gpsregister´, 'stationtodbregister´, and 'websitetostationnotifier´ , where 'gpsregister´ and 'stationtodbregister´ contact the central database.
 Additionally, multiple stations and their associated local database and docks exists.
 The reason each station needs to have its own local database, and not merely use the central one is to minimize the necessary network communication, as well as allowing the stations to remain operational in case of network failure.
 As of such, the local databases contains a subset of the central database, corresponding to the data involving the given station.
