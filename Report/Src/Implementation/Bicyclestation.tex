@@ -89,8 +89,9 @@ The \textit{LockManager} runs in its own thread, with the sole responsibility of
 Currently the time constraints is set to locking a bicycle to a dock one hour before booking start time, and unlocking again one hour after start time, confer \chapref{chap:implementationproblems} problem 1.2. 
 As this functionality requires constant monitoring, the function is run in an infinite thread, however, since we do not want to waste our processor time by executing this constantly, it sleeps for a short period of time after each iteration.
 
-The loop starts out by finding all the expired bookings, removing the lock they had on a bicycle, telling the global database that the bookings have expired, and removing the bookings from the station database.
-The loop then finds all bookings that start within the next hour and locks a bicycle for the booking, if any of these bookings were not locked in the last iteration of the loop.
+The loop starts out by finding all the expired bookings, removing the lock they had on a bicycle, telling the global database that the bookings have expired, and removing the bookings from the station database.\fxwarning{Skal referere til implementation problems?}
+The loop then finds all bookings that start within the next hour and locks a bicycle for the booking, if any of these bookings were not locked in the last iteration of the loop. 
+It is important to note that if more than one booking start at the same time, the order of docks being locked is given by when the booking was created. 
 
 At the end of the execution of the loop the UI is updated to reflect any changes performed to the database.
 
