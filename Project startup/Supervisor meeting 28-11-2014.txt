@@ -1,0 +1,59 @@
+Agenda:
+
+1) Status
+    We have been polishing the website, for it to be ready. We have started writing the chapters you've read, and on Discussion and Further Development.'
+
+2) Comments on report
+    ER Diagram, include 0,1 instead of 1 as there might for example be 0 bicycles.
+
+    Three interfaces: It's unclear what the three interfaces are much earlier.
+
+    Implementation Problems is more like design problems you want to discuss, for example problem 1 could be solved by the transaction mechanic of the database. How is the race between users being solved right now? Database should check if there is a remaining bicycle, because a solution you do yourself it would become much more complex. When a user starts to book, lock the database and book it. 
+
+    Booking is not a guarantee that you will get a booking. 
+
+    Get the precise timestamp for when a booking is made, as it should be a first-come-first-serve service and just prioritize based on who made the booking first.
+
+    How does 3.1 fit into the entire system? What's the relevance? GPS signals should not be too spread out.
+
+    Implementation problems should be integrated with design, as right now they just seem like dangling issues and it's not understood why these particular issues are picked up. 
+
+    Implementation:
+
+    Make a figure for your specific MVC instantiation. Does not have to be too detailed. Do it with respect to the website, not the station.
+    Also in the implementation, give the database schema extracted from the ER Diagram.
+
+    Picture of route history: 
+    Why are two bicycles being shown at the same time. What if I want to compare three? Maybe it's not necessary to show more than one bicycle at a time. Booking Routes, has been scrapped.
+
+    Station backend: Figure that shows how it works, look at fig 5.8. Keep it consistent as fig 5.8 shows 5 parts, not 3 as mentioned in station backend section.
+
+    No more comments.
+
+3) Presentation of admin
+    Showing GPS tracking. Only admins can see it. OK
+    Usage history. Design of chart is explained. It has to be explained to be understood??? 
+    Adding/removing things: Stations add/removes docks, and this will be reflected on the central server. That's a design choice, it's more natural that the administration can control everything centrally. 
+    Do you have something for getting an overview for a station? You can do this through the mainpage, it's probably a good idea to have a dedicated page for it.
+    Can I specify that i want to add this bicycle to this specific station? No. You just add a bicycle to the general system, and it get registered when its put into a dock. The bicycle is dangling in the sense that it does not belong anywhere. 
+
+4) Server accessible over the internet(Port forwarding problems)
+    Right now there's problems with port forwarding, making it impossible to contact something on the internet but only on the local network. At the exam, get two computers running on the LAN and just use that.
+
+5) Datawarehouse vs single tables
+    Right now we dont have a datawarehouse, we just use single tables. 
+    You should use a star/snowflake, but it depends on what type of analysis you want to do. 
+    It's not really a datawarehouse, it's more about the history of usage in the system which makes single tables fine.
+
+
+    5.1) Deleted attribute
+    OK.
+    
+6) Hotspot detection via clustering
+    Using google maps api library to make prototype for it.
+    What points should be used? ...
+    How does the api work?
+
+7) AOB
+    Further plans: Polish report. Last bit of testing of the entire system to ensure that it works. A feature where you can see information about a station for the administrator.
+    Next report will likely come next week. Correct the parts mentioned.

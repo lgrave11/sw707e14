@@ -5,7 +5,7 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 \begin{description}[style=nextline]
 	\item[Bicycle locking/unlocking not synchronised]
 	What is important for the central part of the system to know is at what docks at stations bicycles are placed.
-	However, it is not important to keep track on what bicycles are locked and unlocked at the station, as this information is of no use for the central system.
+	However, it is not important for the central system to keep track on what bicycles are locked and unlocked at a station, as this information is of no use for the central system.
 	The information is on the other hand important for the station, as this is the part of the system that ensures that bicycles are locked in time.
 	For that reason, the information is kept at the station. Furthermore, the central system can calculate how many bicycles are locked at a given station, as it can use the bookings for this.
 	
@@ -24,7 +24,7 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 		\item Flag to indicate new bookings
 		\item Constantly ping central database (unreliable)
 		\item Call local service to continuously try and connect until notification has been achieved.
-		\item Give user an error message, telling him to try and book/unbook again later. 
+		\item Give the user an error message, telling him to try and book/unbook again later. 
 	\end{itemize}
 	
 	The idea behind having a flag to indicate new bookings is that a flag will be set for the station that failed to be connected to.
@@ -39,8 +39,9 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	However, another perspective can also be taken.
 	One such approach is to develop a service to run on the central part of the system.
 	The responsibility of this service is then to ensure that the station will get notified.
-	The idea here is that the service holds queues of notifications to be sent out, one such queue for each station.
-	The service can then get notified to enqueue a notification, but the service will then continuously try and deliver the notifications from the queues to the stations. This is found to be a good approach, since it ensures that when connection is established to a station again, the notifications it needs gets delivered.
+	The idea is that the service holds queues of notifications to be sent out, one such queue for each station.
+	The service can then get notified to enqueue a notification, but the service will then continuously try and deliver the notifications from the queues to the stations. 
+	This is found to be a good approach, since it ensures that when connection is established to a station again, the notifications it needs gets delivered.
 	
 	The last approach is to give the user an error message telling him to try and book/unbook again later.
 	This approach is not desirable as we want the system to be as responsive as possible.
