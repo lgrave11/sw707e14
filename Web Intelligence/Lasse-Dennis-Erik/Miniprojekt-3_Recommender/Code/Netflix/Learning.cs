@@ -107,104 +107,93 @@ namespace Netflix
             Console.WriteLine("ratingSumAvg: " + ratingSumAvg.ToString());
 
             CalcRMUHat(userMean, movieMean, trainingData, sum, N);
-            double RMSE = 0.0;
-            int n = 0;
-            foreach (var v in trainingData.Values) 
-            {
-                foreach (var l in v) 
-                {
-                    if (l.Value.Rating != null && l.Value.Rating != 0) 
-                    {
-                        RMSE += Math.Pow(Convert.ToDouble((l.Value.RMUHat - l.Value.Rating)), 2);
-                        n++;
-                    }
-                }
-            }
-            Console.WriteLine(Math.Sqrt(RMSE / n));
-        }
-
-        private Dictionary<int, int> CreateUserMapper(Dictionary<int, double?> userMean)
-        {
-            int i = 0;
-            Dictionary<int, int> userMapping = new Dictionary<int, int>();
-            foreach (KeyValuePair<int, double?> item in userMean)
-            {
-                userMapping.Add(item.Key, i);
-                i++;
-            }
-            return userMapping;
-        }
-
-        private Dictionary<int, int> CreateMovieMapper(Dictionary<int, double?> movieMean)
-        {
-            int i = 0;
-            Dictionary<int, int> movieMapping = new Dictionary<int, int>();
-            foreach (KeyValuePair<int, double?> item in movieMean)
-            {
-                movieMapping.Add(item.Key, i);
-                i++;
-            }
-            return movieMapping;
         }
 
         private void CalcRMUHat(Dictionary<int, double?> userMean, Dictionary<int, double?> movieMean, Dictionary<int, Dictionary<int, UserRating>> trainingData, int? sum, int N)
         {
-            int k = 10;
-            double n = 0.001;
-            double[,] A = new double[movieMean.Count, k];
-            for (int i = 0; i < movieMean.Count; i++)
-            {
-                for (int j = 0; j < k; j++)
-                {
-                    A[i, j] = 0.1;
-                }
-            }
-
-            double[,] B = new double[k, userMean.Count];
-            for (int i = 0; i < k; i++)
-            {
-                for (int j = 0; j < userMean.Count; j++)
-                {
-                    B[i, j] = 0.1;
-                }
-            }
-
-            Dictionary<int, int> userMapper = CreateUserMapper(userMean);
-            Dictionary<int, int> movieMapper = CreateMovieMapper(movieMean);
-
-            /*double[,] test = new double[movieMean.Count,userMean.Count];
-             foreach (var i in trainingData) 
-            {
-                foreach (var j in i) 
-                {
-                    test[i,j] = j
-                }
-            }*/
             Random r = new Random();
-            int traversals = 0;
-            while (traversals < 10000)
+            int k = 25;
+            int epochs = 1000000;
+            //double regularizer = 0.02;
+            double learningRate = 0.001;
+            Dictionary<int, Dictionary<int, double>> A = new Dictionary<int,Dictionary<int,double>>();
+            Dictionary<int, Dictionary<int, double>> B = new Dictionary<int,Dictionary<int,double>>();
+            double MAXIMUM = 0.5;
+            double MINIMUM = -0.5;
+            foreach (int i in movieMean.Keys)
             {
-                int posMovie = r.Next(0, movieMean.Keys.Count);
-                int movieID = trainingData.Keys.ToArray()[posMovie];
-                int posUser = r.Next(0, trainingData[movieID].Keys.Count);
-                int userID = trainingData[movieID].Keys.ToArray()[posUser];
-
-                double? innerparanthesis = 0.0;
-                innerparanthesis = trainingData[movieID][userID].RatingFixed;
-                for (int i = 0; i < k; i++)
+                for (int kVal = 0; kVal < k; kVal++)
                 {
-                    innerparanthesis -= A[movieMapper[movieID], i] * B[i, userMapper[userID]];
-                }
-                double[,] oldA = A, oldB = B;
-                for (int j = 0; j < k; j++)
-                {
-                    A[movieMapper[movieID], j] = oldA[movieMapper[movieID], j] + n * innerparanthesis.Value * oldB[j, userMapper[userID]];
-                    B[j, userMapper[userID]] = oldB[j, userMapper[userID]] + n * oldA[movieMapper[movieID], j] * innerparanthesis.Value;
-                }
+                    if (!A.ContainsKey(i)) 
+                    {
+                        A.Add(i, new Dictionary<int, double>());
+                    }
 
-                if (traversals % 100 == 0)
-                    Console.WriteLine(traversals);
-                traversals++;
+                    A[i].Add(kVal, r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM);//0.1;
+                }
+            }
+
+            for (int kVal = 0; kVal < k; kVal++)
+            {
+                foreach(int j in userMean.Keys)
+                {
+                    if (!B.ContainsKey(kVal)) 
+                    {
+                        B.Add(kVal, new Dictionary<int, double>());
+                    }
+                    B[kVal].Add(j, r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM);//;//0.1;
+                }
+            }
+
+            int count = 0;
+            int epoch = 0;
+            List<int> movieKeys = trainingData.Keys.ToList();
+            double prev_error = 0;
+            while (epoch < epochs)
+            {
+                int movieId = movieKeys.ElementAt(r.Next(movieKeys.Count));
+                List<int> userKeys = trainingData[movieId].Keys.ToList();
+                int userId = userKeys.ElementAt(r.Next(userKeys.Count));
+                for (int kVal = 0; kVal < k; kVal++)
+                {
+                    double rating = (double)trainingData[movieId][userId].RatingFixed;
+                    double currRating = 0.0;
+                    for (int i = 0; i < k; i++)
+                    {
+                        currRating += A[movieId][i] * B[i][userId];
+                    }
+                    A[movieId][kVal] += learningRate * (rating - currRating) * B[kVal][userId];// -(regularizer * A[movieId][kVal]);
+                    B[kVal][userId] += learningRate * A[movieId][kVal] * (rating - currRating);// -(regularizer * B[kVal][userId]);
+                }
+                
+                if (epoch % 100000 == 0)
+                {
+                    double error = 0.0;
+                    foreach (var m in trainingData.Keys)
+                    {
+                        foreach (var u in trainingData[m].Keys)
+                        {
+                            double ABval = 0;
+                            for (int i = 0; i < k; i++)
+                            {
+                                ABval += A[m][i] * B[i][u];
+                            }
+                            error += Math.Pow((double)trainingData[m][u].RatingFixed - ABval, 2);
+                        }
+                    }
+                    if (epoch == 0) 
+                    {
+                        prev_error = error;
+                        epoch++;
+                        continue;
+                    }
+                    Console.WriteLine("{0:D8} - {1:0.00} - {2:0.00}", epoch, error, prev_error);
+                    if (Math.Abs(error) > Math.Abs(prev_error))  break;
+                    //if (count > 100) break;
+                    prev_error = error;
+                    //Console.WriteLine(epoch);
+                }
+                epoch++;
             }
 
             Dictionary<int, UserRating> userRatings = new Dictionary<int, UserRating>();
@@ -218,26 +207,26 @@ namespace Netflix
                 }
             }
 
-            foreach (int movieID in movieMean.Keys)
+            foreach (int mId in movieMean.Keys)
             {
-                Console.WriteLine(movieID);
-                foreach (int userID in userMean.Keys)
+                Console.WriteLine(mId);
+                foreach (int uId in userMean.Keys)
                 {
                     for (int j = 0; j < k; j++)
                     {
 
-                        if (!trainingData[movieID].ContainsKey(userID)) 
+                        if (!trainingData[mId].ContainsKey(uId)) 
                         {
-                            UserRating ur = new UserRating { MovieId = movieID, UserId = userID, Rating = 0, RatingFixed = 0 };
-                            trainingData[movieID].Add(userID, ur);
+                            UserRating ur = new UserRating { MovieId = mId, UserId = uId, Rating = 0, RatingFixed = 0 };
+                            trainingData[mId].Add(uId, ur);
                         }
-                        trainingData[movieID][userID].RMUHat += A[movieMapper[movieID], j] * B[j, userMapper[userID]];
+                        trainingData[mId][uId].RMUHat += A[mId][j] * B[j][uId];
 
                         
                         
                     }
-                    trainingData[movieID][userID].RMUHat += movieMean[movieID] + userMean[userID] - (Convert.ToDouble(sum.Value) / N);
-                    trainingData[movieID][userID].RMUHat = trainingData[movieID][userID].RMUHat > 5 ? 5 : trainingData[movieID][userID].RMUHat < 1 ? 1 : (double?)Math.Round((decimal)trainingData[movieID][userID].RMUHat);
+                    trainingData[mId][uId].RMUHat += movieMean[mId] + userMean[uId] - (Convert.ToDouble(sum.Value) / N);
+                    trainingData[mId][uId].RMUHat = trainingData[mId][uId].RMUHat > 5 ? 5 : trainingData[mId][uId].RMUHat < 1 ? 1 : trainingData[mId][uId].RMUHat;
                 }
             }
         }
