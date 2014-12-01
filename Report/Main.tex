@@ -4,12 +4,24 @@
 \newcommand{\bycykelwithoutspace}{Aalborg Bycykel}
 \newcommand{\bycykel}{\bycykelwithoutspace{ }}
 
+\backgroundsetup{
+scale=0.6,
+color=black,
+opacity=1,
+angle=0,
+contents={%
+  \includegraphics{bicycle-wide}
+  }%
+}
+
 \begin{document}
+	\BgThispage
 	\include{Frontpage}
-	\newpage\null\thispagestyle{empty}\newpage
+	\clearpage
+	\newpage\null\thispagestyle{empty}
 	\include{Titlesheet}
 	\addtocounter{page}{4}
-	\newpage\null\thispagestyle{empty}\newpage
+	%\newpage\null\thispagestyle{empty}\newpage
 	\input{Foreword.tex}
 	\newpage\null\thispagestyle{empty}\newpage
 	%1027
@@ -17,7 +29,7 @@
 	\begin{KeepFromToc}
 		\tableofcontents
 		\newpage\null\thispagestyle{empty}\newpage
-		\newpage\null\thispagestyle{empty}\newpage
+		%\newpage\null\thispagestyle{empty}\newpage
 		\todototoc
 		\listoftodos
 	\end{KeepFromToc}
@@ -57,19 +69,14 @@
 	\input{Src/design/administrationTools}
 	\input{Src/design/architecture}
 	\input{Src/design/station}
-	
-	\chapter{Implementation Problems}\label{chap:implementationproblems}
-	This chapter outlines how we tackle various problems found for implementing the system.
-	These problems consists of various scenarios where a decision has to be taken on how this is handled.
-	As we do not have a customer, the decisions have been taken ourselves when it was required by a customer, but could be changed in the system if wanted by a future customer. For problems concerning backend system stability, the decisions are up to the developer of the system.
-	Additionally, for future work, these decisions could be set as configurable variables on the admin page, letting the customers decide how the system should act in a given scenario.
-	\input{Src/Behaviour/problems}
+	\input{Src/design/sync}
 	
 	\chapter{Implementation}
 	This chapter covers implementation details.
 	
 	\input{Src/Implementation/UI}
-	\input{Src/Implementation/Framework}
+	\input{Src/Implementation/websitestructure}
+	\input{Src/Implementation/Database}
 	\input{Src/Implementation/Interfaces}
 	\input{Src/Implementation/ModelAndModelServices}
 	\input{Src/Implementation/Controller}

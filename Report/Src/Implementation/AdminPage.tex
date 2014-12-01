@@ -10,9 +10,6 @@ Hotspot detection was not implemented, but GPS history was implemented in \secre
 The traffic og bicycles during some period and the current amount of bicycles at a given station can be seen using the implemented graph in \secref{sec:bicycleUsageHistory}.
 How the amount of bicycles at a station change over time can be seen in the same graph.
 
-%We also implemented a page for addition and removal of users, bicycles, and stations.
-
-
 \subsection{Route History}\label{sec:routeHistory}
 This part of the administration site handles showing a map of the historical locations of a bicycle.
 The admin provides one or more bicycles, a start, and end date.
@@ -30,6 +27,9 @@ See \figref{fig:routehistory} for a figure of what the page looks like.
 	\caption{Picture of Route History}
 	\label{fig:routehistory}
 \end{figure}
+
+From the figure, the presentation of routes are shown for the bicycles with id 36 and 95.
+The reason multiple bicycles can be selected is to enable the admin to compare routes on the same map, this includes the route polyline, chosen bicycle and length,
 
 It is implemented by finding all the bicycles that have associated historical GPS data.
  The administrator then chooses which bicycles to map, and these bicycles then have their routes loaded which are then given to Google Maps API to display.
@@ -56,6 +56,28 @@ A table to store this is created, containing the following information:
 \end{itemize}
 
 At the same time when location is recorded from a service, it needs to also record it permanently in the global database.
+
+\subsubsection{GPS Update rate}
+In order to determine how often a GPS have to read, some information have to be described before hand.
+First it is necessary to decide what kind of information is desired from the GPS.
+If the desired information is just current position of the bicycles, infrequent updates work just as well as frequent ones, however, if information about bicycle routes are what is desired, then more frequent updates would be necessary.
+
+To illustrate this we can look at \figref{fig:gpsCircles}, the green circle in this picture is where the bicycle is at the last update, where the rings indicate where you can be after some seconds.
+To look at time intervals the information of how often a GPS can reed have to be determined, this is determined by looking at datasheets of GPS, here a datasheet \citep{manual:gpsDataSheet} states that the GPS can read 50 times per second, therefore anything higher than that can be chosen.
+In the figure the three circles represent 10 (blue), 30  (yellow), and 60 (red) seconds time intervals at a speed of 20 km/h.
+The overlay on the map represents the distance that can be covered if travelling in a straight line, however, when travelling with a bicycle straight line travelling is not very common.
+20 km/h was chosen as the speed because this is the average speed of bicycles where all the intersection lights are green \citep{misc:bicycleStatistics}.
+
+We have chosen to let the GPS update at least every 30 second, since this makes it possible for us to determine the precise route of the bicycle.
+The reason why 30 seconds was chosen is because you are not able to move that far in 10 seconds, however, when tracking only every 60 second it is possible to take alternative routes than the shortest route.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=1]{GPScircles}
+	\caption{Distance coverage with 20 km/h.}
+	\label{fig:gpsCircles}
+\end{figure}
 
 \subsection{Bicycle Usage History}\label{sec:bicycleUsageHistory}
 % Disposition:
