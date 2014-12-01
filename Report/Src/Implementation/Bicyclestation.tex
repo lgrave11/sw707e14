@@ -110,3 +110,7 @@ In the simulation part of the UI, there is a dropdown list where it is possible 
 In addition, there is also a slide bar showing the state of the selected dock.
 The possible states being locked, unlocked, and no bicycle.
 At the bottom of the UI there are two buttons that simulate the user actions of returning and removing a bicycle, and a field giving the option of specifying which bicycle is returned.
+
+Additionally there are buttons for adding and removing docks for the selected station. 
+This is handled station-side and not centrally, because otherwise it would require the administrator to add the dock to the system on the website and it could create situations where the administrator adds a dock that does not exist at the station.  
+This is of course a design choice that could work in either direction, but due to the reasons given station-side seemed more natural.
