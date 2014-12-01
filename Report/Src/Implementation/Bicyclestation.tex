@@ -1,5 +1,6 @@
 \section{Bicycle Station}
-The station software package contains two aspects, software intended to be run on the stations that are placed at each bicycle location throughout the city, and software to simulate the hardware we do not have access to, used as proof of concept. 
+The station software package contains two aspects, software intended to be run on the stations that are placed at each bicycle location throughout the city, and software to simulate the hardware we do not have access to, used as proof of concept.
+For an overview of the station structure, see \figref{fig:stationarch}. 
 However, to use these two aspects a graphical user interface is needed, and is described hereafter.
 
 \subsection{Graphical User Interface}
@@ -28,7 +29,7 @@ There is also a button to quickly return to the main window, which otherwise hap
 
 
 \subsection{Station Backend}
-The station software contains three parts.
+The station backend contains three parts.
 A listener that listens for signals from the global database interface, signalling that a booking has been created or removed.
 A lock manager that is responsible for locking a dock when a booking is close to its start time, and unlocking if a booking has expired.
 And communication with the global database through a SOAP service interface described in \secref{sec:webToStationI}.
