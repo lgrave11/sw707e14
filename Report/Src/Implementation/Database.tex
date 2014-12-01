@@ -10,7 +10,7 @@ In this figure, the connections between the tables represents foreign key constr
 \end{figure}
 
 The additional tables(historyusagestation, historyusagebicycle and historylocationbicycle) are added to store the information needed for the features described in \secref{sec:designAdminTools} and which implementation is discussed in \secref{sec:impAdminTools}.
-The three additional tables servers a data-warehouse like purpose although it is not a real data-warehouse as the extra tables are kept in the same database as the data for the running system.
+The three additional tables serves as a log, in order to store information about usage of the system, to be used by the administration part of the system to analyse on the usage of the system.
 
 In the translation from the ER diagram to the schema presented, the relations between the various entities could in all cases be represented as an attribute on one of the involved entities.
 This attribute is a foreign key.
@@ -18,3 +18,5 @@ This was all that was needed to convert the ER diagram into the database schema,
 
 When the admin features was added into the database, in addition to adding three new tables to contain their information.
 The admin features also required addition of additional attributes to some of the already existing tables, an example of this being \textit{role} attribute on the account table, used to distinguish regular users from the ones with admin privileges.
+
+\fxwarning{der skal skrives til: ekstra attributes, naevn mysql}
