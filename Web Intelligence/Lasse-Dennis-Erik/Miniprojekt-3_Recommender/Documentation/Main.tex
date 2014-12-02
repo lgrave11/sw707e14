@@ -1,0 +1,38 @@
+\input{Preamble.tex}
+
+\author{
+  Erik Sidelmann Jensen\\
+  \texttt{ejens11@student.aau.dk}
+  \and
+  Lasse Vang Gravesen\\
+  \texttt{lgrave11@student.aau.dk}
+  \and
+  Dennis Jakobsen\\
+  \texttt{djakob11@student.aau.dk}  
+}
+
+\title{Web Intelligence - Recommender Miniproject}
+\date{}
+
+\begin{document}
+	\clearpage\maketitle
+	\thispagestyle{empty}
+	
+	\chapter{Recommender Miniproject}
+	\section{Data Loading \& Manipulation}
+	The structure used to contain the data being loaded is based on Dictionaries, specifically because we are provided with a movie and a user id and it makes sense to structure it like that.
+	Actually loading is done by first loading the probe data and relevant information is put into a UserRating class that contains everything that is known about that rating(which movie and user).
+	Then the training data is loaded, which is done the same way as the probe data.
+	We only load movies that are represented in the probe dataset, and if also restrict it to very few files. 
+	Then we manipulate the data such that we can run accuracy tests later, specifically we take the ratings from the training data that are represented in the probe data and add it to the representation and then we remove it from the training data. This is done because we want to see how accurately the rating can be estimated, and if the rating is already in the training data when the learning takes place we will not know how accurately it is actually guessing unknown ratings.
+	
+	The data being manipulated is not resaved because loading data is not a bottleneck for our purposes.
+	
+	\section{Learning}
+	% ...
+	
+	\section{Scoring}
+	% ...
+	
+
+\end{document}
