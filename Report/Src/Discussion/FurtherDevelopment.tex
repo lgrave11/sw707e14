@@ -33,7 +33,11 @@ There are many different ways of detecting hotspots, or clusters. %One way is ag
 %BIRCH and DBSCAN are made for large databases, which would likely be a benefit for this system given that a large amount of GPS coordinates would be registered, on the order of $10E5$ coordinates per bicycle per year. 
 
 The simplest method that might work is using a third party premade library for Google Maps API called MarkerClusterer.
-However, we are not informed what algorithm it uses for clustering, which could create performance problems. See \figref{fig:markerclusterer}.
+The algorithm works in a grid based manner \citep{misc:markerclusterapis}.
+For each zoom level of the map, the clustering is performed.
+In a brief description, the algorithm traverses the markers to be clustered and adds a marker into the closest cluster it is nearest if it is within the minimum square bounds, else it is added to a new cluster. 
+An example of the result of the clustering can be seen in \figref{fig:markerclusterer}.
+Other clustering libraries for google maps exist and would have to be compared before a specific algorithm were to be chosen, a good place to start would be \citep{misc:markerclusterapis}.
 
 \begin{figure}[h]
 \begin{center}
