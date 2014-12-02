@@ -21,7 +21,7 @@ Ways to ensure that the system stays a bit dynamic are one or more of the follow
 		To compensate this, the lock time could vary if you were to integrate the locking mechanism with GPS tracking, and is related to the latter point about prediction.
 		
 		\item[Subset of bicycles for booking]
-		The idea here is to only allow a subset of the amount of bicycles on a station to be booked, this could for instance be that at all times at most half of the bicycles on a station can be booked.
+		The idea is to only allow a subset of the amount of bicycles on a station to be booked, this could for instance be that at all times at most half of the bicycles on a station can be booked.
 		There are a few different approaches to how this could be handled.
 		One option is to simply exclude some of the docks from the system, so that at each station some of the docks physically placed at the station will not be in the system.
 		Another option is that the system itself keeps track of how many bicycles are currently at each station, and then it cannot lock anymore than a predefined percentage of these.
@@ -32,10 +32,13 @@ Ways to ensure that the system stays a bit dynamic are one or more of the follow
 		As this a fixed amount, it is possible to predict if a bicycle can be locked at the given time and due to this, it is possible to inform users at the time of booking creation, whether the booking was successful or not, but also give a status of how many bicycles are available for booking and how many are free to take.
 		
 		\item[Prediction]
-		The idea here is that if you are able to predict when bicycles are returning to the station, you can unlock bicycles on that basis.
+		The idea is that if you are able to predict when bicycles are returning to the station, you can unlock bicycles on that basis.
 		An example of this is that you have a booking in 15 minutes, there is one bicycle left at the station. Then since you know that a bicycle returns to the station in about 5 minutes, the last remaining bicycle can be unlocked for use.
 		How you are then able to predict this could be with use of GPS tracking and substantial statistical analysis.
-		However, it is a project on its own, but is elaborated a bit further in \secref{subsec:prediction}.
+		This would allow for a solution to the unreliability of the system, as the prediction could be integrated into how locking of bicycles are performed.
+		However, to implement this is a project on its own, but is worth considering for further development.
+		In such a further development, different machine intelligence methods could be looked at, in the area of classification.
+		This is due to you having previous labelled which is previous bicycle routes with their end stations, by enough samples of this, it could be used to predict whether one or more bicycles will arrive at the station in some timespan or not.
 \end{description}
 
 \section*{Website Designed for PC}
@@ -79,9 +82,3 @@ However, this problem was thought of in the development of the station software,
 The simulation is done such that the development of this system does not require real station hardware.
 Furthermore, this project is a software development project, and therefore hardware is not the focus of this project.
 For this purpose of this project the simulation is considered sufficient because it allows the system to be interacted with as it is supposed to be in the real world without making it needlessly complex, for example by having to run multiple stations at the same time on several different computers.
-
-\section*{Sufficient Stats}
-	\begin{itemize}
-		\item intelligence
-		\item Prediction
-	\end{itemize}
