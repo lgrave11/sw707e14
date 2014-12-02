@@ -1,6 +1,0 @@
-C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MyServiceFlagCrawl\MyServiceFlagCrawl\bin\Debug\MyServiceFlagCrawl.exe.config
-C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MyServiceFlagCrawl\MyServiceFlagCrawl\bin\Debug\MyServiceFlagCrawl.exe
-C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MyServiceFlagCrawl\MyServiceFlagCrawl\bin\Debug\MyServiceFlagCrawl.pdb
-C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MyServiceFlagCrawl\MyServiceFlagCrawl\obj\Debug\MyServiceFlagCrawl.csprojResolveAssemblyReference.cache
-C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MyServiceFlagCrawl\MyServiceFlagCrawl\obj\Debug\MyServiceFlagCrawl.exe
-C:\Users\Praetorian\Documents\p7\report\Web Intelligence\Allan\MiniProject3\MyServiceFlagCrawl\MyServiceFlagCrawl\obj\Debug\MyServiceFlagCrawl.pdb

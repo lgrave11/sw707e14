@@ -18,6 +18,7 @@ namespace MiniProject3
             Console.WriteLine(calcRMSE(recommender));
             Console.Read();
            // 
+        
         }
 
         static double calcRMSE(Recommender recommender)
@@ -43,7 +44,7 @@ namespace MiniProject3
                     {
                         continue;
                     }
-                    double adjustedRHat = 0; //recommender.RMUHat[movierow, usercolumn];
+                    double adjustedRHat = recommender.RMUHat[movierow, usercolumn];
                     adjustedRHat += recommender.dicMovieMean[movieKey];
                     adjustedRHat += recommender.dicUserMean[userKey];
                     adjustedRHat -= recommender.overallMean;
