@@ -63,27 +63,29 @@ namespace MiniProject3
 
         private double[,] CalcRMUHat()
         {
-            int k = 29;
+            int k = 20;
             double n = 0.001;
             double[,] A = new double[dicMovieMean.Count, k];
             double[,] B = new double[k, dicUserMean.Count];
+
+            InitAandB(k, A, B);
+
             Random r = new Random();
             int traversals = 0;
-            while(traversals < 100000)
+            while(traversals < 10000)
             {
-                
-
+                if(traversals % 100 == 0)
+                {
+                    Console.WriteLine(traversals);
+                }
                 int posMovie = r.Next(0, dicMovieMean.Keys.Count);
                 int movieID = dicRMU.Keys.ToArray()[posMovie];
                 int posUser = r.Next(0, dicRMU[movieID].Keys.Count);
                 int userID = dicRMU[movieID].Keys.ToArray()[posUser];
 
-
-
                 double[,] oldA = (double[,])A.Clone(), oldB = (double[,])B.Clone();
                 for (int j = 0; j < k; j++)
                 {
-                    posUser = r.Next(0, dicRMU[movieID].Keys.Count);
                     userID = dicRMU[movieID].Keys.ToArray()[posUser];
 
                     double innerparanthesis = 0.0;
@@ -93,25 +95,9 @@ namespace MiniProject3
                         innerparanthesis -= A[movieMapper[movieID], i] * B[i, userMapper[userID]];
                     }
 
-                    if(oldB[j, userMapper[userID]] == 0)
-                    {
-                        A[movieMapper[movieID], j] = oldA[movieMapper[movieID], j] + n * innerparanthesis;
-                    }
-                    else
-                    {
-                        A[movieMapper[movieID], j] = oldA[movieMapper[movieID], j] + n * innerparanthesis * oldB[j, userMapper[userID]];
-                    }
-
-                    if( oldA[movieMapper[movieID], j] == 0)
-                    {
-                        B[j, userMapper[userID]] = oldB[j, userMapper[userID]] + n * innerparanthesis;
-                    }
-                    else
-                    {
-                        B[j, userMapper[userID]] = oldB[j, userMapper[userID]] + n * oldA[movieMapper[movieID], j] * innerparanthesis;
-                    }
+                    A[movieMapper[movieID], j] = oldA[movieMapper[movieID], j] + n * innerparanthesis * oldB[j, userMapper[userID]];
+                    B[j, userMapper[userID]] = oldB[j, userMapper[userID]] + n * oldA[movieMapper[movieID], j] * innerparanthesis;
                 }
-
 
                 traversals++;
             }
@@ -131,6 +117,22 @@ namespace MiniProject3
 
             return rmuhat;
 
+        }
+
+        private void InitAandB(int k, double[,] A, double[,] B)
+        {
+            Random ABRandom = new Random();
+            for (int j = 0; j < k; j++)
+            {
+                for (int i = 0; i < dicMovieMean.Count; i++)
+                {
+                    A[i, j] = ABRandom.NextDouble() - 0.5;
+                }
+                for (int i = 0; i < dicUserMean.Count; i++)
+                {
+                    B[j, i] = ABRandom.NextDouble() - 0.5;
+                }
+            }
         }
 
         private void CalcRMU()
