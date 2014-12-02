@@ -2,7 +2,8 @@
 \usepackage[a4paper]{geometry}			% Margins
 \usepackage{textcomp}					% Additional text symbols
 \usepackage{sidecap}					% Sidecaptions
-\usepackage{listings}					% Code in text.
+\usepackage{listings,xcolor}			% Code in text.
+\usepackage{inconsolata}
 %\usepackage{courier}					% Code font.
 \usepackage{lmodern}
 \usepackage{float}						% Absolute positioning
@@ -103,6 +104,22 @@
 		 keywordstyle=[2]\color[rgb]{0,0.5,0.50},
 		 commentstyle=\color[rgb]{0.133,0.545,0.133},
 }
+
+\lstset{
+  language        = php,
+  basicstyle      = \small\ttfamily,
+  morekeywords={else,for,%
+      if,return,%
+      switch,%
+      function, global},
+  keywordstyle    = \color{dkblue},
+  stringstyle     = \color{red},
+  identifierstyle = \color{black},
+  commentstyle    = \color{gray},
+  emph            =[1]{php},
+  emphstyle       =[1]\color{black},
+  emph            =[2]{if,and,or,else},
+  emphstyle       =[2]\color{dkyellow}}
   
 \lstdefinelanguage{Javascript}%
 {morekeywords={else,for,%
