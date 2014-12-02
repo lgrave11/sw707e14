@@ -25,7 +25,16 @@ Putting all this together, also illustrating foreign key references, can be seen
 \caption{ER-diagram showing relations covering data logging.}\label{fig:er-dia-log}
 \end{figure}
 
+Addition and removal of bicycles, users, and stations is also part of the responsibility of the administration tools. 
+For bicycles, they should be added to the system loosely and not directly to a station.
+We intend to do it like this because when the administrator adds a new bicycle, they receive an id and the idea is that they use this id to program the bicycle such that it can be recognized by the system.
+For users and stations, addition does not have any such considerations to make. 
+The dock is not part of the administration tools, since it is handled station side.
+For removal of stations, it is important that all bicycles at that station are released and that docks are deleted along with the station.
+
 Since the logging tables use the other tables like the station and bicycle tables it is important to handle deletion of stations and bicycles. 
 If deletion is not handled properly the logged data could end up being inconsistent. 
 In our case we handle deletion by adding a column to the affected tables indicating if the row is deleted or not. 
-When using the station and bicycles table on the website we make sure to only use the rows that is not deleted, while for the history data we use all rows.
+When using the station and bicycles table on the website we make sure to only use the rows that have not been deleted, while for the history data we use all rows.
+
+An overview page of the stations should also be implemented, providing information about stations such as if they are online or not, where they are and what their status is with regards to usage.
