@@ -1,6 +1,6 @@
 \section{Database}
 To support the necessary information storage, a database is implemented in accordance with the ER diagram described in \secref{sec:ERdiagram}.
-The implementation of the ER diagram leads to the database schema that can be seen in \figref{fig:Database-tables}, however, there is more than just what the ER diagram describes.
+The implementation of the ER diagram leads to the database schema that can be seen in \figref{fig:Database-tables}, however, there is more than what the ER diagram describes.
 In this figure, the connections between the tables represents foreign key constraints.
 
 \begin{figure}[h]
@@ -9,8 +9,12 @@ In this figure, the connections between the tables represents foreign key constr
 	\caption{Database tables}\label{fig:Database-tables}
 \end{figure}
 
-The additional tables(historyusagestation, historyusagebicycle and historylocationbicycle) are added to store the information needed for the features described in \secref{sec:designAdminTools} and which implementation is discussed in \secref{sec:impAdminTools}.
+The additional tables (historyusagestation, historyusagebicycle, and historylocationbicycle) are added to store the information needed for the features described in \secref{sec:designAdminTools} and which implementation is discussed in \secref{sec:impAdminTools}.
 The three additional tables serves as a log, in order to store information about usage of the system, to be used by the administration part of the system to analyse on the usage of the system.
+
+Because of how logging is used is different from the general usage of the system because it has to use all historical data.
+That means that for the purposes of the tables mentioned above it is important that for the station and bicycle tables that rows are not deleted, but rather just flagged as deleted, why is the cause of the deleted attribute in those tables. 
+For regular use of the system it changes little but administratively it allows for using historical data.
 
 In the translation from the ER diagram to the schema presented, the relations between the various entities could in all cases be represented as an attribute on one of the involved entities.
 This attribute is a foreign key.
@@ -19,4 +23,5 @@ This was all that was needed to convert the ER diagram into the database schema,
 When the admin features was added into the database, in addition to adding three new tables to contain their information.
 The admin features also required addition of additional attributes to some of the already existing tables, an example of this being \textit{role} attribute on the account table, used to distinguish regular users from the ones with admin privileges.
 
-\fxwarning{der skal skrives til: ekstra attributes, naevn mysql}
+This was implemented in MySQL, primarily because it was packaged with the webserver that we used to develop the system with.
+There is no reason why MySQL was chosen instead of competing DBMS such as postgresql or MSSQL other than convenience, and little reason why the schema could not be adapted to work on others.
