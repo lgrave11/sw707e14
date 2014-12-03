@@ -20,7 +20,8 @@ namespace Netflix
             var data = dataLoader.ManipulateData(trainingData, probeData);
             trainingData = data.Item1;
             probeData = data.Item2;
-            learner.SubtractMeans(trainingData);
+            Result result = learner.SubtractMeans(trainingData);
+            learner.CalcRMUHat(result.userMean, result.movieMean, trainingData, result.Sum, result.N);
             Console.WriteLine("###");
             double RMSE = 0.0;
             int n = 0;
