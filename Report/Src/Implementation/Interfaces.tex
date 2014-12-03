@@ -31,7 +31,7 @@ This section is about the stationtodbregister interface from \figref{fig:overall
 The station to database interface is important in order to register when a bicycle has been taken at a station or returned to a station, in order to give correct information on the website status page.
 Additionally the interface is used to retrieve information about bookings registered in the large database, in case of power-up of a given station.
 
-The interface has been implemented in a SOAP encoding by help of the NuSOAP library.\fxwarning{kilde her}
+The interface has been implemented in a SOAP encoding by help of the NuSOAP library\citep{misc:nusoap}.
 This library makes you able to write regular PHP functions and then register these with the NuSOAP library, in order to have a webservice generated.
 Bear in mind that all methods registered with NuSOAP needs to have a return value and as such a dummy boolean value is used where no other return value is needed.
 
