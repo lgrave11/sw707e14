@@ -8,9 +8,25 @@ namespace Netflix
 {
     class Learning
     {
-        public Result SubtractMeans(Dictionary<int, Dictionary<int, UserRating>> trainingData)
+        public Dictionary<int, int> MovieMapper = new Dictionary<int,int>();
+        public Dictionary<int, int> UserMapper = new Dictionary<int,int>();
+        public Dictionary<int, Dictionary<int, UserRating>> trainingData;
+        public Dictionary<int, double?> movieMean = new Dictionary<int, double?>();
+        public Dictionary<int, double?> userMean = new Dictionary<int, double?>();
+        public int Sum = 0;
+        public int N;
+
+        public Learning(Dictionary<int, Dictionary<int, UserRating>> trainingdata) 
+        {
+            trainingData = trainingdata;
+        }
+
+        
+
+        public void SubtractMeans()
         {
 
+            #region fuckoff
             /*
              [5 3 4 5 x
               2 2 x 1 x
@@ -44,12 +60,8 @@ namespace Netflix
             d.Add(3, new UserRating { MovieId = 4, Rating = 5, UserId = 3 });
             d.Add(5, new UserRating { MovieId = 4, Rating = 5, UserId = 5 });
             trainingData.Add(4, d);*/
-
-            Dictionary<int, double?> movieMean = new Dictionary<int, double?>();
-            Dictionary<int, double?> userMean = new Dictionary<int, double?>();
+            #endregion
             Dictionary<int, List<int?>> tmp = new Dictionary<int, List<int?>>();
-            int N = 0;
-            int? sum = 0;
 
             // Calculate movie means
             foreach (KeyValuePair<int, Dictionary<int, UserRating>> item in trainingData)
@@ -57,7 +69,7 @@ namespace Netflix
                 var ratings = item.Value.Select(x => x.Value.Rating).ToList();
                 movieMean.Add(item.Key, ratings.Average());
 
-                sum += ratings.Sum();
+                Sum += (int)ratings.Sum();
                 N += ratings.Count;
             }
 
@@ -87,8 +99,8 @@ namespace Netflix
             {
                 foreach (KeyValuePair<int, UserRating> itemValue in item.Value)
                 {
-                    itemValue.Value.RatingFixed = itemValue.Value.Rating - movieMean[item.Key] - userMean[itemValue.Key] + (Convert.ToDouble(sum.Value) / N);
-                    itemValue.Value.Structure = movieMean[item.Key] + userMean[itemValue.Key] - (Convert.ToDouble(sum.Value) / N);
+                    itemValue.Value.RatingFixed = itemValue.Value.Rating - movieMean[item.Key] - userMean[itemValue.Key] + (Convert.ToDouble(Sum) / N);
+                    itemValue.Value.Structure = movieMean[item.Key] + userMean[itemValue.Key] - (Convert.ToDouble(Sum) / N);
                 }
             }
 
@@ -106,48 +118,50 @@ namespace Netflix
             double ratingSumAvg = ratingSum / Convert.ToDouble(ratingCount);
             Console.WriteLine("ratingSumAvg: " + ratingSumAvg.ToString());
 
-            return new Result
-            {
-                userMean = userMean,
-                movieMean = movieMean,
-                Sum = (int)sum,
-                N = N
-            };
+         
         }
 
-        public void CalcRMUHat(Dictionary<int, double?> userMean, Dictionary<int, double?> movieMean, Dictionary<int, Dictionary<int, UserRating>> trainingData, int? sum, int N)
+        public void AssignMappers()
+        {
+            int i = 0;
+            foreach (int movieid in movieMean.Keys)
+            {
+                MovieMapper[movieid] = i;
+                i++;
+            }
+            i = 0;
+            foreach (int userid in userMean.Keys)
+            {
+                UserMapper[userid] = i;
+                i++;
+            }
+        }
+
+        public void CalcRMUHat()
         {
             Random r = new Random();
             int k = 25;
-            int epochs = 1000000;
-            //double regularizer = 0.02;
+            int epochs = 2000000;
+            double regularizer = 0.02;
             double learningRate = 0.001;
-            Dictionary<int, Dictionary<int, double>> A = new Dictionary<int,Dictionary<int,double>>();
-            Dictionary<int, Dictionary<int, double>> B = new Dictionary<int,Dictionary<int,double>>();
+            double[,] Aarray = new double[movieMean.Keys.Count, k];
+            double[,] Barray = new double[k, userMean.Keys.Count];
             double MAXIMUM = 0.5;
             double MINIMUM = -0.5;
-            foreach (int i in movieMean.Keys)
+
+            for(int i = 0; i < movieMean.Keys.Count; i++)
             {
                 for (int kVal = 0; kVal < k; kVal++)
                 {
-                    if (!A.ContainsKey(i)) 
-                    {
-                        A.Add(i, new Dictionary<int, double>());
-                    }
-
-                    A[i].Add(kVal, r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM);//0.1;
+                    Aarray[i, kVal] = r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM;
                 }
             }
 
             for (int kVal = 0; kVal < k; kVal++)
             {
-                foreach(int j in userMean.Keys)
+                for (int j = 0; j < userMean.Keys.Count; j++)
                 {
-                    if (!B.ContainsKey(kVal)) 
-                    {
-                        B.Add(kVal, new Dictionary<int, double>());
-                    }
-                    B[kVal].Add(j, r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM);//;//0.1;
+                    Barray[kVal, j] = r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM;
                 }
             }
 
@@ -158,17 +172,20 @@ namespace Netflix
             while (epoch < epochs)
             {
                 int movieId = movieKeys.ElementAt(r.Next(movieKeys.Count));
+                int mappedMovieId = MovieMapper[movieId];
+
                 int userId = trainingData[movieId].Keys.ElementAt(r.Next(trainingData[movieId].Keys.Count));
+                int mappedUserId = UserMapper[userId];
                 for (int kVal = 0; kVal < k; kVal++)
                 {
                     double rating = (double)trainingData[movieId][userId].RatingFixed;
                     double currRating = 0.0;
                     for (int i = 0; i < k; i++)
                     {
-                        currRating += A[movieId][i] * B[i][userId];
+                        currRating += Aarray[mappedMovieId, i] * Barray[i, mappedUserId];
                     }
-                    A[movieId][kVal] += learningRate * (rating - currRating) * B[kVal][userId];// -(regularizer * A[movieId][kVal]);
-                    B[kVal][userId] += learningRate * A[movieId][kVal] * (rating - currRating);// -(regularizer * B[kVal][userId]);
+                    Aarray[mappedMovieId, kVal] += learningRate * (rating - currRating) * Barray[kVal, mappedUserId] - (regularizer * Aarray[mappedMovieId, kVal]);
+                    Barray[kVal, mappedUserId] += learningRate * Aarray[mappedMovieId, kVal] * (rating - currRating) - (regularizer * Barray[kVal, mappedUserId]);
                 }
                 
                 if (epoch % 100000 == 0)
@@ -176,12 +193,14 @@ namespace Netflix
                     double error = 0.0;
                     foreach (var m in trainingData.Keys)
                     {
+                        int mappedM = MovieMapper[m];
                         foreach (var u in trainingData[m].Keys)
                         {
+                            int mappedU = UserMapper[u];
                             double ABval = 0;
                             for (int i = 0; i < k; i++)
                             {
-                                ABval += A[m][i] * B[i][u];
+                                ABval += Aarray[mappedM, i] * Barray[i, mappedU];
                             }
                             error += Math.Pow((double)trainingData[m][u].RatingFixed - ABval, 2);
                         }
@@ -193,7 +212,7 @@ namespace Netflix
                         continue;
                     }
                     Console.WriteLine("{0:D8} - {1:0.00} - {2:0.00}", epoch, error, prev_error);
-                    if (Math.Abs(error) > Math.Abs(prev_error))  break;
+                    //if (Math.Abs(error) > Math.Abs(prev_error))  break;
                     //if (count > 100) break;
                     prev_error = error;
                     //Console.WriteLine(epoch);
@@ -212,25 +231,27 @@ namespace Netflix
                 }
             }
 
-            foreach (int mId in movieMean.Keys)
+            foreach (var mId in movieMean.Keys)
             {
                 Console.WriteLine(mId);
-                foreach (int uId in userMean.Keys)
+                int mappedmId = MovieMapper[mId];
+                foreach (var uId in userMean.Keys)
                 {
+                    int mappeduId = UserMapper[uId];
                     for (int j = 0; j < k; j++)
                     {
 
-                        if (!trainingData[mId].ContainsKey(uId)) 
+                        if (!trainingData[mId].ContainsKey(uId))
                         {
                             UserRating ur = new UserRating { MovieId = mId, UserId = uId, Rating = 0, RatingFixed = 0 };
                             trainingData[mId].Add(uId, ur);
                         }
-                        trainingData[mId][uId].RMUHat += A[mId][j] * B[j][uId];
+                        trainingData[mId][uId].RMUHat += Aarray[mappedmId, j] * Barray[j, mappeduId];
 
-                        
-                        
+
+
                     }
-                    trainingData[mId][uId].RMUHat += movieMean[mId] + userMean[uId] - (Convert.ToDouble(sum.Value) / N);
+                    trainingData[mId][uId].RMUHat += movieMean[mId] + userMean[uId] - (Convert.ToDouble(Sum) / N);
                     trainingData[mId][uId].RMUHat = trainingData[mId][uId].RMUHat > 5 ? 5 : trainingData[mId][uId].RMUHat < 1 ? 1 : trainingData[mId][uId].RMUHat;
                 }
             }
