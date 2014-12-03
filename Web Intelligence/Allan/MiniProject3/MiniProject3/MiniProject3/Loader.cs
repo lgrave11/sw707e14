@@ -54,7 +54,9 @@ namespace MiniProject3
                         string trainingSetPath = "C:\\Users\\Praetorian\\Documents\\p7\\download\\training_set\\";
                         string fileNameTrainingSet = "mv_" + movieId.ToString("0000000") + ".txt";
                         string finalPath = trainingSetPath + fileNameTrainingSet;
-
+                        FileInfo fi = new FileInfo(finalPath);
+                        if ((fi.Length > 10000 && fi.Length < 30000))
+                        {
                         List<string> lines = File.ReadAllLines(finalPath).ToList();
                         foreach (KeyValuePair<int, int> kvPair in dicProbeClone[movieId])
                         {
@@ -64,7 +66,7 @@ namespace MiniProject3
                             lines.Remove(desiredLine);
                         }
 
-                        File.WriteAllLines(outputPath + fileNameTrainingSet, lines);
+                        File.WriteAllLines(outputPath + fileNameTrainingSet, lines);}
                     }));
 
             }
@@ -87,7 +89,7 @@ namespace MiniProject3
                 if (line.Contains(':'))
                 {
                     count++;
-                    if (count > 100)
+                    if (count > 25)
                         break;
                     currentMovieID = Convert.ToInt32(line.Split(':')[0].Trim());
                     dicProbe[currentMovieID] = new Dictionary<int, int>();
