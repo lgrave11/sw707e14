@@ -1,6 +1,7 @@
+%!TEX root = ../../main.tex
 \section{Model \& Model Services}\fxwarning{Det er for redegørende}
-This section describe the model layer.
-It will illustrate this by giving an example model, showing what it looks like and what it does and then illustrating the corresponding service.
+This section describe the model layer. 
+We will illustrate this by giving an example model, showing what it looks like and what it does and then describe the functionality of each model service.
 Furthermore, a diagram of the model layer can be seen in \appref{app-arch:model}.
 
 The Bicycle entity class can be seen in \lstref{lst:bicycleModel}.
@@ -25,6 +26,16 @@ class Bicycle
 \end{lstlisting}
 \end{minipage}
 
+Every entity model have a corresponding service that will contain the manipulation and handling of objects of the same type as the corresponding entity model. 
+Each model service will implement an interface enforcing the class to implent methods such as \texttt{validate}, \texttt{create}, \texttt{update}, and \texttt{delete}, for an overview see \figref{fig:overallarch}. 
+Enforcing these methods to exist in every service dictates the responsibility of the service, for example enforcing a \texttt{validate} method dictates that it is the responsibility of the service to ensure a correct format of the model entity before making any changes to the database. 
+Furthermore it dictates that the service should handle all contact with the database concerning its specific entity.
+
+It is also the responsibility of the model service to handle all reads from the database, although it is not included in the implemented interface.
+This is because it may not always make sense to have a method that can read an entity from the database, and thereby this would possibly never be used.
+The reason for this is because it is more often that you would like to \textbf{read} multiple rows from the database than e.g. \textbf{delete} or \textbf{update}.
+
+\begin{comment}
 An overview of how the general structure of the CRUD methods implemented in the Model Services is described here, and gives you an idea of how the controller parts of the website have services available that can work on the model.
 
 \textbf{CRUD}
@@ -47,5 +58,5 @@ An overview of how the general structure of the CRUD methods implemented in the 
 	This primary key is then used to delete the corresponding from the the database.
 	
 \end{description}
-
+\end{comment}
 With the model layer described, we take a look at how the controllers are constructed, and how they use the model layer.
