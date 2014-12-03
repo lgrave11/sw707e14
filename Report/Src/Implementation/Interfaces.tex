@@ -1,14 +1,16 @@
 \section{Interfaces}\label{sec:interfaces}
-As is evident from the chosen solution, some communication between the stations and the database has to be established, to retrieve bookings etc..
-This communication is established through a series of interfaces.
+As is described in the design, some communication between the stations and the database has to be established, to retrieve bookings etc.
+This communication is established through the three interfaces gpsregister, websitetostationnotifier and stationtodbregister.
 These interfaces being from website to station, station to database, and bicycle to database.
 Each of these interfaces are described below.
 
 \subsection{Website to Station}\label{sec:webToStationI}
+This section is about the websitetostationnotifier interface from \figref{fig:overallarch}.
 The website has to establish contact to a station when a booking or un-booking has been performed.
 It is evident that this is important, as the stations need to be notified to keep track of bookings involving themselves as station.
 
 This contact is established through TCP/IP, and is used in implemented notification methods.
+These being \texttt{notifyStationDockChanged}, \texttt{notifyStationBooking} and \texttt{notifyStationUnbooking}.
 The call to the notification methods is added in the \textit{BookingService}, as each time a booking is created, updated, or deleted, it is called through BookingService, and as of such we ensure the notification method is always called.
 
 In general, the notification methods work in the following way:
@@ -21,11 +23,12 @@ In general, the notification methods work in the following way:
 \end{itemize}
 
 The reason the message is JSON encoded, is to have a standard way of encoding data, which can be easily decoded by the station.
-It is then up to the station to read this information and handle it in the station's local database.
+It is then up to the station to parse this information and perform the action specified in the message.
 How the JSON encoded message looks like, as well as how the station handles this notification is elaborated in \secref{subsubsec:listener}.
 
 \subsection{Station to Database}
-The station to database interface is important to register whether bicycles has been taken at stations, in order to give correct information on the website status page.
+This section is about the stationtodbregister interface from \figref{fig:overallarch}.
+The station to database interface is important in order to register when a bicycle has been taken at a station or returned to a station, in order to give correct information on the website status page.
 Additionally the interface is used to retrieve information about bookings registered in the large database, in case of power-up of a given station.
 
 The interface has been implemented in a SOAP encoding by help of the NuSOAP library.\fxwarning{kilde her}
@@ -99,6 +102,7 @@ As can be seen, it utilised a custom type called \textit{BookingObjectArray}, wh
 The result is a JSON encoded array and can be used by the given station to traverse the array returned and decode each string to get its corresponding booking information.
 
 \subsection{Bicycle to Database}
+This section is about the gpsregister interface from \figref{fig:overallarch}.
 The interface from bicycle to database, is an interface that is needed to register the location of a bicycle, as GPS tracking is decided to be implemented, due to the meeting held with Aalborg Kommune.
 The idea is that each bicycle use the interface to inform the system where it is located, according to the coordinates received from GPS.
 

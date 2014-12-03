@@ -9,13 +9,13 @@ While the figure of the overall architecture provides an overview of the system,
 \fxwarning{Se venligst NetworkData class, da den har ændret sig skal billedet også ændres. Også forkert kapitalisering af ordene, det er NetworkData ikke networkData.}
 
 In the station software, the station is the main part and also the one that contains the UI. 
-This part is responsible for all contact with the user at the station and is the one that is connected to the hardware.
-\textit{TCPListener} is a thread that listens for messages from the bigger system and stores these messages as a \textit{NetworkData} object, and tells this object to perform the action the message contains.
-The \textit{NetworkData} object has the responsibility of adding a booking to the local database corresponding to the information the object contains, removing a booking with the ID it received, adding a dock to local database, and removing a dock from the local database.\fxwarning{Hvad med stations? Det har vi ikke lavet, skal det laves?}
+This part is responsible for all contact with the user at the station and is the one that is interacting with the hardware.
+\textit{TCPListener} is a thread that listens for messages from the global system through the websitetostationnotifier and stores these messages as a \textit{NetworkData} object, and tells this object to perform the action the message contains.
+The \textit{NetworkData} object has the responsibility of adding a booking to the local database corresponding to the information the object contains and removing a booking with the ID it received.\fxwarning{Hvad med stations? Det har vi ikke lavet, skal det laves?}
 The \textit{LockManager} is also a thread, and is responsible for locking a bicycle when a booking is close to its start time and unlocking said bicycle again if the booking's start time is exceeded by a certain limit.
 The last class is the \textit{ServiceThreads} which is also running in a separate thread.
-This thread is responsible for reporting changes at the station, which are stored in the \textit{toReport} queue.
-As soon as there is something in the \textit{toReport} queue, the thread will try to report it to the online interface, repeating until it succeeds in transmitting it.
+This thread is responsible for reporting changes at the station, which are stored in the \textit{ActionQueue} queue.
+As soon as there is something in the \textit{ActionQueue} queue, the thread will try to report it to the online interface, repeating until it succeeds in transmitting it.
 
 \subsubsection{Locking Considerations}
 Consider the scenario where a user $u_1$ makes a booking $b_1$ on the website at time $t_1$ wanting to reserve a bicycle for time $t_3$. Before time $t_1$ another user $u_2$ made a booking $b_2$ of a bicycle for time $t_2$. Both users made a booking at the same station, and the amount of available bicycles for that station was for both users 1. Under the assumption that a bicycle cannot be locked and thereby reserved before some amount of time, say $t_{before}$, before usage, this scenario is possible in the following way.
