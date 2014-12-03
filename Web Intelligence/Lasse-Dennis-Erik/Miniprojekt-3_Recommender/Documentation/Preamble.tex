@@ -1,0 +1,24 @@
+\documentclass[a4paper, oneside]{memoir}% Document class
+\usepackage[a4paper]{geometry}			% Margins
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage[small,compact]{titlesec}	% No 'chapter' in chapter headings.
+\graphicspath{{Media/}}					% Directory that holds images.
+\usepackage{hyperref}
+
+\titleformat{\chapter}[hang]
+{\normalfont\Large\bfseries}{\thechapter}{1em}{\Large}
+\titlespacing{\chapter}{0pt}{*0}{*1}
+
+\titleformat{\chapter}{\Huge\bfseries}{\thechapter}{1em}{}
+\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+\setlength{\parindent}{0pt}
+\nonzeroparskip
+
+\newcommand{\figref}[1]{\hyperref[#1]{Figure \ref{#1}}}
