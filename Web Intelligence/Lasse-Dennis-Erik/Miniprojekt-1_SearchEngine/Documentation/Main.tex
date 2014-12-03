@@ -22,7 +22,7 @@
 	\section{Crawler}
 	The crawler retrieves the documents used for the search engine, it starts by using a list of seed urls.
 	The seed site for ours was \url{http://en.wikipedia.org/wiki/Internet_of_Things}.
-	Politeness was important, in that the crawler had to adhere to the `robots.txt' file on websites and determine if the crawler was allowed to visit the url in question and at the same time the crawler should not visit a page too often, this was implemented by simply just waiting a second after each visit. 
+	Politeness was important, in that the crawler had to adhere to the `robots.txt' file on websites and determine if the crawler was allowed to visit the url in question and at the same time the crawler should not visit a page too often, this was implemented by simply just waiting a second after each visit. A better approach to this would be to implement a map between a host and a timestamp, and then check the timestamp for the last visit of a host before visiting it again.
 	Equality of content on pages had to be checked because there is no reason to have multiple pages with the same content in the search results, we did this using sketches with Shingling and Jaccard similarity. The general idea of shingling can be demonstrated using the following string: "This is a string", with a shingle size of 2, the resulting shingles would be "This is", "is a", "a string". These can then be used to check equality against a different document using the aforementioned Jaccard similarity. 
 	
 	$$ J(A,B) = \frac{| A \cap B |}{|A \cup B|} $$
@@ -47,7 +47,7 @@
 	\subsection{Cut Corners}
 	The Crawler does not find every url in the visited urls, but rather just the ones that are inside href attribute.
 	
-	The Crawler was limited to very few pages, 100-1000 because waiting a second after each page is limiting.
+	The Crawler was limited to very few pages, 100-1000 because waiting a second after each page is limiting. This could be improved by using threading, it could also be improved by using a queue and if the crawler needs to wait just put the item back in the queue and get the next item instead.
 	
 	The sketches for each document is kept in memory.
 	
@@ -119,6 +119,8 @@
 	tf-idf weighting has different variants, like ltc or lnc. The one we use is ltc.
 	
 	We also implemented contender pruning using 'Champions Lists' where you precompute for each term t, r amount of docs of the highest weight(the tf weight) and this list is then looked at first instead of the default list of postings as a champion list.
+	
+	Our implementation is vulnerable to keyword stuffing for the ranker, and this could be improved using for example the PageRank algorithm.
 	
 	All this comes together to form a search engine, which can be seen in \figref{fig:searchenginearchitecture}
 	

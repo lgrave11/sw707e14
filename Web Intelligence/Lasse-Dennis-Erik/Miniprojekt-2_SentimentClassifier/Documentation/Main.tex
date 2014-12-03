@@ -20,7 +20,8 @@
 	
 	\chapter{Social Media Miniproject}
 	\section{Network Communities Partitioning}
-	Community partitioning was done using spectral clustering.
+	There are several approaches to discover communities. For example Simple local(member) based clustering, Global(group) based clustering, and Hierarchical clustering.	
+	We did community partitioning using spectral clustering, which is community detection by graph cutting. The advantages of using spectral clustering is that it is easy to implement, gives good results, and is reasonably fast for sparse data sets of 1000+ elements. The disadvantages of using this approach is that it is computationally expensive for large data sets.
 	
 	The general algorithm behind spectral clustering is this:
 	\begin{enumerate}
@@ -50,7 +51,8 @@
 	
 	To find more communities, this is then run recursively until a threshold gap of 0.7 is reached after which it stops and returns the list of communities. Alternatively to running it recursively, multiple eigenvectors could have been used to perform the cut. Also alternatively to the threshold gap, modularity could have been used.
 	
-	The results of this is 4 very segregated communities, on the first run-through the communities are obvious as can be seen in the figure below.
+	
+	The results of this is 4 very segregated communities, on the first run-through the communities are obvious as can be seen in the figure below. We do not know if there are any flaws in our implementation but it seems to work.
 	
 	\begin{figure}[H]
 	\includegraphics[scale=0.15]{matrix.png}
@@ -59,7 +61,7 @@
 	The spectral clustering algorithm was used because it is simple to implement, and works well.
 	
 	\section{Sentiment Analysis}
-	Sentiment analysis of text was done using a Naive Bayes Classifier.
+	Sentiment analysis of text was done using a Naive Bayes Classifier. We could also have used a classifier called 'Conditional Maximum Entropy', but for our purposes Naive Bayes was sufficient.
 	
 	This was the procedure:
 	First step is tokenising the test data and constructing features, and for sentiment analysis it is important to remember things like emoticons and negative words because those have an impact on the rest of the content. As such we took a sentiment sensitive tokeniser made in Python and converted it to C\#, and added sensitivity to negative words, in that every token followed by a negative word would get "\_NEG" appended until the end of the sentence(punctuation or an emoticon).
@@ -77,6 +79,8 @@
 	
 	$$(x_i|c) = \frac{N(x_{i}, c) + 1}{N(c) + |X|}$$
 	
+	We also use Laplace smoothing, which ensures that no probability is exactly zero.
+	
 	Then the score for a review can be determined through two tricks:
 	First calculate score for the "empty" review because most words from the vocabulary are not present in a given review(Trick 1). This is done using summation instead of product to avoid numerical instability(Trick 2).
 	
@@ -88,7 +92,7 @@
 	
 	And that is how the Naive Bayes Classifier works, you first use the learning data to construct the probabilities and then you use those probabilities to determine the score for individual reviews.
 	
-	To test the classifier we used all possible combinations of test and learning data, where test data was 1 partition and learning data was the rest. So over N partitions, that means we iteratively ran over the partitions, selected the first for testdata, the rest for learning data and then in the second iteration we select the second for testdata and so on.
+	To test the classifier we used all possible combinations of test and learning data, where test data was 1 partition and learning data was the rest. So over N partitions, that means we iteratively ran over the partitions, selected the first for testdata, the rest for learning data and then in the second iteration we select the second for testdata and so on. This is also called cross validation.
 	
 	Using this to improve the feature construction, we ended up with an accuracy rate of roughly 91\% and an error rate of roughly 9\% for each iteration. Though the classifier ended up being biased towards positive reviews in that it correctly classified them roughly 94\% of the time, and for negative reviews it classified them correctly roughly 77\% of the time.
 	
@@ -104,6 +108,6 @@
 	
 	Our result in summary is then as follows:
 	We classified 1347 user reviews out of 1644 as 'Positive', and 297 user reviews as 'Negative'.
-	Of the users that did not have a review or a summary, we classified 2451 out of 2575 as likely to purchase and 124 as unlikely to purchase.	
+	Of the users that did not have a review or a summary, we classified 2451 out of 2575 as likely to purchase and 124 as unlikely to purchase.
 
 \end{document}
