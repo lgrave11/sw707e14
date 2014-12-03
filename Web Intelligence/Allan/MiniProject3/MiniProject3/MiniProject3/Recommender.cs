@@ -37,10 +37,11 @@ namespace MiniProject3
             Console.WriteLine("calc RMU done");
             AssignMappers();
             Console.WriteLine("mappers assigned");
-            RMUHat = CalcRMUHat();
-            Console.WriteLine("RmuHat done");
+        }
 
-            Console.Read();
+        public void updateRMUHat(int k){
+            RMUHat = CalcRMUHat(k);
+            Console.WriteLine("RmuHat done");
         }
 
         private void AssignMappers()
@@ -61,9 +62,8 @@ namespace MiniProject3
 
         }
 
-        private double[,] CalcRMUHat()
+        private double[,] CalcRMUHat(int k)
         {
-            int k = 20;
             double n = 0.001;
             double[,] A = new double[dicMovieMean.Count, k];
             double[,] B = new double[k, dicUserMean.Count];
@@ -74,7 +74,7 @@ namespace MiniProject3
             int traversals = 0;
             while(traversals < 10000)
             {
-                if(traversals % 100 == 0)
+                if(traversals % 1000 == 0)
                 {
                     Console.WriteLine(traversals);
                 }
