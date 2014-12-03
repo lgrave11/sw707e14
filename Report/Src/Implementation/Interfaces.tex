@@ -29,13 +29,13 @@ How the JSON encoded message looks like, as well as how the station handles this
 \subsection{Station to Database}
 This section is about the stationtodbregister interface from \figref{fig:overallarch}.
 The station to database interface is important in order to register when a bicycle has been taken at a station or returned to a station, in order to give correct information on the website status page.
-Additionally the interface is used to retrieve information about bookings registered in the large database, in case of power-up of a given station.
+Additionally the interface is used to retrieve information about bookings registered in the large database, in case of power-up of a station.
 
-The interface has been implemented in a SOAP encoding by help of the NuSOAP library.\fxwarning{kilde her}
+The interface has been implemented in a SOAP encoding by help of the NuSOAP library\citep{misc:nusoap}.
 This library makes you able to write regular PHP functions and then register these with the NuSOAP library, in order to have a webservice generated.
 Bear in mind that all methods registered with NuSOAP needs to have a return value and as such a dummy boolean value is used where no other return value is needed.
 
-An example of the implementation of an update and read operation on the database is presented below.
+An example of the implementation of an update and read operation on the database is presented in \lstref{lst:bicycledockstationreturned}.
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[caption = {Method for registering a bicycle as been returned to a dock at a given station.}, label = {lst:bicycledockstationreturned}]
@@ -71,8 +71,8 @@ As can be seen from this specification, we tell the NuSOAP library the name of t
 Then line 2-4 specifies the input parameters, line 5 specifies the return value, and line 6-11 is less interesting parts which deals with how the method should be represented in SOAP.
 
 Line 12-21 is the actual method for registering that a bicycle has been return to a dock at a given station.
-This is performed with use of prepared statements, as can be seen in line 15-18, which is done to prevent MySQL injection.
-As you can see, the actual statement expresses an update on the dock, such that the dock, where the bicycle has been placed, gets this information updated.
+This is performed with use of prepared statements, as can be seen in line 15-18, which is done to prevent SQL injection.
+As you can see, the actual statement expresses an update on the dock, such that the dock, where the bicycle has been placed, gets a reference to that bicycle.
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[caption = {Method for reading all bookings for a given station}, label = {lst:getallbookingstation}]
@@ -102,6 +102,11 @@ As can be seen, it utilised a custom type called \textit{BookingObjectArray}, wh
 The result is a JSON encoded array and can be used by the given station to traverse the array returned and decode each string to get its corresponding booking information.
 
 \subsection{Bicycle to Database}
+% Ting der skal skrives om:
+% - Caching på cykler, dårlig dækning, data skal ikke gå tabt
+% - Hvor ofte skal der sendes data
+% - Alternativer til f.eks. GSM moduler?
+\fxwarning{Se comments i source her.}
 This section is about the gpsregister interface from \figref{fig:overallarch}.
 The interface from bicycle to database, is an interface that is needed to register the location of a bicycle, as GPS tracking is decided to be implemented, due to the meeting held with Aalborg Kommune.
 The idea is that each bicycle use the interface to inform the system where it is located, according to the coordinates received from GPS.

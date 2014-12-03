@@ -8,7 +8,7 @@ namespace Netflix
 {
     class Learning
     {
-        public void SubtractMeans(Dictionary<int, Dictionary<int, UserRating>> trainingData)
+        public Result SubtractMeans(Dictionary<int, Dictionary<int, UserRating>> trainingData)
         {
 
             /*
@@ -106,10 +106,16 @@ namespace Netflix
             double ratingSumAvg = ratingSum / Convert.ToDouble(ratingCount);
             Console.WriteLine("ratingSumAvg: " + ratingSumAvg.ToString());
 
-            CalcRMUHat(userMean, movieMean, trainingData, sum, N);
+            return new Result
+            {
+                userMean = userMean,
+                movieMean = movieMean,
+                Sum = (int)sum,
+                N = N
+            };
         }
 
-        private void CalcRMUHat(Dictionary<int, double?> userMean, Dictionary<int, double?> movieMean, Dictionary<int, Dictionary<int, UserRating>> trainingData, int? sum, int N)
+        public void CalcRMUHat(Dictionary<int, double?> userMean, Dictionary<int, double?> movieMean, Dictionary<int, Dictionary<int, UserRating>> trainingData, int? sum, int N)
         {
             Random r = new Random();
             int k = 25;
@@ -152,8 +158,7 @@ namespace Netflix
             while (epoch < epochs)
             {
                 int movieId = movieKeys.ElementAt(r.Next(movieKeys.Count));
-                List<int> userKeys = trainingData[movieId].Keys.ToList();
-                int userId = userKeys.ElementAt(r.Next(userKeys.Count));
+                int userId = trainingData[movieId].Keys.ElementAt(r.Next(trainingData[movieId].Keys.Count));
                 for (int kVal = 0; kVal < k; kVal++)
                 {
                     double rating = (double)trainingData[movieId][userId].RatingFixed;
