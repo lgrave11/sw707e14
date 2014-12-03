@@ -11,17 +11,18 @@ namespace MiniProject3
         static void Main(string[] args)
         {
             //MathNet.Numerics.Control.UseNativeMKL();
-            //new Loader();
+            new Loader();
+            
             Console.WriteLine("done loading");
             List<KeyValuePair<int, double>> list = new List<KeyValuePair<int, double>>();
             using (System.IO.StreamWriter file = new System.IO.StreamWriter("graphfile.txt"))
             {
                 var recommender = new Recommender();
 
-                for (int k = 1; k < 51; k++)
+                for (int k = 1; k < 31; k++)
                 {
                    
-                    recommender.updateRMUHat(k);
+                    recommender.RMUHat = recommender.CalcRMUHat(k);
                     file.WriteLine(k + "\t" + calcRMSE(recommender));
                     file.Flush();
                 }

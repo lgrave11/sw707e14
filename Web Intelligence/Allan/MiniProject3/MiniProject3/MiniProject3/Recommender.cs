@@ -62,7 +62,7 @@ namespace MiniProject3
 
         }
 
-        private double[,] CalcRMUHat(int k)
+        public double[,] CalcRMUHat(int k)
         {
             double n = 0.001;
             double[,] A = new double[dicMovieMean.Count, k];
@@ -72,21 +72,18 @@ namespace MiniProject3
 
             Random r = new Random();
             int traversals = 0;
-            while(traversals < 10000)
+            while(traversals < 1000000)
             {
-                if(traversals % 1000 == 0)
+                if(traversals % 10000 == 0)
                 {
                     Console.WriteLine(traversals);
                 }
-                int posMovie = r.Next(0, dicMovieMean.Keys.Count);
-                int movieID = dicRMU.Keys.ToArray()[posMovie];
-                int posUser = r.Next(0, dicRMU[movieID].Keys.Count);
-                int userID = dicRMU[movieID].Keys.ToArray()[posUser];
+                int movieID = dicMovieMean.Keys.ElementAt(r.Next(0, dicMovieMean.Keys.Count));
+                int userID = dicRMU[movieID].Keys.ElementAt(r.Next(0, dicRMU[movieID].Keys.Count));
 
-                double[,] oldA = (double[,])A.Clone(), oldB = (double[,])B.Clone();
+              //  double[,] oldA = (double[,])A.Clone(), oldB = (double[,])B.Clone();
                 for (int j = 0; j < k; j++)
                 {
-                    userID = dicRMU[movieID].Keys.ToArray()[posUser];
 
                     double innerparanthesis = 0.0;
                     innerparanthesis = dicRMU[movieID][userID];
@@ -94,9 +91,10 @@ namespace MiniProject3
                     {
                         innerparanthesis -= A[movieMapper[movieID], i] * B[i, userMapper[userID]];
                     }
-
-                    A[movieMapper[movieID], j] = oldA[movieMapper[movieID], j] + n * innerparanthesis * oldB[j, userMapper[userID]];
-                    B[j, userMapper[userID]] = oldB[j, userMapper[userID]] + n * oldA[movieMapper[movieID], j] * innerparanthesis;
+                    double oldA = A[movieMapper[movieID], j], oldB = B[j, userMapper[userID]];
+                    
+                    A[movieMapper[movieID], j] = oldA + n * innerparanthesis * oldB;
+                    B[j, userMapper[userID]] = oldB + n * oldA * innerparanthesis;
                 }
 
                 traversals++;
