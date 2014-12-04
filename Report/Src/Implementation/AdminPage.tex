@@ -3,12 +3,13 @@
 % This section describes the administrative functionality. 
 % It covers route history, GPS history, bicycle usage history, and an add/remove page.
 % It also contains a bicycle GPS tracking, but this has been mentioned in \secref{sec:googlemapsapi}.
-In \secref{sec:designAdminTools} some questions were asked. 
-In this section we answer these questions.
-To answer the question about which routes are used we implemented a feature to show route history, which can be seen in \secref{sec:routeHistory}.
-Hotspot detection was not implemented, but GPS history was implemented in \secref{sec:gpsHistory}.
-The traffic og bicycles during some period and the current amount of bicycles at a given station can be seen using the implemented graph in \secref{sec:bicycleUsageHistory}.
-How the amount of bicycles at a station change over time can be seen in the same graph.
+In \secref{sec:designAdminTools} a list of questions were made and explained, setting out requirements or guidelines for the features of the administration tools, in that an administrator should be able to answer the questions using these tools. 
+In this section we implement the database schema designed in \secref{sec:designAdminTools} and features using the data to visualise it in a manner making the administrator able to answer these questions.
+To answer the question about \textit{which routes are used} we implemented a feature to show route history, which can be seen in \secref{sec:routeHistory}.
+\textit{Hotspot detection} was not implemented, but GPS history was implemented in \secref{sec:gpsHistory}.
+The \textit{traffic of bicycles during some period} can be seen using the chord diagram in \secref{sec:bicycleUsageHistory}
+The \textit{current amount of bicycles at a given station} can be seen using the line diagram in \secref{sec:bicycleUsageHistory}.
+How the \textit{amount of bicycles at a station change over time} can be seen in the same line diagram.
 
 \subsection{Route History}\label{sec:routeHistory}
 This part of the administration site handles showing a map of the historical locations of a bicycle.
@@ -29,41 +30,33 @@ See \figref{fig:routehistory} for a figure of what the page looks like.
 \end{figure}
 
 From the figure, the presentation of routes are shown for the bicycles with id 36 and 95.
+
 The reason multiple bicycles can be selected is to enable the administrator to compare routes on the same map, this includes the route polyline, chosen bicycle and length,
 
-It is implemented by finding all the bicycles that have associated historical GPS data.
- The administrator then chooses which bicycles to map, and these bicycles then have their routes loaded which are then given to Google Maps API to display.
 
+This feature will make use of the historyusagelocation table designed and implemented, showing the coordinates from the table in a map.
+The table is inserted into by the gpsregister interface described in \secref{sec:architecture}.
+It is implemented by finding all the bicycles that have associated historical GPS data.
+The administrator then chooses which bicycles to map, and these bicycles then have their routes loaded which are then given to Google Maps API to display as a polyline.
 
 \subsection{GPS History}\label{sec:gpsHistory}
-The system saves the location of bicycles registered in the system, which could be helpful for determining where bicycles currently are. 
-This would allow the 'county' to determine where 'lost' bicycles are, which in turn would allow for easier recovery of bicycles.
-Having the GPS tracking already implemented, it makes sense to store the GPS coordinates in a separate table for historical and business intelligence purposes.
-This kind of historical data could be interesting for intelligence purposes because it would allow knowledge about the following:
+From the previous administration feature a historyusagelocation table was implemented to store the positions of a bicycle.
+This can also be used to find the last known location of the bicycle. 
+This would allow the administrator to determine where missing bicycles are, which in turn would allow for easier recovery of bicycles.
 
-\begin{description}[style=nextline]
-\item[Which routes are used?] If routes could be determined, patterns could possibly be seen, e.g. if there is a particular route that is very popular.
-\item[Are there hotspots for bicycles?] If positions of bicycles could be determined, it would mean that hotspots(places where there is a lot of bicycle activity) could be found. 
-This could provide valuable knowledge about for example where to add new stations.
-\end{description}
+%At the same time when location is recorded from a service, it needs to also record it permanently in the global database.
 
-A table to store this is created, containing the following information:
 
-\begin{itemize}
-\item The ID of the Bicycle
-\item A timestamp of when the coordinates was recorded.
-\item The latitude and the longitude.
-\end{itemize}
 
-At the same time when location is recorded from a service, it needs to also record it permanently in the global database.
-
-\subsubsection{GPS Update rate}
+\subsubsection{GPS Update rate}\fxwarning{Mig og Dennis synes den vakler lidt i GPS update rate. Flyt hellere fokus over på data-traffic, cache size, storage space etc.}
+\begin{comment}
 In order to determine how often a GPS have to read, some information have to be described before hand.
 First it is necessary to decide what kind of information is desired from the GPS.
 If the desired information is just current position of the bicycles, infrequent updates work just as well as frequent ones, however, if information about bicycle routes are what is desired, then more frequent updates would be necessary.
 
 To illustrate this we can look at \figref{fig:gpsCircles}, the green circle in this picture is where the bicycle is at the last update, where the rings indicate where you can be after some seconds.
-To look at time intervals the information of how often a GPS can reed have to be determined, this is determined by looking at datasheets of GPS, here a datasheet \citep{manual:gpsDataSheet} states that the GPS can read 50 times per second, therefore anything higher than that can be chosen.
+To look at time intervals the information of how often a GPS can read have to be determined.
+This is determined by looking at datasheets of GPS, here a datasheet \citep{manual:gpsDataSheet} states that the GPS can read 50 times per second.
 In the figure the three circles represent 10 (blue), 30  (yellow), and 60 (red) seconds time intervals at a speed of 20 km/h.
 The overlay on the map represents the distance that can be covered if travelling in a straight line, however, when travelling with a bicycle straight line travelling is not very common.
 20 km/h was chosen as the speed because this is the average speed of bicycles where all the intersection lights are green \citep{misc:bicycleStatistics}.
@@ -78,6 +71,7 @@ The reason why 30 seconds was chosen is because you are not able to move that fa
 	\caption{Distance coverage with 20 km/h.}
 	\label{fig:gpsCircles}
 \end{figure}
+\end{comment}
 
 \subsection{Bicycle Usage History}\label{sec:bicycleUsageHistory}
 % Disposition:
@@ -85,22 +79,44 @@ The reason why 30 seconds was chosen is because you are not able to move that fa
 % Which questions can be answered?
 % How is it implemented?
 
-Besides recording the exact location of each bicycle with GPS coordinates, the system also records the stations a given bicycle visits. 
-This can be used to give an overview of the bicycle traffic between stations.
-Furthermore, the amount of docked bicycles is tracked for each station, giving an overview of which stations that have high and low activity.
+Besides recording the exact location of each bicycle with GPS coordinates, the system also records the stations a given bicycle visits.
+This information is stored in the historyusagebicycle table implemented from \secref{sec:designAdminTools}.
+Information is inserted into this table based on events happening at the stations. 
+Every time a bicycle is taken from a dock at a station the stationtodbregister interface is contacted, which takes care of inserting the information about the start station of the trip.
+Furthermore every time a bicycle is returned to a station the interface takes care of updating the trip with an end station.
+Keeping such information about a bicycle trip can be used to give an overview of the bicycle traffic between stations.
 
-\begin{description}[style=nextline]
-\item[Where is the most traffic of bicycles during some period?] An administrator would be able to see how many bicycles leaves and arrives at each station and thereby get an overview of where the traffic is high and low, providing an indication of where to put focus for relocation of bicycles and expansion of stations.
-\item[What is the current amount of bicycles at a given station?] A graph is shown providing the amount of bicycles on the y-axis and the provided timespan on the x-axis. This gives the administrator an idea when bicycles leave each station.
-\item[How does the amount of bicycles at a given station change over time?] Taking the same graph as above, the administrator can also choose a long period of time for example a week, month or a year, providing a more general overview of when the activity at each station is high or low.
-\end{description}
+The amount of docked bicycles is tracked for each station, giving an overview of which stations that have high and low activity.
+This is implemented through the historyusagestation table described in \secref{sec:designAdminTools}, storing the amount of bicycles at each station.
+The insertion is event-based and happens every time a bicycle is either returned to or taken from a station, again through the stationtodbregister interface described in \secref{sec:architecture}.
 
-These features are implemented through two additional tables added to the database, where the first table keeps information about the amount of bicycles at a station along with a timestamp. 
-The other table keeps information about the time and station a bicycle left from and arrived to, along with the specific bicycle id and a possible booking id associated with the bicycle trip.
+% line diagram
+For illustration the current amount of bicycles at a station and how the amount changes over time, a line diagram is generated showing time on the x-axis and the amount of bicycles on the y-axis, see \figref{fig:linediagram}.
+%Insert figure here showing the line diagram.
+\begin{figure}[h]
+\includegraphics[scale=0.5]{implementation/linediagram}
+\caption{Line diagram showing the amount of bicycles.}\label{fig:linediagram}
+\end{figure}
 
-As this information needs to be captured and updated when an event occurs, either being a bicycle that is taken from a station dock or a bicycle return to a station dock, these operations are performed in the interface between the stations and the global database, see \figref{fig:overallarch}. 
-The stations will communicate with this interface when either of these events occur. 
-The timestamp is generated just before query execution, which means that some delay can occur from the actual event firing time to the insertion time, resulting in an imprecise trip duration. 
+% chord diagram
+To illustrate the traffic between stations we use a chord diagram. 
+An example of this diagram can be seen in \figref{fig:chorddiagram}. 
+The input to the diagram is a list of station names and a $n \times n$ matrix where $n$ is the number of stations and where each entry $e_{i,j}$ is a number of bicycles travelling from station $i$ to station $j$. 
+Each block at the edge of the diagram represents a station. 
+The wider the block, the more bicycles have left that station. 
+Each arc of the same colour as the block it is connected to, indicates the number of bicycles leaving the station and the destination of the bicycles. 
+The width of the arc at each end shows how many bicycles have travelled in each direction between the two stations. 
+For example the red one in the top between the two blue blocks shows that bicycles leaving have travelled to two different destinations. 
+As seen from the table on the right, one bicycle went to Karolinelund, and one to Strandvejen. 
+Since the arc is narrow at the destination block it means that no bicycle went the other way. 
+In some cases the arc destination is somewhere between blocks. 
+This means that the destination station does not have any bicycles leaving in the selected time period, as only stations with bicycles leaving is shown as a block.
+\begin{figure}[h]
+\includegraphics[scale=0.5]{implementation/chorddiagram}
+\caption{Chord diagram showing traffic of bicycles.}\label{fig:chorddiagram}
+\end{figure}
+
+The timestamp of the event is generated just before query execution, which means that some delay can occur from the actual event firing time to the insertion time, resulting in an imprecise trip duration. 
 This is, however, considered a minor deviation in most cases, because the communication delay is short (seconds maybe even less).
 In case of a bad connection, the generated timestamp will cause useless data in the light of statistical usage, if time is an important aspect of the analysis.
 For showing the traffic between stations the timestamp is used for filtering on a specified time interval and thereby allowing up to an hour of imprecision.
