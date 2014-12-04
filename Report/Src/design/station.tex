@@ -6,7 +6,6 @@ While the figure of the overall architecture provides an overview of the system,
 	\includegraphics[trim=2cm 9.5cm 0cm 3cm, clip, scale=0.7]{design/station}
 	\caption{Station software architecture}\label{fig:stationarch}
 \end{figure}
-\fxwarning{Se venligst NetworkData class, da den har ændret sig skal billedet også ændres. Også forkert kapitalisering af ordene, det er NetworkData ikke networkData.}
 
 In the station software, the station is the main part and also the one that contains the UI. 
 This part is responsible for all contact with the user at the station and is the one that is interacting with the hardware.
@@ -17,7 +16,7 @@ The last class is the \textit{ServiceThreads} which is also running in a separat
 This thread is responsible for reporting changes at the station, which are stored in the \textit{ActionQueue} queue.
 As soon as there is something in the \textit{ActionQueue} queue, the thread will try to report it to the online interface, repeating until it succeeds in transmitting it.
 
-\subsubsection{Locking Considerations}
+\subsubsection{Locking Considerations}\label{subsec:lockingcons}
 Consider the scenario where a user $u_1$ makes a booking $b_1$ on the website at time $t_1$ wanting to reserve a bicycle for time $t_3$. Before time $t_1$ another user $u_2$ made a booking $b_2$ of a bicycle for time $t_2$. Both users made a booking at the same station, and the amount of available bicycles for that station was for both users 1. Under the assumption that a bicycle cannot be locked and thereby reserved before some amount of time, say $t_{before}$, before usage, this scenario is possible in the following way.
 
 First consider this definition of a time $t$, it is a time represented as the number of seconds from Thursday, 1 January 1970 at 00:00:00 UTC, which is the Epoch time, as of such comparisons such as $>$ is just computed as usual on numbers.

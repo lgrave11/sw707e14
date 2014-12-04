@@ -1,6 +1,6 @@
 \section{Google Maps API}\label{sec:googlemapsapi}
-The Google Maps API \citep{misc:googlemapsapi} is used to show the map on both the front page and the admin page.
-However, both of these pages use the API differently, the front page uses the API to show the map with the stations that are currently in the system, whereas the admin page visualises where all the bicycles are located.
+The Google Maps API \citep{misc:googlemapsapi} is used to show the map on both the front page and the administrator page.
+However, both of these pages use the API differently, the front page uses the API to show the map with the stations that are currently in the system, whereas the administrator page visualises where all the bicycles are located.
 
 To use the API, the construction of the map is done first, which can be seen in \lstref{lst:mapoptions}.
 Map options are chosen here, these options are e.g. the center of the map, which zoom level the map should have, and the style of the map.
@@ -46,7 +46,7 @@ For each station, the work-flow of this is as follows:
 
 An example of the final google map with markers placed can be seen in \figref{fig:googlemapmarkerinfowindow}.
 
-For the admin page the markers are bicycles, which are updated at a set frequency using AJAX, and is created in a similar fashion, just by other objects placed on the map.
-The main purpose of the admin tracking page is to be able to see where the different bicycles are at a given time, which is the reason why the markers are updated once in a while.
+For the administrator page the markers are bicycles, which are updated at a set frequency using AJAX, and is created in a similar fashion, just by other objects placed on the map.
+The main purpose of the administrator tracking page is to be able to see where the different bicycles are at a given time, which is the reason why the markers are updated once in a while.
 For the purpose of this project it updates every tenth second, to be able to simulate how it could look like, however, in the real system every tenth second might be too often, depending on how often the GPS's of the bicycle send data to the database.
 For the update of the marker position AJAX is used to get all the positions of the different bicycles, which allows the makers to move without refreshing the page.
