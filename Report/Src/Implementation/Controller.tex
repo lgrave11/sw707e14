@@ -7,7 +7,7 @@ It defines an `action', this action is what is interpreted from the request sent
 For space saving purposes all actions but the index action have been omitted.
 The home controller uses two services, StationService, used to retrieve an array of all stations, line 8-9, and BookingService, used to retrieve an array of all active bookings for the currently logged in user, line 11-14. 
 This illustrates the general idea behind the separation of the entities (the models) and the services associated with those entities.
-It then uses the information loaded by 'including' views, and these views then use this information for displaying the content read from the services.
+It then uses the information loaded by `including' views, and these views then use this information for displaying the content read from the services.
 
 \begin{lstlisting}[language=php, label=lst:homeController, caption={Home Controller Class}]
 <?php
