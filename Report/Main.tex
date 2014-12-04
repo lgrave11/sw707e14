@@ -88,8 +88,12 @@ contents={%
 	%\input{Src/Implementation/History}
 	
 	\chapter{Test}
-	In order to verify that the functionality of our system works as intended, we perform unit tests on our code. 
-    To test the usability of our system, usability tests are also performed.
+	Testing is an important aspect of ensuring that a system works correctly and as intended without unknown side effects.
+	That is why it is important to verify that the model and interface layer works as intended, this can be done using unit testing, which is why we perform unit tests on those layers.
+	
+	While unit testing works for behavioural code and verifying that everything works correctly there, we have an architecture that separates the behavioural aspects of the system away from the visual and experience aspects, specifically the controller and view layers.
+	These layers also need to be tested, and unit testing does not fit well with them and as such a different way to test them is required, which is where usability testing comes into the picture because while they mostly reveal usability problems they can also reveal critical errors where the system does not behave as expected. 
+	As such usability tests are also performed.
 	\input{Src/Test/Unittest}
 	\input{Src/Test/Usabilitytest}
 	
