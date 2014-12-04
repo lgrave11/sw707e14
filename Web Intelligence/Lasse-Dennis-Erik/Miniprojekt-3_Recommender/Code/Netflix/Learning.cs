@@ -141,7 +141,7 @@ namespace Netflix
         {
             Random r = new Random();
             int k = 25;
-            int epochs = 2000000;
+            int epochs = 1000000;
             double regularizer = 0.02;
             double learningRate = 0.001;
             double[,] Aarray = new double[movieMean.Keys.Count, k];
@@ -184,8 +184,8 @@ namespace Netflix
                     {
                         currRating += Aarray[mappedMovieId, i] * Barray[i, mappedUserId];
                     }
-                    Aarray[mappedMovieId, kVal] += learningRate * (rating - currRating) * Barray[kVal, mappedUserId] - (regularizer * Aarray[mappedMovieId, kVal]);
-                    Barray[kVal, mappedUserId] += learningRate * Aarray[mappedMovieId, kVal] * (rating - currRating) - (regularizer * Barray[kVal, mappedUserId]);
+                    Aarray[mappedMovieId, kVal] += learningRate * (rating - currRating) * Barray[kVal, mappedUserId]- (regularizer * Aarray[mappedMovieId, kVal]);
+                    Barray[kVal, mappedUserId] += learningRate * Aarray[mappedMovieId, kVal] * (rating - currRating) -(regularizer * Barray[kVal, mappedUserId]);
                 }
                 
                 if (epoch % 100000 == 0)

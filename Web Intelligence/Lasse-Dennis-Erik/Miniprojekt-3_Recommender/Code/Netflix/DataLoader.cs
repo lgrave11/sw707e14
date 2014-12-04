@@ -47,7 +47,7 @@ namespace Netflix
             string[] files = new string[500];
             foreach (FileInfo fileInfo in di.GetFiles())
             {
-                if (fileInfo.Length > 30000 && fileInfo.Length < 50000)
+                if (fileInfo.Length > 10000 && fileInfo.Length < 20000)
                     fi.Add(fileInfo);
             }
             
