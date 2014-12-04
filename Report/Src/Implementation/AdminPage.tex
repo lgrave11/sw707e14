@@ -48,30 +48,6 @@ This would allow the administrator to determine where missing bicycles are, whic
 
 
 
-\subsubsection{GPS Update rate}\fxwarning{Mig og Dennis synes den vakler lidt i GPS update rate. Flyt hellere fokus over på data-traffic, cache size, storage space etc.}
-\begin{comment}
-In order to determine how often a GPS have to read, some information have to be described before hand.
-First it is necessary to decide what kind of information is desired from the GPS.
-If the desired information is just current position of the bicycles, infrequent updates work just as well as frequent ones, however, if information about bicycle routes are what is desired, then more frequent updates would be necessary.
-
-To illustrate this we can look at \figref{fig:gpsCircles}, the green circle in this picture is where the bicycle is at the last update, where the rings indicate where you can be after some seconds.
-To look at time intervals the information of how often a GPS can read have to be determined.
-This is determined by looking at datasheets of GPS, here a datasheet \citep{manual:gpsDataSheet} states that the GPS can read 50 times per second.
-In the figure the three circles represent 10 (blue), 30  (yellow), and 60 (red) seconds time intervals at a speed of 20 km/h.
-The overlay on the map represents the distance that can be covered if travelling in a straight line, however, when travelling with a bicycle straight line travelling is not very common.
-20 km/h was chosen as the speed because this is the average speed of bicycles where all the intersection lights are green \citep{misc:bicycleStatistics}.
-
-We have chosen to let the GPS update at least every 30 second, since this makes it possible for us to determine the precise route of the bicycle.
-The reason why 30 seconds was chosen is because you are not able to move that far in 10 seconds, however, when tracking only every 60 second it is possible to take alternative routes than the shortest route.
-
-
-\begin{figure}
-	\centering
-	\includegraphics[scale=1]{GPScircles}
-	\caption{Distance coverage with 20 km/h.}
-	\label{fig:gpsCircles}
-\end{figure}
-\end{comment}
 
 \subsection{Bicycle Usage History}\label{sec:bicycleUsageHistory}
 % Disposition:
