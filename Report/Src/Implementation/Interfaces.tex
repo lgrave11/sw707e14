@@ -26,7 +26,7 @@ The reason the message is JSON encoded, is to have a standard way of encoding da
 It is then up to the station to parse this information and perform the action specified in the message.
 How the JSON encoded message looks like, as well as how the station handles this notification is elaborated in \secref{subsubsec:listener}.
 
-\subsection{Station to Database}
+\subsection{Station to Database}\label{sec:stationToWebI}
 This section is about the stationtodbregister interface from \figref{fig:overallarch}.
 The station to database interface is important in order to register when a bicycle has been taken at a station or returned to a station, in order to give correct information on the website status page.
 Additionally the interface is used to retrieve information about bookings registered in the large database, in case of power-up of a station.

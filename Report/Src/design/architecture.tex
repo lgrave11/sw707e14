@@ -1,4 +1,4 @@
-\section{Architecture}
+\section{Architecture}\label{sec:architecture}
 Before implementing the software system, it is a good idea to have a general overview of how the various parts of the system are connected.
 In order to gain this overview, an overall architecture diagram was drawn.
 
@@ -27,14 +27,14 @@ The stationtodbregister interface serves the purpose of updating the central dat
 
 The websitetostationnotifier is a little different, in that it is an interface provided to the website, such that when the website changes data, e.g. create a booking, the involved station is notified by the interface.
 
-The architecture for the website is the MVC pattern, see \secref{sec:mvc}. \fxwarning{Hvilke alternativer er der?}
-A detailed overview of the architecture of the controller and model part of the website are provided in \appref{app-arch:controller} and \appref{app-arch:model}
+The architecture for the website is the MVC pattern, see \secref{sec:mvc}. There are other alternatives, such as Model View ViewModel or single pages doing everything, but we picked the MVC pattern because the idea behind it is very clear and easy to learn.
+A detailed overview of the architecture of the controller and model part of the website is provided in \appref{app-arch:controller} and \appref{app-arch:model}
 
 Another part of the architecture is the user interaction.
-For the website, we distinguish between admin and regular users.
-The admin user has access to an admin webpage, where he can modify stations, bicycles, docks, and users.
-In addition to this, the admin user is also provided with some statistics pages about the usage of the system.
-The admin user also has access to the features a regular user has access to.
+For the website, we distinguish between administrators and regular users.
+The administrator has access to an administrator webpage, where he can modify stations, bicycles, docks, and users.
+In addition to this, the administrator is also provided with some statistics pages about the usage of the system.
+The administrator also has access to the features a regular user has access to.
 
 A regular user can interact with the system in several ways.
 The website allows for station status, in order to see how many bicycles and docks are available at any given station, but also the position of each station.
