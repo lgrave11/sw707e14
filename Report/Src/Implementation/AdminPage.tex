@@ -3,12 +3,13 @@
 % This section describes the administrative functionality. 
 % It covers route history, GPS history, bicycle usage history, and an add/remove page.
 % It also contains a bicycle GPS tracking, but this has been mentioned in \secref{sec:googlemapsapi}.
-In \secref{sec:designAdminTools} some questions were asked. 
-In this section we answer these questions.
-To answer the question about which routes are used we implemented a feature to show route history, which can be seen in \secref{sec:routeHistory}.
-Hotspot detection was not implemented, but GPS history was implemented in \secref{sec:gpsHistory}.
-The traffic og bicycles during some period and the current amount of bicycles at a given station can be seen using the implemented graph in \secref{sec:bicycleUsageHistory}.
-How the amount of bicycles at a station change over time can be seen in the same graph.
+In \secref{sec:designAdminTools} a list of questions were made and explained, setting out requirements or guidelines for the features of the administration tools, in that an administrator should be able to answer the questions using these tools. 
+In this section we implement the database schema designed in \secref{sec:designAdminTools} and features using the data to visualise it in a manner making the administrator able to answer these questions.
+To answer the question about \textit{which routes are used} we implemented a feature to show route history, which can be seen in \secref{sec:routeHistory}.
+\textit{Hotspot detection} was not implemented, but GPS history was implemented in \secref{sec:gpsHistory}.
+The \textit{traffic of bicycles during some period} can be seen using the graph in \secref{sec:}\fxwarning{Husk ref når den en gang er lavet!}
+The \textit{current amount of bicycles at a given station} can be seen using the graph in \secref{sec:bicycleUsageHistory}.
+How the \textit{amount of bicycles at a station change over time} can be seen in the same graph.
 
 \subsection{Route History}\label{sec:routeHistory}
 This part of the administration site handles showing a map of the historical locations of a bicycle.
@@ -31,8 +32,10 @@ See \figref{fig:routehistory} for a figure of what the page looks like.
 From the figure, the presentation of routes are shown for the bicycles with id 36 and 95.
 The reason multiple bicycles can be selected is to enable the admin to compare routes on the same map, this includes the route polyline, chosen bicycle and length,
 
+This feature will make use of the historyusagelocation table designed and implemented, showing the coordinates from the table in a map.
+The table inserted into by the gpsregister interface described in \secref{sec:architecture}.
 It is implemented by finding all the bicycles that have associated historical GPS data.
- The administrator then chooses which bicycles to map, and these bicycles then have their routes loaded which are then given to Google Maps API to display.
+The administrator then chooses which bicycles to map, and these bicycles then have their routes loaded which are then given to Google Maps API to display as a poly line.
 
 
 \subsection{GPS History}\label{sec:gpsHistory}
