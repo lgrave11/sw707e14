@@ -1,13 +1,13 @@
 \section{Controller}
 This section shows how the controller layer works. 
-It illustrates this by giving an example controller, showing what it looks like and what it does.
+We illustrate this by giving an example controller, showing what it looks like and what it does.
 
 In \lstref{lst:homeController} part of the Home Controller can be seen. 
-It defines an `action', this action is what is pointed to by the client. 
+It defines an `action', this action is what is interpreted from the request sent by the client. 
 For space saving purposes all actions but the index action have been omitted.
 The home controller uses two services, StationService, used to retrieve an array of all stations, line 8-9, and BookingService, used to retrieve an array of all active bookings for the currently logged in user, line 11-14. 
 This illustrates the general idea behind the separation of the entities (the models) and the services associated with those entities.
-It then uses the information loaded by 'including' views, and these views then use the information retrieved for displaying the content read from the services.
+It then uses the information loaded by 'including' views, and these views then use this information for displaying the content read from the services.
 
 \begin{lstlisting}[language=php, label=lst:homeController, caption={Home Controller Class}]
 <?php
@@ -32,5 +32,7 @@ class Home extends Controller
     // [...]
 }
 \end{lstlisting}
+
+As can be seen on line 16-18 three views is included into the function. Because of the way include works in PHP the included content is in the same scope as the rest of the function, which means we can use the variables declared in the function, inside the included content.
 
 The controllers and their `actions' can be seen in \appref{app-arch:controller}.

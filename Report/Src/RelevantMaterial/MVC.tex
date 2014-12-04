@@ -25,9 +25,13 @@ These multiple views allow for reuse of views.
 It is important to note that there is a single model layer, consisting of multiple entities (e.g bicycle and booking) and their associated services.
 Additionally, it is a good practice to have multiple controllers, which each handle different parts of the website.
 In our case we for example have a home and user controller.
-With the user controller taking care of everything connected to user login, editing of profile, logout etc.\fxwarning{Could put profile in a separate controller?}
+With the user controller taking care of everything connected to user login, editing of profile, logout and so on, and some actions could be moved to a separate controller if it grows too large.
 The home controller takes care of the presentation of the frontpage and the functionality of booking and unbooking of bicycles.
 As is evident, the controllers are split into different actions present on the website, which ensures better code clarity.
 
 In addition to the better code clarity, as the website is organised in the way it is, working with the same model, the layout of the website can easily be changed, by including other views or developing additional controllers for other work routines.
-This is relateds to the high modularity you gain with the MVC pattern, inducing high cohesion and low coupling.\fxwarning{Brat slutning.}
+This is relates to the high modularity you gain with the MVC pattern, leading to high cohesion (elements in a module belong together to a high degree) and low coupling (low interdependence between modules).
+
+However some things need to be loaded client-side for increased usability, which is where AJAX comes in.
+
+

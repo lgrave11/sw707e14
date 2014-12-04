@@ -13,15 +13,16 @@ namespace Netflix
             Dictionary<int, Dictionary<int, UserRating>> probeData;
             Dictionary<int, Dictionary<int, UserRating>> trainingData;
             DataLoader dataLoader = new DataLoader();
-            Learning learner = new Learning();
+            
             probeData = dataLoader.LoadProbeData("probe.txt");
             trainingData = dataLoader.LoadTrainingData("training_set", probeData);
             Console.WriteLine("Manipulating data");
             var data = dataLoader.ManipulateData(trainingData, probeData);
             trainingData = data.Item1;
             probeData = data.Item2;
-            Result result = learner.SubtractMeans(trainingData);
-            learner.CalcRMUHat(result.userMean, result.movieMean, trainingData, result.Sum, result.N);
+            Learning learner = new Learning(trainingData);
+            learner.SubtractMeans();
+            learner.CalcRMUHat();
             Console.WriteLine("###");
             double RMSE = 0.0;
             int n = 0;

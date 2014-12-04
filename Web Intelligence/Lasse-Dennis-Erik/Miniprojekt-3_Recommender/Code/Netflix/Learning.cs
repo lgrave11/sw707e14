@@ -8,9 +8,21 @@ namespace Netflix
 {
     class Learning
     {
-        public Result SubtractMeans(Dictionary<int, Dictionary<int, UserRating>> trainingData)
+        Dictionary<int, Dictionary<int, UserRating>> trainingData;
+        Dictionary<int, double?> movieMean = new Dictionary<int, double?>();
+        Dictionary<int, double?> userMean = new Dictionary<int, double?>();
+        public int Sum = 0;
+        public int N = 0;
+
+
+        public Learning(Dictionary<int, Dictionary<int, UserRating>> trainingdata) 
+        {
+            trainingData = trainingdata;
+        }
+        public void SubtractMeans()
         {
 
+            #region testdata
             /*
              [5 3 4 5 x
               2 2 x 1 x
@@ -44,12 +56,10 @@ namespace Netflix
             d.Add(3, new UserRating { MovieId = 4, Rating = 5, UserId = 3 });
             d.Add(5, new UserRating { MovieId = 4, Rating = 5, UserId = 5 });
             trainingData.Add(4, d);*/
+            #endregion
 
-            Dictionary<int, double?> movieMean = new Dictionary<int, double?>();
-            Dictionary<int, double?> userMean = new Dictionary<int, double?>();
+
             Dictionary<int, List<int?>> tmp = new Dictionary<int, List<int?>>();
-            int N = 0;
-            int? sum = 0;
 
             // Calculate movie means
             foreach (KeyValuePair<int, Dictionary<int, UserRating>> item in trainingData)
@@ -57,7 +67,7 @@ namespace Netflix
                 var ratings = item.Value.Select(x => x.Value.Rating).ToList();
                 movieMean.Add(item.Key, ratings.Average());
 
-                sum += ratings.Sum();
+                Sum += (int)ratings.Sum();
                 N += ratings.Count;
             }
 
@@ -87,8 +97,8 @@ namespace Netflix
             {
                 foreach (KeyValuePair<int, UserRating> itemValue in item.Value)
                 {
-                    itemValue.Value.RatingFixed = itemValue.Value.Rating - movieMean[item.Key] - userMean[itemValue.Key] + (Convert.ToDouble(sum.Value) / N);
-                    itemValue.Value.Structure = movieMean[item.Key] + userMean[itemValue.Key] - (Convert.ToDouble(sum.Value) / N);
+                    itemValue.Value.RatingFixed = itemValue.Value.Rating - movieMean[item.Key] - userMean[itemValue.Key] + (Convert.ToDouble(Sum) / N);
+                    itemValue.Value.Structure = movieMean[item.Key] + userMean[itemValue.Key] - (Convert.ToDouble(Sum) / N);
                 }
             }
 
@@ -105,17 +115,9 @@ namespace Netflix
             }
             double ratingSumAvg = ratingSum / Convert.ToDouble(ratingCount);
             Console.WriteLine("ratingSumAvg: " + ratingSumAvg.ToString());
-
-            return new Result
-            {
-                userMean = userMean,
-                movieMean = movieMean,
-                Sum = (int)sum,
-                N = N
-            };
         }
 
-        public void CalcRMUHat(Dictionary<int, double?> userMean, Dictionary<int, double?> movieMean, Dictionary<int, Dictionary<int, UserRating>> trainingData, int? sum, int N)
+        public void CalcRMUHat()
         {
             Random r = new Random();
             int k = 25;
@@ -230,7 +232,7 @@ namespace Netflix
                         
                         
                     }
-                    trainingData[mId][uId].RMUHat += movieMean[mId] + userMean[uId] - (Convert.ToDouble(sum.Value) / N);
+                    trainingData[mId][uId].RMUHat += movieMean[mId] + userMean[uId] - (Convert.ToDouble(Sum) / N);
                     trainingData[mId][uId].RMUHat = trainingData[mId][uId].RMUHat > 5 ? 5 : trainingData[mId][uId].RMUHat < 1 ? 1 : trainingData[mId][uId].RMUHat;
                 }
             }
