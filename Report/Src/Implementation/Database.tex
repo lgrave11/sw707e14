@@ -18,10 +18,10 @@ For regular use of the system it changes little but administratively it allows f
 
 In the translation from the ER diagram to the schema presented, the relations between the various entities could in all cases be represented as an attribute on one of the involved entities.
 This attribute is a foreign key.
-This was all that was needed to convert the ER diagram into the database schema, however, with the introduction of the admin features and their associated data tables, more was needed.
+This was all that was needed to convert the ER diagram into the database schema, however, with the introduction of the administrator features and their associated data tables, more was needed.
 
-When the admin features was added into the database, in addition to adding three new tables to contain their information.
-The admin features also required addition of additional attributes to some of the already existing tables, an example of this being \textit{role} attribute on the account table, used to distinguish regular users from the ones with admin privileges.
+When the administrator features was added into the database, in addition to adding three new tables to contain their information.
+The administrator features also required addition of additional attributes to some of the already existing tables, an example of this being \textit{role} attribute on the account table, used to distinguish regular users from the ones with administrator privileges.
 
 This was implemented in MySQL, primarily because it was packaged with the webserver that we used to develop the system with.
 There is no reason why MySQL was chosen instead of competing DBMS such as postgresql or MSSQL other than convenience, and little reason why the schema could not be adapted to work on others.

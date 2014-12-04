@@ -12,11 +12,11 @@ How the amount of bicycles at a station change over time can be seen in the same
 
 \subsection{Route History}\label{sec:routeHistory}
 This part of the administration site handles showing a map of the historical locations of a bicycle.
-The admin provides one or more bicycles, a start, and end date.
+The administrator provides one or more bicycles, a start, and end date.
 Then if there are historical GPS coordinates for the bicycle(s), they will be shown on the map. 
 
-The purpose of the route history page is to give the admins an idea of which roads the bicycles are traveling a lot on. 
-This can then be used as a decision-making tool to decide where to put new stations, in that if the admin can see that a lot of bicycles are traveling to a specific point it might be a good idea to put a station there.
+The purpose of the route history page is to give the administrators an idea of which roads the bicycles are traveling a lot on. 
+This can then be used as a decision-making tool to decide where to put new stations, in that if the administrator can see that a lot of bicycles are traveling to a specific point it might be a good idea to put a station there.
 It could also be used to see if a specific bicycle is being 'misused' in the sense that it would be visible if the bicycle is only being used to travel to one spot and nowhere else.
 
 See \figref{fig:routehistory} for a figure of what the page looks like.
@@ -29,7 +29,7 @@ See \figref{fig:routehistory} for a figure of what the page looks like.
 \end{figure}
 
 From the figure, the presentation of routes are shown for the bicycles with id 36 and 95.
-The reason multiple bicycles can be selected is to enable the admin to compare routes on the same map, this includes the route polyline, chosen bicycle and length,
+The reason multiple bicycles can be selected is to enable the administrator to compare routes on the same map, this includes the route polyline, chosen bicycle and length,
 
 It is implemented by finding all the bicycles that have associated historical GPS data.
  The administrator then chooses which bicycles to map, and these bicycles then have their routes loaded which are then given to Google Maps API to display.
@@ -90,9 +90,9 @@ This can be used to give an overview of the bicycle traffic between stations.
 Furthermore, the amount of docked bicycles is tracked for each station, giving an overview of which stations that have high and low activity.
 
 \begin{description}[style=nextline]
-\item[Where is the most traffic of bicycles during some period?] An admin user would be able to see how many bicycles leaves and arrives at each station and thereby get an overview of where the traffic is high and low, providing an indication of where to put focus for relocation of bicycles and expansion of stations.
-\item[What is the current amount of bicycles at a given station?] A graph is shown providing the amount of bicycles on the y-axis and the provided timespan on the x-axis. This gives the admin user an idea when bicycles leave each station.
-\item[How does the amount of bicycles at a given station change over time?] Taking the same graph as above, the admin user can also choose a long period of time for example a week, month or a year, providing a more general overview of when the activity at each station is high or low.
+\item[Where is the most traffic of bicycles during some period?] An administrator would be able to see how many bicycles leaves and arrives at each station and thereby get an overview of where the traffic is high and low, providing an indication of where to put focus for relocation of bicycles and expansion of stations.
+\item[What is the current amount of bicycles at a given station?] A graph is shown providing the amount of bicycles on the y-axis and the provided timespan on the x-axis. This gives the administrator an idea when bicycles leave each station.
+\item[How does the amount of bicycles at a given station change over time?] Taking the same graph as above, the administrator can also choose a long period of time for example a week, month or a year, providing a more general overview of when the activity at each station is high or low.
 \end{description}
 
 These features are implemented through two additional tables added to the database, where the first table keeps information about the amount of bicycles at a station along with a timestamp. 
@@ -104,5 +104,5 @@ The timestamp is generated just before query execution, which means that some de
 This is, however, considered a minor deviation in most cases, because the communication delay is short (seconds maybe even less).
 In case of a bad connection, the generated timestamp will cause useless data in the light of statistical usage, if time is an important aspect of the analysis.
 For showing the traffic between stations the timestamp is used for filtering on a specified time interval and thereby allowing up to an hour of imprecision.
-This time interval is an assumed granularity and would have to be specified by the admin.
+This time interval is an assumed granularity and would have to be specified by the administrator.
 The graph showing the amount of bicycles docked at a station shows the timestamp on the x-axis, however, in this case it is considered acceptable with some imprecision since this data will not be used for statistics but for a visual overview.
