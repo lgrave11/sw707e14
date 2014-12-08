@@ -141,7 +141,7 @@ namespace Netflix
         {
             Random r = new Random();
             int k = 25;
-            int epochs = 1000000;
+            int epochs = 10000000;
             double regularizer = 0.02;
             double learningRate = 0.001;
             double[,] Aarray = new double[movieMean.Keys.Count, k];
@@ -149,25 +149,27 @@ namespace Netflix
             double MAXIMUM = 0.5;
             double MINIMUM = -0.5;
 
+            List<int> movieKeys = movieMean.Keys.ToList();
             for(int i = 0; i < movieMean.Keys.Count; i++)
             {
                 for (int kVal = 0; kVal < k; kVal++)
                 {
-                    Aarray[i, kVal] = r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM;
+                    Aarray[i, kVal] = 0.1;//r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM;
                 }
             }
 
+            List<int> userKeys = userMean.Keys.ToList();
             for (int kVal = 0; kVal < k; kVal++)
             {
                 for (int j = 0; j < userMean.Keys.Count; j++)
                 {
-                    Barray[kVal, j] = r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM;
+                    Barray[kVal, j] = 0.1;// r.NextDouble() * (MAXIMUM - MINIMUM) + MINIMUM;
                 }
             }
 
             int count = 0;
             int epoch = 0;
-            List<int> movieKeys = trainingData.Keys.ToList();
+            movieKeys = trainingData.Keys.ToList();
             double prev_error = 0;
             while (epoch < epochs)
             {
@@ -184,8 +186,8 @@ namespace Netflix
                     {
                         currRating += Aarray[mappedMovieId, i] * Barray[i, mappedUserId];
                     }
-                    Aarray[mappedMovieId, kVal] += learningRate * (rating - currRating) * Barray[kVal, mappedUserId]- (regularizer * Aarray[mappedMovieId, kVal]);
-                    Barray[kVal, mappedUserId] += learningRate * Aarray[mappedMovieId, kVal] * (rating - currRating) -(regularizer * Barray[kVal, mappedUserId]);
+                    Aarray[mappedMovieId, kVal] += learningRate * (rating - currRating) * Barray[kVal, mappedUserId];// - (regularizer * Aarray[mappedMovieId, kVal]);
+                    Barray[kVal, mappedUserId] += learningRate * Aarray[mappedMovieId, kVal] * (rating - currRating);// -(regularizer * Barray[kVal, mappedUserId]);
                 }
                 
                 if (epoch % 100000 == 0)
