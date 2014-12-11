@@ -10,7 +10,7 @@ color=black,
 opacity=1,
 angle=0,
 contents={%
-  \includegraphics{bicycle-wide}
+  \includegraphics[trim=0cm 7cm 0cm 0cm, clip]{bicycle-wide}
   }%
 }
 
@@ -38,7 +38,7 @@ contents={%
 	\chapter{Introduction}
 	\input{Src/Introduction}
 	\chapter{Analysis}
-	This chapter includes analysis of the current system already in place in Aalborg, other existing systems, the problem definition, general requirements, and what the target audience for the system will be.
+	This chapter includes analysis of the current system already in place in Aalborg, other existing systems, the problem definition, general requirements, and the target audience for the system.
 	\input{Src/Analysis/CurrentSystem}
 	\input{Src/Analysis/ExistingSystems}
 	\input{Src/Analysis/ProblemDefinition}
@@ -48,10 +48,11 @@ contents={%
 	\chapter{Suggested Solutions}
 	Various suggested extensions for the current system are proposed.
 	These solutions are then in turn examined and evaluated, in order to determine if a solution is preferred to others and gives valuable information for the software system.
-	An exception to this is the Booking Software examination, which makes a concrete choice on what solution choose.
+	An exception to this is the Booking Software examination, which makes a concrete choice on what solution to choose. 
+	In order to determine which solution is preferable, a discussion of the solutions is performed, where after an overall chosen solution for the entire system is given.
 	\input{Src/SuggestedSolutions/AvailabilityOfBicycles}
-	\input{Src/SuggestedSolutions/Lock}
 	\input{Src/SuggestedSolutions/BookingSoftware}
+	\input{Src/SuggestedSolutions/Lock}
 	\input{Src/SuggestedSolutions/TrackingOfBicycles}
 	\input{Src/SuggestedSolutions/ChosenSolution}
 	
