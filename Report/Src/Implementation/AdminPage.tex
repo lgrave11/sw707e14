@@ -4,12 +4,12 @@
 % It covers route history, GPS history, bicycle usage history, and an add/remove page.
 % It also contains a bicycle GPS tracking, but this has been mentioned in \secref{sec:googlemapsapi}.
 In \secref{sec:designAdminTools} a list of questions were made and explained, setting out requirements or guidelines for the features of the administration tools, in that an administrator should be able to answer the questions using these tools. 
-In this section we implement the database schema designed in \secref{sec:designAdminTools} and features using the data to visualise it in a manner making the administrator able to answer these questions.
-To answer the question about \textit{which routes are used} we implemented a feature to show route history, which can be seen in \secref{sec:routeHistory}.
-\textit{Hotspot detection} was not implemented, but GPS history was implemented in \secref{sec:gpsHistory}.
-The \textit{traffic of bicycles during some period} can be seen using the chord diagram in \secref{sec:bicycleUsageHistory}
-The \textit{current amount of bicycles at a given station} can be seen using the line diagram in \secref{sec:bicycleUsageHistory}.
-How the \textit{amount of bicycles at a station change over time} can be seen in the same line diagram.
+In this section we describe how to answer the questions from \secref{sec:designAdminTools} with a visual presentation of the relevant data.
+
+To answer the question about `which routes are used' we implemented a feature to show route history, which can be seen in \secref{sec:routeHistory}.
+`Hotspot detection' was not implemented, but GPS history was implemented in \secref{sec:gpsHistory}.
+The `traffic of bicycles during some period' can be seen using the chord diagram in \secref{sec:bicycleUsageHistory}
+How the `amount of bicycles at a station change over time' can be seen in the `line diagram' from  \secref{sec:bicycleUsageHistory}.
 
 \subsection{Route History}\label{sec:routeHistory}
 This part of the administration site handles showing a map of the historical locations of a bicycle.

@@ -13,6 +13,7 @@ contents={%
   \includegraphics[trim=0cm 7cm 0cm 0cm, clip]{bicycle-wide}
   }%
 }
+\hyphenation{dis-cre-tion-ary}
 
 \begin{document}
 	\BgThispage
@@ -57,14 +58,17 @@ contents={%
 	\input{Src/SuggestedSolutions/ChosenSolution}
 	
 	\chapter{Technologies}
-	Some background material is needed for the development of a solution and this is examined and discussed. This includes describing the Internet of Things and what issues follow that, a description of the Model-View-Controller pattern used for the website, and AJAX(aka dynamic updating of websites).
+	Some background material is needed for the development of a solution and this is examined and discussed. This includes a description of the Internet of Things and what issues that follow that is a description of the Model-View-Controller pattern used for the website, Asynchronous JavaScript and XML used for dynamic updating of webpages, and Simple Object Access Protocol to provide standardised webservices.
 	\input{Src/RelevantMaterial/InternetOfThings}
 	\input{Src/RelevantMaterial/MVC}
 	\input{Src/RelevantMaterial/ajax}
     \input{Src/RelevantMaterial/SOAP}
 		
 	\chapter{Design}
-	This chapter will present the design of the product, where a prototype is created hereafter the ER-diagram of the database, also going into what they administration tools need to be able to do, the architecture is explained, and how synchronisation between the central server and the client is going to be handled.
+	This chapter presents the design of the product, where the conceptual design is described, after which a prototype is presented. 
+	Then the ER-diagram of the database is presented. 
+	We also examine what the administration tools need to be able to do, then the architecture is explained, and finally an explanation of synchronisation between the central server and the client is going to be handled follows.
+	\input{Src/design/conceptualdesign}
 	\input{Src/Prototypes/prototype}
 	\input{Src/RelevantMaterial/ER-Diagram}
 	\input{Src/design/administrationTools}
@@ -74,11 +78,14 @@ contents={%
 	
 	\chapter{Implementation}
 	This chapter covers implementation details for the features covered in the design chapter.
-	
+	This is covered by describing how we implement User Interface, Website Structure, Database, Interfaces, Model View Controller, Google Maps API, Administration Tools, Bicycle Station, and Synchronisation.
+	 
 	\input{Src/Implementation/UI}
 	\input{Src/Implementation/websitestructure}
 	\input{Src/Implementation/Database}
 	\input{Src/Implementation/Interfaces}
+	\section{Model View Controller}
+	The specific details of the MVC implementation is described hereafter. In this we touch upon how the implementation details differs from the overall MVC theory, but at the same time follows the design choices made. The description of MVC consists of the three subsections Model \& Model Services, Controller, and Views.
 	\input{Src/Implementation/ModelAndModelServices}
 	\input{Src/Implementation/Controller}
 	\input{Src/Implementation/Views}

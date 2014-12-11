@@ -7,31 +7,31 @@ In order to have an idea of how the database handles bookings, location of bicyc
 	\caption{The ER Diagram for database overview.}\label{fig:er-dia}
 \end{figure}
 
-As seen in the diagram, the entities consists of bicycle, dock, station, booking, and account.
-An account consists of a username, email, which both must be unique, a phone number, password and a role which can be either a regular user or an administrator.
-These attributes are common for an account entity, with the phone number being special in that the idea is that they should, in the future, be able to receive the booking password over SMS.
+As seen in the diagram, the entities consists of \texttt{bicycle}, \texttt{dock}, \texttt{station}, \texttt{booking}, and \texttt{account}.
+An \texttt{account} consists of a \texttt{username}, \texttt{email}, which both must be unique, a \texttt{phone} number, \texttt{password} and a \texttt{role} which can be either a regular user or an administrator.
+These attributes are common for an \texttt{account} entity, with the \texttt{phone} number being special in that the idea is that they should, in the future, be able to receive the booking password over SMS.
 
-In relation to this is the booking entity, where it can be seen that a user can have many bookings whereas a booking is registered to one and only one account.
-The booking then has a booking_id, to uniquely identify a booking, a start_time, such that a station knows when to lock a bicycle, and a password, used to unlock a bicycle at the given start_time if a correct password is entered.
-The idea is that if a booking is not used in a given time frame at the start_time, the booking will be removed, in order to free the bicycle for other to use.
+In relation to this is the \texttt{booking} entity, where it can be seen that a user can have many bookings whereas a booking is registered to one and only one account.
+The \texttt{booking} then has a \texttt{booking_id}, to uniquely identify a booking, a \texttt{start_time}, such that a station knows when to lock a bicycle, and a password, used to unlock a bicycle if a correct password is entered in a time frame around the \texttt{start_time}.
+Recall that the idea is that if a booking is not used in a given time frame at the \texttt{start_time}, the booking will be removed, in order to free the bicycle for other to use.
 
-A booking is also tied to a station, such that a booking is located at one and only one station, whereas a station can have many bookings.
+A \texttt{booking} is also tied to a \texttt{station}, such that a \texttt{booking} is located at one and only one \texttt{station}, whereas a \texttt{station} can have many bookings.
 
-A booking is also tied to a bicycle, such that when the booking is fulfilled it will identify which bicycle was taken.
+A \texttt{booking} is also tied to a \texttt{bicycle}, such that when the booking is fulfilled it will identify which bicycle was taken.
 
-A station has the attribute station_id, to uniquely identify the station.
-Furthermore, it has a name, which is thought to be used to give a meaningful description of a given station.
-We are aware that the name could be used as a primary key, but having an integer id as the primary key reduce storage requirements when using foriegn keys to the station id's.
+A \texttt{station} has the attribute \texttt{station_id}, to uniquely identify the station.
+Furthermore, it has a \texttt{name}, which is thought to be used to give a meaningful description of a given station.
+We are aware that \texttt{name} could be used as a primary key, but having an integer id as the primary key reduce storage requirements when using foreign keys to the station id's.
 %unlocks the possibility of duplicate names, which might be desired for stations located at different spots in the city, example could be two stations named "AAU Bycykel Station" which is a quite generic name.
 
-In addition to this, a station has a location, which is used to easily place a station on a map, and can also be used for calculations such as distance between a given station and bicycle.
-A station also has two derived attributes, which are available_bicycles and amount_of_bookings, these are attributes that is beneficial to show to the user, such that they can see if it is possible to gather a bicycle at a given station.
+In addition to this, a \texttt{station} has a \texttt{location}, which is used to easily place a station on a map, and can also be used for calculations such as distance between a given station and bicycle.
+A \texttt{station} also has two derived attributes, which are \texttt{available_bicycles} and \texttt{amount_of_bookings}, where \texttt{available_bicycles} is beneficial to show to the user, such that they can see if it is possible to gather a bicycle at a given station.
 
-Next is the dock entity, which is a weak entity, as it cannot exist without a station.
+Next is the \texttt{dock} entity, which is a weak entity, as it cannot exist without a \texttt{station}.
 This represents the real-life situation with stations located around the city, and each of these has a number of docks.
-The dock only has one attribute, which is the dock_id, used to identify a dock in combination with a station-id.
+The dock only has one attribute, which is the \texttt{dock_id}, used to identify a dock in combination with a \texttt{station_id}.
 
-The interesting part of a dock is its relation with a bicycle.
-A dock may or may not hold a bicycle, which is represented with the holds relation.
+The interesting part of a \texttt{dock} is its relation with a \texttt{bicycle}.
+A \texttt{dock} may or may not hold a \texttt{bicycle}, which is represented with the holds relation.
 
-The bicycle entity then consists of a bicycle_id, to uniquely identify a given bicycle, and a location, which can be used to locate lost bicycles.
+The \texttt{bicycle} entity then consists of a \texttt{bicycle_id}, to uniquely identify a given \texttt{bicycle}, and a \texttt{location}, which can be used to locate lost bicycles.

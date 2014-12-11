@@ -3,30 +3,33 @@ As the stations and the website are located on different addresses and communica
 
 Several types of such inconsistent information could happen if you are not careful.
 
-An scenario that could lead to an inconsistent state, if not handled well, is what happens when a station fails to communicate its current state to the global system.
+A scenario that could lead to an inconsistent state, if not handled well, is what happens when a station fails to communicate its current state to the global system.
 A station maintains a local database holding information about each current booking made at that station.
 When a booking has been processed, meaning that the user has taken the bicycle associated with the booking, the state of the local database changes in that the booking does not exist any more.
 This change in state is also communicated to the global database maintained by the global system.
-But when trying to communicate the change, the connection is interrupted due to a failure in the software at the station.
 
-The problem is then, formulated with other words, which database will hold the correct state of the overall system?
+A problem can occur when trying to communicate the change as the connection can be interrupted.
+This problem is then, formulated with other words, which database will hold the correct state of the overall system?
 This depends highly on the direction of communication failure. 
 In the described case above, the communication failure lies with the station software resulting in the local database of the station having the correct and current state of the system, which is when it comes to the state of the docks.
 
 
 But if the direction of communication is the opposite, which would be involving bookings registered, the global system would have the correct booking information.
 
-The desired behaviour of the system is to always be in a correct state, which requires that when a communication failure happens, the part participating in the communication holding the correct state will resend its information, or the one with the inconsistent reads the state from the consistent counterpart.
+The desired behaviour of the system is to always be in a correct state, which requires that when a communication failure happens, the part participating in the communication holding the correct state will resend its information, or the one with the inconsistent state reads the state from the consistent counterpart.
 
-There are two cases for the communication between the station software and the global system (web-service).
+There are two cases for the communication between the station software and the global system.
 
-\textbf{Station to Global System}\\
+\begin{description}[style=nextline]
+\item[Station to Global System]
 A communication failure in this direction will result in a faulty state of how many bicycles are available at the given station thereby resulting in a rather useless website for booking.
 Additionally, this can also involve the global system having the incorrect amount of docks registered, if such a change were performed at the station.
-
-\textbf{Global System to Station}\\
+\item[Global System to Station]
 A communication failure in this direction will result in a failing booking system, in that no booking made at the website will reach the station and thereby have no effect at all.
-In the end this will also give a faulty state of how many bicycles are available at the given station because the station will not know of the booking and thereby not perform the necessary actions to make it a booking.
+In the end this will also give a faulty state of how many bicycles are available at the given station because the station will not know of the booking and thereby not lock a bicycle, resulting in the system thinking the booking is registered and the bicycle is locked whereas the station has no knowledge of said booking.
+\end{description}
 
+
+How these cases are tackled is described in \secref{sec:implsync}.
 % station --> web : update, insert
 % web --> station : insert, delete, update

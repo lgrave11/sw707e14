@@ -1,8 +1,8 @@
 \section{User Interface}
 
 Based on the website prototypes in \secref{sec:prototype}, a user interface is implemented.
-The website is implemented using HTML, CSS and JavaScript. 
-Different JavaScript frameworks have been used for graphs, AJAX, animations and maps, including jQuery, AmCharts, D3, Google Maps Javascript API v3 and different plugins for jQuery.
+The website is implemented using HTML, CSS, and JavaScript. 
+Different JavaScript frameworks have been used for graphs, AJAX, layout, animations, and maps, these includes jQuery, jQuery-UI, amCharts, D3, Google Maps Javascript API v3, and different plugins for jQuery \citep{misc:googlehostedlibs, misc:d3js, misc:googlemapsapi, misc:amcharts}.
 This user interface is then iterated upon based on the usability test, what follows is the final result based on these iterations. 
 As can be seen from the prototype, the website has many pages, therefore only the essential ones are shown.
 The first we look at is the start page shown when an administrator is logged in, which can be seen in \figref{fig:UI-overview}.
@@ -13,10 +13,10 @@ The first we look at is the start page shown when an administrator is logged in,
 	\caption{Overview page}\label{fig:UI-overview}
 \end{figure}
 
-In this figure we can see that something from the prototype has been changed, mainly the fact that the screen is now only split in two parts, where the map showing station locations covers two thirds, and the bookings/station details cover the last third.
-The map in the figure shows a map of Aalborg city with bicycle icons on it representing the station placements.
-The right side of the website is used for booking, where users can book a bicycle on a chosen station at a specified time.
-The user can also see a list of bookings he/she currently has, and is able to cancel said bookings by clicking on the unbook button.
+In this figure we see that the original idea from the prototype has been changed, mainly the fact that the screen is now only split in two parts, where the booking/station details covers one third and the map the last two thirds.
+The map in the figure shows a map of Aalborg city with bicycle icons on it representing the placement of the station.
+The left side of the webpage is used for booking, where users can book a bicycle on a chosen station at a specified time.
+The user can also see a list of bookings he currently has, and is able to cancel said bookings by clicking on the unbook button.
 
 In \figref{fig:UI-overview} the header contains five elements, of which the administrator element is only shown to administrators and directs the user to the administrator section of the site when clicked.
 The profile element in the header directs the user to their profile page, where they can change their profile information if so desired, as well as view the history of their usage of the system.
@@ -28,10 +28,10 @@ The profile element in the header directs the user to their profile page, where 
 \end{figure}
 
 The administrator features are created for use by Aalborg Kommune, and they start on the page that can be seen in \figref{fig:UI-admin}.
-This page is almost just a map, however, the black dots on the map are used to represent the current position of bicycles.
+This page is a map containing black dots used to represent the current position of bicycles.
 The header can be used to navigate to the various administrator tools, elaborated more in \secref{sec:impAdminTools}.
-The only header element that does not direct to another administrator site, is the home element, which sends the user to the overview page.
-Additionally, if an ordinary user tries to access an administrator page, via. the url, he will be redirected to the homepage.
+The only header element that does not direct to another administrator page, is the home element, which sends the user to the overview page.
+Additionally, if an ordinary user tries to access an administrator page he will be redirected to the homepage.
 
 \begin{figure}[h]
 	\centering
@@ -39,4 +39,6 @@ Additionally, if an ordinary user tries to access an administrator page, via. th
 	\caption{Sitemap}\label{fig:sitemap}
 \end{figure}
 
-For an overview of what the map of the site looks like, see \figref{fig:sitemap}.
+For an overview of a sitemap of the website, see \figref{fig:sitemap}.
+The figure presents how you can navigate to the different parts of the site, each level showing different sites you can navigate to on that level.
+An example of this is the GPS Tracking page, from that page you can navigate to all its siblings as well as its ancestors, its siblings being Usage History, Route History, Add/Remove, Station Overview, and its ancestors being Admin and Home.
