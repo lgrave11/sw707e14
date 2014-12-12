@@ -1,14 +1,13 @@
 \section{Unit Testing}
 Unit testing is testing individual components of the code systematically and thoroughly, to determine if the overall system works as intended.
-The process of a unit test follows these steps:
+In order to perform the tests in a systematic way some process is needed and this process follows these steps:
 
 \begin{description}[style=nextline]
 \item[Set Up] The objects, and/or data needed is set up.
 \item[Action] Some action are performed on the objects and the data.
-Some times not necessary.
-\item[Test] The output of the actions are tested if they match the expectations through assertions.
-\item[Tear Down/Clean Up] The objects and data are cleaned up. This is specifically important for us because we insert data into a database and it needs to be removed afterwards in order for the tests to be repeatable and to remove test data that might be shown on the website if not removed. 
-Sometimes not necessary.
+\item[Test] \hfill \\ 
+The output of the actions are tested if they match the expectations through assertions.
+\item[Tear Down/Clean Up] The objects and data are cleaned up. This is specifically important for us because we insert data into a database and it needs to be removed afterwards in order for the tests to be repeatable.
 \end{description}
 
 The unit tests are performed on the model layer of the website along with the SOAP interface used to send messages to the station software.
@@ -35,10 +34,12 @@ public function testRead()
 \end{lstlisting}
 
 For an example of a unit test, see \lstref{lst:unitTestExample}.
-As can be seen it sets up the data on lines 3-6, acts on line 7 and 15, tests on lines 8-12 and on line 16, and cleans up on lines 14.
+
+As can be seen it sets up the data on lines 3-6, acts on line 7 and 15, tests on lines 8-12 and on line 16, and cleans up on line 14.
+Usually we do not delete stations entirely due to history concerns, however, for testing we need to remove the station due to the test needing to be repeatable, which is why \texttt{deleteForTest} is introduced.
 
 % Amount of unit tests, coverage and results of it.
-We currently have 44 tests with 181 assertions and these cover every model and their associated modelservices. 
-The benefit from unit testing was great as it showed errors that were not immediately obvious, for example multiple places when binding parameters to mysqli statements incorrect types were used and as another example methods were called incorrectly.
+We currently have 51 tests with 203 assertions and these cover every model and their associated model services as well as the three discussed interfaces. 
+The benefit from unit testing was great as it showed errors that were not immediately obvious, for example multiple places when binding parameters to MySQLi statements incorrect types were used and as another example methods were called incorrectly.
 As such the unit testing led to a lot of errors being resolved.
 Additionally, unit testing was good to register erroneous changes made to the program, as you could run your tests and the erroneous parts of the program would be located.

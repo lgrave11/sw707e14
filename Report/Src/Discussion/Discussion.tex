@@ -1,12 +1,14 @@
-While developing the system, various problems were found, which may affect the functionality of the system.
-Several of the problems were solved, but some problems still exist that may affect the functionality of the system in the Aalborg Bycykel domain.
+While developing the system, various problems were found, which may affect the functionality of the system, where several of these problems were solved.
 For that reason, it is necessary to touch upon these issues and discuss what can be done differently, or why the chosen solution is sufficient.
-
-In relation to this, implementation decisions made are discussed.
+In relation to this, decisions are discussed.
 Additionally, the system is compared to the existing systems discussed in \secref{sec:existing-systems}, in order to determine the pros and cons of the developed system.
 Moreover decisions about what should be implemented in the future to support or improve the system is discussed in \secref{sec:furdev}.
 
-\section*{Booking Static}
+\section{Decisions}
+The decisions that are discussed is the issue with how static bookings should be, the issue that the system has primarily been designed for PCs, and the issue of hardware versus simulation.
+Other approaches could have been taken, and it is discussed why we have decided to develop the system the way we have.
+
+\subsection{Booking Static}
 A concern of Aalborg Kommune, mentioned in \secref{subsec:meetingaalborg}, is that the booking system might be too static.
 By that meaning that too many bicycles are locked at docks instead of actively being used around Aalborg.
 The problem with the system is that as the booking part of the website is used more, the system becomes more static.
@@ -19,6 +21,8 @@ Ways to ensure that the system stays a bit dynamic are one or more of the follow
 		This is something to consider, but for the moment, the simulation of a station has a lock time of one hour before a bicycle is planned to be obtained.
 		Alone, this solution is not desirable, as you have no way of detecting how many bicycles are available in the future.
 		To compensate this, the lock time could vary if you were to integrate the locking mechanism with GPS tracking, and is related to the latter point about prediction.
+		As an example of this is that you vary the lock time depending on how many bicycles reach the station in the foreseeable future. 
+		If no bicycles are predicted to reach the station in the foreseeable future the lock time should be increased, whereas if several bicycles are predicted to reach the station in the foreseeable future the lock time should be decreased.
 		
 		\item[Subset of bicycles for booking]
 		The idea is to only allow a subset of the amount of bicycles on a station to be booked, this could for instance be that at all times at most half of the bicycles on a station can be booked.
@@ -29,56 +33,56 @@ Ways to ensure that the system stays a bit dynamic are one or more of the follow
 		The problem with the second approach is that it is difficult for users of the website to know when a booking is possible as the amount of lockable bicycles at each station is dynamically updating.
 		This leads to a third option, which is a combination of the first two.
 		This option is that each station has a set amount of bicycles that it can lock.
-		As this a fixed amount, it is possible to predict if a bicycle can be locked at the given time and due to this, it is possible to inform users at the time of booking creation, whether the booking was successful or not, but also give a status of how many bicycles are available for booking and how many are free to take.
+		As this is a fixed amount, it is possible to predict if a bicycle can be locked at the given time and due to this, it is possible to inform users at the time of booking creation, whether the booking was successful or not, but also give a status of how many bicycles are available for booking and how many are free to take.
 		
 		\item[Prediction]
 		The idea is that if you are able to predict when bicycles are returning to the station, you can unlock bicycles on that basis.
-		An example of this is that you have a booking in 15 minutes, there is one bicycle left at the station. Then since you know that a bicycle returns to the station in about 5 minutes, the last remaining bicycle can be unlocked for use.
+		An example of this is that you have a booking in 15 minutes and one bicycle is left at the station. Then since you predict that a bicycle returns to the station in about 5 minutes, the last remaining bicycle can be unlocked for use.
 		How you are then able to predict this could be with use of GPS tracking and substantial statistical analysis.
 		This would allow for a solution to the unreliability of the system, as the prediction could be integrated into how locking of bicycles are performed.
 		However, to implement this is a project on its own, but is worth considering for further development.
 		In such a further development, different machine intelligence methods could be looked at, in the area of classification.
-		This is due to you having previous labelled which is previous bicycle routes with their end stations, by enough samples of this, it could be used to predict whether one or more bicycles will arrive at the station in some timespan or not.
+		This is due to you having labelled previous bicycle routes with their end stations, by enough samples of this, it could be used to predict whether one or more bicycles will arrive at the station in some timespan or not.
 \end{description}
 
-\section*{Website Designed for PC}
+\subsection{Website Designed for PC}
 At the current stage, the website part of the system have been designed with a PC in mind.
 However, it is evident that there is a tendency to more people using smartphones and tablets \citep{article:smartphonetabletincrease}.
 For that reason, it would be a good idea to design the website such that it is also easy to use for such devices.
-There are several ways to tackle this, each of which are discussed in turn.
+There are several ways to achieve this, each of which are discussed in turn.
 \begin{description}[style=nextline]
 	\item[Dynamic scaling]
-	The main idea of this approach is to make the website more dynamic. This can be achieved with CSS to consider your screen size, and then transform the site such that each element of the site can be seen clearly, where to obtain all information, you then have to use scrolling.
-	This is better than the standard webpage, as the website at the moment for small screens, known from smartphones, is near unusable unless you zoom in.
+	The main idea of this approach is to make the website more dynamic. This can be achieved with CSS and JavaScript to consider your screen size, and then transform the site such that each element of the site can be seen clearly, where to obtain all information, you then have to use scrolling.
+	This is better than the standard website, as the website at the moment for small screens, known from smartphones, is near unusable unless you zoom in.
 	However, it does not touch upon the type of device used for the website, an example is the touch gestures known from tablets and smarthpones.
 	\item[Detection of device type]
 	The idea is to read the device type, and then have separate website layouts for each type of device. 
 	Contrary to the previous method, this makes it easier to design the layout for the different type of devices.
-	Furthermore, it can change some elements to be better suitable for touch devices, an example is a list of items, for smartphones the list can then be automatically zoomed on to select a specific item.
+	Furthermore, it can change some elements to be better suitable for touch devices, an example is a navigation menu expanding vertically instead of horizontally.
 	However, it still does not give the best feel for smartphone devices, as you are constrained to a browser.
-	The pro is that you can reach many devices this way, on the other hand, applications could gain a more specialised feel, and is described hereafter,
+	The pro is that you can reach many devices this way, on the other hand, applications could gain a more specialised feel, and is described hereafter.
 	\item[Separate Application]
-	The idea of this approach is to develop applications for some regularly used smart-phone and tablet devices.
+	The idea of this approach is to develop applications for some regularly used smartphone and tablet devices.
 	The advantage of this approach is that you can specialise the interaction with the system for a specific device, ensuring the best interaction overall.
 	The disadvantage is that it increases the workload a lot, as you have to create and maintain each such application for changes performed to the system.	
 \end{description}
 This ends the discussion of website designed for PC versus a more dynamic website.
 While it would definitely increase the accessibility of the system if the website became more dynamic, it would at the same time require additional resources.
 Our target for the project has been to develop the website for PC usage, and that being optimal.
-However, in the future with more time available, the other options are definitely worth considering.
+However, in the future, the other options are worth considering.
 
-\section*{Hardware vs. Simulation}
+\subsection{Hardware vs. Simulation}
 One aspect of the system implemented that would have to be changed in the situation that the system was put into actual use, would be the simulation of the hardware.
 Specifically, the station, docks, and bicycles are all simulated and in the real world these would need to be changed to be real hardware.
 The simulation is done by having multiple programs behaving somewhat similar to how the real world would interact with the system.
 An example of this is the bicycle, the bicycle should upload its GPS coordinates to the system every now and then. 
 A program for this was created to upload GPS coordinates that are loaded from a file instead of a real bicycle reporting the actual coordinates.
 
-A big difference between the simulation and the hardware going to be used, is how the simulation works.
-For example the simulation of all the stations is implemented in a single program that handles all interaction. 
-This would, however, not be the case in the real world where each station would have its own software.
-However, this problem was thought of in the development of the station software, such that each station has its own ip address, and can therefore work even if multiple computers are running the station software. As the central server requests the right IP address when sending a booking/unbooking to the station.
+Differences exist between hardware and simulation of hardware, as an example the simulation of all the stations is implemented in a single program that handles all interaction. 
+This would, however, not be the case in the real world where each station would have software instantiated.
+However, this problem was thought of in the development of the station software, such that each station has its own ip address, and can therefore work even if multiple computers are running the station software, as the central server requests the right IP address when sending a booking/unbooking to the station.
+The station software would, however, have to be rewritten in order to be runnable on the station hardware.
 
 The simulation is done such that the development of this system does not require real station hardware.
 Furthermore, this project is a software development project, and therefore hardware is not the focus of this project.
-For this purpose of this project the simulation is considered sufficient because it allows the system to be interacted with as it is supposed to be in the real world without making it needlessly complex, for example by having to run multiple stations at the same time on several different computers.
+For the purpose of this project the simulation is considered sufficient because it allows the system to be interacted with as it is supposed to be in the real world without making it needlessly complex, for example by having to run multiple stations at the same time on several different computers.

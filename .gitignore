@@ -74,3 +74,4 @@ friendships.reviews.txt
 *.vspx
 training_set
 training_set/*
+Report/als_Main.pdf

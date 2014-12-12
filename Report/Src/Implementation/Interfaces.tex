@@ -1,17 +1,17 @@
 \section{Interfaces}\label{sec:interfaces}
-As is described in the design, some communication between the stations and the database has to be established, to retrieve bookings etc.
-This communication is established through the three interfaces gpsregister, websitetostationnotifier and stationtodbregister.
+As is described in the design, some communication between the stations and the database has to be established, e.g. to retrieve booking.
+This communication is established through the three interfaces \texttt{WebsiteToStationNotifier}, \texttt{StationToDBRegister}, and \texttt{GPSRegister}.
 These interfaces being from website to station, station to database, and bicycle to database.
 Each of these interfaces are described below.
 
 \subsection{Website to Station}\label{sec:webToStationI}
-This section is about the websitetostationnotifier interface from \figref{fig:overallarch}.
+This section is about the \texttt{WebsiteToStationNotifier} interface from \figref{fig:overallarch}.
 The website has to establish contact to a station when a booking or un-booking has been performed.
-It is evident that this is important, as the stations need to be notified to keep track of bookings involving themselves as station.
+It is evident that this is important, as the stations need to be notified to keep track of bookings involving themselves as station, or else the booking information of the stations is outdated.
 
 This contact is established through TCP/IP, and is used in implemented notification methods.
-These being \texttt{notifyStationDockChanged}, \texttt{notifyStationBooking} and \texttt{notifyStationUnbooking}.
-The call to the notification methods is added in the \textit{BookingService}, as each time a booking is created, updated, or deleted, it is called through BookingService, and as of such we ensure the notification method is always called.
+These being \texttt{notifyStationDockChanged}, \texttt{notifyStationBooking}, and \texttt{notify\-Station\-Unbooking}.
+The call to the notification methods is added in the \texttt{BookingService}, as each time a booking is created, updated, or deleted, it is called through \texttt{BookingService}.
 
 In general, the notification methods work in the following way:
 \begin{itemize}
@@ -27,23 +27,29 @@ It is then up to the station to parse this information and perform the action sp
 How the JSON encoded message looks like, as well as how the station handles this notification is elaborated in \secref{subsubsec:listener}.
 
 \subsection{Station to Database}\label{sec:stationToWebI}
-This section is about the stationtodbregister interface from \figref{fig:overallarch}.
+This section is about the \texttt{StationToDBRegister} interface from \figref{fig:overallarch}.
 The station to database interface is important in order to register when a bicycle has been taken at a station or returned to a station, in order to give correct information on the website status page.
-Additionally the interface is used to retrieve information about bookings registered in the large database, in case of power-up of a station.
+Additionally the interface is used to retrieve information about bookings registered in the large database, in case of boot/reboot of a station.
 
-The interface has been implemented in a SOAP encoding by help of the NuSOAP library\citep{misc:nusoap}.
-This library makes you able to write regular PHP functions and then register these with the NuSOAP library, in order to have a webservice generated.
+The interface has been implemented in a SOAP encoding by help of the NuSOAP library \citep{misc:nusoap}.
+This library makes you able to write regular PHP functions and then register these with the NuSOAP library, in order to have a web service generated.
 Bear in mind that all methods registered with NuSOAP needs to have a return value and as such a dummy boolean value is used where no other return value is needed.
 
-An example of the implementation of an update and read operation on the database is presented in \lstref{lst:bicycledockstationreturned}.
+An example of the implementation of an update operation on the database is presented in \lstref{lst:bicycledockstationreturned}.
 
 \begin{minipage}{\textwidth}
-\begin{lstlisting}[caption = {Method for registering a bicycle as been returned to a dock at a given station.}, label = {lst:bicycledockstationreturned}]
+\begin{lstlisting}[caption = {Method for registering a bicycle has been returned to a dock at a given station.}, label = {lst:bicycledockstationreturned}]
 $server->register('BicycleReturnedToDockAtStation',
-	array('bicycle_id' => 'xsd:int',
+	//input paramters
+	array(	
+	'bicycle_id' => 'xsd:int', 
 	'station_id' => 'xsd:int',
 	'dock_id'    => 'xsd:int'),
-	array('return' => 'xsd:boolean'),
+	
+	//return value
+ 	array('return' => 'xsd:boolean'),
+ 	
+ 	//additional information
 	$SERVICE_NAMESPACE,
 	$SERVICE_NAMESPACE . '#soapaction',
 	'rpc',
@@ -64,54 +70,25 @@ function BicycleReturnedToDockAtStation($bicycle_id, $station_id, $dock_id)
 \end{lstlisting}
 \end{minipage}
 
-If you take a look at \lstref{lst:bicycledockstationreturned}, the code is split into two parts, line 1-11 and line 12-21, which handles different parts of providing a method to register that a bicycle has returned to a dock at a given station.
+If you take a look at \lstref{lst:bicycledockstationreturned}, the code is split into two parts, line 1-17 and line 18-28, which handles different parts of providing a method to register that a bicycle has returned to a dock at a given station.
 
-Line 1-11 takes care of registering the PHP function, such that it can be included in the auto-generation of the SOAP encoded webservice.
+Line 1-17 takes care of registering the PHP function, such that it can be included in the auto-generation of the SOAP encoded web service.
 As can be seen from this specification, we tell the NuSOAP library the name of the function to register on line 1.
-Then line 2-4 specifies the input parameters, line 5 specifies the return value, and line 6-11 is less interesting parts which deals with how the method should be represented in SOAP.
+Then line 4-6 specifies the input parameters, line 9 specifies the return value, and line 11-16 is less interesting parts which deals with how the method should be represented in SOAP.
 
-Line 12-21 is the actual method for registering that a bicycle has been return to a dock at a given station.
-This is performed with use of prepared statements, as can be seen in line 15-18, which is done to prevent SQL injection.
+Line 18-28 is the actual method for registering that a bicycle has been returned to a dock at a given station.
+This is performed with use of prepared statements, as can be seen in line 21-24, which is done to prevent SQL injection.
 As you can see, the actual statement expresses an update on the dock, such that the dock, where the bicycle has been placed, gets a reference to that bicycle.
 
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[caption = {Method for reading all bookings for a given station}, label = {lst:getallbookingstation}]
-$server->register(
-	'GetAllBookingsForStation',
-	array('station_id' => 'xsd:int'),
-	array('return' => 'tns:BookingObjectArray'),
-	$SERVICE_NAMESPACE,
-	$SERVICE_NAMESPACE . '#soapaction',
-	'rpc',
-	'encoded',
-	'Get all bookings for station'
-);
-//in case you want to read everything.
-function GetAllBookingsForStation($station_id)
-{
-	//returns all bookings from database from a given station, as a json encoded array.
-}
-\end{lstlisting}
-\end{minipage}
-
-An example of a method that reads from the database is the \textit{GetAllBookingsForStation} function, seen in \lstref{lst:getallbookingstation}.
-Such a method is for example useful when first booting a station where its local database is empty or that the local database data is outdated, e.g. it has been offline for some time.
-
-Taking a look at line 1-10, you see the registration of the PHP function for integration in the SOAP specification.
-As can be seen, it utilised a custom type called \textit{BookingObjectArray}, which is an array type used to contain multiple JSON encoded strings that represents bookings.
-The result is a JSON encoded array and can be used by the given station to traverse the array returned and decode each string to get its corresponding booking information.
+Other methods for reading exists in the web service as well, the difference then being that a special \texttt{tns:BookingObjectArray} type is defined, which is an array type used to contain multiple JSON encoded strings that represents bookings. Such a method is for example useful when first booting a station where its local database is empty or that the local database data is outdated, e.g. it has been offline for some time.
+The implementation details have been omitted, as it is the same principle but where reading from the database is in focus instead of updating the database.
 
 \subsection{Bicycle to Database}
-% Ting der skal skrives om:
-% - Caching på cykler, dårlig dækning, data skal ikke gå tabt
-% - Hvor ofte skal der sendes data
-% - Alternativer til f.eks. GSM moduler?
-\fxwarning{Se comments i source her.}
-This section is about the gpsregister interface from \figref{fig:overallarch}.
+This section is about the \texttt{GPSRegister} interface from \figref{fig:overallarch}.
 The interface from bicycle to database, is an interface that is needed to register the location of a bicycle, as GPS tracking is decided to be implemented, due to the meeting held with Aalborg Kommune.
 The idea is that each bicycle use the interface to inform the system where it is located, according to the coordinates received from GPS.
 
 The interface is implemented in the same fashion as the interface from station to database.
-As such, it is implemented as a SOAP web-service, using the NuSOAP library to gain the an encoding that makes the interface easy to call.
-There exists one method, the \textit{RegisterGPS} method, which takes three arguments, the bicycle-id, latitude, and longitude.
+As such, it is implemented as a SOAP web service, using the NuSOAP library to gain an encoding that makes the interface easy to call.
+There exists one method, the \texttt{RegisterGPS} method, which takes three arguments, the bicycle-id, latitude, and longitude.
 The way this interface is constructed is similar to the other SOAP encoded interface, but where the bicycle location is updated instead.

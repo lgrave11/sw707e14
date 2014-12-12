@@ -9,13 +9,13 @@ These systems are listed below:
 \item Alta Bicycle Share by Alta
 \end{itemize}
 \subsection{Bycyklen in Copenhagen by Gobike}
-The bicycle share system in Copenhagen is called Bycyklen and contains 1,860 bicycles and 100 docking stations \citep{misc:bycyklen}. 
+The bicycle share system in Copenhagen is called Bycyklen and contains 1,860 bicycles and 100 stations \citep{misc:bycyklen}. 
 Gobike is a Danish/Dutch company that designed this smart system with a bicycle they call Smart Bike. 
-The Smart Bike is equipped with an information screen in the form of a tablet providing the user with an interface to lock the bicycle, select the level of assistance from the electrical system, navigate through the city via Global Positioning System (GPS) and explore new interest points such as cafés and shops.
+The Smart Bike is equipped with an information screen in the form of a tablet providing the user with an interface to lock the bicycle, select the level of assistance from the electrical system, navigate through the city via GPS and explore new interest points such as cafés and shops.
 Furthermore, users of the bicycle system are able to check bus or train arrivals near their current location.
 The Smart Bike uses the tablet to send the location, who is travelling, and other statistics about the bicycle such as battery life to Gobike Admin.
 Gobike is currently looking at possibilities such as location based marketing, adjusting the traffic lights according to the cyclist based on the pattern of the bicycle trip, and the weather such as wind speed.
-Bycyklen has a very simple 3-step process to rent a bicycle.
+Bycyklen has a very simple 3-step process to rent a Smart Bike.
 \begin{enumerate}
 \item Book a Smart Bike ahead from your computer or tablet, find a Smart Bike and log in via the on-board tablet.
 \item Unlock the bicycle through the tablet, drive around in the city, possibly assisted by the GPS, paying by the hour.
@@ -24,15 +24,15 @@ Bycyklen has a very simple 3-step process to rent a bicycle.
 The Smart Bike enables the user to lock the bicycle and securely park it during the bicycle trip.
 
 \subsection{Cibi By AFA JCDecaux}
-The Cibi bicycle system relies on SMS, where a booking of a bicycle is performed by sending an SMS to a special number with the ID of the bicycle slot in the docking station \citep{misc:cibi}. 
-The user then receives an acceptance SMS and the bicycle is unlocked from the docking station. 
+The Cibi bicycle system relies on SMS, where a booking of a bicycle is performed by sending an SMS to a special number with the ID of the bicycle slot in the station \citep{misc:cibi}. 
+The user then receives an acceptance SMS and the bicycle is unlocked from the station. 
 A bicycle trip is charged by the hour, and as with the bicycle share system in Copenhagen, a user can lock the bicycle during the trip. 
 This is done through a wire lock which uses a code that the user was given in the SMS when booking the bicycle.
-The system also allows for checking the amount of bicycles at a station using special docks and chips on the bicycle \citep{misc:omcibi}.
+The system also allows for checking the amount of bicycles at a station on the website, using special docks and chips on the bicycle \citep{misc:omcibi}.
 
 \subsection{Alta Bicycle Share}\label{subsec:alta}
 Alta Bicycle Share is a company that design, deploys, and manages bicycles in USA \citep{misc:AltaBicycleShare}.
-The company currently have projects ongoing in nine different cities in USA, with more than thousands of stations and over tens of thousands bicycles. 
+The company currently have projects ongoing in nine different cities in USA, with more than a thousand stations and over tens of thousands of bicycles. 
 Alta Bicycle Share believes that people get the best experience from the environment when the environment is sustainable and enjoyable.
 The bicycle stations are designed such that they can be placed everywhere in the cities without any preparation, since they get electricity from solar panels.
 Furthermore, the stations are using a cellular connection to upload their data to the main database, so the citizens can see if there are any bicycles at a given station.
@@ -54,7 +54,7 @@ Alta on the other hand uses a card to rent bicycles, and uploads information abo
 \begin{table}[H]
 	\begin{tabular}{|p{0.13\textwidth}|p{0.18\textwidth}|p{0.18\textwidth}|p{0.18\textwidth}|p{0.2\textwidth}|}
 		\hline                       & \pbox{20cm}{\bfseries Aalborg\\ Bycyklen}           & \pbox{20cm}{\bfseries Copenhagen\\ Gobike} & \pbox{20cm}{\bfseries Cibi}                     & \pbox{20cm}{\bfseries Alta Bicycle Share} \\ 
-		\hline \textbf{Booking}               & No                            & On a tablet       & No                       & No \\ 
+		\hline \textbf{Booking}               & No                            & On a tablet       & Yes                      & No \\ 
 		\hline \textbf{Borrowing / unlocking} & Deposit 20DKK                 & Login with tablet & SMS code deposit 300DKK  & Keycard \\ 
 		\hline \textbf{Tracking}              & No                            & GPS               & Dock + chip at stations  & Dock at stations \\ 
 		\hline \textbf{Penalty}               & Loss of deposit               & Continues payment & Loss of deposit          & Fine per half hour overtime \\ 
@@ -69,5 +69,5 @@ A comparison of the different bicycle sharing systems examined can be seen in \t
 As can be seen, \bycykel is lacking a few features compared to the other systems and signifies a room for improvement.
 The improvements to be performed are then inspired by the other examined systems.
 However, \bycykel is free to use as long as you deliver a bicycle back after use. 
-This ease of accessibility of \bycykel we find valuable, and is a value we seek to keep in the developed solution.
+This ease of accessibility of \bycykel we find valuable, and is something we wish to keep in the developed solution.
 The knowledge gained is then kept in mind for defining the problem definition and the specification of the requirements for the new system.

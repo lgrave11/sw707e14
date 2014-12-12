@@ -1,18 +1,18 @@
 \section{Further Development}\label{sec:furdev}
-This section covers various features that could be implemented in future iterations of the system. Specifically a mobile booking application, closest available station information, hotspot detection, usability testing for the administrator page, and sending unlock code over SMS. \fxwarning{Mangler der noget?}
+This section covers various features that could be implemented in future iterations of the system. Specifically a mobile booking application, closest available station information, hotspot detection, usability testing for the administration site, and sending unlock code over SMS.
 
 \subsection{Mobile Booking Application}\label{sec:fd-mobileapp}
 During early analysis, a mobile platform was suggested for implementation, but in the end the target platform chosen was the web. 
 However, a simplified mobile application could be implemented, simplified in the sense that it would only provide login and booking functionality and not much else.
 It would, however, also be an ideal platform for another further development feature, see \secref{subsec:closeststation}, given that GPS and internet connection are pervasive in modern mobile platforms.
-The fact that you can take smart-phones with you makes them much more practical in the sense that you can determine at any time where the nearest station is.
+The fact that you can take smartphones with you makes them much more practical in the sense that you can determine at any time where the nearest station is.
 
 \subsection{Closest Available Station}\label{subsec:closeststation}
 During usability testing, one of the test subjects brought up an idea.
 Specifically a feature that could be implemented on the website or as a mobile application is suggestion of closest available station.
 
 The website could provide a suggestion of which station to go to based on distance where there is a bicycle free to use, where as the mobile application could suggest both the closest station with an available bicycle but also a station with an empty dock.
-The closest station with an available bicycle can be used to see where the user would be able to get a bicycle, where as the available dock could be used when using a bicycle so you know where to go to deliver the bicycle to the station.
+The closest station with an available bicycle can be used to see where the user would be able to get a bicycle, where as the available dock could be used when using a bicycle to know where to go for delivering the bicycle.
 
 \subsection{Hotspot Detection}
 In \chapref{sec:designAdminTools} a feature for administrators was suggested for showing `hotspots' for bicycle activity. 
@@ -35,29 +35,31 @@ There are many different ways of detecting hotspots, or clusters. %One way is ag
 The simplest method that might work is using a third party premade library for Google Maps API called MarkerClusterer.
 The algorithm works in a grid based manner \citep{misc:markerclusterapis}.
 For each zoom level of the map, the clustering is performed.
-In a brief description, the algorithm traverses the markers to be clustered and adds a marker into the closest cluster it is nearest if it is within the minimum square bounds, else it is added to a new cluster. 
+In a brief description, the algorithm traverses the markers to be clustered and adds a marker into the closest cluster. 
+It is closest if it is within the minimum square bounds, else it is added to a new cluster. 
 An example of the result of the clustering can be seen in \figref{fig:markerclusterer}.
-Other clustering libraries for google maps exist and would have to be compared before a specific algorithm were to be chosen, a good place to start would be a list of various Google Maps clustering algorithm APIs \citep{misc:markerclusterapis}.
+Other clustering libraries for Google Maps exist and would have to be compared before a specific algorithm were to be chosen, a good place to start would be a list of various Google Maps clustering algorithm APIs \citep{misc:markerclusterapis}.
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics{MarkerClusterer}
-\caption{A result of the MarkerClusterer library}
+\caption{A result of the MarkerClusterer library on some randomly generated data within the city of Aalborg.}
 \label{fig:markerclusterer}
 \end{center}
 \end{figure}
 
-\subsection{Usability Testing on Administrator Part}
-We had originally wanted to usability test both the public and administrative parts of the website.
+\subsection{Usability Testing on Administration Website}
+We originally wanted to usability test both the public and administrative parts of the website.
 Usability tests were performed on the public part, and problems were found and resolved. 
 The administrative users were, however, not available for usability testing.
-This usability could have given more features to be implemented on the administrator page, which had not been thought of.
-It could also have resolved potential problems that we were not previously aware of it.
-Furthermore, the usability test would be sufficient to make sure that the administrator could use the page.
+This usability could have given more features to be implemented on the administration site, which had not been thought of.
+It could also have resolved potential problems that we were not previously aware of.
+Furthermore, the usability test would be sufficient to make sure that the administrator could use the site.
 
-The administrator usability test should be done before the website is released, since it might reveal some problems with the page.
+The administration usability test should be done before the website is released, since it might reveal some problems with the site.
 
 \subsection{Sending Unlock Code over SMS}
-Originally, it had been intended that the unlock code for a booking would be sent over SMS. 
+For further development it would be a good idea to send a confirmation message when your bicycle has been locked with certainty, with that message containing your unlock code.
+This would ensure that you do not walk to a station in vain, and would make it easy for the user to get notified of their active bookings without having to use the website.
 This seemed out of scope for the project and it would have cost money to do so, as such it was decided to provide the unlock code on the front page. 
 This, however, is something that could be added in the future.
