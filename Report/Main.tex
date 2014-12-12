@@ -78,7 +78,7 @@ contents={%
 	
 	\chapter{Implementation}
 	This chapter covers implementation details for the features covered in the design chapter.
-	This is covered by describing how we implement User Interface, Website Structure, Database, Interfaces, Model View Controller, Google Maps API, Administration Tools, Bicycle Station, and Synchronisation.
+	This is covered by describing how we implement User Interface, Website Structure, Database, Interfaces, Model View Controller, Google Maps API, Administration Tools, Station Software, and Synchronisation.
 	 
 	\input{Src/Implementation/UI}
 	\input{Src/Implementation/websitestructure}
@@ -96,11 +96,11 @@ contents={%
 	%\input{Src/Implementation/History}
 	
 	\chapter{Test}
-	Testing is an important aspect of ensuring that a system works correctly and as intended without unknown side effects.
-	That is why it is important to verify that the model and interface layer works as intended, this can be done using unit testing, which is why we perform unit tests on those layers.
+	Testing is an important aspect of ensuring that a system works correctly without unknown side effects.
+	That is why it is important to verify that the model and interface layer works as intended, and can be done using unit testing, which is why we perform unit tests on those layers.
 	
-	While unit testing works for behavioural code and verifying that everything works correctly there, we have an architecture that separates the behavioural aspects of the system away from the visual and experience aspects, specifically the controller and view layers.
-	These layers also need to be tested, and unit testing does not fit well with them and as such a different way to test them is required, which is where usability testing comes into the picture because while they mostly reveal usability problems they can also reveal critical errors where the system does not behave as expected. 
+	While unit testing works for behavioural code and verifying that everything works correctly, we have an architecture that separates the behavioural aspects of the system away from the visual and experience aspects, specifically the controller and view layers.
+	These layers also need to be tested, and unit testing does not fit well with them and as such a different way to test them is required, which is where usability testing comes into the picture because while they mostly reveal usability problems they can also reveal functionality errors where the system does not behave as expected. 
 	As such usability tests are also performed.
 	\input{Src/Test/Unittest}
 	\input{Src/Test/Usabilitytest}

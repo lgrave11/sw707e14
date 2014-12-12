@@ -1,10 +1,10 @@
 \section{Synchronisation}\label{sec:implsync}
 As the system is split into stations and a central system, it is necessary to have communication between them, and tackle the synchronisation of data.
-This communication data flow have been illustrated in \figref{fig:overallarch}, additionally see \secref{sec:sync} has discussed this problem previously as well.
+This communication data flow have been illustrated in \figref{fig:overallarch}, additionally \secref{sec:sync} has discussed this problem previously as well.
 
 \begin{description}[style=nextline]
 	\item[Bicycle locking/unlocking not synchronised]
-	What is important for the central part of the system to know is at what docks at stations bicycles are placed.
+	What is important for the central part of the system to know is the amount of bicycles placed at the stations.
 	However, it is not important for the central system to keep track on what bicycles are locked and unlocked at a station, as this information is of no use for the central system.
 	The information is on the other hand important for the station, as this is the part of the system that ensures that bicycles are locked in time.
 	For that reason, the information is kept at the station. Furthermore, the central system can calculate how many bicycles are locked at a given station, as it can use the bookings for this.
@@ -17,7 +17,7 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	
 	\item[Booking/Unbooking]
 	The booking and unbooking of bicycles are performed on the website. 
-	The central database is then updated accordingly, and in order to ensure that the station affected is notified, a TCP package is sent, which contains the JSON encoded action, as described earlier.
+	The central database is then updated accordingly, and in order to ensure that the station affected is notified, JSON encoded actions are sent using TCP, as described earlier.
 	However, problems may arise if the connection to the station is down.
 	In such a case, you can risk the station not registering the booking, and as of such, one of the following actions have to be performed.
 	\begin{itemize}
@@ -29,7 +29,7 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	
 	The idea behind having a flag to indicate new bookings is that a flag will be set for the station that failed to be connected to.
 	On the station side, a thread will then run and check every $x$ amount of seconds for a flag that may have been sent.
-	If such a flag is registered, the station then knows that it should update its bookings to correspond to those of the central database.
+	If such a flag is registered when connection is re-established, the station then knows that it should update its bookings to correspond to those of the central database.
 	
 	Another more simple, but non reliable, idea is to constantly ping the central database.
 	If you for one or several of your pings then fail to connect to the central system, you know that the next time you get connection, you have to update the bookings.
@@ -46,25 +46,18 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	The last approach is to give the user an error message telling him to try and book/unbook again later.
 	This approach is not desirable as we want the system to be as responsive as possible.
 	The approach with a flag or the additional notification service is desirable.
-	However, due to lack of time, it has been chosen as the solution, it was deemed a necessary compromise, but with more time, the flag or the separate service solution would be strived for.
+	However, due to lack of time, the error message approach has been chosen, as it was deemed a necessary compromise, but with more time, the flag or the separate service solution would be strived for.
 	 
 	
 	\item[Station boot/reboot]
 	When the station boots/reboots it may have missed some booking information.
 	For that reason, when the station boots/reboots it reloads the booking information.
-	However, with the notification securing set in place, this should not be necessary.
-	This part of the synchronisation was developed before the other part, though, and is kept in case the other synchronisation techniques for some reason fails.
-	Additionally, as this is a simulation, we run the station software on different computer, and as of such it is advantageous for testing to keep this updating of booking information in place, such that the various computers gets the booking information updated.
+	However, with the notification developed, this should not be necessary.
+	This part of the synchronisation is, however, developed as this is a simulation, and as we run the station software on different computer it is advantageous for testing to keep this updating of booking information in place, such that the various computers gets the booking information updated.
 	
 	\item[Dock insertion/removal]
-	When a dock gets inserted or removed from a station, the station has a separate thread that keeps trying to call the web-service set in place on the central system part, to register that a dock has been inserted/removed at the given station, this is repeated until the web-service has been correctly used.
-	This is achieved with specific functions set in place for the `stationtodbregister' service.
-	
-	\item[Hardware versus software simulation]
-	For the system developed, software simulation of hardware has been used.
-	However, if you were to implement real docking hardware, a synchronisation between the stations and its docks would have to be considered.
-	This is somewhat achieved with the local database set for each station, however, with the sensors active, you would need to setup some communication protocol between the station and its docks, to ensure that the local database is up to date.
-	Additionally, to go the other way around and send signals to the docks, notifying them if they should lock or unlock some bicycle.
+	When a dock gets inserted or removed from a station, the station has a separate thread that keeps trying to call the web service on the central system part, to register that a dock has been inserted/removed at the given station, this is repeated until the web-service has been correctly used.
+	This is achieved with specific functions for the \texttt{StationToDBRegister} service.
 	
 \end{description}
 
