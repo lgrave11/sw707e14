@@ -16,7 +16,7 @@
 	The crawler serves as the obtainer of website links. When doing this, it has to make sure that it follows the robots.txt specification.
 	The robots.txt specification file, is a file that is placed at the root of websites, who wants to indicate what pages they want to have crawled by different search engines.
 	This ensures explicit politeness.
-	In order to not consume too much space, near duplicate detection is also performed here.
+	In order to not consume too much space, near duplicate detection is also performed here, this is called Jaccard Similarity.
 	The reason near duplicate detection is performed is that a large percentage of the internet content is duplicate information.
 	
 	We decided to implement the crawler with Mercator scheme.
@@ -24,6 +24,7 @@
     The front queues serves as ranking of what websites gets crawled first.
     As an example, news sites can be put into a frontqueue with high priority, as such sites changes regularly, whereas a static site can have a lower priority for crawling.
     However, for the front queues we use a single queue, resulting in a uniform ranking, as we have no detection of what is static and what is dynamic websites.
+    However, we only visit each website once. What might be a vulnerability is hidden changes made to similar websites with different url, e.g. text that is transparent that the Jaccard Similarity will not exclude.
     The backqueues makes you able to crawl different domains while still ensuring implicit politeness for the crawler.
     Implicit politeness being not hitting the same domain more than once every two seconds.
     
@@ -47,6 +48,7 @@
 	Furthermore, tackling documents on the website which is not html or txt encoded is not handled, which gives crawled text encoded in a strange manner, e.g. pdf files.
 	Image files are excluded, as some of those formats made the crawler otherwise crash, when trying to convert it to a string.
 	A library could be used to translate such text into a readable format, to be used for the indexing, and also to make more sensible near duplicate detection.
+	A more conservative approach would be to only crawl files that are HTML, however, this would lead to a more narrow crawling as parts of the files on the web are not HTML files.
 	
 	For the seed we used \url{http://aau.dk/} and \url{http://stackoverflow.com/}, which is the starting frontier of the crawler.
 	A figure of the basic structure of a crawler can be seen in Figure \ref{fig:crawler}.
@@ -64,6 +66,7 @@
 	
 	For the indexer we cut corners as follows.
 	We only stem on the English language.
+	The reason we only stemmed on the english language was as a proof of concept, and since the library found was developed for english.
 	Stemming means cutting off unnecessary parts of the words to greatly reduce the index size.
 	We do not develop our own stem method, but instead relies on an already developed one found on the web.
 	
@@ -77,6 +80,7 @@
 	This works fine for a small size of websites crawler, however, if you were to crawl the whole web, you would have to have servers farms or write to disk(making it much slower).
 	
 	A figure showing the basic steps of the indexer can be seen in Figure \ref{fig:indexer}. Where for the inverted index shown in the lower left, we also keep track of the amount of times the term occurs in the document, as that is used for the ranker.
+	Our implementation also differs in that we do not store the results in a database/saved on disk, but instead stored in main memory, and the reason for this is that the crawler is developed as a proof of concept.
 	
 	\begin{figure}[h]
 		\centering
@@ -86,11 +90,13 @@
 	
 	\section*{Ranker}
 	The ranker serves the purpose of ranking the pages, given a search query.
+	The search query is tokenized, stemmed and filtered for stop words in the same way as the documents, such that the words can be matched.
 	
 	 This is meaningful, as it contrary to boolean matching can weight different documents, and as of such can rank the results on what matches the query best, and not just if the terms occur in the document or not.
 	
 	For ranking we used the algorithm provided from the slideshow, which means we used the CosineScore, based on the tf-idf weighting.
 	For contender pruning we used a precomputed champion list, which is a list of the $R$ documents for each term which has the highest weight.
+	And you base your search on these selected documents.
 	
 	A picture of CosineScores can be seen in Figure \ref{fig:exampleconsinescore}.
 	
