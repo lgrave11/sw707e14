@@ -3,7 +3,7 @@ webservice/web-service -> web service ✓
 Conseptual design skal skrives
 tavle, tilføj de ting der står der på.
 
-here, just, only -> Kan ofte fjernes
+here, just, only -> Kan ofte fjernes ✓
 
 Flyt Admin Tools over ER-diagram, og flyt derefter ER-diagrammet fra admin tools over i ER-diagram, og slet det gamle. ✓ 
 Ydermere, husk at ændre metasprog i design. ✓
