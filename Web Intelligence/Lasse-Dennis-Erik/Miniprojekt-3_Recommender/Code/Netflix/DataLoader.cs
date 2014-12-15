@@ -64,7 +64,7 @@ namespace Netflix
                     Console.WriteLine(i.ToString());
                 }
                 i++;
-                if (i == 25)
+                if (i == 500)
                     break;
                 
                 StreamReader reader = new StreamReader("training_set/" + item.Name);

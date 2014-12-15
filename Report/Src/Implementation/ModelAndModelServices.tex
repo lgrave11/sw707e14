@@ -1,14 +1,14 @@
 %!TEX root = ../../main.tex
-\section{Model \& Model Services}\fxwarning{Det er for redegørende}
+\subsection{Model \& Model Services}
 This section describe the implementation of the model layer. 
-We will illustrate this by giving an example model, showing what it looks like and what it does.
-Furthermore, a diagram of the model layer can be seen in \appref{app-arch:model}.
+We illustrate this by giving an example model, showing what it looks like and what it does.
+A diagram of the model layer can be seen in \appref{app-arch:model}.
 
-The Bicycle entity class can be seen in \lstref{lst:bicycleModel}.
-And as can be seen, what it does is to capture the attributes of the Bicycle entity from the database.
+The \texttt{Bicycle} entity class can be seen in \lstref{lst:bicycleModel}.
+As can be seen, what it does is to capture the attributes of the Bicycle entity from the database.
 
 \begin{minipage}{\textwidth}
-\begin{lstlisting}[language=php, label=lst:bicycleModel, caption={Bicycle Class}]
+\begin{lstlisting}[language=php, label=lst:bicycleModel, caption={Bicycle Class.}]
 <?php
 class Bicycle
 {
@@ -26,37 +26,14 @@ class Bicycle
 \end{lstlisting}
 \end{minipage}
 
-Every entity model have a corresponding service that will contain the manipulation and handling of objects of the same type as the corresponding entity model. 
-Each model service will implement an interface enforcing the class to implent methods such as \texttt{validate}, \texttt{create}, \texttt{update}, and \texttt{delete}, for an overview see \figref{fig:overallarch}. 
+Every entity have a corresponding service that contain the manipulation and handling of objects of the same type as its corresponding entity. 
+Each model service implement an interface enforcing the class to implement methods such as \texttt{validate}, \texttt{create}, \texttt{update}, and \texttt{delete}, for an overview see \figref{fig:websitestructure}. 
 Enforcing these methods to exist in every service dictates the responsibility of the service, for example enforcing a \texttt{validate} method dictates that it is the responsibility of the service to ensure a correct format of the model entity before making any changes to the database. 
-Furthermore it dictates that the service should handle all contact with the database concerning its specific entity.
+Furthermore, CRUD dictates that the service should handle all contact with the database concerning its specific entity.
 
-It is also the responsibility of the model service to handle all reads from the database, although it is not included in the implemented interface.
+It is also the responsibility of the model to handle all reads from the database, although it is not included in the implemented interface.
 This is because it may not always make sense to have a method that can read an entity from the database, and thereby this would possibly never be used.
-The reason for this is because it is more often that you would like to \textbf{read} multiple rows from the database than e.g. \textbf{delete} or \textbf{update}.
+The reason for this is because what you want to read varies a lot, e.g. do you want to \texttt{read} multiple rows from the database or a single row.
+This is in contrast to \texttt{delete} or \texttt{update} that works on a single row.
 
-\begin{comment}
-An overview of how the general structure of the CRUD methods implemented in the Model Services is described here, and gives you an idea of how the controller parts of the website have services available that can work on the model.
-
-\textbf{CRUD}
-\begin{description}[style=nextline]
-	\item[Create]
-	As input parameter you get an object of the given entity to be created, e.g. Bicycle.
-	This fields of this object is then used to insert the object into the database.
-	
-	\item[Read]
-	As input parameter you get the primary key of the desired entity to be read.
-	This primary key is then used to select the corresponding row from the database.
-	
-	\item[Update]
-	As input parameter you get an object of the given entity to be updated.
-	One of the attributes of the object correponds to the primary key of corresponding table in the database.
-	This attribute is used to identify the object, where an update query is then used to update the given row to the attributes of the input object.
-	
-	\item[Delete]
-	As input parameter you get the primary key of the desired entity to be deleted.
-	This primary key is then used to delete the corresponding from the the database.
-	
-\end{description}
-\end{comment}
 With the model layer described, we take a look at how the controllers are constructed, and how they use the model layer.

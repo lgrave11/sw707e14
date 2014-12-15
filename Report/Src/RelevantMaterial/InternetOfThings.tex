@@ -1,9 +1,9 @@
 \section{The Internet of Things}
-This section introduces the Internet of Things (IoT), along with examples of how it is used. 
+This section introduces the \textbf{I}nternet \textbf{o}f \textbf{T}hings (IoT), along with examples of how it is used. 
 The section also introduces various hardware considerations to provide the context in which real-world applications for the IoT are developed.
 
 The IoT is the concept describing the interconnection of uniquely identifiable things in the problem domain.
-The IoT also includes the virtual representation, the interfaces that allow for manipulation, and information retrieval regarding things \citep{misc:InternetOfThingsDefinition, misc:InternetOfThingsDefinition2, misc:InternetOfThingsDefinition3}.
+The IoT also includes the virtual representation, the interfaces that allow for manipulation, and information retrieval regarding these things \citep{misc:InternetOfThingsDefinition, misc:InternetOfThingsDefinition2, misc:InternetOfThingsDefinition3}.
 
 Real usage of the IoT manifests as systems to provide some service, either by informing the user about things or allowing an intelligent system to manage those things.
 An example of this could be a `smart home' that allows you to use a single device to manage the connected things in your home, such as the lights or the oven in the kitchen \citep{misc:InternetOfThingsExamples}.
@@ -13,9 +13,9 @@ There are already a lot of things in the IoT, and by 2020 it is estimated that t
 This will likely require a shift to the IPv6 protocol as the amount of IP addresses are severely limited by IPv4 \citep{misc:numberOfAddresses} given that the additions to IPv4, such as multiple devices sharing a single IP address, will at some point become insufficient.
 
 One important aspect of the things connected to the IoT will be what technology they use to connect, here WiFi or mobile networking are obvious choices of communication means.
-The connectivity technology has to be low-power and cheap.
+For most purposes the connectivity technology has to be low-power and cheap.
 Other than WiFi and mobile networking, it is possible to connect things to a server with a cable connecting to the internet, though that is not practical for things that must be mobile.
-Radio Frequency Identification (RFID) chips can provide relevant information to an outside observer about the thing itself \citep{misc:rfid} with active research in making it low-cost and low-power \citep{misc:rfid2}.
+RFID chips can provide relevant information to an outside observer about the thing itself \citep{misc:rfid} with active research in making it low-cost and low-power \citep{misc:rfid2}.
 
 The geographical location in the IoT matters, especially for sensors where the location provides important context for the accessed information \citep{misc:locationMatters}.
 For example if there is a station for bicycles in a bicycle sharing system that needs to provide information regarding the amount of bicycles at the station, it is important for the usage of the information that it also provides the actual location of the station, if that is not otherwise known.
@@ -37,10 +37,10 @@ In order for IoT to work, it is necessary to have a communication established.
 If that was not the case, the things would not be part of the IoT, as the central idea is that you can communicate over the internet.
 
 One idea of communication for sensors is as follows.
-Each sensor has access to the internet to contact a web service of their given reading.
+Each sensor has access to the internet to contact a web service with their given reading.
 However, it is unrealistic that each sensor alone is directly connected to the internet, and as of such, other alternatives can be performed.
 One such alternative is that a given thing consists of a communication device connected to several sensors and the internet.
-The communication device can then read from the sensors and contact the webservice.
+The communication device can then read from the sensors and contact the web service.
 
 However, the communication does not end here.
 The idea is that the communication is not limited to machine-machine communication, but is expanded to communication over the internet, such that the things of the IoT can be contacted from anywhere on the internet.
@@ -50,7 +50,7 @@ Examples of Software that utilise the IoT are given to give a concrete idea of t
 
 We here expand on the example of the smart power grid.
 Such a power grid uses the information it has about each section of the grid, to ensure that there is sufficient power reaching every part of the grid, even in cases where part of the grid malfunctions.
-This ability is achieved through the system being able to automatically reroute the power flow in the grid, so power flows through functioning areas, to reach the parts that would otherwise have been affected by the malfunction.
+This ability is achieved through the system being able to automatically reroute the power flow in the grid, so power flows through functioning areas to reach the parts that would otherwise have been affected by the malfunction.
 
 Another example is the mentioned home automation system.
 For such a system, the things of the house being the lock, coffee machine, lights, washing machine etc, is then the central parts.

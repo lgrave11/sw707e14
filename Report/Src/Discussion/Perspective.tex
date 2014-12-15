@@ -4,29 +4,30 @@ This section provides a perspective comparing our implemented system with existi
 % Hardware, payments
 In the Copenhagen Gobike system, the system uses expensive hardware which could make it difficult to purchase new bicycles because every bicycle needs a tablet before they can be integrated with the system.
 Because of this Copenhagen Gobike costs money to use, as do the other existing systems (Cibi and Alta Bicycle Share). 
-This is something we wanted to avoid, we wanted a system that could be used for free, or at least only be used on a deposit basis where you get the money back at the end of using the bicycle ride. 
-We did manage to do this, though it is unknown what kind of expenditures would be associated with the stations, docks, and GPS reporters on the bicycles. 
+This is something we wanted to avoid, we wanted a system that could be used for free, or at least only be used on a deposit basis where you get the money back at the end of the bicycle ride. 
+We kept the system free to use, though it is unknown what kind of expenditures would be associated with the stations, docks, and GPS devices on the bicycles. 
 
 % Tracking and penalties for loss
-One of the bigger issues, especially for the administrators of Aalborg Bycyklen, is that there is no tracking capability. 
+One of the bigger issues, especially for the administrators of Aalborg Bycyklen, is that they have no tracking capability. 
 With Copenhagen Gobike this is not a problem as they provide GPS coordinates for their positions.
 However, for Cibi and Alta the only kind of tracking of bicycles is that the stations report how many bicycles are at the dock at any given moment.
 This leaves much to be desired in that it does not provide any kind of information about the bicycles once they leave the stations, which of course makes them difficult to locate if they get lost.
-Though they try to prevent people from stealing or otherwise not returning the bicycles by penalizing the users with extra fees, loss of deposits or fines.
+Though they try to prevent people from stealing or otherwise not returning the bicycles by penalizing the users with extra fees, loss of deposits, or fines.
 For our system, there is a mechanism for finding lost or stolen bicycles through GPS reporting, which does seem to be the simplest solution to the problem of not being able to recover bicycles.
 However, the only penalty for not returning a bicycle would be the loss of the deposit, but the original deposit is so low as to be fairly irrelevant.
 This is not something we considered changing, and our impression of Aalborg Kommune's desire for the system is that it should be easily accessible and not something you have to pay to use.
+Additionally, it is the responsibility of Aalborg Kommune to determine what fines might be associated with misuse of the system.
 
 % Booking, borrowing and unlocking.
 For existing systems, the unlocking process requires some kind of identification which is something we wanted to replicate, as such we ended up with a booking system that lets the user book bicycles and then provides the user with a code that unlocks the bicycle at the specified station.
 This is probably one aspect of our system that is somewhat worse than solutions other systems have used, but it does provide a means of reserving and ensuring that bicycles are available when you want to use it, which is something other systems do not do. 
-It should, however, be said that the system is kept open and that you are not required to use bookings to use it.
-So while the implementation letting the user to go online and booking bicycles could be better, it does come with benefits and the user is not required to use it.
+It should, however, be said that the system is kept open and that you are not required to use bookings to retrieve a bicycle.
+So while the implementation letting the user to go online and booking bicycles could be better, it does come with benefits and the user is not forced to utilise this.
 One consideration made, to provide a more easily accessible booking and unlock mechanism, would be to have a mobile booking application providing a simplified version of the website implemented, see \secref{sec:fd-mobileapp}.
 
 We attempted to provide an updated version of \bycykel that could challenge other existing systems, which we feel we managed to do. 
-However, it did come at the potential cost of compromising the ideas behind the original system to some extent, for example through locking of bicycles through bookings instead of leaving them unlocked and available to anyone. 
+However, it did come at the potential cost of compromising the ideals behind the original system to some extent, for example through locking of bicycles through bookings instead of leaving them unlocked and available to anyone. 
 These changes are not made lightly and makes the system more predictable and reliable, because as Aalborg Kommune said they often see that stations remain empty at all times making it difficult to even use the system, see \secref{subsec:meetingaalborg}. 
-The changes, however, could bring new problems that were not predicted and as such the system of course would have to be corrected and fixed once these come up.
+The changes, however, could bring new problems that were not predicted and as such the system of course would have to be corrected once these come up.
 
-These corrections would be part of the further development, which is discussed hereafter.
+These corrections could be part of the further development, which is discussed hereafter.

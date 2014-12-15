@@ -1,12 +1,12 @@
 \section{Google Maps API}\label{sec:googlemapsapi}
-The Google Maps API \citep{misc:googlemapsapi} is used to show the map on both the front page and the administrator page.
+The Google Maps API \citep{misc:googlemapsapi} is used to show maps on the front page and some of the administration pages.
 However, both of these pages use the API differently, the front page uses the API to show the map with the stations that are currently in the system, whereas the administrator page visualises where all the bicycles are located.
 
 To use the API, the construction of the map is done first, which can be seen in \lstref{lst:mapoptions}.
-Map options are chosen here, these options are e.g. the center of the map, which zoom level the map should have, and the style of the map.
+Map options are chosen, these options are e.g. the center of the map, which zoom level the map should have, and the style of the map.
 
 \begin{minipage}{\textwidth}
-\begin{lstlisting}[caption={Construction of the map}, label={lst:mapoptions}, language=Javascript]
+\begin{lstlisting}[caption={Construction of the map.}, label={lst:mapoptions}, language=Javascript]
 var mapOptions = {
 	zoom: 13,
 	center: aalborg,
@@ -26,27 +26,26 @@ For each station, the work-flow of this is as follows:
 
 \begin{description}[style=nextline]
 	\item[Gather data]
-	Use the stationservice to read data to be displayed on map.
+	Use the station service to read data to be displayed on the map.
 	\item[Create info window]
 	The info window is a window that appears whenever the user clicks on a station marker.
-	The info window shows information about the station, which is the name, amount of free bicycles, and the amount of free docks.
+	It shows information about the station, which is the name, amount of free bicycles, and the amount of free docks.
 	\item[Marker creation]
-	Create a marker, which are the bulletpoints indicating the station on the map.
+	Create a marker, which are the bullet points indicating the station on the map.
 	The creation of the marker contains position, title, icon.
 	\item[Assign listeners]
-	Assign listeners to the marker clicks, in order to show the infowindow for the given marker when the marker is clicked.
+	Assign listeners to the marker clicks, in order to show the info window for the given marker when the marker is clicked.
 \end{description}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{googlemarkermap}
-	\caption{Google map with station markers and info window shown}
+	\caption{Google map with station markers and info window shown.}
 	\label{fig:googlemapmarkerinfowindow}
 \end{figure}
 
-An example of the final google map with markers placed can be seen in \figref{fig:googlemapmarkerinfowindow}.
+An example of the final Google map with markers placed can be seen in \figref{fig:googlemapmarkerinfowindow}.
 
-For the administrator page the markers are bicycles, which are updated at a set frequency using AJAX, and is created in a similar fashion, just by other objects placed on the map.
+For the administrator page the markers are bicycles, which are updated at a set frequency using AJAX, and is created in a similar fashion, but with other objects placed on the map.
 The main purpose of the administrator tracking page is to be able to see where the different bicycles are at a given time, which is the reason why the markers are updated once in a while.
-For the purpose of this project it updates every tenth second, to be able to simulate how it could look like, however, in the real system every tenth second might be too often, depending on how often the GPS's of the bicycle send data to the database.
 For the update of the marker position AJAX is used to get all the positions of the different bicycles, which allows the makers to move without refreshing the page.

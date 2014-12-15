@@ -1,6 +1,6 @@
 To conclude the project, the three questions from the problem definition have to be answered in order to validate or invalidate the hypothesis, see \secref{sec:probdef}.
 
-The first question was:
+The first question is:
 \begin{center}
 	\textit{What are the requirements for a city bicycle booking and positioning system?}
 \end{center}
@@ -14,12 +14,33 @@ For the software requirements a list of requirements was stated, all of which ha
 The hardware requirements was specified as two required interfaces, interface between station and server, and interface between bicycle and server.
 These two interfaces were implemented with help of SOAP and TCP, but if you were to use the product for actual use, the simulation of hardware would have to be replaced with actual hardware.
 
-\begin{enumerate}
-	\item How can the booking and positioning system be designed and implemented?
-	\item Why should the developed system be used over the currently used system?
-\end{enumerate}
-
-
+The second question is:
 \begin{center}
-	\textbf{It is possible to develop a system that makes \bycykel more user friendly and manageable, within the context of Internet of Things.}
+	\textit{How can the booking and positioning system be designed and implemented, within the context of the Internet of Things?}
 \end{center}
+The product has been designed and implemented in the form of a website, a program to simulate stations, and a program to simulate bicycles travelling around the city of Aalborg.
+The website enables the user to perform bookings, and provides the administrators with a series of graphs indicating the usage of the system as well as enabling the administrators to configure the bicycles and stations connected to the system.
+The product lies within the context of `Internet of Things' in that bicycles, stations, and docks, are the things we keep track of and we use common internet technologies such as SOAP and TCP to do so. Our product manifests in the form of a service that informs the user about the status of bicycles, station, and docks as well as enabling the users to register bookings to have bicycles locked at stations.
+
+The third question is:
+\begin{center}
+	\textit{Why should the developed system be used over the currently used system?}
+\end{center}
+The developed system should be used over the currently used system since it is an extension of the existing system and does not dramatically change any existing features.
+That is, the system can be used in a similar fashion to the existing one in that the station software replaces the old lock. Additionally, the new system provides for status of the bicycles as well as statistics, which the old system was lacking. Furthermore, the booking feature is believed to be a powerful one, but if not desired by Aalborg Kommune, this part could be disabled and still provide useful status information for the user and statistics for the administrators.
+
+Finally the hypothesis to verify is:
+\begin{center}
+	\textbf{It is possible to develop a system that makes \bycykel more user friendly and manageable, within the context of the Internet of Things.}
+\end{center}
+
+A system has been developed that makes it possible to perform bookings of bicycles.
+The system lies within the context of internet of things as it keeps track of things.
+This relates to  the system providing status information to the users, enabling them to more easily decide which station to go to.
+This suggests a more user friendly experience and is also supported with the general positive responses from the usability tests.
+The system is arguably also more manageable in that statistics for the usage of bicycles exist with the developed system, whereas no statistics were provided beforehand.
+On the other hand, more maintenance of the stations would be required as the system has been extended, however, this is a problem setting to be considered by Aalborg Kommune.
+ 
+However, with that in mind the solution generally offers additional features, where Aalborg Kommune can decide which part they would like in their system.
+The request of Aalborg Kommune was to be able to monitor the usage of bicycles in Aalborg more, and this feature is also included in the solution in form of the administrator part of the system.
+This concludes that the hypothesis can be verified.
