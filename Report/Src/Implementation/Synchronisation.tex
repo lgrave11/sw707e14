@@ -19,7 +19,7 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	The booking and unbooking of bicycles are performed on the website. 
 	The central database is then updated accordingly, and in order to ensure that the station affected is notified, JSON encoded actions are sent using TCP, as described earlier.
 	However, problems may arise if the connection to the station is down.
-	In such a case, you can risk the station not registering the booking, and as of such, one of the following actions have to be performed.
+	In such a case, you can risk the station not registering the booking, and as such, one of the following actions have to be performed.
 	\begin{itemize}
 		\item Flag to indicate new bookings
 		\item Constantly ping central database (unreliable)
