@@ -5,10 +5,10 @@ tavle, tilføj de ting der står der på.
 
 here, just, only -> Kan ofte fjernes
 
-Flyt Admin Tools over ER-diagram, og flyt derefter ER-diagrammet fra admin tools over i ER-diagram, og slet det gamle.
-Ydermere, husk at ændre metasprog i design.
+Flyt Admin Tools over ER-diagram, og flyt derefter ER-diagrammet fra admin tools over i ER-diagram, og slet det gamle. ✓ 
+Ydermere, husk at ændre metasprog i design. ✓
 
-Kig på textit, hvis det er noget der er en slags kode så brug texttt
+Kig på textit, hvis det er noget der er en slags kode så brug texttt. ✓
 grep efter _ og lav det til textt :D
 
 he/she -> he
