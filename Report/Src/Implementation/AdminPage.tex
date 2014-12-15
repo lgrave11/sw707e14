@@ -65,7 +65,7 @@ The insertion is event-based and happens every time a bicycle is either returned
 
 A timestamp is generated for an event right before query execution, which means that some delay can occur from the actual event firing time to the insertion time, resulting in an imprecise trip duration. 
 This is, however, considered a minor deviation in most cases, because the communication delay is short (seconds maybe even less).
-In case of a bad connection, the generated timestamp will cause useless data in the light of statistical usage, if time is an important aspect of the analysis.
+In case of a bad connection, the generated timestamp causes useless data in the light of statistical usage, if time is an important aspect of the analysis.
 For showing the traffic between stations the timestamp is used for filtering on a specified time interval.
 For the specification of the time interval the granularity is assumed to be down to an hour, but would have to be specified by the administrator.
 If the granularity is specified down to an hour, registering an event a few seconds too late is no problem.

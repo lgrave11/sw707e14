@@ -14,11 +14,11 @@ These attributes are common for an \texttt{account} entity, with the \texttt{pho
 
 In relation to this is the \texttt{booking} entity, where it can be seen that a user can have many bookings whereas a booking is registered to one and only one account.
 The \texttt{booking} then has a \texttt{booking_id}, to uniquely identify a booking, a \texttt{start_time}, such that a station knows when to lock a bicycle, and a password, used to unlock a bicycle if a correct password is entered in a time frame around the \texttt{start_time}.
-Recall that the idea is that if a booking is not used in a given time frame at the \texttt{start_time}, the booking will be removed, in order to free the bicycle for other to use.
+Recall that the idea is that if a booking is not used in a given time frame at the \texttt{start_time}, the booking is removed, in order to free the bicycle for other to use.
 
 A \texttt{booking} is also tied to a \texttt{station}, such that a \texttt{booking} is located at one and only one \texttt{station}, whereas a \texttt{station} can have many bookings.
 
-A \texttt{booking} is also tied to a \texttt{bicycle}, such that when the booking is fulfilled it will identify which bicycle was taken.
+A \texttt{booking} is also tied to a \texttt{bicycle}, such that when the booking is fulfilled it identifies which bicycle was taken.
 
 A \texttt{station} has the attribute \texttt{station_id}, to uniquely identify the station.
 Furthermore, it has a \texttt{name}, which is thought to be used to give a meaningful description of a given station.

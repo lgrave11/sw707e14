@@ -1,7 +1,7 @@
 \section{Unlock}\label{sec:Lock}
 There should be a way for the user to unlock a booked bicycle when reaching the station.
 This can be solved in several ways, some of these are described hereafter.
-We will look at the following solutions:
+We look at the following solutions:
 
 \begin{itemize}
 	\item Unlock on Time
@@ -14,7 +14,7 @@ We will look at the following solutions:
 \subsection{Unlock on Time}
 This option is independent on whether or not the user is at the station at a specific time.
 When the specified time frame begins the booked bicycle becomes unlocked and is then available for anyone to use.
-This leads to problems in that a user arriving too early at the station will have to wait for the bicycle to unlock, and if the user arrives too late the bicycle might have been taken by another person.
+This leads to problems in that a user arriving too early at the station has to wait for the bicycle to unlock, and if the user arrives too late the bicycle might have been taken by another person.
 However, this solution is cheap since it only needs the lock on the bicycle, and the communication with the global system, which the other suggestions need as well.
 
 \subsection{SMS}
@@ -26,8 +26,8 @@ However, this suggestion is not a free solution to the user since they have to p
 
 \subsection{Password Based}
 When the user arrives at the station he has to enter a password at the station to unlock a bicycle.
-To be able to do this it will require additional hardware at the station to make it possible to input a password to the system.
-Therefore this solution will increase the price of each station, as the additional hardware has to be located at every station.
+To be able to do this it requires additional hardware at the station to make it possible to input a password to the system.
+Therefore this solution increases the price of each station, as the additional hardware has to be located at every station.
 However, it solves the issue that it can become expensive for the user, as this suggestion only costs something for the organizations behind Aalborg Bycykel.
 
 \subsection{QR Code}
@@ -37,11 +37,11 @@ However, it does require that the user has a mobile device that is able to scan 
 
 \subsection{GPS}
 This suggestion uses the GPS of a device to see if the user is close to the station.
-If the user is close to the station the booked bicycle will get unlocked.
+If the user is close to the station the booked bicycle gets unlocked.
 To use this suggestion the user is required to have a mobile device which is able to send GPS information to the system.
 This would require that the user has an internet connection as well.
 Additionally this is very resource demanding for the users mobile device as the use of GPS prevent sleep mode of the mobile device \citep{misc:gpsbatteryusage}, which results in significantly lower battery duration.
-Moreover, if the user passes by the station before he actually wants to use the bicycle there is a risk that the station will detect this, therefore unlocking the bicycle.
+Moreover, if the user passes by the station before he actually wants to use the bicycle there is a risk that the station detects this, therefore unlocking the bicycle.
 
 \subsection{Information Gain}
 The different solutions provide sufficient information to the system, to be able to register when a bicycle needs to be unlocked.

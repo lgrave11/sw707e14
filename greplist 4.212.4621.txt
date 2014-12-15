@@ -30,3 +30,5 @@ Grim boks i station software muligvis rettes ✓
 smart-phone -> smartphone ✓
 
 Fiks field resets ✓
+
+as of such -> as such
