@@ -23,7 +23,7 @@ will -> FYFY!! (enkelte undtagelser)
 
 stationservice -> station service ✓
 
-Route History fjern chosen bicycle
+Route History fjern chosen bicycle ✓
 
 Grim boks i station software muligvis rettes ✓
 
@@ -31,4 +31,4 @@ smart-phone -> smartphone ✓
 
 Fiks field resets ✓
 
-as of such -> as such
+as of such -> as such ✓
