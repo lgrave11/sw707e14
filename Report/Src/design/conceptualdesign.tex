@@ -1,6 +1,6 @@
 \section{Conceptual Design}
 In this section we describe how a user should be able to use the system, but also the constraints on usage built in to the system.
-Adiitionally, the section covers some administrator aspects to monitor use and misuse of the system.
+Additionally, the section covers some administratrative aspects to monitor use and misuse of the system.
 
 \subsection{Booking}
 A user is able to get an overview of the available bicycles at each station through a website. 
@@ -21,11 +21,11 @@ A user has to be able to retrieve a bicycle at one of the stations located aroun
 Two cases exist, the user may have a booking or he may not have a booking.
 
 If a user has a booking a password is associated with this booking that the user can read on the website.
-When the user then walks to the specified station in a time range of one hour before the specified time to one hour after, since that is the time range of the locking, he can enter the password at the station automata and get a message telling him to walk to a given dock to retrieve his bicycle, where he then has to deposit 20DKK to have his bicycle unlocked.
-That is, for a bicycle with a booking to be unlocked, it is a two step process of first unlocking it at the automata and then use the regular 20DKK deposit.
+When the user then walks to the specified station in a time range of one hour before the specified time to one hour after, since that is the time range of the locking, he can enter the password at the station computer and get a message telling him to walk to a given dock to retrieve his bicycle, where he then has to deposit 20DKK to have his bicycle unlocked.
+That is, for a bicycle with a booking to be unlocked, it is a two step process of first unlocking it at the server and then use the regular 20 DKK deposit.
 
-If the user does not have a booking he does not have to use the automata, but can instead walk to a free bicycle and deposit 20DKK to retrieve it.
-In order to avoid that a user without a booking retrieves a bicycle that has just been unlocked from the automata by another user, we imagine a distinction of reserved unlocked bicycles and free bicycles.
+If the user does not have a booking he does not have to use the station computer, but can instead walk to a free bicycle and deposit 20 DKK to retrieve it.
+In order to avoid that a user without a booking retrieves a bicycle that has just been unlocked from the server by another user, we imagine a distinction of reserved unlocked bicycles and free bicycles.
 This could be in the form of some status sign at the docks indicating whether a given bicycle is locked, unlocked with booking, or free to use.
 
 \subsection{Deliver a Bicycle}
@@ -34,16 +34,18 @@ In order for him to avoid bicycling to various stations to find one that has fre
 Once such a station is located he bicycles to this station and places his bicycle in a free dock, which ends his usage of the given bicycle and he gets the 20DKK deposit back.
 
 \subsection{Usage Monitoring}
-As per request of Aalborg Kommune, some monitoring of bicycles are desired.
+As per request of Aalborg Kommune, some monitoring of bicycles is desired.
 
 An example of this is if some bicycles have gone missing, or have been reported seen in other cities, the administrator can then go to the website to have a map presented indicating where the bicycles are located and in that way locate missing bicycles.
 
-Another misuse is if some bicycles has not been delivered to a station in a long time, then the administrators might suspect that the bicycle is instead being used as a private bicycle. To support such an investigation, the website enables the administrator to obtain the route history for a single or multiple bicycles.
+Another example of misuse is if some bicycles has not been delivered to a station in a long time, then the administrators might suspect that the bicycle is instead being used as a private bicycle. To support such an investigation, the website enables the administrator to obtain the route history for a single or multiple bicycles.
 The route history, would then draw the routes on a map and thus indicate some unusual route for the privately misused bicycle compared to the other bicycles.
 
 Examples also exist for monitoring some usage patterns of bicycles.
 This relates to the route history, which also provides an indication of what routes are usual.
 
 Other usage monitoring is also interesting.
-An example of this is if administrators suspect some stations to be used a lot more than others, it would then be nice to provide the administrator with an overview of this in form of a chord diagram or some graph that shows the bicycles count at a given station over time.
-According to these statistics, the administrators can then make informed decisions on where to insert or remove docks.
+An example of this is if administrators suspect some stations to be used a lot more than others, it would be useful to administrators to provide them with an overview of this in form of a chord diagram or some graph that shows the bicycles count at a given station over time.
+According to these statistics, the administrators can then make informed decisions on where to add or remove docks.
+
+Given this conceptual idea of the system, prototyping is the next step.
