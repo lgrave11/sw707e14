@@ -10,7 +10,7 @@ As we have a central booking system, and multiple simultaneous access points, th
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[trim=2cm 1.5cm 0cm 1.5cm, clip, scale=0.7]{design/architecture}
+	\includegraphics[trim=2cm 1cm 0cm 1.5cm, clip, scale=0.7]{design/architecture}
 	\caption{Overall architecture.}\label{fig:overallarch}
 \end{figure}
 
@@ -46,7 +46,7 @@ For the station interaction, two interactions are involved.
 If you have booked a bicycle at the station in advance, you use the password provided from the website to unlock a bicycle for usage, by entering this password in the station automata.
 The automata then tells you at which dock a bicycle is unlocked, and you can retrieve your bicycle.
 However, if you have not booked a bicycle in advance, you do not use the station automata, but instead check each dock for available bicycles.
-In that regard, we imagine a distinction between reserved unlocked bicycles and free bicycles, such that you do not on accident steal someone else's booked bicycle.\fxwarning{CONCEPT}
+In that regard, we imagine a distinction between reserved unlocked bicycles and free bicycles, such that you do not on accident steal someone else's booked bicycle, see \secref{sec:conceptretrieveandshit}.
 
 For delivery of bicycles, the interaction is the same whether the bicycle is booked or not.
 The process is easy, as you locate a free dock and then place the bicycle at that dock.
