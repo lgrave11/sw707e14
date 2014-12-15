@@ -1,3 +1,4 @@
+%!TEX root = ../../main.tex
 \subsection{Station Software}\label{subsec:stationsoftdesfgi}
 While \figref{fig:overallarch} of the overall architecture provides an overview of the system, the station component has its own architecture as well, which can be seen in \figref{fig:stationarch}. In this figure, as in the previous, the arrows represent flow of information.
 
@@ -10,7 +11,7 @@ While \figref{fig:overallarch} of the overall architecture provides an overview 
 In the station software, the station is the main part and also the one that contains the UI. 
 This part is responsible for all contact with the user at the station and is the one that is interacting with the hardware.
 
-\texttt{TCPListener} is a thread that listens for messages from the global system through the \texttt{WebsiteToStationNotifier} and stores these messages as a \texttt{NetworkData} object, and tells this object to perform the action the message contains.
+\texttt{TCPListener} is a thread that listens for messages from the global system through the \texttt{Website\-ToStationNotifier} and stores these messages as a \texttt{NetworkData} object, and tells this object to perform the action the message contains.
 
 The \texttt{NetworkData} object has the responsibility of adding a booking to the local database corresponding to the information the object contains or removing a booking with the ID it received.
 
