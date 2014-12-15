@@ -18,7 +18,7 @@ Then if there are historical GPS coordinates for the bicycle(s), they are shown 
 
 The purpose of the route history page is to give the administrators an idea of which roads the bicycles are traveling a lot on. 
 This can then be used as a decision-making tool to decide where to put new stations, in that if the administrator can see that a lot of bicycles are traveling to a specific point it might be a good idea to put a station there.
-It could also be used to see if a specific bicycle is being 'misused' in the sense that it would be visible if the bicycle is only being used to travel to one spot and nowhere else.
+It could also be used to see if a specific bicycle is being 'misused' in the sense that it would be visible if the bicycle is being used to travel to one spot and nowhere else.
 
 See \figref{fig:routehistory} for a figure of what the page looks like.
 
@@ -69,11 +69,11 @@ In case of a bad connection, the generated timestamp causes useless data in the 
 For showing the traffic between stations the timestamp is used for filtering on a specified time interval.
 For the specification of the time interval the granularity is assumed to be down to an hour, but would have to be specified by the administrator.
 If the granularity is specified down to an hour, registering an event a few seconds too late is no problem.
-A graph to illustrate this information is in this case considered acceptable with some imprecision since the data is just used for a visual overview.
+A graph to illustrate this information is in this case considered acceptable with some imprecision since the data is only used for a visual overview.
 
 % line diagram
 To illustrate how the amount of bicycles change over time, a line diagram is generated showing time on the x-axis and the amount of bicycles on the y-axis, see \figref{fig:linediagram}.
-%Insert figure here showing the line diagram.
+
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{implementation/linediagram}
@@ -95,6 +95,7 @@ As seen from the table on the right, one bicycle went to Karolinelund, and one t
 Since the arc is narrow at the destination block it means that no bicycle went the other way. 
 In some cases the arc destination is somewhere between blocks. 
 This means that the destination station does not have any bicycles leaving in the selected time period, as only stations with bicycles leaving is shown as a block.
+
 \begin{figure}[h]
 \includegraphics[scale=0.5]{implementation/chorddiagram}
 \caption{Chord diagram showing traffic of bicycles.}\label{fig:chorddiagram}
