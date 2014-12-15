@@ -1,5 +1,6 @@
 \section{Conceptual Design}
 In this section we describe how a user should be able to use the system, but also the constraints on usage built in to the system.
+Adiitionally, the section covers some administrator aspects to monitor use and misuse of the system.
 
 \subsection{Booking}
 A user is able to get an overview of the available bicycles at each station through a website. 
@@ -31,3 +32,18 @@ This could be in the form of some status sign at the docks indicating whether a 
 When a user is finished using his bicycle he has to deliver it back to some nearby station.
 In order for him to avoid bicycling to various stations to find one that has free docks, he instead uses the website to locate a nearby station with free docks.
 Once such a station is located he bicycles to this station and places his bicycle in a free dock, which ends his usage of the given bicycle and he gets the 20DKK deposit back.
+
+\subsection{Usage Monitoring}
+As per request of Aalborg Kommune, some monitoring of bicycles are desired.
+
+An example of this is if some bicycles have gone missing, or have been reported seen in other cities, the administrator can then go to the website to have a map presented indicating where the bicycles are located and in that way locate missing bicycles.
+
+Another misuse is if some bicycles has not been delivered to a station in a long time, then the administrators might suspect that the bicycle is instead being used as a private bicycle. To support such an investigation, the website enables the administrator to obtain the route history for a single or multiple bicycles.
+The route history, would then draw the routes on a map and thus indicate some unusual route for the privately misused bicycle compared to the other bicycles.
+
+Examples also exist for monitoring some usage patterns of bicycles.
+This relates to the route history, which also provides an indication of what routes are usual.
+
+Other usage monitoring is also interesting.
+An example of this is if administrators suspect some stations to be used a lot more than others, it would then be nice to provide the administrator with an overview of this in form of a chord diagram or some graph that shows the bicycles count at a given station over time.
+According to these statistics, the administrators can then make informed decisions on where to insert or remove docks.
