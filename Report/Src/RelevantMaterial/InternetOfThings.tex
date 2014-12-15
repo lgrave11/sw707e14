@@ -12,7 +12,7 @@ One society-wide use for it is the idea of a `smart power grid', where the elect
 There are already a lot of things in the IoT, and by 2020 it is estimated that there can be upwards of around 26-30 billion things \citep{misc:IoTGrowth1,misc:IoTGrowth2}.
 This likely requires a shift to the IPv6 protocol as the amount of IP addresses are severely limited by IPv4 \citep{misc:numberOfAddresses} given that the additions to IPv4, such as multiple devices sharing a single IP address, at some point becomes insufficient.
 
-One important aspect of the things connected to the IoT is what technology they use to connect, here WiFi or mobile networking are obvious choices of communication means.
+One important aspect of the things connected to the IoT is what technology they use to connect, WiFi or mobile networking are obvious choices of communication means.
 For most purposes the connectivity technology has to be low-power and cheap.
 Other than WiFi and mobile networking, it is possible to connect things to a server with a cable connecting to the internet, though that is not practical for things that must be mobile.
 RFID chips can provide relevant information to an outside observer about the thing itself \citep{misc:rfid} with active research in making it low-cost and low-power \citep{misc:rfid2}.
@@ -23,7 +23,7 @@ For example if there is a station for bicycles in a bicycle sharing system that 
 In order to give more detail on IoT, aspects about identification, communication, and software is given.
 
 \subsection{Identification}
-In order to uniquely identify the things in the IoT, different approaches can be taken, we give an example here.
+In order to uniquely identify the things in the IoT, different approaches can be taken, we give an example.
 
 One idea is to use the IP address of an object, which has relation to the previously discussed IPv4 versus IPv6 issue.
 With IPv6, this approach would have enough addresses to uniquely identify a large number of things.
@@ -42,13 +42,13 @@ However, it is unrealistic that each sensor alone is directly connected to the i
 One such alternative is that a given thing consists of a communication device connected to several sensors and the internet.
 The communication device can then read from the sensors and contact the web service.
 
-However, the communication does not end here.
+However, the communication does not end at this point.
 The idea is that the communication is not limited to machine-machine communication, but is expanded to communication over the internet, such that the things of the IoT can be contacted from anywhere on the internet.
 
 \subsection{Software}
 Examples of Software that utilise the IoT are given to give a concrete idea of the power of IoT.
 
-We here expand on the example of the smart power grid.
+We expand on the example of the smart power grid.
 Such a power grid uses the information it has about each section of the grid, to ensure that there is sufficient power reaching every part of the grid, even in cases where part of the grid malfunctions.
 This ability is achieved through the system being able to automatically reroute the power flow in the grid, so power flows through functioning areas to reach the parts that would otherwise have been affected by the malfunction.
 
