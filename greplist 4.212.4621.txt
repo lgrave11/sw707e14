@@ -1,4 +1,4 @@
-webservice/web-service -> web service
+webservice/web-service -> web service ✓
 
 Conseptual design skal skrives
 tavle, tilføj de ting der står der på.
@@ -9,7 +9,7 @@ Flyt Admin Tools over ER-diagram, og flyt derefter ER-diagrammet fra admin tools
 Ydermere, husk at ændre metasprog i design. ✓
 
 Kig på textit, hvis det er noget der er en slags kode så brug texttt. ✓
-grep efter _ og lav det til textt :D
+grep efter _ og lav det til textt :D ✓
 
 he/she -> he ✓
 him/her -> him ✓
@@ -21,12 +21,12 @@ url -> URL ✓
 , that -> FYFY!
 will -> FYFY!! (enkelte undtagelser)
 
-stationservice -> station service
+stationservice -> station service ✓
 
 Route History fjern chosen bicycle
 
-Grim boks i station software muligvis rettes
+Grim boks i station software muligvis rettes ✓
 
-smart-phone -> smartphone
+smart-phone -> smartphone ✓
 
-Fiks field resets
+Fiks field resets ✓

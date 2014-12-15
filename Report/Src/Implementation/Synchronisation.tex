@@ -56,7 +56,7 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	This part of the synchronisation is, however, developed as this is a simulation, and as we run the station software on different computer it is advantageous for testing to keep this updating of booking information in place, such that the various computers gets the booking information updated.
 	
 	\item[Dock insertion/removal]
-	When a dock gets inserted or removed from a station, the station has a separate thread that keeps trying to call the web service on the central system part, to register that a dock has been inserted/removed at the given station, this is repeated until the web-service has been correctly used.
+	When a dock gets inserted or removed from a station, the station has a separate thread that keeps trying to call the web service on the central system part, to register that a dock has been inserted/removed at the given station, this is repeated until the web service has been correctly used.
 	This is achieved with specific functions for the \texttt{StationToDBRegister} service.
 	
 \end{description}
