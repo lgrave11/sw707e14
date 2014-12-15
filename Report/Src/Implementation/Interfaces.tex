@@ -83,7 +83,7 @@ As you can see, the actual statement expresses an update on the dock, such that 
 Other methods for reading exists in the web service as well, the difference then being that a special \texttt{tns:BookingObjectArray} type is defined, which is an array type used to contain multiple JSON encoded strings that represents bookings. Such a method is for example useful when first booting a station where its local database is empty or that the local database data is outdated, e.g. it has been offline for some time.
 The implementation details have been omitted, as it is the same principle but where reading from the database is in focus instead of updating the database.
 
-\subsection{Bicycle to Database}
+\subsection{Bicycle to Database}\label{subsec:bicycletodatabase}
 This section is about the \texttt{GPSRegister} interface from \figref{fig:overallarch}.
 The interface from bicycle to database, is an interface that is needed to register the location of a bicycle, as GPS tracking is decided to be implemented, due to the meeting held with Aalborg Kommune.
 The idea is that each bicycle use the interface to inform the system where it is located, according to the coordinates received from GPS.

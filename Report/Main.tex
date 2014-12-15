@@ -46,6 +46,18 @@ contents={%
 	\input{Src/Analysis/Requirements}
 	\input{Src/Analysis/TargetAudience}
 	
+	The report contains the following chapters:
+	\begin{itemize}
+	\item Analysis - The analysis is documented, a problem definition and requirements are set up along with the target audience.
+	\item Suggested Solutions - Solutions to different problems in the problem domain are suggested.
+	\item Technologies - Different technologies and concepts used for this project are documented.
+	\item Design - The design of the overall system is documented.
+	\item Implementation - The implementation of the designed system is documented.
+	\item Test - Unit testing and usability testing are both documented. 
+	\item Discussion - Decisions about the overall system and why they were made are documented here, the developed system is compared to other existing systems and further development is documented.
+	\item Conclusion - Conclude the report and answer the problem definition, and if the requirements were fulfilled along with if system criteria were upheld.
+	\end{itemize}
+	
 	\chapter{Suggested Solutions}
 	Various suggested extensions for the current system are proposed.
 	These solutions are then in turn examined and evaluated, in order to determine if a solution is preferred to others and gives valuable information for the software system.
@@ -65,10 +77,11 @@ contents={%
     \input{Src/RelevantMaterial/SOAP}
 		
 	\chapter{Design}
-	This chapter presents the design of the product, where the conceptual design is described, after which a prototype is presented.
+	This chapter presents the design of the product, where the conceptual design is described after which a prototype is presented.
     We also examine what the administration tools need to be able to do.
-	Then the ER-diagram of the database is presented, for both user and logging purposes. 
-	The architecture is also explained, for both the website and the simulated station software, and finally an explanation of synchronisation between the central server and the client is going to be handled follows.
+	Then the ER-diagram of the database is presented for both user and logging purposes. 
+	The architecture is also explained for both the website and the simulated station software. 
+	Finally an explanation of how the synchronisation between the central server and the client is going to be handled follows.
 	\input{Src/design/conceptualdesign}
 	\input{Src/Prototypes/prototype}
 	\input{Src/design/administrationTools}
@@ -79,7 +92,7 @@ contents={%
 	
 	\chapter{Implementation}
 	This chapter covers implementation details for the features covered in the design chapter.
-	This is covered by describing how we implement User Interface, Website Structure, Database, Interfaces, Model View Controller, Google Maps API, Administration Tools, Station Software, and Synchronisation.
+	This is covered by describing how we implement the UI, Website Structure, Database, Interfaces, Model View Controller, Google Maps API, Administration Tools, Station Software, and Synchronisation.
 	 
 	\input{Src/Implementation/UI}
 	\input{Src/Implementation/websitestructure}
@@ -92,6 +105,7 @@ contents={%
 	\input{Src/Implementation/Views}
 	\input{Src/Implementation/googlemapsapi}
 	\input{Src/Implementation/AdminPage}
+	\input{Src/Implementation/Bicyclesoftware}
 	\input{Src/Implementation/Bicyclestation}
 	\input{Src/Implementation/Synchronisation}
 	%\input{Src/Implementation/History}

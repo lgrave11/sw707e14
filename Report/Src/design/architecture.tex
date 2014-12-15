@@ -1,3 +1,4 @@
+%!TEX root = ../../main.tex
 \section{Architecture}\label{sec:architecture}
 Before implementing the software system, it is a good idea to have a general overview of how the various parts of the system are connected.
 In order to gain this overview, an overall architecture diagram was drawn.
@@ -9,18 +10,18 @@ As we have a central booking system, and multiple simultaneous access points, th
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[trim=2cm 1.5cm 1cm 1.5cm, clip, scale=0.7]{design/architecture}
+	\includegraphics[trim=2cm 1.5cm 0cm 1.5cm, clip, scale=0.7]{design/architecture}
 	\caption{Overall architecture.}\label{fig:overallarch}
 \end{figure}
 
-As can be seen from the figure, the architecture consists of a central database as well as a website and three interfaces, named \texttt{GPSRegister}, \texttt{StationToDBRegister}, and \texttt{WebsiteToStationNotifier}, where \texttt{GPSRegister} and \texttt{StationToDBRegister} contact the central database.
+As can be seen from the figure, the architecture consists of a central database as well as a website and three interfaces, named \texttt{GPSRegister}, \texttt{StationToDBRegister}, and \texttt{WebsiteTo\-StationNotifier}, where \texttt{GPS\-Register} and \texttt{StationToDBRegister} contact the central database.
 Additionally, multiple stations and their associated local database and docks exists.
 The reason each station needs to have its own local database, and not merely use the central one is to minimize the necessary network communication, as well as allowing the stations to remain operational in case of network failure.
 As of such, the local databases contains a subset of the central database, corresponding to the data involving the given station.
 Each dock is associated with a given station, and is used by the users to retrieve and deliver bicycles.
 
 Additionally, the three interfaces each serves a different purpose, as described here.
-The \texttt{GPSRegister} interface, is provided for the bicycles to register their current position in the central database, as well as logging its path in another table.
+The \texttt{GPS\-Register} interface, is provided for the bicycles to register their current position in the central database, as well as logging its path in another table.
 This data provided can be used for route mapping and positioning of bicycles.
 
 The \texttt{StationToDBRegister} interface serves the purpose of updating the central database of changes performed at the local stations. Furthermore, it enables the local stations to read their subset of the central database, which is used for first time booting of stations, when their local database is empty.
