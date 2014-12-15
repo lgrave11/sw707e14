@@ -44,10 +44,10 @@ These features are implemented through two additional tables added to the databa
 The other table keeps information about the time and station a bicycle left from and arrived to, along with the specific bicycle id and a possible booking id associated with the bicycle trip.
 
 As this information needs to be captured and updated when an event occurs, either being a bicycle that is taken from a station dock or a bicycle return to a station dock, these operations are performed in the interface between the stations and the global database, see \figref{fig:overallarch}. 
-The stations will communicate with this interface when either of these events occur. 
+The stations communicates with this interface when either of these events occur. 
 The timestamp is generated just before query execution, which means that some delay can occur from the actual event firing time to the insertion time, resulting in an imprecise trip duration. 
 This is, however, considered a minor deviation in most cases, because the communication delay is short (seconds maybe even less).
-In case of a bad connection, the generated timestamp will cause useless data in the light of statistical usage, if time is an important aspect of the analysis.
+In case of a bad connection, the generated timestamp causes useless data in the light of statistical usage, if time is an important aspect of the analysis.
 For showing the traffic between stations the timestamp is used for filtering on a specified time interval and thereby allowing up to an hour of imprecision.
 This time interval is an assumed granularity and would have to be specified by the administrator.
-The graph showing the amount of bicycles docked at a station shows the timestamp on the x-axis, however, in this case it is considered acceptable with some imprecision since this data will not be used for statistics but for a visual overview.
+The graph showing the amount of bicycles docked at a station shows the timestamp on the x-axis, however, in this case it is considered acceptable with some imprecision since this data is not be used for statistics but for a visual overview.

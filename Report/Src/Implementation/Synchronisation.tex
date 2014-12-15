@@ -13,13 +13,13 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	On the other hand it is important for the central system to know when a bicycle has been removed or inserted at a station.
 	This is due to the website providing status information to the user, such that they can know where free bicycles are located.
 	The communication to ensure this, as previously mentioned, is then performed by use of SOAP.
-	In order to ensure that this communication goes through, the station has a seperate thread to communicate this information, if the station is unable to communicate that a bicycle has been removed/inserted, it will wait a bit and then try again until connection has been established.
+	In order to ensure that this communication goes through, the station has a seperate thread to communicate this information, if the station is unable to communicate that a bicycle has been removed/inserted, it waits and then tries again until connection has been established.
 	
 	\item[Booking/Unbooking]
 	The booking and unbooking of bicycles are performed on the website. 
 	The central database is then updated accordingly, and in order to ensure that the station affected is notified, JSON encoded actions are sent using TCP, as described earlier.
 	However, problems may arise if the connection to the station is down.
-	In such a case, you can risk the station not registering the booking, and as of such, one of the following actions have to be performed.
+	In such a case, you can risk the station not registering the booking, and as such, one of the following actions have to be performed.
 	\begin{itemize}
 		\item Flag to indicate new bookings
 		\item Constantly ping central database (unreliable)
@@ -27,20 +27,20 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 		\item Give the user an error message, telling him to try and book/unbook again later. 
 	\end{itemize}
 	
-	The idea behind having a flag to indicate new bookings is that a flag will be set for the station that failed to be connected to.
-	On the station side, a thread will then run and check every $x$ amount of seconds for a flag that may have been sent.
+	The idea behind having a flag to indicate new bookings is that a flag is set for the station that failed to be connected to.
+	On the station side, a thread runs and checks every $x$ amount of seconds for a flag that may have been sent.
 	If such a flag is registered when connection is re-established, the station then knows that it should update its bookings to correspond to those of the central database.
 	
 	Another more simple, but non reliable, idea is to constantly ping the central database.
 	If you for one or several of your pings then fail to connect to the central system, you know that the next time you get connection, you have to update the bookings.
-	One problem that makes us not use this approach, though, is in the timespan of two pings, if the connection fails there, the station will not get notified of a registered booking in that said time-period.
+	One problem that makes us not use this approach, though, is in the timespan of two pings, if the connection fails there, the station does not get notified of a registered booking in that said time-period.
 	
 	Those two ideas involves giving the station the responsibility of having up to date booking information.
 	However, another perspective can also be taken.
 	One such approach is to develop a service to run on the central part of the system.
-	The responsibility of this service is then to ensure that the station will get notified.
+	The responsibility of this service is then to ensure that the station gets notified.
 	The idea is that the service holds queues of notifications to be sent out, one such queue for each station.
-	The service can then get notified to enqueue a notification, but the service will then continuously try and deliver the notifications from the queues to the stations. 
+	The service can then get notified to enqueue a notification, but the service then continuously tries to deliver the notifications from the queues to the stations. 
 	This is found to be a good approach, since it ensures that when connection is established to a station again, the notifications it needs gets delivered.
 	
 	The last approach is to give the user an error message telling him to try and book/unbook again later.
@@ -56,7 +56,7 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	This part of the synchronisation is, however, developed as this is a simulation, and as we run the station software on different computer it is advantageous for testing to keep this updating of booking information in place, such that the various computers gets the booking information updated.
 	
 	\item[Dock insertion/removal]
-	When a dock gets inserted or removed from a station, the station has a separate thread that keeps trying to call the web service on the central system part, to register that a dock has been inserted/removed at the given station, this is repeated until the web-service has been correctly used.
+	When a dock gets inserted or removed from a station, the station has a separate thread that keeps trying to call the web service on the central system part, to register that a dock has been inserted/removed at the given station, this is repeated until the web service has been correctly used.
 	This is achieved with specific functions for the \texttt{StationToDBRegister} service.
 	
 \end{description}

@@ -17,7 +17,7 @@ As we have a central booking system, and multiple simultaneous access points, th
 As can be seen from the figure, the architecture consists of a central database as well as a website and three interfaces, named \texttt{GPSRegister}, \texttt{StationToDBRegister}, and \texttt{WebsiteTo\-StationNotifier}, where \texttt{GPS\-Register} and \texttt{StationToDBRegister} contact the central database.
 Additionally, multiple stations and their associated local database and docks exists.
 The reason each station needs to have its own local database, and not merely use the central one is to minimize the necessary network communication, as well as allowing the stations to remain operational in case of network failure.
-As of such, the local databases contains a subset of the central database, corresponding to the data involving the given station.
+As such, the local databases contains a subset of the central database, corresponding to the data involving the given station.
 Each dock is associated with a given station, and is used by the users to retrieve and deliver bicycles.
 
 Additionally, the three interfaces each serves a different purpose, as described here.
@@ -50,10 +50,10 @@ In that regard, we imagine a distinction between reserved unlocked bicycles and 
 
 For delivery of bicycles, the interaction is the same whether the bicycle is booked or not.
 The process is easy, as you locate a free dock and then place the bicycle at that dock.
-The system will then automatically register that the bicycle has been returned to a dock at the station.
+The system then automatically registers that the bicycle has been returned to a dock at the station.
 
 %stationer skal have egen database
 %forklaring af figur
-%husk teori og fancy ord, SOAP webservice er et eksempel
+%husk teori og fancy ord, SOAP web service er et eksempel
 
 %uddybbelse af de enkelte komponenter.

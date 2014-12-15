@@ -9,7 +9,7 @@ Examples of such problems are listed underneath, and thereafter further describe
 \begin{description}[style=nextline]
 \item[Problem 1.1] Consider the scenario where a user $u_1$ makes a booking $b_1$ on the website at time $t_1$ wanting to reserve a bicycle for time $t_3$. Before time $t_1$ another user $u_2$ made a booking $b_2$ of a bicycle for time $t_2$. Both users made a booking at the same station, and the amount of available bicycles for that station was for both users 1. Under the assumption that a bicycle cannot be locked and thereby reserved before some amount of time, say $t_{before}$, before usage, this scenario is possible in the following way.
 
-First consider this definition of a time $t$, it is a time represented as the number of seconds from Thursday, 1 January 1970 at 00:00:00 UTC, which is the Epoch time, as of such comparisons such as $>$ is just computed as usual on numbers.
+First consider this definition of a time $t$, it is a time represented as the number of seconds from Thursday, 1 January 1970 at 00:00:00 UTC, which is the Epoch time, as such comparisons such as $>$ is just computed as usual on numbers.
 Let, 
 $$TSB(b) = \{(t_1,t_2) \;| \;t_1 = st(b) - t_{before} \land t_2 = st(b) \land t_1 \leq t_2 \}$$
 where,
@@ -26,7 +26,7 @@ where,
 Then the scenario is given if $TSB(b_2)$ starts before $TSB(b_1)$ and $TSB(b_2)$ starts after $t_1$, we have a situation as can be seen in \figref{fig:booking-illustartion}.
 As can be examined from the illustration, a problem occurs, under the assumption that no new bicycles gets delivered or taken from the given station in the given time-line, and where the amount of available bicycles before the lock-time of $b_2$ is 1.
 
-The problem for user $u_1$ is then at time $t_1$ it appeared that a bicycle was available, but the bicycle will be locked for user $u_2$ (although not entirely certain, see Problem 1.2) before it will be locked for $u_1$ resulting in an availability count of 0 for $u_1$, thereby having no bicycle to lock for $u_1$.
+The problem for user $u_1$ is then at time $t_1$ it appeared that a bicycle was available, but the bicycle is locked for user $u_2$ (although not entirely certain, see Problem 1.2) before it is locked for $u_1$ resulting in an availability count of 0 for $u_1$, thereby having no bicycle to lock for $u_1$.
 
 \item[Problem 1.2] Having a booking system that is capable of capturing the state of each station, giving available bicycles and available free docks, along with the ability to borrow a bicycle without interacting with the booking system, imposes an element of unpredictability.
 
@@ -67,24 +67,24 @@ When a booking has been processed, meaning that the user has taken the bicycle a
 This change in state is also communicated to the global database maintained by the global system.
 But when trying to communicate the change, the connection is interrupted due to a failure in the software at the station.
 
-The problem is then, formulated with other words, which database will hold the correct state of the overall system?
+The problem is then, formulated with other words, which database holds the correct state of the overall system?
 This depends highly on the direction of communication failure. 
 In the described case above, the communication failure lies with the station software resulting in the local database of the station having the correct and current state of the system, which is when it comes to the state of the docks.
 
 
 But if the direction of communication is the opposite, which would be involving bookings registered, the global system would have the correct booking information.
 
-The desired behaviour of the system is to always be in a correct state, which requires that when a communication failure happens, the part participating in the communication holding the correct state will resend its information, or the one with the inconsistent reads the state from the consistent counterpart.
+The desired behaviour of the system is to always be in a correct state, which requires that when a communication failure happens, the part participating in the communication holding the correct state resends its information, or the one with the inconsistent reads the state from the consistent counterpart.
 
-There are two cases for the communication between the station software and the global system (web-service).
+There are two cases for the communication between the station software and the global system (web service).
 
 \textbf{Station to Global System}\\
-A communication failure in this direction will result in a faulty state of how many bicycles are available at the given station thereby resulting in a rather useless website for booking.
+A communication failure in this direction results in a faulty state of how many bicycles are available at the given station thereby resulting in a rather useless website for booking.
 Additionally, this can also involve the global system having the incorrect amount of docks registered, if such a change were performed at the station.
 
 \textbf{Global System to Station}\\
-A communication failure in this direction will result in a failing booking system, in that no booking made at the website will reach the station and thereby have no effect at all.
-In the end this will also give a faulty state of how many bicycles are available at the given station because the station will not know of the booking and thereby not perform the necessary actions to make it a booking.
+A communication failure in this direction results in a failing booking system, in that no booking made at the website reaches the station and thereby have no effect at all.
+In the end this gives a faulty state of how many bicycles are available at the given station because the station does not know of the booking and thereby not perform the necessary actions to make it a booking.
 
 % station --> web : update, insert
 % web --> station : insert, delete, update
