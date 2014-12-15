@@ -134,6 +134,7 @@
 	\subsection*{How good is the classifier}
 	To determine the quality of the classifier, we used cross-validation, by splitting the data 10-fold.
 	For each fold, we use that as a temporary test set, and the other 9 folds as training data, and then calculate the performance, after which we calculate the average performance of the 10 runs. This gave us an precision of about $80\%$ for positives, but we had a precision of about $60\%$ for negatives.
+	A reason for this could be that the training set mainly consists of positive reviews, and as of such there is not as much training data for the negative reviews, making this classifier less accurate.
 	We find this a good performance, considering the low complexity of the classifier.
 	
 \end{document}

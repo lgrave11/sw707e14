@@ -1,0 +1,8 @@
+\section{Bicycle Simulation}
+Part of the problem domain are the bicycles themselves, specifically one of the requirements for the system is that the bicycles can be tracked.
+One aspect of tracking bicycles is displaying historical data and how this is managed on the administrative side of things, for more detail about this see \secref{sec:impAdminTools}.
+Another aspect is what interface the bicycles need to report their position, which can be read about in \secref{subsec:bicycletodatabase}. 
+Given those two, we also need to simulate bicycles in some way.
+To do this, a program was made where the user can pick which bicycles to move. 
+This program also includes various routes following roads in Aalborg, such that the position reported is realistic.
+How the program then functions is that for each route with its associated route started, a thread is started to continuously contact the \texttt{GPSRegister} interface at the time intervals associated with the routes.

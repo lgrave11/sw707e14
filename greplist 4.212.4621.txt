@@ -11,12 +11,12 @@ Ydermere, husk at ændre metasprog i design. ✓
 Kig på textit, hvis det er noget der er en slags kode så brug texttt. ✓
 grep efter _ og lav det til textt :D
 
-he/she -> he
-him/her -> him
+he/she -> he ✓
+him/her -> him ✓
 
-url -> URL
+url -> URL ✓
 
-. tilsidst i caption
+. tilsidst i caption ✓
 
 , that -> FYFY!
 will -> FYFY!! (enkelte undtagelser)

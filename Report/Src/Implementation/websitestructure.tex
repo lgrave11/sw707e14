@@ -3,7 +3,7 @@ The website is structured with a modified MVC pattern, for an explanation of the
 In order to make the usage of MVC easy, a framework from \citep{misc:mvc-framework} is used.
 
 The framework provides a controller base class, see \figref{fig:websitestructure}, that the new controllers inherit from, mainly providing a database instance.
-It also provides an \texttt{Application} class that handles url parsing and navigation to the correct pages based on the url.
+It also provides an \texttt{Application} class that handles URL parsing and navigation to the correct pages based on the URL.
 In addition to this, it provides a directory structure. As an example, you can add a controller to the controller directory, and the \texttt{Application} class is able to load them, same idea goes for the model and view layer.
 
 \begin{figure}
@@ -41,8 +41,8 @@ The structure is split into several parts, each of which is examined in turn.
 	A characteristic of views in general is that it consist of a lot of HTML markup and a low amount of program logic, as this work is delegated to the model and controller layer. 
 	
 	\item[Application]
-	When the browser visits the website, rewrite rules has been set in the \texttt{.htaccess} file, to ensure that the relative path part of the url is given as an argument to the default index file. This index file then loads the required files, such that the instantiated Application object has access to the configuration files needed.
-	The GET variable url, which was set from the \texttt{.htaccess} file is then used by the Application object to navigate to the correct controller and action.
+	When the browser visits the website, rewrite rules has been set in the \texttt{.htaccess} file, to ensure that the relative path part of the URL is given as an argument to the default index file. This index file then loads the required files, such that the instantiated Application object has access to the configuration files needed.
+	The GET variable URL, which was set from the \texttt{.htaccess} file is then used by the Application object to navigate to the correct controller and action.
 	
 	
 \end{description}
