@@ -18,15 +18,17 @@ url -> URL ✓
 
 . tilsidst i caption ✓
 
-, that -> FYFY!
-will -> FYFY!! (enkelte undtagelser)
+, that -> FYFY! ✓
+will -> FYFY!! (enkelte undtagelser) ✓
 
 stationservice -> station service ✓
 
-Route History fjern chosen bicycle
+Route History fjern chosen bicycle ✓
 
 Grim boks i station software muligvis rettes ✓
 
 smart-phone -> smartphone ✓
 
 Fiks field resets ✓
+
+as of such -> as such ✓
