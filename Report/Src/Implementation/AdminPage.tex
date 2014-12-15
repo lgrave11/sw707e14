@@ -53,9 +53,9 @@ The result of this can be seen in \figref{fig:UI-admin}.
 % How is it implemented?
 
 Besides recording the exact location of each bicycle with GPS coordinates, the system also records the stations a given bicycle visits.
-This information is stored in the \texttt{historyusagebicycle} table implemented from \secref{sec:designAdminTools}.
+This information is stored in the \texttt{historyusage\-bicycle} table implemented from \secref{sec:designAdminTools}.
 Information is inserted into this table based on events happening at the stations. 
-Every time a bicycle is taken from a dock at a station the \texttt{StationToDBRegister} interface is contacted, which takes care of inserting the information about the start station of the trip.
+Every time a bicycle is taken from a dock at a station the \texttt{StationTo\-DBRegister} interface is contacted, which takes care of inserting the information about the start station of the trip.
 Furthermore every time a bicycle is returned to a station the interface takes care of updating the trip with an end station.
 Keeping such information about a bicycle trip can be used to give an overview of the bicycle traffic between stations.
 

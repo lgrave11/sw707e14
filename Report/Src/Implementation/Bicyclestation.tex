@@ -1,3 +1,4 @@
+%!TEX root = ../../main.tex
 \section{Station Software}
 The station software package contains two aspects, software intended to be run on the stations that are placed at each station location throughout the city, and software to simulate the hardware we do not have access to, used as proof of concept.
 For an overview of the station structure, see \figref{fig:stationarch}. 
@@ -30,7 +31,7 @@ There is also a button to quickly return to the main window, which otherwise hap
 \subsection{Station Backend}
 The station backend contains three responsibilities as listed below, see \secref{subsec:stationsoftdesfgi}.
 \begin{itemize}
-	\item A listener that listens for signals from the global database interface called \texttt{WebsiteToStationNotifier}, see \secref{sec:webToStationI}, signalling that a booking has been created or removed.
+	\item A listener that listens for signals from the global database interface called \texttt{WebsiteTo\-StationNotifier}, see \secref{sec:webToStationI}, signalling that a booking has been created or removed.
 	\item A lock manager that is responsible for locking a bicycle at a dock when a booking is close to its start time, and unlocking if a booking has expired.
 	\item Communication with the global database through a SOAP service interface described in \secref{sec:stationToWebI}.
 \end{itemize}
