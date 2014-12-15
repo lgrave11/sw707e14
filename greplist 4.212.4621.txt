@@ -18,8 +18,8 @@ url -> URL ✓
 
 . tilsidst i caption ✓
 
-, that -> FYFY!
-will -> FYFY!! (enkelte undtagelser)
+, that -> FYFY! ✓
+will -> FYFY!! (enkelte undtagelser) ✓
 
 stationservice -> station service ✓
 
