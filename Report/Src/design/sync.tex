@@ -1,7 +1,7 @@
 \section{Synchronisation}\label{sec:sync}
-As the stations and the website are located on different addresses and communication is through TCP, you have to consider how to synchronise the various parts of the system, in order to avoid an inconsistent state.
+As the stations and the website are located on different addresses, you have to consider how to synchronise the various parts of the system, in order to avoid an inconsistent state.
 
-Several types of such inconsistent information could happen if you are not careful.
+Several scenarios resulting in such inconsistencies could happen if you are not careful.
 
 A scenario that could lead to an inconsistent state, if not handled well, is what happens when a station fails to communicate its current state to the global system.
 A station maintains a local database holding information about each current booking made at that station.
@@ -11,8 +11,7 @@ This change in state is also communicated to the global database maintained by t
 A problem can occur when trying to communicate the change as the connection can be interrupted.
 This problem is then, formulated with other words, which database holds the correct state of the overall system?
 This depends highly on the direction of communication failure. 
-In the described case above, the communication failure lies with the station software resulting in the local database of the station having the correct and current state of the system, which is when it comes to the state of the docks.
-
+In the described case above, the communication failure lies with the station software resulting in the local database of the station having the correct and current state of the system.
 
 But if the direction of communication is the opposite, which would be involving bookings registered, the global system would have the correct booking information.
 
@@ -30,6 +29,8 @@ In the end this results in a faulty state of how many bicycles are available at 
 \end{description}
 
 
-How these cases are tackled is described in \secref{sec:implsync}.
+How these cases are handled is described in \secref{sec:implsync}.
+
+With the architectural design and the visual design of the system set in place as well as rules set in place for how locking should behave, the implementation details of how this is implemented follows.
 % station --> web : update, insert
 % web --> station : insert, delete, update

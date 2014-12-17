@@ -1,7 +1,7 @@
 \section{Other Existing Systems}\label{sec:existing-systems}
 A part of analysing and designing a city bicycle system is to investigate the current solutions on the market. 
 Therefore an evaluation of existing systems is conducted.
-We found several existing systems implementing different aspects and features of a city bicycle system. 
+We found several existing systems that implement different aspects and features of a city bicycle system. 
 These systems are listed below:
 \begin{itemize}
 \item Bycyklen in Copenhagen by Gobike
@@ -9,36 +9,34 @@ These systems are listed below:
 \item Alta Bicycle Share by Alta
 \end{itemize}
 \subsection{Bycyklen in Copenhagen by Gobike}
-The bicycle share system in Copenhagen is called Bycyklen and contains 1,860 bicycles and 100 stations \citep{misc:bycyklen}. 
-Gobike is a Danish/Dutch company that designed this smart system with a bicycle they call Smart Bike. 
-The Smart Bike is equipped with an information screen in the form of a tablet providing the user with an interface to lock the bicycle, select the level of assistance from the electrical system, navigate through the city via GPS and explore new interest points such as cafés and shops.
+The bicycle share system in Copenhagen is called Bycyklen and contains 1,860 bicycles and 100 stations \citep{misc:bycykelwinde}. 
+Gobike \citep{misc:bycyklen} is a Danish/Dutch company that designed this smart system with a bicycle they call Smart Bike. 
+The Smart Bike is equipped with an information screen in the form of a tablet providing the user with an interface to lock the bicycle, select the level of assistance from the electrical system, navigate through the city via GPS, and explore new interest points such as cafés and shops.
 Furthermore, users of the bicycle system are able to check bus or train arrivals near their current location.
 The Smart Bike uses the tablet to send the location, who is travelling, and other statistics about the bicycle such as battery life to Gobike Admin.
-Gobike is currently looking at possibilities such as location based marketing, adjusting the traffic lights according to the cyclist based on the pattern of the bicycle trip, and the weather such as wind speed.
-Bycyklen has a very simple 3-step process to rent a Smart Bike.
+Gobike is currently looking at possibilities such as location based marketing, adjusting the traffic lights according to the cyclists based on the pattern of the bicycle trip, and the weather such as wind speed.
+The Smart Bike enables the user to lock the bicycle and securely park it during the bicycle trip.
+Bycyklen has a simple 3-step process to rent a Smart Bike.
 \begin{enumerate}
 \item Book a Smart Bike ahead from your computer or tablet, find a Smart Bike and log in via the on-board tablet.
 \item Unlock the bicycle through the tablet, drive around in the city, possibly assisted by the GPS, paying by the hour.
 \item Return the Smart Bike, lock the bicycle and log out of the system via the tablet.
 \end{enumerate}
-The Smart Bike enables the user to lock the bicycle and securely park it during the bicycle trip.
 
 \subsection{Cibi By AFA JCDecaux}
-The Cibi bicycle system relies on SMS, where a booking of a bicycle is performed by sending an SMS to a special number with the ID of the bicycle slot in the station \citep{misc:cibi}. 
-The user then receives an acceptance SMS and the bicycle is unlocked from the station. 
+The Cibi bicycle system relies on SMS, where a booking of a bicycle is performed by sending an SMS to a special number with the ID of the bicycle slot at the station \citep{misc:cibi}. 
+The user then receives a confirmation SMS and the bicycle is unlocked from the station. 
 A bicycle trip is charged by the hour, and as with the bicycle share system in Copenhagen, a user can lock the bicycle during the trip. 
 This is done through a wire lock which uses a code that the user was given in the SMS when booking the bicycle.
 The system also allows for checking the amount of bicycles at a station on the website, using special docks and chips on the bicycle \citep{misc:omcibi}.
 
 \subsection{Alta Bicycle Share}\label{subsec:alta}
 Alta Bicycle Share is a company that design, deploys, and manages bicycles in USA \citep{misc:AltaBicycleShare}.
-The company currently have projects ongoing in nine different cities in USA, with more than a thousand stations and over tens of thousands of bicycles. 
-Alta Bicycle Share believes that people get the best experience from the environment when the environment is sustainable and enjoyable.
+The company currently have projects ongoing in nine different cities in USA, with more than a thousand stations and over tens of thousands of bicycles.
 The bicycle stations are designed such that they can be placed everywhere in the cities without any preparation, since they get electricity from solar panels.
-Furthermore, the stations are using a cellular connection to upload their data to the main database, so the citizens can see if there are any bicycles at a given station.
-To rent a bicycle from one of Alta Bicycle Share's system, you have to use a card, which can be bought in shops near the stations.
+Furthermore, the stations are using a cellular connection to upload data to the main database, so the citizens can see if there are any bicycles at a given station.
+To rent a bicycle from one of Alta Bicycle Share's systems, you have to use a card, which can be bought in shops near the stations.
 These cards then give access to any bicycle for a given time at any station, however, using the bicycle for a longer period\tododennis{Hvor meget?} of time can lead to a fee.
-The Alta Bicycle stations also allow for tracking how many bicycles are available at a given station.
 
 \subsection{Summary}
 The Copenhagen city bicycle system, Bycyklen, includes some good features such as a booking system that works using a tablet on the bicycle that is connected to the internet.
@@ -55,9 +53,9 @@ Alta on the other hand uses a card to rent bicycles, and uploads information abo
 	\begin{tabular}{|p{0.13\textwidth}|p{0.18\textwidth}|p{0.18\textwidth}|p{0.18\textwidth}|p{0.2\textwidth}|}
 		\hline                       & \pbox{20cm}{\bfseries Aalborg\\ Bycyklen}           & \pbox{20cm}{\bfseries Copenhagen\\ Gobike} & \pbox{20cm}{\bfseries Cibi}                     & \pbox{20cm}{\bfseries Alta Bicycle Share} \\ 
 		\hline \textbf{Booking}               & No                            & On a tablet       & Yes                      & No \\ 
-		\hline \textbf{Borrowing / unlocking} & Deposit 20DKK                 & Login with tablet & SMS code deposit 300DKK  & Keycard \\ 
+		\hline \textbf{Borrowing / unlocking} & Deposit 20 DKK                 & Login with tablet & SMS code deposit 300 DKK  & Keycard \\ 
 		\hline \textbf{Tracking}              & No                            & GPS               & Dock + chip at stations  & Dock at stations \\ 
-		\hline \textbf{Penalty}               & Loss of deposit               & Continues payment & Loss of deposit          & Fine per half hour overtime \\ 
+		\hline \textbf{Penalty}               & Loss of deposit               & 200 DKK & Loss of deposit          & Fine per half hour overtime \\ 
 		\hline \textbf{Cost}                  & Deposit, but otherwise free   & First half hour free, then pay per hour    & First hour free, then pay per hour  & Depends on membership \\ 
 		\hline 
 	\end{tabular} 
@@ -66,7 +64,7 @@ Alta on the other hand uses a card to rent bicycles, and uploads information abo
 \end{table}
 
 A comparison of the different bicycle sharing systems examined can be seen in \tabref{tab:bicyclecompare}.
-As can be seen, \bycykel is lacking a few features compared to the other systems and signifies a room for improvement.
+As can be seen, \bycykel is lacking in features compared to the other systems and signifies a room for improvement.
 The improvements to be performed are then inspired by the other examined systems.
 However, \bycykel is free to use as long as you deliver a bicycle back after use. 
 This ease of accessibility of \bycykel we find valuable, and is something we wish to keep in the developed solution.

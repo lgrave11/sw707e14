@@ -1,4 +1,4 @@
-\section{The Internet of Things}
+\section{Internet of Things}
 This section introduces the \textbf{I}nternet \textbf{o}f \textbf{T}hings (IoT), along with examples of how it is used. 
 The section also introduces various hardware considerations to provide the context in which real-world applications for the IoT are developed.
 
@@ -9,7 +9,7 @@ Real usage of the IoT manifests as systems to provide some service, either by in
 An example of this could be a `smart home' that allows you to use a single device to manage the connected things in your home, such as the lights or the oven in the kitchen \citep{misc:InternetOfThingsExamples}.
 One society-wide use for it is the idea of a `smart power grid', where the electricity usage is monitored and managed by an intelligent system that e.g. redirects electricity if a cable has been cut somewhere in the system \citep{misc:smartGrid}.
 
-There are already a lot of things in the IoT, and by 2020 it is estimated that there can be upwards of around 26-30 billion things \citep{misc:IoTGrowth1,misc:IoTGrowth2}.
+There are already a lot of things in the IoT, and by 2020 it is estimated that there can be upwards of 26-30 billion things in it \citep{misc:IoTGrowth1,misc:IoTGrowth2}.
 This likely requires a shift to the IPv6 protocol as the amount of IP addresses are severely limited by IPv4 \citep{misc:numberOfAddresses} given that the additions to IPv4, such as multiple devices sharing a single IP address, at some point becomes insufficient.
 
 One important aspect of the things connected to the IoT is what technology they use to connect, WiFi or mobile networking are obvious choices of communication means.
@@ -23,7 +23,7 @@ For example if there is a station for bicycles in a bicycle sharing system that 
 In order to give more detail on IoT, aspects about identification, communication, and software is given.
 
 \subsection{Identification}
-In order to uniquely identify the things in the IoT, different approaches can be taken, we give an example.
+In order to uniquely identify the things in the IoT, different approaches can be taken.
 
 One idea is to use the IP address of an object, which has relation to the previously discussed IPv4 versus IPv6 issue.
 With IPv6, this approach would have enough addresses to uniquely identify a large number of things.
@@ -33,20 +33,20 @@ When you have a unique address, you can use that to uniquely identify the given 
 An example of use is the power grid, where each power station can uniquely be identified with the IPv6 address, and as such, in case of malfunction in one of the grid connections, it would be possible to identify the stations lacking power.
 
 \subsection{Communication}
-In order for IoT to work, it is necessary to have a communication established.
+In order for the IoT to work, it is necessary to have a communication established.
 If that was not the case, the things would not be part of the IoT, as the central idea is that you can communicate over the internet.
 
 One idea of communication for sensors is as follows.
 Each sensor has access to the internet to contact a web service with their given reading.
 However, it is unrealistic that each sensor alone is directly connected to the internet, and as such, other alternatives can be performed.
-One such alternative is that a given thing consists of a communication device connected to several sensors and the internet.
+One such alternative is that a thing consists of a communication device connected to several sensors and the internet.
 The communication device can then read from the sensors and contact the web service.
 
 However, the communication does not end at this point.
 The idea is that the communication is not limited to machine-machine communication, but is expanded to communication over the internet, such that the things of the IoT can be contacted from anywhere on the internet.
 
 \subsection{Software}
-Examples of Software that utilise the IoT are given to give a concrete idea of the power of IoT.
+Examples of Software that utilise the IoT are given to get a concrete idea of the power of the IoT.
 
 We expand on the example of the smart power grid.
 Such a power grid uses the information it has about each section of the grid, to ensure that there is sufficient power reaching every part of the grid, even in cases where part of the grid malfunctions.
