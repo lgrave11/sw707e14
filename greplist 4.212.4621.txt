@@ -40,3 +40,8 @@ bikes -> bicycles
 bike -> bicycle(ikke gobike)
 IoT uden the -> the IoT
 Internet of Things uden the -> the Internet of Things
+notifyStationDockChanged -> Slet!
+
+Check whitespace
+
+Period after itemize.
