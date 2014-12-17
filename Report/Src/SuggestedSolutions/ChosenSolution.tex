@@ -2,11 +2,25 @@
 To provide the project with valuable information about how the system could work in the real world, we also choose a solution for the hardware elements.
 This is despite the fact that only the chosen software solution is implemented, which is the website, the interfaces and the simulated hardware elements.
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=3]{serverrichpicture/server.pdf}
+\caption{The server and the associated stations.}
+\label{fig:ServerRichPicture}
+\end{figure}
+
 For the availability of bicycles, we choose to use docks since it also covers part of the hardware aspect of a different requirement, being able to lock.  
 For locking we also choose to use passwords that need to be input at the station because it is something everyone can do once the booking has been done, as SMS, QR codes, and GPS require phones and might not be suitable for tourists.
 For tracking of bicycles we use GPS.
 
 The following provides an overview of the chosen solution using rich pictures.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=3]{stationrichpicture/station.pdf}
+\caption{The station and the bicycles.}
+\label{fig:StationRichPicture}
+\end{figure}
 
 The server-station relationship is shown in \figref{fig:ServerRichPicture}.
 It depicts a central server, where the different bicycle stations are connected to.
@@ -16,21 +30,10 @@ The server contains all information about each station, such as bookings, amount
 It provides booking and amount of available bicycles at stations through a website to the user. 
 Usage statistics are provided to the facilitators of the system and gives them the ability to improve the system. 
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=3]{serverrichpicture/server.pdf}
-\caption{The server and the associated stations.}
-\label{fig:ServerRichPicture}
-\end{figure}
+
 
 The dock that provide the locking and unlocking mechanism along with the bicycle detection ability have to communicate with the station. 
 This is for example when they need to unlock a booked bicycle, the information needs to be propagated from the station to the individual dock containing the bicycle.
 A sketch of how a station could look like when deployed can be seen in \figref{fig:StationRichPicture}.
 The figure depicts a station and two docks connected to the station, which contains a bicycle each. 
 On the display of the station, it can be seen that two bicycles are available for use.
-\begin{figure}[h]
-\centering
-\includegraphics[scale=3]{stationrichpicture/station.pdf}
-\caption{The station and the bicycles.}
-\label{fig:StationRichPicture}
-\end{figure}

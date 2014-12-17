@@ -16,21 +16,21 @@ This part of the administration site handles showing a map of the historical loc
 The administrator provides one or more bicycles, a start, and end date.
 Then if there are historical GPS coordinates for the bicycle(s), they are shown on the map. 
 
-The purpose of the route history page is to give the administrators an idea of which roads the bicycles are traveling a lot on. 
-This can then be used as a decision-making tool to decide where to put new stations, in that if the administrator can see that a lot of bicycles are traveling to a specific point it might be a good idea to put a station there.
-It could also be used to see if a specific bicycle is being misused in the sense that it would be visible if the bicycle is being used as a private bicycle.
-
-See \figref{fig:routehistory} for an illustration of what the page looks like.
-
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{RouteHistory.png}
+	\includegraphics[scale=0.4]{RouteHistory.png}
 	\caption{Route History.}
 	\label{fig:routehistory}
 \end{figure}
 
-From the figure, the presentation of routes are shown for the bicycles with id 36 and 95.
+The purpose of the route history page is to give the administrators an idea of which roads the bicycles are traveling a lot on. 
+This can then be used as a decision-making tool to decide where to put new stations, in that if the administrator can see that a lot of bicycles are traveling to a specific point it might be a good idea to put a station there.
+It could also be used to see if a specific bicycle is being misused in the sense that it would be visible if the bicycle is being used as a private bicycle.
 
+
+See \figref{fig:routehistory} for an illustration of what the page looks like.
+
+From the figure, the presentation of routes are shown for the bicycles with id 36 and 95.
 The reason multiple bicycles can be selected is to enable the administrator to compare routes on the same map.
 
 This feature make use of the \texttt{historyusagelocation} table designed and implemented, showing the coordinates from the table in a map.
@@ -84,13 +84,16 @@ To illustrate how the amount of bicycles change over time, a line diagram is gen
 To illustrate the traffic between stations we use a chord diagram. 
 An example of this diagram can be seen in \figref{fig:chorddiagram}.
 The main idea for the usage of such a diagram is that it provides an overview of the amount of trips between stations, easily illustrating which stations are popular and what stations are popular to travel to from a given station.
+
 The diagram can seem messy if you take a glance at it, however, if you hover over a given station, the connections not involving the station is greyed out, making it easier to focus on said station.
+
 The input to the diagram is a list of station names and a $n \times n$ matrix where $n$ is the number of stations and where each entry $e_{i,j}$ is the number of bicycles travelling from station $i$ to station $j$. 
 Each block at the edge of the diagram represents a station. 
 The wider the block, the more bicycles have left that station. 
 Each arc of the same colour as the block it is connected to, indicates the number of bicycles leaving the station and the destination of the bicycles. 
 The width of the arc at each end point shows how many bicycles have travelled in each direction between the two stations. 
 For example the red one in the top between the two blue blocks shows that bicycles leaving have travelled to two different destinations. 
+
 As seen from the table on the right, one bicycle went to Karolinelund, and one to Strandvejen. 
 Since the arc is narrow at the destination block it means that no bicycle went the other way. 
 In some cases the arc destination is somewhere between blocks. 

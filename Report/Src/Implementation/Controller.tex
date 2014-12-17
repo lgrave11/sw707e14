@@ -9,6 +9,7 @@ The home controller uses two services, \texttt{StationService}, used to retrieve
 This illustrates the general idea behind the separation of the entities (the models) and the services associated with those entities.
 The index action of the home controller then uses the information loaded by `including' views, and these views then use this information for displaying the content read from the services.
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[language=php, label=lst:homeController, caption={Home Controller Class.}]
 <?php
 class Home extends Controller
@@ -32,6 +33,7 @@ class Home extends Controller
     // [...]
 }
 \end{lstlisting}
+\end{minipage}
 
 As can be seen on line 16-18 three views are included into the function. Because of the way include works in PHP the included content is in the same scope as the rest of the function, which means we can use the variables declared in the function, inside the included content.
 
