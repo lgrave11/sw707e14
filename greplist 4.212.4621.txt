@@ -32,3 +32,11 @@ smart-phone -> smartphone ✓
 Fiks field resets ✓
 
 as of such -> as such ✓
+
+DKK uden mellemrum -> DKK med mellemrum
+additionally -> ???
+UI -> GUI 
+bikes -> bicycles
+bike -> bicycle(ikke gobike)
+IoT uden the -> the IoT
+Internet of Things uden the -> the Internet of Things
