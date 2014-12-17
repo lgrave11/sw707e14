@@ -25,5 +25,5 @@ The lock mechanism cannot be left as a responsibility of the database as the goa
 If we were to make this a responsibility of the database, it would mean that the locking should be performed immediately, but if you book a bicycle for tomorrow that would mean a bicycle would be unavailable for other users for a whole day, which is highly undesired.
 An alternative would be to limit the time in advance you can make a booking, this would also increase the dynamic of the system, but would limit the booking flexibility.
 This is a trade off between certainty of getting the bicycle booked and a dynamic system where more bicycles are in use.
-It is chosen that the dock should be locked one hour in advance of a booking, risking that not all bookings will have a bicycle locked for it.
+It is chosen that the dock should be locked one hour in advance of a booking, risking that not all bookings have a bicycle locked for it.
 Bookings having earlier start time are prioritised, if two or more bookings have equal start time they are prioritised according to registration time.
