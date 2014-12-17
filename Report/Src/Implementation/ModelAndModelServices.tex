@@ -33,7 +33,7 @@ Furthermore, CRUD dictates that the service should handle all contact with the d
 
 It is also the responsibility of the model to handle all reads from the database, although it is not included in the implemented interface.
 This is because it may not always make sense to have a method that can read an entity from the database, and thereby this would possibly never be used.
-The reason for this is because what you want to read varies a lot, e.g. do you want to \texttt{read} multiple rows from the database or a single row.
-This is in contrast to \texttt{delete} or \texttt{update} that works on a single row.
+The reason for this is because what you want to read varies a lot, e.g. do you want to read multiple rows from the database or a single row.
+This is in contrast to delete or update that works on a single row.
 
 With the model layer described, we take a look at how the controllers are constructed, and how they use the model layer.

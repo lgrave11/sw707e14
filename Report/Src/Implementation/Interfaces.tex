@@ -10,7 +10,7 @@ The website has to establish contact to a station when a booking or un-booking h
 It is evident that this is important, as the stations need to be notified to keep track of bookings involving themselves as station, or else the booking information of the stations is outdated.
 
 This contact is established through TCP/IP, and is used in implemented notification methods.
-These being \texttt{notifyStationDockChanged}, \texttt{notifyStationBooking}, and \texttt{notify\-Station\-Unbooking}.
+These being \texttt{notifyStationBooking} and \texttt{notify\-Station\-Unbooking}.
 The call to the notification methods is added in the \texttt{BookingService}, as each time a booking is created, updated, or deleted, it is called through \texttt{BookingService}.
 
 In general, the notification methods work in the following way:
@@ -28,7 +28,7 @@ How the JSON encoded message looks like, as well as how the station handles this
 
 \subsection{Station to Database}\label{sec:stationToWebI}
 This section is about the \texttt{StationToDBRegister} interface from \figref{fig:overallarch}.
-The station to database interface is important in order to register when a bicycle has been taken at a station or returned to a station, in order to give correct information on the website status page.
+The station to database interface is important in order to register when a bicycle has been taken at a station or returned to a station, in order to give correct information on the website.
 Additionally the interface is used to retrieve information about bookings registered in the large database, in case of boot/reboot of a station.
 
 The interface has been implemented in a SOAP encoding by help of the NuSOAP library \citep{misc:nusoap}.
@@ -59,8 +59,9 @@ $server->register('BicycleReturnedToDockAtStation',
 function BicycleReturnedToDockAtStation($bicycle_id, $station_id, $dock_id)
 {
 	global $db;
-	$stmt = $db->prepare("UPDATE dock SET holds_bicycle = ? WHERE station_id = ? AND dock_id = ?");
-	$stmt->bind_param("iii", $bicycle_id, $station_id, $dock_id);
+	[...]
+	$stmt = $db->prepare("UPDATE dock SET holds_bicycle = ? WHERE  dock_id = ?");
+	$stmt->bind_param("ii", $bicycle_id, $dock_id);
 	$stmt->execute();
 	$stmt->close();
 	
@@ -70,23 +71,23 @@ function BicycleReturnedToDockAtStation($bicycle_id, $station_id, $dock_id)
 \end{lstlisting}
 \end{minipage}
 
-If you take a look at \lstref{lst:bicycledockstationreturned}, the code is split into two parts, line 1-17 and line 18-28, which handles different parts of providing a method to register that a bicycle has returned to a dock at a given station.
+If you take a look at \lstref{lst:bicycledockstationreturned}, the code is split into two parts, line 1-17 and line 18-29, which handles different parts of providing a method to register that a bicycle has returned to a dock at a given station.
 
 Line 1-17 takes care of registering the PHP function, such that it can be included in the auto-generation of the SOAP encoded web service.
 As can be seen from this specification, we tell the NuSOAP library the name of the function to register on line 1.
 Then line 4-6 specifies the input parameters, line 9 specifies the return value, and line 11-16 is less interesting parts which deals with how the method should be represented in SOAP.
 
-Line 18-28 is the actual method for registering that a bicycle has been returned to a dock at a given station.
+Line 18-29 is the actual method for registering that a bicycle has been returned to a dock at a given station.
 This is performed with use of prepared statements, as can be seen in line 21-24, which is done to prevent SQL injection.
 As you can see, the actual statement expresses an update on the dock, such that the dock, where the bicycle has been placed, gets a reference to that bicycle.
 
 Other methods for reading exists in the web service as well, the difference then being that a special \texttt{tns:BookingObjectArray} type is defined, which is an array type used to contain multiple JSON encoded strings that represents bookings. Such a method is for example useful when first booting a station where its local database is empty or that the local database data is outdated, e.g. it has been offline for some time.
-The implementation details have been omitted, as it is the same principle but where reading from the database is in focus instead of updating the database.
+The implementation details have been omitted, as it is the same principle but where reading from the database is performed instead of updating the database.
 
 \subsection{Bicycle to Database}\label{subsec:bicycletodatabase}
 This section is about the \texttt{GPSRegister} interface from \figref{fig:overallarch}.
 The interface from bicycle to database, is an interface that is needed to register the location of a bicycle, as GPS tracking is decided to be implemented, due to the meeting held with Aalborg Kommune.
-The idea is that each bicycle use the interface to inform the system where it is located, according to the coordinates received from GPS.
+The idea is that each bicycle use the interface to inform the system of its location, according to the coordinates received from GPS.
 
 The interface is implemented in the same fashion as the interface from station to database.
 As such, it is implemented as a SOAP web service, using the NuSOAP library to gain an encoding that makes the interface easy to call.

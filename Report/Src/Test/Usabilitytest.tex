@@ -1,17 +1,18 @@
 \section{Usability Test}
 This section covers the usability tests performed on the system.
 Tests have been performed on the public part of the website.
-The administrator site was not tested because no potential users were available to do so.
+The administrator site was not usability tested because no potential users were available to do so.
+However, we did test the site ourselves but this does not classify as a usability test.
 
 These are the tasks:
 
 \begin{enumerate}
-\item Establish an overview
-\item Status for bicycle
-\item Booking - Login
-\item Booking - Time and booking
-\item Cancel planned booking
-\item Examine the booking history
+\item Establish an overview.
+\item Status for bicycle.
+\item Booking - Login.
+\item Booking - Time and booking.
+\item Cancel planned booking.
+\item Examine the booking history.
 \end{enumerate}
 For a full description of the tasks see \appref{app:usability-test}.
 
@@ -33,16 +34,16 @@ We used IDA because it catches most of the usability problems in much less time 
 \subsection{Test Subjects}
 The tests were performed on four test subjects, whose demographics are as follows.
 \begin{enumerate}
-\item Gender: Female, Age: 29, Profession: Lawyer, Technological abilities: Average
-\item Gender: Male, Age: 28, Profession: Lawyer, Technological abilities: Above average
-\item Gender: Female, Age: 56, Profession: Office clerk, Technological abilities: Average
-\item Gender: Male, Age: 58, Profession: Electrician, Technological abilities: Above average
+\item Gender: Female, Age: 29, Profession: Lawyer, Technological abilities: Average.
+\item Gender: Male, Age: 28, Profession: Lawyer, Technological abilities: Above average.
+\item Gender: Female, Age: 56, Profession: Office clerk, Technological abilities: Average.
+\item Gender: Male, Age: 58, Profession: Electrician, Technological abilities: Above average.
 \end{enumerate}
 
 By average we think of a person who can construct basic text and spreadsheet documents as well as write mails and search on the web.
 For above average we think of a person who has the same skills set as an average person but where they also can delve into technical details such as a settings menu.
 
-The tests subjects are part of the target audience, see \secref{sec:ta}, however, with more time it would be beneficial to have tests subjects with below average capabilities to cover the whole target audience and what issues might occur with such persons.
+The tests subjects are part of the target audience, see \secref{sec:ta}, however, with more time it would be beneficial to have tests subjects with below average technological abilities to cover the whole target audience and address what issues might occur with such persons.
 \subsection{Usability Problems}
 As a result of the tests, the following usability issues were uncovered.
 
@@ -84,18 +85,21 @@ This may be because the website is simple and easy to use, however, it is probab
 Four issues are found, and for each of these issues, we go through how we correct these issues.
 
 \begin{description}[style=nextline]
-	\item[{\#}1 Fields reset]
-	The issue with fields resetting when you click on book/unbook can be solved in three ways.
+	\item[{\#}1 Fields reset - Serious]
+	The issue with fields resetting when you click on book can be solved in three ways.
 	One is to restructure that part of the website to use AJAX.
 	Another way is to save the information of the fields in sessions, in order to be loaded when the page gets reloaded. 
-	The third and most convenient way is to check if the fields has been entered correctly with JavaScript, and determine whether to perform the action based on this.
-	\item[{\#}2 Error message understandability]
+	The third and most convenient way is to check if the fields has been entered correctly with jQuery, and determine whether to perform the booking based on this.
+	This issue is deemed serious as it took a long time to perform the task because of this and resulted in a bit of frustration from the test subjects, but they did solve the task.
+	\item[{\#}2 Error message understandability - Cosmetic]
 	This issue is tied to checking if any of the fields are empty.
 	Instead, a more specific error message could be given to indicate which field has a missing entry.
-	\item[{\#}3 Difficulty finding history]
+	This issue is deemed cosmetic as it was only experienced by one test subject, and he was not severely affected by it.
+	\item[{\#}3 Difficulty finding history - Cosmetic]
 	In order to solve this issue, the button size could be increased.
 	It could be a matter of overlooking the button and may not be an issue that is present when the user have located the button at least once before.
-	\item[{\#}4 Booking/Unbooking confirmation]
+	This issue is deemed cosmetic as all found the history with enough time, and is probably easier to locate the next time they need to find it.
+	\item[{\#}4 Booking/Unbooking confirmation - Cosmetic]
 	The booking/unbooking issue can be solved in two ways.
 	One way is to present some status text when the booking/unbooking action has been performed.
 	Another way is to enforce a confirmation box for the user to agree with the action initiated.
@@ -103,7 +107,9 @@ Four issues are found, and for each of these issues, we go through how we correc
 	We find the first way better, for the booking action, and the confirmation box better for the unbooking action.
 	This is due to booking a bicycle by accident is not as severe an action as the unbooking, since if you booked something by accident, you can unbook it after and no harm is done.
 	On the other hand, if you by accident unbook something, you have a smaller chance of getting a bicycle booked again, if for instance another person books the last bicycle in the meantime.
+	
+	This issue is deemed cosmetic as all performed the task, but one test subject expressed that he would like a confirmation box.
 \end{description}
 
 An effort to correct the problems was made, and these are the changes that were made: More descriptive error messages, confirmation dialog boxes added for unbooking, and the history button was made easier to locate by making the font size larger.
-Additionally we also resolved the issue with fields being reset by use of the JavaScript approach.
+Additionally we also resolved the issue with fields being reset by use of the jQuery approach.

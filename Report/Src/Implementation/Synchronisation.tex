@@ -2,10 +2,11 @@
 As the system is split into stations and a central system, it is necessary to have communication between them, and tackle the synchronisation of data.
 This communication data flow have been illustrated in \figref{fig:overallarch}, additionally \secref{sec:sync} has discussed this problem previously as well.
 
+A description of the various synchronisation problems to consider follows hereafter.
 \begin{description}[style=nextline]
 	\item[Bicycle locking/unlocking not synchronised]
 	What is important for the central part of the system to know is the amount of bicycles placed at the stations.
-	However, it is not important for the central system to keep track on what bicycles are locked and unlocked at a station, as this information is of no use for the central system.
+	However, it is not important for the central system to keep track of what bicycles are locked and unlocked at a station, as this information is of no use for the central system.
 	The information is on the other hand important for the station, as this is the part of the system that ensures that bicycles are locked in time.
 	For that reason, the information is kept at the station. Furthermore, the central system can calculate how many bicycles are locked at a given station, as it can use the bookings for this.
 	
@@ -21,14 +22,14 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	However, problems may arise if the connection to the station is down.
 	In such a case, you can risk the station not registering the booking, and as such, one of the following actions have to be performed.
 	\begin{itemize}
-		\item Flag to indicate new bookings
-		\item Constantly ping central database (unreliable)
+		\item Flag to indicate new bookings.
+		\item Constantly ping central database.
 		\item Call local service to continuously try and connect until notification has been achieved.
 		\item Give the user an error message, telling him to try and book/unbook again later. 
 	\end{itemize}
 	
 	The idea behind having a flag to indicate new bookings is that a flag is set for the station that failed to be connected to.
-	On the station side, a thread runs and checks every $x$ amount of seconds for a flag that may have been sent.
+	On the station side, a thread runs and checks every $x$ amount of seconds for a flag that may have been sat.
 	If such a flag is registered when connection is re-established, the station then knows that it should update its bookings to correspond to those of the central database.
 	
 	Another more simple, but non reliable, idea is to constantly ping the central database.
@@ -61,4 +62,4 @@ This communication data flow have been illustrated in \figref{fig:overallarch}, 
 	
 \end{description}
 
-This ends the general synchronisation implementation details, with a brief documentation of our testing following hereafter.
+This ends the general synchronisation implementation details, with a documentation of our testing following hereafter.

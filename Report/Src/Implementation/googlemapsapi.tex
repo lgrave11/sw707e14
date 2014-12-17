@@ -1,6 +1,6 @@
 \section{Google Maps API}\label{sec:googlemapsapi}
 The Google Maps API \citep{misc:googlemapsapi} is used to show maps on the front page and some of the administration pages.
-However, both of these pages use the API differently, the front page uses the API to show the map with the stations that are currently in the system, whereas the administrator page visualises where all the bicycles are located.
+However, these pages use the API differently, the front page uses the API to show the map with the stations that are currently in the system, whereas the administrator pages visualises the usage of the bicycles in different ways.
 
 To use the API, the construction of the map is done first, which can be seen in \lstref{lst:mapoptions}.
 Map options are chosen, these options are e.g. the center of the map, which zoom level the map should have, and the style of the map.
@@ -19,7 +19,7 @@ var mapOptions = {
 \end{lstlisting}
 \end{minipage}
 
-After the map is constructed the map is filled with either the stations or the bicycles, depending on the page.
+After the map is constructed the map markers are added to the map representing e.g. the stations or the bicycles, depending on the page.
 
 For the front page the stations are inserted into the map by use of AJAX.
 For each station, the work-flow of this is as follows:
@@ -44,8 +44,8 @@ For each station, the work-flow of this is as follows:
 	\label{fig:googlemapmarkerinfowindow}
 \end{figure}
 
-An example of the final Google map with markers placed can be seen in \figref{fig:googlemapmarkerinfowindow}.
+An example of the final map with markers placed can be seen in \figref{fig:googlemapmarkerinfowindow}.
 
-For the administrator page the markers are bicycles, which are updated at a set frequency using AJAX, and is created in a similar fashion, but with other objects placed on the map.
-The main purpose of the administrator tracking page is to be able to see where the different bicycles are at a given time, which is the reason why the markers are updated once in a while.
+For the administrator front page the markers are bicycles, which are updated at a set frequency using AJAX, and is created in a similar fashion, but with other objects placed on the map.
+The main purpose of the administrator front page is to be able to see where the different bicycles are at a given time, which is the reason why the markers are updated with set frequency.
 For the update of the marker position AJAX is used to get all the positions of the different bicycles, which allows the makers to move without refreshing the page.
