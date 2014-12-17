@@ -4,7 +4,7 @@ While \figref{fig:overallarch} of the overall architecture provides an overview 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[trim=2cm 9.5cm 0cm 3cm, clip, scale=0.7]{design/station}
+	\includegraphics[trim=1cm 1.3cm 1cm 1.3cm, clip, scale=1]{design/station}
 	\caption{Station software architecture.}\label{fig:stationarch}
 \end{figure}
 
@@ -26,7 +26,7 @@ However, how locking should be tackled has not been touched upon yet, but is a  
 \subsubsection{Locking Considerations}\label{subsec:lockingcons}
 Consider the scenario where a user $u_1$ makes a booking $b_1$ on the website at time $t_1$ wanting to reserve a bicycle for time $t_3$. Before time $t_1$ another user $u_2$ made a booking $b_2$ of a bicycle for time $t_2$. Both users made a booking at the same station, and the amount of available bicycles for that station was for both users 1. Under the assumption that a bicycle cannot be locked and thereby reserved before some amount of time, say $t_{before}$, before usage, this scenario is possible in the following way.
 
-First consider this definition of a time $t$, it is a time represented as the number of seconds from Thursday, 1 January 1970 at 00:00:00 UTC, which is the Epoch time, as such comparisons such as $>$ is just computed as usual on numbers.
+First consider this definition of a time $t$, it is a time represented as the number of seconds from Thursday, 1 January 1970 at 00:00:00 UTC, which is the Epoch time, as such comparisons such as $>$ is computed as usual on numbers.
 Let, 
 $$TSB(b) = \{(t_1,t_2) \;| \;t_1 = st(b) - t_{before} \land t_2 = st(b) \land t_1 \leq t_2 \}$$
 where,

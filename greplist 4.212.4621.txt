@@ -3,7 +3,7 @@ webservice/web-service -> web service ✓
 Conseptual design skal skrives
 tavle, tilføj de ting der står der på.
 
-here, just, only -> Kan ofte fjernes
+here, just, only -> Kan ofte fjernes ✓
 
 Flyt Admin Tools over ER-diagram, og flyt derefter ER-diagrammet fra admin tools over i ER-diagram, og slet det gamle. ✓ 
 Ydermere, husk at ændre metasprog i design. ✓
@@ -32,3 +32,11 @@ smart-phone -> smartphone ✓
 Fiks field resets ✓
 
 as of such -> as such ✓
+
+DKK uden mellemrum -> DKK med mellemrum
+additionally -> ???
+UI -> GUI 
+bikes -> bicycles
+bike -> bicycle(ikke gobike)
+IoT uden the -> the IoT
+Internet of Things uden the -> the Internet of Things
