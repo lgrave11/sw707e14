@@ -1,68 +1,54 @@
-\section{Unlock}\label{sec:Lock}
+\section{Unlocking of Bicycles}\label{sec:Lock}
 There should be a way for the user to unlock a booked bicycle when reaching the station.
 This can be solved in several ways, some of these are described hereafter.
-We look at the following solutions:
-
-\begin{itemize}
-	\item Unlock on Time
-	\item SMS
-	\item Password Based
-	\item QR Code
-	\item GPS
-\end{itemize}
+We look at several solutions, which are unlock on time, SMS, password based, QR code, and GPS based.
 
 \subsection{Unlock on Time}
 This option is independent on whether or not the user is at the station at a specific time.
-When the specified time frame begins the booked bicycle becomes unlocked and is then available for anyone to use.
-This leads to problems in that a user arriving too early at the station has to wait for the bicycle to unlock, and if the user arrives too late the bicycle might have been taken by another person.
+However, it leads to problems in that a user arriving too early at the station has to wait for the bicycle to unlock, and if the user arrives too late the bicycle might have been taken by another person.
 However, this solution is cheap since it only needs the lock on the bicycle, and the communication with the global system, which the other suggestions need as well.
 
 \subsection{SMS}
 Whenever the user is ready to retrieve his booked bicycle, he sends an SMS to the system, and the system unlocks his bicycle.
-Compared to the previous suggestion, this suggestion does not make the bicycle available to everyone, therefore if the user is too late, he can be sure that the bicycle is still available at the station.
+Compared to the previous suggestion, this suggestion does not make the bicycle available to everyone, therefore if the user is late, he can be sure that the bicycle is still available at the station.
 Furthermore, if the user comes too early to the station, he is still able to unlock the bicycle and does not have to wait for the bicycle to get unlocked.
 Moreover this solution is also cheap since it only needs to have a lock, some kind of receiver for the incoming SMS, and be able to communicate with the global system.
 However, this suggestion is not a free solution to the user since they have to pay for the SMS, which can become expensive if the user does not have a Danish mobile subscription.
 
-\subsection{Password Based}
+\subsection{Password}
 When the user arrives at the station he has to enter a password at the station to unlock a bicycle.
 To be able to do this it requires additional hardware at the station to make it possible to input a password to the system.
 Therefore this solution increases the price of each station, as the additional hardware has to be located at every station.
-However, it solves the issue that it can become expensive for the user, as this suggestion only costs something for the organizations behind Aalborg Bycykel.
+However, it solves the issue that it can become expensive for the user, as this suggestion only costs something for the organisations behind Aalborg Bycykel.
 
 \subsection{QR Code}
-In order to unlock a booked bicycle the user has to scan a QR code located next to one of the locked bicycles at the station.
+In order to unlock a booked bicycle the user has to scan a QR code located next to one of the locked bicycles at the station and navigate to the read link to unlock the bicycle.
 This suggestion compared to the previous suggestions does not require any additional hardware and can therefore become cheaper for Aalborg Bycykel.
 However, it does require that the user has a mobile device that is able to scan a QR code and send the information over the internet to the system. This could, however, be as expensive for a foreign user as the \textit{SMS} solution due to roaming prices.
 
 \subsection{GPS}
 This suggestion uses the GPS of a device to see if the user is close to the station.
 If the user is close to the station the booked bicycle gets unlocked.
-To use this suggestion the user is required to have a mobile device which is able to send GPS information to the system.
+To use this solution, the user is required to have a mobile device which is able to send GPS information to the system.
 This would require that the user has an internet connection as well.
-Additionally this is very resource demanding for the users mobile device as the use of GPS prevent sleep mode of the mobile device \citep{misc:gpsbatteryusage}, which results in significantly lower battery duration.
+Additionally this is very resource demanding for the mobile device as the use of GPS prevent sleep mode \citep{misc:gpsbatteryusage}, which results in significantly lower battery duration.
 Moreover, if the user passes by the station before he actually wants to use the bicycle there is a risk that the station detects this, therefore unlocking the bicycle.
 
-\subsection{Information Gain}
-The different solutions provide sufficient information to the system, to be able to register when a bicycle needs to be unlocked.
-Common to all but one solution is that it can be mapped to a password sent to the system, in order to unlock a bicycle.
-The exception being the \textit{Unlock on Time} solution, where instead once the time runs out the lock unlocks.
-
-\subsection{Preferred Solution}
+\subsection{Chosen Solution}
 The chosen solution should be simple for the user, without requiring specific tools, while still being usable, as specified in \secref{sec:systemCriteria}.
 
 The \textit{Unlock on Time} solution is simple as it does not require anything from the user in terms of equipment, it does, however, have the drawback that the user has to be at the station in time of the unlocking of the bicycle.
 It does not leave much flexibility for the user to arrive a little early or a few minutes late.
 
-The \textit{SMS} solution requires that the user has a phone capable of sending an SMS. 
-According to Danmarks Statistik 89\% of people aged 16-74 are able to send and receive an SMS in the year 2013 \citep{misc:dstMobilephone}.
+The \textit{SMS} solution requires that the user has a phone capable of sending an SMS and according to Danmarks Statistik 89\% of people aged 16-74 as of 2013 were able to do so \citep{misc:dstMobilephone}.
 It is expected that nearly everyone has a phone capable of sending SMS, but for tourists it might be a problem since not everyone is able to send an SMS to a foreign number or that it might be expensive.
 Since the bicycles are also minded towards tourists, this could prove to be a problem.
 
-To be able to use the QR code solution, the user would need some kind of scanner with internet connection, for example a smartphone.
-60\% of the people aged 16-74 in the year 2013 was using internet on their phone, according to Danmarks Statistik \citep{misc:dstMobilephone}.
+To be able to use the \textit{QR Code} solution, the user would need some kind of scanner with internet connection, for example a smartphone.
+According to Danmarks Statistik, 60\% of the people aged 16-74 in the year 2013 was using internet on their phone \citep{misc:dstMobilephone}.
 For the GPS solution, with a smartphone kept in mind, it is important that the smartphone with GPS also has an internet connection to communicate its position to the system, such that the system can react on this.
-Because of the relatively low adoption of smartphones, QR code and GPS may not be proper solutions.
-We are aware that other mobile devices can also read QR codes, but the device requires internet access to notify the system about the content read.
 
-The \textit{Password Based} solution, however, appears to require more hardware installations at the stations, though it does solve the problems of the other solutions in that everyone can use it and the user is in control of when they get the bicycle.
+The \textit{Password} approach covers more users than the other solutions as it does not require people to have a phone, and people can access public internet access points.
+The \textit{Password} solution appears to require more hardware installations at the stations, though it does solve the problems of the other solutions in that everyone can use it and the user is in control of when they get the bicycle.
+Due to the password based approach covering most users, it is deemed to be the best solution.
+In the future, however, the password can also be sent to the user over SMS without additional costs for the user.

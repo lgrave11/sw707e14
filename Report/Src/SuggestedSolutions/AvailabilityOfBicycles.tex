@@ -1,32 +1,26 @@
 \section{Availability of Bicycles}\label{sec:availability}
 One of the requirements is that the users of the system need to be able to see how many bicycles are available at a given station.
 This section covers the suggested solutions for that requirement.
-We look at three different availability checking solutions:
-
-\begin{itemize}
-\item Camera based
-\item Dock based
-\item Chip based
-\end{itemize} 
+We look at three different availability checking solutions, which is camera, dock, and chip based
 
 % Camera
 \subsection{Camera}
-A solution with little technological implementation required, is to use a camera such that users of the system can visually check if any bicycles are available at a given station. 
+A solution that is easy to implement is to use a camera such that users of the system can visually check if any bicycles are available at a given station. 
 
 This solution is an easy way to add some kind of availability checking without investing in a larger system.
 
 Of course this solution has its downsides, because the information is not reliable in certain situations. 
 One example of a situation where a camera would be insufficient would be if it is dark at the station.
 You also have to consider that the information transmitted by the camera can be deceiving, in that it could show a bicycle that does not really belong at the station and that would make the user come to the conclusion that there are bicycles at the station.
-However, one problem with the camera solution is that it does not provide an exact number of bicycles available but rather leaves it up to the interpretation for the user.
+Another problem with the camera solution is that it does not provide an exact number of bicycles available but rather leaves it up to interpretation for the user.
 Another possible issue would be with bicycles being at the station but not being available to use because they are booked.
 Furthermore, the amount of data needed to be transmitted from the camera to the user could become a bottleneck.
 
 % Dock
 \subsection{Dock}
-Another solution that requires a bit more technological implementation is a \textit{Dock} based implementation.
+Another solution that requires more work to implement is a \textit{Dock} based implementation.
 The main idea is that when a bicycle is delivered at a station it is placed in a dock.
-A given dock some kind of detector is then able to register if there is a bicycle located at it.
+A given dock with some kind of detector is then able to register if there is a bicycle placed in it.
 Each station then contains several docks, and can read from each of them to provide a number for how many bicycles are located at that station. 
 
 %good:
@@ -36,11 +30,10 @@ This solution, unlike the \textit{Camera} solution, provides exact information a
 %bad:
 For this system to work, the bicycles would have to be placed into the docks to provide any correct information.
 That is, the system is not registering bicycles misplaced outside the docks.
-A potential problem could be if people park their private bicycles in the docks, as this could result in false positives.
 
 % Chip
 \subsection{Chip}
-A similar solution to the dock solution is to use chips, such as RFID chips. 
+A similar solution to the \textit{dock} solution is to use chips, such as RFID chips. 
 Such a solution is similar in that it provides the same information, namely the amount of bicycles at a given station.
 The solution differs, however, in the way this is registered.
 
@@ -55,46 +48,25 @@ These two solutions have in common that they are easy to use, as you come and pi
 % bad
 On the downside it requires modifying all the bicycles in the fleet, furthermore, if using the car park idea, the stations can end up taking more space than the other solutions. 
 
-% WiFi
-\begin{comment}
-\subsection{WiFi}\fxwarning{This doen't work, delete maybe?}
-Using WiFi to transmit from the bicycles to the station if they are near, is another solution that could be used.
-This solution captures the bicycles located in a perimeter around the station that are on the WiFi network.
-
-This solution provides an estimate of the amount of bicycles available at a given station.
-It requires very little in terms of extra infrastructure having to be built.
-
-It is unclear what costs would be involved with this system and how the bicycles would be powered to maintain the WiFi signal for a longer period of time. 
-Maintaining the WiFi signal for a longer period of time when not bicycling may not be necessary as you could assume that when a bicycle is not active, it stays at the same place.
-If that is the case, it could be enough to transmit your position when near a station and bicycling, thus powering the WiFi with kinetic energy.
-\end{comment}
-
-\subsection{Information Gain}
-Various solutions have been discussed, and from a software point of view, we need to know what information each solution can provide.
-The \textit{Camera} solution gives access to a camera feed, which is not sufficient, based on the requirement which states you need to provide the amount of bicycles at a station.
-The \textit{Dock} and \textit{Chip} solutions gives information regarding how many bicycles are docked at each station, these solutions report this each time the amount of bicycles docked changes.
-%The \textit{WiFi} solution gives information about how many bicycles are near a given station, and might include bicycles already in use.
-%The solution can, however, be modified to give the same information as the \textit{Dock} and \textit{Chip} solution, by reporting each time the amount of bicycles in the area changes.
-
-\subsection{Discussion of Solutions}
+\subsection{Chosen Solution}
 Among the above mentioned solutions to the problem of determining the availability of bicycles, a preferred solution has to be chosen. 
 
 The impact of the solutions is measured on the amount of hardware needed to be added to the current system in order to get a working solution. 
-For example, common to all the solutions is that they require a network connection available at every station because communicating with the system is necessary. 
+For example, common to all the solutions is that they require a network connection available at every station because communication with the system is necessary. 
 Furthermore, each solution require different hardware and installations in order to provide the information needed. 
 
 The solutions in order of least impact are as follows: \textit{Camera}, \textit{Chip}, and \textit{Dock}.
 With the \textit{Camera} solution, only an addition of a camera at every station is required. 
-The \textit{Chip} solution on the other hand requires every bicycle being equipped with a non-power-consuming RFID chip and readers at the stations.
+The \textit{Chip} solution on the other hand requires every bicycle being equipped with a RFID chip and readers at the stations.
 The solution with the most impact, the \textit{Dock} solution requires an installation of multiple docks at stations, but it does come with some benefits.
-Specifically that it is easy for the user to use, and can be more easily extended than other solutions with more functionality such as forced locking.
+Specifically that it is believed to be easy for the user to use, and can be more easily extended than other solutions with more functionality such as forced locking.
+This assessment is based on the other existing solutions such as GoBike which uses docks.
 
 The \textit{Camera} solution is not considered further because of the possibly inconsistent interpretation by the user, possibly leading to situations where a bicycle is interpreted by a user watching the camera feed to be available, but in fact is not.
 
 The \textit{Chip} solution might be suitable if you only consider the availability of bicycles, however, since there is a requirement for booking of bicycles this solution is not considered further as a standalone solution.
 However, it is worth considering for the \textit{Dock} solution to register which bicycle is located at a given dock.
 
-
 The \textit{Dock} solution provides the system with a simple way of determining the number of bicycles docked at each station.
 The \textit{Dock} solution appears to be best, though it does require some hardware installation.
-This solution is also very user friendly and easy to use, which is why we think it is the one that fulfils the criteria best.
+This solution is also very user friendly and easy to use, which is why we think it is the one that fulfils the criteria best and is thus chosen as the preferred solution for availability of bicycles.

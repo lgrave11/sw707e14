@@ -11,10 +11,10 @@ The following provides an overview of the chosen solution using rich pictures.
 The server-station relationship is shown in \figref{fig:ServerRichPicture}.
 It depicts a central server, where the different bicycle stations are connected to.
 Furthermore, people can access the website to gain information e.g. bicycle count, but also to register bookings, where the server then communicates this to the given station(s).
-Those stations then takes care of locking/unlocking bicycles to satisfy the bookings performed.
+Those stations then takes care of locking and unlocking bicycles to satisfy the bookings performed.
 The server contains all information about each station, such as bookings, amount of available bicycles at stations, and usage statistics.
 It provides booking and amount of available bicycles at stations through a website to the user. 
-Usage statistics are provided to the facilitators of the system and gives them the ability to improve it. 
+Usage statistics are provided to the facilitators of the system and gives them the ability to improve the system. 
 
 \begin{figure}[h]
 \centering
@@ -23,7 +23,7 @@ Usage statistics are provided to the facilitators of the system and gives them t
 \label{fig:ServerRichPicture}
 \end{figure}
 
-The dock that provide the locking/unlocking mechanism along with the bicycle detection ability have to talk to the station. 
+The dock that provide the locking and unlocking mechanism along with the bicycle detection ability have to communicate with the station. 
 This is for example when they need to unlock a booked bicycle, the information needs to be propagated from the station to the individual dock containing the bicycle.
 A sketch of how a station could look like when deployed can be seen in \figref{fig:StationRichPicture}.
 The figure depicts a station and two docks connected to the station, which contains a bicycle each. 
@@ -31,6 +31,6 @@ On the display of the station, it can be seen that two bicycles are available fo
 \begin{figure}[h]
 \centering
 \includegraphics[scale=3]{stationrichpicture/station.pdf}
-\caption{The station and the bikes.}
+\caption{The station and the bicycles.}
 \label{fig:StationRichPicture}
 \end{figure}

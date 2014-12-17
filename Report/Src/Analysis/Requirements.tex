@@ -30,11 +30,11 @@ The user should be able to book a bicycle and this booked bicycle should be lock
 \item[Track bicycles] \hfill \\
 The data collected by the positioning system should be used to locate the bicycles if they are not returned to a station.
 \item[Obtain data for analysis] \hfill \\
-The user should be able to collect information and statistics about the usage of the system.
-The organization responsible should be able to use this information to, for example, perform analysis about where to redistribute bicycles and to determine if purchase of new bicycles is necessary.
+The system should be able to collect information and statistics about the usage of the system.
+The organisation responsible should be able to use this information to, for example, perform analysis about where to redistribute bicycles and to determine if purchase of new bicycles is necessary.
 \item[Predict availability of bicycles depending on placement and other variables] \hfill \\
 The position should be used for predicting the usage of the bicycles as well. 
-For example to predict when a bicycle is available at a given station again.
+For example to predict when a bicycle is available at a given station.
 \end{description}
 
 \subsection{Hardware Requirements}
@@ -45,9 +45,12 @@ For example to predict when a bicycle is available at a given station again.
 %  - få fat i positionen af den enkelte cykel
 In order to fulfil the requirements for the software listed above, a set of hardware requirements are necessary.
 These requirements specify a communication interface between software and hardware, and as long as the hardware implements these interfaces, the software solution should be able to perform the required tasks.
+
 The software requirements are listed in prioritised order, and depending on what requirements are implemented different hardware requirements need to be fulfilled. 
-For example if the \textit{Track bicycles} requirement is implemented, then the hardware on the bicycles should be able to transmit its position.
-\begin{itemize}
-	\item Interface between station and server
-	\item Interface between bicycle and server
-\end{itemize}
+
+\begin{description}[style=nextline]
+	\item[Interface between station and server] This interface is necessary to register the amount of bicycles and docks that are available at a given station as well as enabling the station to register bookings performed. Furthermore, the data obtained with the use of this interface can be used for analysis.
+	\item[Interface between bicycle and server] In order to track bicycles, this interface is necessary. This also comes in handy for the data analysis and to predict availability of bicycles.
+\end{description}
+
+An example of this is if the \textit{Track bicycles} requirement is implemented, then the hardware on the bicycles should be able to transmit its position.
