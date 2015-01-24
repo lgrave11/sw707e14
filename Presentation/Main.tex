@@ -1,0 +1,75 @@
+\documentclass[11pt]{beamer}
+\usetheme{PaloAlto}
+\usecolortheme{sidebartab}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[utf8x]{inputenc}			% Character encoding
+\usepackage{ucs}						% Extended character encoding
+\usepackage{t1enc}						% More character encoding	
+\usepackage[english]{babel}
+%\usepackage{slashbox,pict2e}			% Slashbox at the top of tables.
+\graphicspath{{Media/}}
+\usepackage{listings}					% Code in text.
+\usepackage{xcolor}
+\definecolor{white}{RGB}{255,255,255}
+
+\lstset{
+         basicstyle=\footnotesize\ttfamily, % Code text options
+         numberstyle=\tiny,          		% Code text size.
+         numbersep=5pt,             		% Distance from numbering to text.
+         tabsize=2,                 		% Size of tabs
+         extendedchars=true,         		% Extended ASCII
+         breaklines=true,            		% Break lines.
+         keywordstyle=\color{blue},			% Coloring of keywords      
+         stringstyle=\color{red}\ttfamily,  % Coloring of strings.
+         showspaces=false,           		% Visible spaces.
+         showtabs=false,             		% Visible tabs.
+         xleftmargin=0.9cm,
+         captionpos=b, 
+         numbers=left,
+         frame=single,
+         framexleftmargin=17pt,
+         framexrightmargin=5pt,
+         framexbottommargin=4pt,
+         showstringspaces=false,
+         literate={ø}{{\o}}1
+         		  {æ}{{\ae}}1
+         		  {å}{{\aa}}1
+         		  {Æ}{{\AE}}1
+				  {Å}{{\AA}}1
+				  {Ø}{{\O}}1,
+		 extendedchars=\true,
+         float = t,
+         keywordstyle=\color[rgb]{1.0,0,0},
+		 keywordstyle=[1]\color[rgb]{0,0,0.75},
+		 keywordstyle=[2]\color[rgb]{0,0.5,0.50},
+		 commentstyle=\color[rgb]{0.133,0.545,0.133},
+}
+
+\pgfdeclareimage[height=1.5cm]{university-logo}{aau_segl}
+\logo{\pgfuseimage{university-logo}}
+
+\title{P7}
+\author[sw707e14]{Dennis Jakobsen \\
+Erik Sidelmann Jensen \\
+Lasse Vang Gravesen \\
+Lars Andersen \\
+Mathias Winde Pedersen \\
+Søren Skibsted Als \\}
+\date{}
+\setbeamertemplate{footline}[frame number]
+\begin{document}
+	\maketitle
+	\input{ExampleFrames}	
+	\bgroup
+	\setbeamercolor{background canvas}{bg=black}
+	\begin{frame}[plain]{}
+	\addtocounter{framenumber}{-1}	
+		\begin{center}
+		%\textcolor{white}{END}
+		\end{center}
+	\end{frame}
+	\egroup
+	
+\end{document}
