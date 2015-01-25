@@ -1,41 +1,292 @@
-\section{Bicycle Sharing System}
+\section{Introduction}
+\begin{frame}
+	\begin{center}
+		\Huge Introduction
+	\end{center}
+\end{frame}
 
 \begin{frame}
-\frametitle{What is a bicycle sharing system?}
-	Definition goes here, if such exists.
+\frametitle{Who Are We?}
+\begin{itemize}
+	\item Erik
+	\item Lasse
+	\item Søren
+	\item Lars
+	\item Dennis
+	\item Mathias
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What Will be in This Presentation?}
+\begin{itemize}
+	\item What are we dealing with?
+	\item What problems are there to address? and why?
+	\item How does the solution fit with the Internet of Things? (lasse ret lige til her)
+	\item How did we manage to solve the problems?
+	\item A demonstration of the outcome.
+	\item What can be concluded from our work?
+\end{itemize}
+\end{frame}
+
+\section{Bicycle Sharing System}
+\begin{frame}
+	\begin{center}
+		\Huge Bicycle Sharing System
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{What Is a Bicycle Sharing System?}
+	\begin{center}
+		\textit{"Short term bicycle rental available at unattended stations"} - Paul DeMaio, MetroBike LCC
+	\end{center}
+	
+	The idea is that: "bikes provide a new paradigm in short distance transport that is a realistic alternative to the bus, tram, taxi, or private car [...]".
+	\newline\newline
+	Pick your bicycle at A and place it at B.
+	\bigskip
+	\btVFill
+	\tiny source of definition: http://www.bicyclesharingsystems.com/whatis.php
 \end{frame}
 
 \begin{frame}
 \frametitle{The Current System}
-	What and how
+	%picture if there is room for it
+	\begin{itemize}
+		\item CIVITAS ARCHIMEDES.
+		\item 2009: 135 bicycles and 19 stations.
+		\item Today: +2 stations and +102 bicycles.
+		\item Open system, free to use.
+		\item Each bicycles is used minimum 1.4 times during a day.
+		\item AFA JCDecaux.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Problems With the Current System}
-	See those proposed in the original project proposal
+	\begin{itemize}
+		\item You do not know beforehand if there are bicycles available for you and how many.
+		\item You cannot make sure that there will be a bicycle for you.
+		\item There is no way for Aalborg Kommune to monitor the use of the bicycles.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{How Can We Solve These Problems?}
-	What have all the others done, do they have the same problems?
+	\begin{large}
+	Does other bicycle sharing systems address these problems?
+	\end{large}
+	\begin{itemize}
+		\item Status: All of the examined systems provides a website for getting the current amount of bicycles at each station.
+		\item Booking: Of the examined systems it is done either by creating a special subscription, paying by week, month or quarter, or by
+		creating a booking for a bicycle online in advance asking for a confirmation half an hour before reservation.
+		\item Monitoring: Of the examined systems it is either done through registering bicycles in docks at the stations or by 
+		tracking their position with GPS.
+	\end{itemize}
 \end{frame}
 
 \section{Our Goal For the Project}
+
+\begin{frame}
+	\begin{center}
+		\Huge Our Goal For the Project
+	\end{center}
+\end{frame}
+
 \begin{frame}
 \frametitle{Problem Definition}
-	What problems/questions we defined
+	%We define the problem definition of enhancing the user experience by targeting some of the mentioned problems by this hypothesis:
+	\begin{center}
+		\textbf{It is possible to develop a system for Aalborg Bycykel that is user friendly and manageable, within the context of the Internet of Things.}
+	\end{center}
+	\begin{itemize}
+		\item What are the requirements for a city bicycle booking and positioning system?
+		\item How can the booking and positioning system be designed and implemented within the context of the Internet of Things?
+		\item Why should the developed system be used over the currently used system?
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Requirements and Criteria}
-	What did we want the system to do, and at what parameters would we weight the different solutions.
+\frametitle{Requirements}
+	We want a system that is able to:
+	\begin{itemize}
+		\item Provide status of availability of bicycles.
+		\item Give an option to book a bicycle.
+		\item Track the position of each bicycle.
+		\item Collect data for analysis of the usage for Aalborg Kommune.
+		\item Predicting when a bicycle will be available for use.
+	\end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Criteria}
+	What values did we want the system to have?
+	\begin{itemize}
+		\item As little change as possible, rather an extension the current system.
+		\item Easy to use and accessible by everyone.
+	\end{itemize}
+\end{frame}
 
 %Visualise the different suggestions to problems(may be too specific)
 \section{Suggested Solutions}
 \begin{frame}
-\frametitle{Problem1 - Solution1}
+	\begin{center}
+		\Huge Suggested Solutions
+	\end{center}
 \end{frame}
 
-%etc.
+\begin{frame}
+\frametitle{Availability of Bicycles - Camera}
+\begin{figure}
+\centering
+\includegraphics[scale=0.05]{camera}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: http://www.mantratec.com/Weatherproof-cameras/weatherproof-camera-1.jpg
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Availability of Bicycles - Chip}
+\begin{figure}
+\centering
+\includegraphics[scale=0.2]{RFID-Chip}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: https://pbs.twimg.com/profile\_images/1280492977/RFID-Chip.jpg
+\end{frame}
+
+\begin{frame}
+\frametitle{Availability of Bicycles - Dock}
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{dock}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: http://www.tuvie.com/wp-content/uploads/public-bike-system1.jpg
+\end{frame}
+
+\begin{frame}
+\frametitle{Booking Software - Mobile App}
+\begin{figure}
+\centering
+\includegraphics[scale=0.1]{smartphone}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: http://cdns2.freepik.com/free-photo/smartphone\_318-23380.jpg
+\end{frame}
+
+\begin{frame}
+\frametitle{Booking Software - Website}
+\begin{figure}
+\centering
+\includegraphics[scale=0.1]{web}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: http://www.eventmanagerblog.com/uploads/2014/03/creating-perfect-event-websites.png
+\end{frame}
+
+\begin{frame}
+\frametitle{Unlocking of Bicycles - On time}
+\begin{figure}
+\centering
+\includegraphics[scale=0.2]{clock}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: http://images.all-free-download.com/images/graphiclarge/purzen\_clock\_face\_clip\_art\_24896.jpg
+\end{frame}
+
+\begin{frame}
+\frametitle{Unlocking of Bicycles - GPS}
+\begin{figure}
+\centering
+\includegraphics[scale=0.1]{gps}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: https://cdn3.iconfinder.com/data/icons/wireless/512/16-512.png
+\end{frame}
+
+\begin{frame}
+\frametitle{Unlocking of Bicycles - QR Code}
+\begin{figure}
+\centering
+\includegraphics[scale=0.1]{QR}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: http://www.qrstuff.com/images/sample.png
+\end{frame}
+
+\begin{frame}
+\frametitle{Unlocking of Bicycles - SMS}
+\begin{figure}
+\centering
+\includegraphics[scale=0.1]{SMS}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: http://www.fusionindia365.com/images/templatemo\_logo.png
+\end{frame}
+
+\begin{frame}
+\frametitle{Unlocking of Bicycles - Password}
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{password}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: http://i.bnet.com/blogs/272104\_b9383b0487-300x225.jpg
+\end{frame}
+
+\begin{frame}
+\frametitle{Tracking of Bicycles - GPS}
+\begin{figure}
+\centering
+\includegraphics[scale=0.15]{gps-signal}
+\end{figure}
+
+%Weight
+
+\bigskip
+\btVFill
+\tiny source of image: http://cdns2.freepik.com/free-photo/receiving-gps-signal\_318-10003.jpg
+\end{frame}

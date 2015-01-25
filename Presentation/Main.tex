@@ -4,7 +4,8 @@
 \usepackage{lipsum}
 \usepackage{graphicx}
 \usepackage{lmodern}
-\usepackage[utf8x]{inputenc}			% Character encoding
+%\usepackage[utf8]{inputenc}		    	% Character encoding
+\usepackage[latin1]{inputenc}
 \usepackage{ucs}						% Extended character encoding
 \usepackage{t1enc}						% More character encoding	
 \usepackage[english]{babel}
@@ -12,7 +13,9 @@
 \graphicspath{{Media/}}
 \usepackage{listings}					% Code in text.
 \usepackage{xcolor}
+\usepackage{comment}
 \definecolor{white}{RGB}{255,255,255}
+\newcommand{\btVFill}{\vskip0pt plus 1filll}
 
 \lstset{
          basicstyle=\footnotesize\ttfamily, % Code text options
@@ -56,12 +59,13 @@ Erik Sidelmann Jensen \\
 Lasse Vang Gravesen \\
 Lars Andersen \\
 Mathias Winde Pedersen \\
-Søren Skibsted Als \\}
+S\o ren Skibsted Als}
 \date{}
 \setbeamertemplate{footline}[frame number]
 \begin{document}
 	\maketitle
 	\input{ExampleFrames}	
+	\input{Erik}
 	\bgroup
 	\setbeamercolor{background canvas}{bg=black}
 	\begin{frame}[plain]{}
