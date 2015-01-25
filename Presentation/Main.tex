@@ -62,19 +62,7 @@
 % - Use the \inst{?} command only if the authors have different
 %   affiliation. See the beamer manual for an example
 
-\institute[
-%  {\includegraphics[scale=0.2]{aau_segl}}\\ %insert a company, department or university logo
-  Dept.\ of Computer Science\\
-  Aalborg University\\
-  Denmark
-] % optional - is placed in the bottom of the sidebar on every slide
-{% is placed on the title page
-  Department of Computer Science\\
-  Aalborg University\\
-  Denmark
-  
-  %there must be an empty line above this line - otherwise some unwanted space is added between the university and the country (I do not know why;( )
-}
+
 
 
 % specify a logo on the titlepage (you can specify additional logos an include them in 
@@ -95,10 +83,12 @@
 \begin{frame}[plain,noframenumbering] % the plain option removes the sidebar and header from the title page
   \titlepage
 \end{frame}}
-	\input{ExampleFrames}	
+		
 	\input{Erik}
+	\input{LasseFrames}
 	\input{Als}
 	\input{Lars}
+	\input{rank1nab}
 	\bgroup
 	\setbeamercolor{background canvas}{bg=black}
 	\begin{frame}[plain]{}
