@@ -1,0 +1,61 @@
+\section{Implementation Details}
+
+\begin{frame}
+\frametitle{Overview}
+\begin{itemize}
+\item Database
+\item Architecture
+\item Synchronisation
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Database}
+\begin{itemize}
+	\item MySQL
+	\item ER-Diagram $\rightarrow$ MySql Schema
+\end{itemize}
+	\begin{figure}
+		\includegraphics[scale=0.4]{DBtables}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Overall Architecture and Interaction}
+		\begin{figure}
+			\includegraphics[scale=0.5]{architecture}
+		\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Webpage Architecture}
+	\begin{figure}
+		\includegraphics[scale=0.37]{ConcreteMVC}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Station Simulation Architecture}
+		\begin{figure}
+			\includegraphics[scale=0.5]{station}
+		\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Synchronisation}
+	Watch out for:
+	\begin{itemize}
+		\item Inconsistent state
+		\item Connection failures
+	\end{itemize}
+	\pause
+	Issues:
+	\begin{itemize}
+		\item Bicycle locking/unlocking
+		\item Removal/Insertion of bicycles
+		\item Booking/Unbooking
+		\item Station boot/reboot
+		\item Dock insertion/removal
+	\end{itemize}
+\end{frame}
